@@ -1,4 +1,14 @@
 class Api::UsersController < ApplicationController
+  def index
+    if params[:email]
+      if @user = User.find_by(email: params[:eamil])
+        render json: { email: params[:email] }
+      else 
+        render json: { email: params[:email] }, status: 404
+      end
+    end
+  end
+
   def show
     @user = User.find_by(username: params[:id])
     if @user
@@ -19,9 +29,10 @@ class Api::UsersController < ApplicationController
     end
   end
 
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :gender, :age)
+    params.require(:user).permit(:email, :username, :password)
   end
 end

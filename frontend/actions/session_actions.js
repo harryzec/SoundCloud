@@ -1,12 +1,25 @@
 import * as APIUtil from '../util/session_api_util'
+import { openModal, closeModal } from './modal_actions'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+// export const VERIFY_CURRENT_USER = 'VERIFY_CURRENT_USER';
+// export const NO_CURRENT_USER = 'VERIFY_CURRENT_USER';
 
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
 });
+
+// export const founder = found => ({
+//   type: VERIFY_CURRENT_USER,
+//   found
+// })
+
+// export const founder = notFound => ({
+//   type: NO_CURRENT_USER,
+//   notFound
+// })
 
 export const receiveErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
@@ -34,3 +47,11 @@ export const logout = () => dispatch => (
     dispatch(receiveCurrentUser(null))
   ))
 );
+
+
+export const verifyUser = (username) => dispatch => (
+  APIUtil.verifyUser(username)
+    // .then(email => dispatch(openModal('login')), 
+    //       email => dispatch(closeModal())
+    // )
+)

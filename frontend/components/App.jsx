@@ -16,7 +16,7 @@ import {
 const App = () => (
   <div>
     <Route path="/" component={GreetingContainer} />
-    <ProtectedRoute exact path='/discover' component={DiscoverContainer} />
+    {/* <ProtectedRoute exact path='/discover' component={DiscoverContainer} /> */}
     <Modal />
   </div>
 );

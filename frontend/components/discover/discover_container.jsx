@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import Discover from './discover';
 
-const mSTP = (state) => {}
+const mSTP = (state) => ({
+})
 
-const mDTP = (dispatch) => {}
+const mDTP = (dispatch) => ({})
 
 export default connect(mSTP, mDTP)(Discover);

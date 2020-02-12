@@ -10,6 +10,11 @@ const mapStateToProps = ({ errors }) => {
   return {
     errors: errors.session,
     formType: 'Log In',
+    user: {
+      username: '',
+      email: '',
+      password: '',
+    }
   };
 };
 
