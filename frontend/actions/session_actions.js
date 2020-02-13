@@ -55,7 +55,7 @@ export const logout = () => dispatch => (
 export const verifyUser = (username) => dispatch => (
   APIUtil.verifyUser(username)
     .then(email => dispatch(openModal('login', email.email)), 
-          email => dispatch(openModal('signup', email.responseJSON.email))
+        (email, valid)  => dispatch(openModal('signup', email.responseJSON.email))
          
     )
 )

@@ -8,7 +8,11 @@ class LoginForm extends React.Component {
     // let email=email: this.props.email
     this.props.user.email = this.props.email
     debugger
-    this.state = this.props.user;
+    this.state = { username: this.props.user.username, 
+                  email: this.props.user.email, 
+                  password:this.props.user.password, 
+                  noMatch: 'takenUserNo',
+                  LogInCurrent: 'LogInCurrent'};
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -21,25 +25,23 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user).then(() =>this.props.history.push('/discover'));
+
+    const user = {email: this.state.email, username: this.state.username, password: this.state.password}
+    this.props.processForm(user).then(() =>this.props.history.push('/discover'), () => this.renderErrors());
   }
 
 
   renderErrors() {
-    return(
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
+    debugger
+    if (this.props.errors.includes('Invalid username/password combination')) {
+      this.setState({noMatch: 'invalidCreds', LogInCurrent: 'LogInDown'})
+    }
   }
 
   render() {
     debugger;
+
+    const {noMatch, email, LogInCurrent} =this.state
  
     return (
 
@@ -47,25 +49,26 @@ class LoginForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <br/>
           <br/>
-          {this.renderErrors()}
           <div className="login-form">
             <br/>
               <input type="text"
-                value={this.state.email}
+                value={email}
                 onChange={this.update('email')}
-                className="login-input"
+                className="loginInput"
               />
             <br/>
       
             <input type="password"
               placeholder='Your Password*'
               onChange={this.update('password')}
-              className="login-input"
+              className="loginInput"
             />
+
+          <p className={noMatch}>Invalid username/password combination</p>
       
             <br/>
             
-            <input className="signUp" type="submit" value={this.props.formType} />
+            <input className={LogInCurrent} type="submit" value={this.props.formType} />
           </div>
         </form>
       </div>

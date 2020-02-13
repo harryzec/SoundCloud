@@ -8,6 +8,32 @@
   z-index: 10;
 }
 
+.movePassword {
+  position: relative;
+  display: block;
+  height: 200px;
+}
+.movePasswordDown {
+  margin-top: 15px;
+  position: relative;
+  display: block;
+  height: 200px;
+}
+
+.endTerms {
+  margin-top: 15px;
+  display:block;
+  position: relative;
+  left: -14px;
+}
+
+.startTerms {
+  display:block;
+  position: relative;
+  left: -14px;
+  /* margin-left: -10px; */
+}
+
 
 
 .divOr {
@@ -37,6 +63,10 @@
   color: #333;
   border: 1px solid #ccc;
 }
+
+
+
+
 
 .email-submit {
   font-size: 16px;
@@ -340,8 +370,14 @@ body {
 
 .subtext {
   display: block;
-  color: lightgray;
-  font-size: 10px;
+  height: 30px;
+  width: 330px;
+  left: 20px;
+  color: #999;
+  font-size: 11px;
+  text-align: left;
+  padding-left: 37px;
+  margin-top: 10px;
 }
 
 .session-submit {
@@ -350,6 +386,19 @@ body {
   background-color: #f50;
   border-radius: 5px;
   border: none;
+}
+
+.accept {
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 330px;
+  background-color: #f50;
+  color: white;
+  margin-top: 10px;
+  padding-left: 8px;
+  border-radius: 5px;
+  border: 1px solid #f50;
 }
 
 
@@ -450,14 +499,110 @@ body {
   color: red;
 }
 
+.startPos {
+  position: absolute;
+  display: block;
+  height: 250px;
+  padding-left: 17px;
+}
+
+.endPos {
+  margin-top: 7px;
+  position: absolute;
+  display: block;
+  height: 250px;
+  padding-left: 17px;
+}
+
 .usernameLabel {
-  font-size: 14px;
+  position:absolute;
+  font-size: 12px;
   align-items: left;
-  padding: none;
+  padding-left: 24px;
   margin: none;
+  top: -4%;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 500;
+}
+
+.emailError {
+  display: none;
+  position: absolute;
+}
+
+.takenUser {
+  position: absolute;
+  top: 54px;
+  left: 39px;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #cf0000;
+}
+
+.takenUserNo {
+  display: none;
+}
+.validUser {
+  position: absolute;
+  top: 54px;
+  left: 39px;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #cf0000;
+}
+
+.passwordShow {
+  position: absolute;
+  top: 53px;
+  left: 24px;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #cf0000;
+}
+
+.emailErrorShow {
+  position: absolute;
+  top: 180px;
+  left: 39px;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #cf0000;
+}
+
+.passwordLabel {
+  position:absolute;
+  font-size: 12px;
+  align-items: left;
+  padding-left: 24px;
+  margin: none;
+  top: -9px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 500;
 }
 
 .usernameEnter {
+  margin-top: 20px;
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  top: 5%;
+  width: 318px;
+  padding-left: 8px;
+  border-radius: 5px;
+  color: #333;
+  border: 1px solid #ccc;
+}
+.usernameEnterError {
+  margin-top: 20px;
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  top: 5%;
+  width: 318px;
+  padding-left: 8px;
+  border-radius: 5px;
+  color: #333;
+  border: 1px solid red;
+}
+
+.passwordEnter {
+  margin-top: 20px;
   font-size: 16px;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   height: 40px;
@@ -468,7 +613,19 @@ body {
   border: 1px solid #ccc;
 }
 
-.login-input {
+.passwordEnterError {
+  margin-top: 20px;
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 318px;
+  padding-left: 8px;
+  border-radius: 5px;
+  color: #333;
+  border: 1px solid red;
+}
+
+.loginInput {
   font-size: 16px;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   height: 40px;
@@ -477,12 +634,36 @@ body {
   border-radius: 5px;
   color: #333;
   border: 1px solid #ccc;
-  margin-top: none;
+  margin-top: 7px;
+  margin-bottom: 0;
+}
+
+
+.invalidCreds {
+  position: absolute;
+  top: 153px;
+  left: 38px;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #cf0000;
+}
+
+
+.errorLogin {
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 318px;
+  padding-left: 8px;
+  border-radius: 5px;
+  color: #333;
+  border: 1px solid red;
+  margin-top: 7px;
+  margin-bottom: 10px;
 }
 
 .createAccount {
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  font-weight: 400;
+  font-weight: bold;
   padding-left: 55px;
   width: 300px;
   color: #333;
@@ -496,6 +677,32 @@ body {
   background-color: #f50;
   color: white;
   margin-top: 10px;
+  padding-left: 8px;
+  border-radius: 5px;
+  border: 1px solid #f50;
+}
+
+.LogInCurrent {
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 330px;
+  background-color: #f50;
+  color: white;
+  margin-top: 10px;
+  padding-left: 8px;
+  border-radius: 5px;
+  border: 1px solid #f50;
+}
+
+.LogInDown {
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 330px;
+  background-color: #f50;
+  color: white;
+  margin-top: 25px;
   padding-left: 8px;
   border-radius: 5px;
   border: 1px solid #f50;
