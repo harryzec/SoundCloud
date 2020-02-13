@@ -223,6 +223,32 @@ body {
   margin-right: auto;
   width: 100%;
   height: 100%;
+  filter: brightness(40%);
+}
+
+.bottomStuff {
+  position: relative;
+  display: block;
+  height: 300px;
+  width: 600px;
+  margin: auto;
+  padding-top: 60px;
+}
+
+.thanksFor {
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  color: #333;
+  font-size: 33px;
+  text-align: center;
+}
+
+.thanksNotes {
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  color: #333;
+  font-size: 18px;
+  text-align: center;
 }
 
 
@@ -233,7 +259,7 @@ body {
   text-align: left;
   width: 380px;
   top: 40%;
-  right: -15%;
+  left: 20%;
   transform: translate(-50%, -50%);
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 100;
@@ -341,6 +367,7 @@ body {
   top: 0px;
   left: 0px;
   border: 1px solid #141414;
+  opacity: .75;
   /* box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); */
 }
 
@@ -706,4 +733,64 @@ body {
   padding-left: 8px;
   border-radius: 5px;
   border: 1px solid #f50;
+}
+
+.signupButtontwo {
+  display: block;
+  width: 180px;
+  height: 45px;
+  background-color: #f50;
+  font-weight: normal;
+  color:white;
+  border-radius: 2px;
+  border: none;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  margin: auto;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.lastSignIn {
+  display: flex;
+  width: 200px;
+  height: 35px;
+  margin: auto;
+  padding-top: 13px;
+  justify-content: space-between;
+}
+
+.alreadyHave {
+  font-size: 9px;
+  font-weight: 100;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.loginButtonTwo {
+  display: block;
+  width: 80px;
+  color: black;
+  font-size: 13px;
+  background-color: Transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #e5e5e5;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.footerLine {
+  padding: 15px 0;
+  line-height: 20px;
+  color: #ccc;
+  border-top: 1px solid #f2f2f2;
+  display: block;
+  width: 80%;
+  margin: auto;
+}
+
+.Linkedin {
+  margin-left: 11%;
+  margin-bottom: 15%;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-size: 12px;
 }

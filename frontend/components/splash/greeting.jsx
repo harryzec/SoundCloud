@@ -18,8 +18,8 @@ class Greeting extends React.Component {
       </div>
     </div>
     <nav className="login-signup">
-      <button onClick={() => openModal('verifyUsername')} className='loginButton'>Login</button>
-      <button onClick={() => openModal('verifyUsername')} className='signupButton'>Signup</button>
+      <button onClick={() => openModal('verifyUsername')} className='loginButton'>Sign In</button>
+      <button onClick={() => openModal('verifyUsername')} className='signupButton'>Create Account</button>
     </nav>
 
     <br></br>
@@ -64,10 +64,22 @@ class Greeting extends React.Component {
           <p>Get on SoundCloud to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
           <button className='findOut'>Find out more</button>
         </div>
+    </div>
 
-      <img src={window.yachty} alt="YachtyPlayer" className="yachtyImg"/>   
+    <div className='bottomStuff'>
+    <h2 className='thanksFor'>Thanks for listening. Now join in.</h2>
+    <p className='thanksNotes'>Save tracks, follow artists and build playlists. All for free.</p>
+    <button onClick={() => openModal('verifyUsername')} className='signupButtontwo'>Create Account</button>
+    <div className='lastSignIn'>
+      <p className='alreadyHave'>Already have an account?</p>
+      <button onClick={() => openModal('verifyUsername')} className='loginButtonTwo'>Sign In</button>
     </div>
     
+    </div>
+
+    <div class='footerLine'></div>
+
+    <a href='https://www.linkedin.com/in/harry-zec-7157a4a8/' className='Linkedin'>Linkedin</a>
     
     </>
   )
