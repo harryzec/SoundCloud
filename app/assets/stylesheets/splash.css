@@ -8,17 +8,110 @@
   z-index: 10;
 }
 
+
+
+.divOr {
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 400;
+}
+
 .modal-child {
   display: block;
   background: white;
   width: 400px;
-  height: 300px;
+  height: 500px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
 }
+
+.emailEnter {
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 318px;
+  padding-left: 8px;
+  border-radius: 5px;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.email-submit {
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 330px;
+  background-color: #f50;
+  color: white;
+  margin-top: 10px;
+  padding-left: 8px;
+  border-radius: 5px;
+  border: 1px solid #f50;
+}
+
+.terms {
+  display: block;
+  height: 200px;
+  width: 330px;
+  left: 20px;
+  color: #999;
+  font-size: 11px;
+  text-align: left;
+  padding-left: 37px;
+  margin-top: 40px;
+}
+
+
+
+.lineDivide1 {
+  display: inline-block;
+  width: 40%;
+  margin-top: 27%;
+  right: 5%;
+  border-top: 1px solid #333;
+  content: " ";
+  position: absolute;
+  top: .5em;
+}
+.lineDivide2 {
+  display: inline-block;
+  left: 5%;
+  margin-top: 27%;
+  width: 40%;
+  border-top: 1px solid #333;
+  content: " ";
+  position: absolute;
+  top: .5em;
+}
+
+.verifyUserContainer {
+  height: 400px;
+  top: 100px;
+  text-align: center;
+  outline: 0;
+  padding-top: 50px;
+}
+
+
+
+
+
+.demoButton {
+  background-color: #f50;
+  font-size: 18px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 330px;
+  color:white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+
+
 .loginButton {
   display: block;
   width: 80px;
@@ -120,7 +213,7 @@ body {
   margin-top: 60px;
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 400px;
 }
 
 .dontStop {
@@ -150,10 +243,20 @@ body {
 .iPhone {
   display: block;
   position: absolute;
+  height: 300px;
+  width: 300px;
+  bottom: 5px;
+  left: 5%;
+  z-index: 2;
+}
+.iPad {
+  display: block;
+  position: absolute;
   height: 400px;
   width: 400px;
-  top: 10px;
-  left: 10%;
+  bottom: 5px;
+  left: 20%;
+  z-index: 1;
 }
 
 .Google {
@@ -250,6 +353,7 @@ body {
 }
 
 
+
 /* .search-submit {
   width: 500px;
   display: flex;
@@ -332,4 +436,67 @@ body {
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   text-align: center;
   height: 46px;
+}
+
+.login-form-container {
+    height: 400px;
+    top: 100px;
+    text-align: center;
+    outline: 0;
+    padding-top: 5px;
+}
+
+.red {
+  color: red;
+}
+
+.usernameLabel {
+  font-size: 14px;
+  align-items: left;
+  padding: none;
+  margin: none;
+}
+
+.usernameEnter {
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 318px;
+  padding-left: 8px;
+  border-radius: 5px;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.login-input {
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 318px;
+  padding-left: 8px;
+  border-radius: 5px;
+  color: #333;
+  border: 1px solid #ccc;
+  margin-top: none;
+}
+
+.createAccount {
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 400;
+  padding-left: 55px;
+  width: 300px;
+  color: #333;
+}
+
+.signUp {
+  font-size: 16px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  height: 40px;
+  width: 330px;
+  background-color: #f50;
+  color: white;
+  margin-top: 10px;
+  padding-left: 8px;
+  border-radius: 5px;
+  border: 1px solid #f50;
 }

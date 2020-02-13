@@ -1,10 +1,11 @@
 class Api::UsersController < ApplicationController
   def index
     if params[:email]
-      if @user = User.find_by(email: params[:eamil])
-        render json: { email: params[:email] }
+      userEmail = params[:email].values.join('')
+      if @user = User.find_by_email(userEmail)
+        render json: { email: userEmail }
       else 
-        render json: { email: params[:email] }, status: 404
+        render json: { email: userEmail }, status: 404
       end
     end
   end

@@ -5,18 +5,18 @@ import LoginFormContainer from '../session/login_form_container';
 import SignupFormContainer from '../session/signup_form_container';
 import VerifyUserContainer from '../session/verify_user_container';
 
-function Modal({modal, closeModal}) {
-  debugger;
-  if (!modal) {
+function Modal({currentModal, closeModal, email}) {
+  if (!currentModal) {
     return null;
   }
+  
   let component;
-  switch (modal) {
+  switch (currentModal) {
     case 'login':
-      component = <LoginFormContainer />;
+      component = <LoginFormContainer email={email}/>;
       break;
     case 'signup':
-      component = <SignupFormContainer />;
+      component = <SignupFormContainer email={email}/>;
       break;
     case 'verifyUsername':
       component = <VerifyUserContainer/>;
@@ -33,17 +33,18 @@ function Modal({modal, closeModal}) {
   );
 }
 
-const mapStateToProps = state => {
+const mSTP = state => {
   debugger
   return {
-    modal: state.ui.modal
+    currentModal: state.ui.modal.modal,
+    email: state.ui.modal.email
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mDTP = dispatch => {
   return {
     closeModal: () => dispatch(closeModal())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(mSTP, mDTP)(Modal);

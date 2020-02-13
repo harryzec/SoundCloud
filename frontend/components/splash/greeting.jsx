@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from '../modal/modal';
 
 class Greeting extends React.Component {
   constructor(props){
@@ -9,19 +10,19 @@ class Greeting extends React.Component {
   let { currentUser, logout, openModal } = this.props;
   return (
     <> 
-    {/* <div className='pianoCont'>
+    <div className='pianoCont'>
       <img src={window.pianoPlayer} alt="PianoPlayer" className="pianoImg"/>
       <div className="overImage">
         <h2 className="header">What's next in music is first on SoundCloud</h2>
         <p className='text'>Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.</p>
       </div>
-    </div> */}
+    </div>
     <nav className="login-signup">
-      <button onClick={() => openModal('login')} className='loginButton'>Login</button>
+      <button onClick={() => openModal('verifyUsername')} className='loginButton'>Login</button>
       <button onClick={() => openModal('verifyUsername')} className='signupButton'>Signup</button>
     </nav>
 
-    {/* <br></br>
+    <br></br>
 
     <div className='search-submit'>
       <form className='headerSearch'>
@@ -42,6 +43,7 @@ class Greeting extends React.Component {
     <div className='neverStop'>
 
     <img src={window.iPhone} alt="iPhone" className="iPhone"/>
+    <img src={window.iPad} alt="iPhone" className="iPad"/>
     <div className='dontStop'>
       <h2 className='neverHeader'>Never stop listening</h2>
       <div className='line'></div>
@@ -64,7 +66,7 @@ class Greeting extends React.Component {
         </div>
 
       <img src={window.yachty} alt="YachtyPlayer" className="yachtyImg"/>   
-    </div> */}
+    </div>
     
     
     </>

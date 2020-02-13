@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { login } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
-import SessionForm from './session_form';
+import LoginForm from './login_form';
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = ({ errors }) => {
@@ -13,7 +13,7 @@ const mapStateToProps = ({ errors }) => {
     user: {
       username: '',
       email: '',
-      password: '',
+      password: ''
     }
   };
 };
@@ -30,4 +30,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SessionForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

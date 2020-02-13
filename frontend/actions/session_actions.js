@@ -6,10 +6,13 @@ export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 // export const VERIFY_CURRENT_USER = 'VERIFY_CURRENT_USER';
 // export const NO_CURRENT_USER = 'VERIFY_CURRENT_USER';
 
-export const receiveCurrentUser = currentUser => ({
+export const receiveCurrentUser = (currentUser, id='') => {
+  debugger
+  return{
   type: RECEIVE_CURRENT_USER,
-  currentUser
-});
+  currentUser,
+  id
+}};
 
 // export const founder = found => ({
 //   type: VERIFY_CURRENT_USER,
@@ -44,14 +47,15 @@ export const login = user => dispatch => (
 
 export const logout = () => dispatch => (
   APIUtil.logout().then(user => (
-    dispatch(receiveCurrentUser(null))
+    dispatch(receiveCurrentUser(null, user.id))
   ))
 );
 
 
 export const verifyUser = (username) => dispatch => (
   APIUtil.verifyUser(username)
-    // .then(email => dispatch(openModal('login')), 
-    //       email => dispatch(closeModal())
-    // )
+    .then(email => dispatch(openModal('login', email.email)), 
+          email => dispatch(openModal('signup', email.responseJSON.email))
+         
+    )
 )

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 
-class SessionForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     debugger
@@ -46,7 +46,7 @@ class SessionForm extends React.Component {
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <br/>
-          <h2 className='createAccount'>Create your SoundCloud account</h2>
+          <br/>
           {this.renderErrors()}
           <div className="login-form">
             <br/>
@@ -55,26 +55,17 @@ class SessionForm extends React.Component {
                 onChange={this.update('email')}
                 className="login-input"
               />
-            <p className="usernameLabel">Choose a Username</p>  
-              <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                className="usernameEnter"
-              />
-
             <br/>
-            <label>Choose a Password <strong className='red'>*</strong>
-              <br></br>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="login-input"
-              />
-            </label>
-            <p className='subtext'>By signing up I accept the Terms of Use. I have read and understood the Privacy Policy and Cookies Policy.</p>
+      
+            <input type="password"
+              placeholder='Your Password*'
+              onChange={this.update('password')}
+              className="login-input"
+            />
+      
             <br/>
             
-            <input className="session-submit" type="submit" value='Accept & continue' />
+            <input className="signUp" type="submit" value={this.props.formType} />
           </div>
         </form>
       </div>
@@ -82,4 +73,4 @@ class SessionForm extends React.Component {
   }
 }
 
-export default withRouter(SessionForm);
+export default withRouter(LoginForm);

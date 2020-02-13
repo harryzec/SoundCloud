@@ -15,9 +15,9 @@ import {
 
 const App = () => (
   <div>
-    <Route path="/" component={GreetingContainer} />
-    {/* <ProtectedRoute exact path='/discover' component={DiscoverContainer} /> */}
-    <Modal />
+      <Route exact path="/" component={GreetingContainer} />
+      <ProtectedRoute exact path='/discover' component={DiscoverContainer} />
+      <Modal />
   </div>
 );
 
