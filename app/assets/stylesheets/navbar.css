@@ -1,0 +1,52 @@
+.navBar {
+  height: 42px;
+  width: 100%;
+  background-color: #333;
+  position: relative;
+}
+
+.HomeButton {
+  height:100%;
+  position: relative;
+  display: block;
+  color: #fff!important;
+  background-color: Transparent;
+  border-top: none;
+  border-bottom: none;
+  border-left: 1px solid #111;
+  border-right: 1px solid #111;
+  width: 105px;
+  left: 11%;
+  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif;
+  z-index: 3;
+}
+.StreamButton {
+  position: absolute;
+  margin-top: -42px;
+  height:100%;
+  display: block;
+  color: #fff!important;
+  background-color: Transparent;
+  border-top: none;
+  border-bottom: none;
+  border-right: 1px solid #111;
+  width: 105px;
+  left: 18.95%;
+  z-index: 2;
+  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif;
+}
+
+.LibraryButton {
+  position: absolute;
+  margin-top: -42px;
+  height:100%;
+  display: block;
+  color: #fff!important;
+  background-color: Transparent;
+  border-top: none;
+  border-bottom: none;
+  border-right: 1px solid #111;
+  width: 105px;
+  left: 26.9%;
+  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif;
+}

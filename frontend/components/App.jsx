@@ -11,11 +11,14 @@ import {
   Link,
   HashRouter
 } from 'react-router-dom';
+import NavBar from './nav_bar/nav_bar'
 
 
 const App = () => (
   <div>
+      
       <Route exact path="/" component={GreetingContainer} />
+      <Route path='/' component={NavBar}/>
       <ProtectedRoute exact path='/discover' component={DiscoverContainer} />
       <Modal />
   </div>

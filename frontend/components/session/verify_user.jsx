@@ -37,7 +37,7 @@ class VerifyUserForm extends React.Component {
         <div className='lineDivide1'></div><p className='divOr'>or</p><div className='lineDivide2'></div>
         
         <form onSubmit={this.handleSubmit}>
-          <input type="text"
+          <input type="email"
                 value={this.state.email}
                 placeholder='Your email address or profile URL*'
                 onChange={this.update('email')}
