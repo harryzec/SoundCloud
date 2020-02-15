@@ -4,6 +4,12 @@ class Api::SongsController < ApplicationController
   end
 
   def show
+    @song = Song.with_attached_track.includes(:user).find(params[:id])
+    if @song
+      render :show
+    else 
+      render json: ['no track found'], status: 404
+    end
   end
 
   def new
@@ -16,5 +22,10 @@ class Api::SongsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def song_params
+    params.require(:user).permit(:title, :genre)
   end
 end

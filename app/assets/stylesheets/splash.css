@@ -13,6 +13,7 @@
   display: block;
   height: 200px;
 }
+
 .movePasswordDown {
   margin-top: 15px;
   position: relative;
@@ -174,7 +175,7 @@
   height: 30px;
   width: 215px;
   top: 20px;
-  right: 10px;
+  right: 10%;
   justify-content: space-between;
 }
 
@@ -193,8 +194,9 @@
 
 body {
   margin-top: 0px;
-  margin-right: 3px;
-  margin-left: 3px;
+  margin-right: 7%;
+  margin-left: 7%;
+  background-color:white;
 }
 
 .overImage {
@@ -454,16 +456,28 @@ body {
   /* padding: 2px 7px; */
 }
 
-.searchButton {
+.buttonColor {
   background-color: #f2f2f2;
-  font-size: 19px;
   height: 100%;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.searchButton {
+  background-color: transparent;
+  margin-top: 20%;
+  margin-left: -70%;
+  font-size: 19px;
+  height: 40%;
+  width: 20px;
   border: 0;
   outline: 0;
   border-radius: 0px 5px 5px 0px;
   cursor: pointer;
   padding: 2px 7px;
-  background-size: 19px 19px;
+  background: url(https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg)0 0 no-repeat;
+  background-size: cover;
 }
 
 
@@ -776,6 +790,9 @@ body {
   cursor: pointer;
   border: 1px solid #e5e5e5;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+.loginButtonTwo:hover {
+  border: 1px solid lightgray;
 }
 
 .footerLine {

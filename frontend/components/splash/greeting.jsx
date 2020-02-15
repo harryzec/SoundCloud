@@ -27,7 +27,9 @@ class Greeting extends React.Component {
     <div className='search-submit'>
       <form className='headerSearch'>
       <input className='searchBar'type='text' placeholder='Search for artist, bands, tracks and podcasts'></input>
-      <button className='searchButton'>🔍</button>
+      <button class='buttonColor'>
+          <button className='searchButton'></button>
+      </button>
       </form>
     <p className='or'>or</p>
     <button className='upload'>Upload your own</button>

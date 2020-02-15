@@ -4,49 +4,118 @@
   background-color: #333;
   position: relative;
 }
+.navButtons {
+  display: flex;
+  height: 100%;
+  margin-left: 11%;
+}
 
 .HomeButton {
   height:100%;
-  position: relative;
-  display: block;
-  color: #fff!important;
+
+  margin: 0;
+  color: #ccc;
   background-color: Transparent;
   border-top: none;
   border-bottom: none;
   border-left: 1px solid #111;
-  border-right: 1px solid #111;
-  width: 105px;
-  left: 11%;
+  /* border-right: 1px solid #111; */
+  width: 8.05%;
+  border-right: 0px;
   font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif;
-  z-index: 3;
+  cursor: pointer;
+}
+
+.HomeButton:hover {
+  color: white;
 }
 .StreamButton {
-  position: absolute;
-  margin-top: -42px;
   height:100%;
-  display: block;
-  color: #fff!important;
+  margin: 0;
+  color: #ccc;
   background-color: Transparent;
   border-top: none;
   border-bottom: none;
   border-right: 1px solid #111;
-  width: 105px;
-  left: 18.95%;
-  z-index: 2;
-  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif;
+  border-left: 1px solid #111;
+  width: 8.05%;
+  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
+  cursor: pointer;
+}
+
+.StreamButton:hover {
+  color: white;
+}
+
+.LibraryButton:hover {
+  color: white;
+}
+
+.searchSound {
+  display: flex;
+  position: absolute;
+  height: 25px;
+  margin-top: -33px;
+  left: 33.5%;
+  width: 435px;
+  padding-bottom: 5px;
+}
+
+.searchMusicBar {
+  width: 80%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+  border: 0;
+  outline: 0;
+  border-radius: 5px 0px 0px 5px;
+  padding-left: 8px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 20px;
+  color: #666;
+}
+.searchNotes {
+  background-color: #f2f2f2;
+  font-size: 15px;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  border-radius: 0px 5px 5px 0px;
+  cursor: pointer;
+  padding: 2px 7px;
+  background-size: 19px 19px;
 }
 
 .LibraryButton {
-  position: absolute;
-  margin-top: -42px;
   height:100%;
-  display: block;
-  color: #fff!important;
+  margin: 0;
+  color: #ccc;
   background-color: Transparent;
   border-top: none;
   border-bottom: none;
   border-right: 1px solid #111;
-  width: 105px;
-  left: 26.9%;
-  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif;
+  border-left: 0px solid #111;
+  width: 8.05%;
+  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
+  cursor: pointer;
+}
+
+
+
+.uploadSongs {
+  height: 100%;
+  margin-top: -42px; 
+}
+
+.lastSearch {
+  display: flex;
+  height: 42px;
+}
+
+.bellButton {
+  background: transparent;
+  border: none;
 }

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Modal from './modal/modal';
 import DiscoverContainer from './discover/discover_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import SongShowContainer from './song/song_show_container'
 import {
   Route,
   Redirect,
@@ -16,10 +17,10 @@ import NavBar from './nav_bar/nav_bar'
 
 const App = () => (
   <div>
-      
+      <Route path='/test' component={SongShowContainer}/>
       <Route exact path="/" component={GreetingContainer} />
       <Route path='/' component={NavBar}/>
-      <ProtectedRoute exact path='/discover' component={DiscoverContainer} />
+      <Route exact path='/discover' component={DiscoverContainer} />
       <Modal />
   </div>
 );
