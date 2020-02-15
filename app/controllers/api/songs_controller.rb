@@ -16,6 +16,7 @@ class Api::SongsController < ApplicationController
   end
 
   def create
+    @song = Song.new()
   end
 
   def update
@@ -25,7 +26,9 @@ class Api::SongsController < ApplicationController
   end
 
   private
+
   def song_params
-    params.require(:user).permit(:title, :genre)
+    params.require(:user).permit(:title, :genre, :user_id, :track)
   end
+
 end

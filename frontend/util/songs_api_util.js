@@ -3,3 +3,11 @@ export const fetchSong = (songId) => (
     url: `/api/songs/${songId}`
   })
 )
+
+export const createSong = (song) => (
+  $.ajax({
+    method: 'POST',
+    url: `/api/songs`,
+    data: { song }
+  })
+)

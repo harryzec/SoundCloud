@@ -188,15 +188,20 @@
   border-top: 10px solid#f50;
 }
 
+.mainBody {
+  margin-right: 7%;
+  margin-left: 7%;
+}
+
 .pianoCont {
   position: relative;
 }
 
 body {
   margin-top: 0px;
-  margin-right: 7%;
-  margin-left: 7%;
-  background-color:white;
+  margin-right: 0px;
+  margin-left: 0px;
+  background-color:#fff;
 }
 
 .overImage {

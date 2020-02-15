@@ -1,0 +1,10 @@
+.continuousPlay {
+  display: flex;
+  position: fixed;
+  height: 44px;
+  bottom: 0;
+  background-color: #f2f2f2;
+  border-top: 1px solid #cecece;
+  width: 100%;
+  z-index: 12;
+}
