@@ -28,15 +28,13 @@ class Discover extends React.Component{
 
     return(
       <>
-        <br></br>
-        <br></br>
-        <br></br>
-        <form onSubmit={this.handleSubmit}>
+      <div className='discoverMain'>
+        <form onSubmit={this.handleSubmit} className='logoutButton'>
         <button className="header-button">Log Out</button>
         </form>
 
       <button onClick={()=> this.handlePlay(this.props.song)}>Play {this.props.song.title}</button>
-      
+      </div>
       </>
     )
   }

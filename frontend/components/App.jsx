@@ -2,6 +2,7 @@ import React from "react";
 import GreetingContainer from './splash/greeting_container';
 import { Provider } from 'react-redux';
 import Modal from './modal/modal';
+import UploadContainer from './upload/upload_container'
 import DiscoverContainer from './discover/discover_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import SongShowContainer from './Continuous_Play/continuous_play_container'
@@ -21,6 +22,7 @@ const App = () => (
   <div className='mainBody'>
       <Route exact path="/" component={GreetingContainer} />
       <Route exact path='/discover' component={DiscoverContainer} />
+      <ProtectedRoute exact path='/upload' component={UploadContainer}/>
       <Modal />
   </div>
   <Route path='/' component={SongShowContainer}/>

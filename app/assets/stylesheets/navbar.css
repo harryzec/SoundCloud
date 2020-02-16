@@ -1,29 +1,41 @@
+.navMarg {
+  height: 42px;
+  background-color: #333;
+  width: 100%;
+  position: relative;
+}
 .navBar {
   height: 42px;
-  width: 100%;
+  width: 86%;
   background-color: #333;
   position: relative;
+  margin: auto;
 }
 .navButtons {
   display: flex;
   height: 100%;
-  margin-left: 11%;
+  margin-left: 5.2%;
 }
 
 .HomeButton {
   height:100%;
-
   margin: 0;
+  text-align: center;
   color: #ccc;
   background-color: Transparent;
   border-top: none;
   border-bottom: none;
   border-left: 1px solid #111;
   /* border-right: 1px solid #111; */
-  width: 8.05%;
+  width: 9%;
   border-right: 0px;
-  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif;
+  text-decoration: none;
+  font: 100 13px/1.5 Interstate,Lucida Grande,Arial,sans-serif;
   cursor: pointer;
+  padding: 0;
+  vertical-align: middle;
+  line-height: 40px; 
+  -webkit-font-smoothing: antialiased;
 }
 
 .HomeButton:hover {
@@ -38,9 +50,25 @@
   border-bottom: none;
   border-right: 1px solid #111;
   border-left: 1px solid #111;
-  width: 8.05%;
-  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
+  width: 9%;
+  font: 100 13px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
   cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+}
+
+.LibraryButton {
+  height:100%;
+  margin: 0;
+  color: #ccc;
+  background-color: Transparent;
+  border-top: none;
+  border-bottom: none;
+  border-right: 1px solid #111;
+  border-left: 0px solid #111;
+  width: 9%;
+  font: 100 13px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
 }
 
 .StreamButton:hover {
@@ -54,56 +82,96 @@
 .searchSound {
   display: flex;
   position: absolute;
-  height: 25px;
+  height: 23px;
   margin-top: -33px;
-  left: 33.5%;
-  width: 435px;
+  left: 31.6%;
+  width: 38%;
   padding-bottom: 5px;
 }
 
 .searchMusicBar {
-  width: 80%;
+  width: 84%;
   height: 100%;
   margin: 0;
   padding: 0;
   background-color: #f2f2f2;
+  padding-bottom: 2px;
   border: 0;
   outline: 0;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 4px 0px 0px 4px;
   padding-left: 8px;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 100;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
   color: #666;
+  /* -webkit-font-smoothing: antialiased; */
 }
 .searchNotes {
   background-color: #f2f2f2;
   font-size: 15px;
   height: 100%;
+  width: 100%;
   border: 0;
   outline: 0;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 4px 4px 0px;
   cursor: pointer;
   padding: 2px 7px;
-  background-size: 19px 19px;
+  background: url(https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg)0 0 no-repeat;
+  background-size: 14px 14px;
+  background-position: 50% 50%;
 }
 
-.LibraryButton {
-  height:100%;
-  margin: 0;
+.buttonBack {
+  height: 100%;
+  width: 6%;
+  border:none;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  background-color: #f2f2f2;
+  border-radius: 0px 4px 4px 0px;
+}
+
+
+.tryPro {
+  display: block;
+  left: 0%;
+  border: none;
+  height: 100%;
   color: #ccc;
+  margin: 0;
+  width: 12%;
+  padding: 0;
+  padding-bottom: 3px;
   background-color: Transparent;
-  border-top: none;
-  border-bottom: none;
-  border-right: 1px solid #111;
-  border-left: 0px solid #111;
-  width: 8.05%;
-  font: 100 14px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
+  font: 100 12px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
   cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
 }
 
+.tryPro:hover {
+  color: white;
+}
 
+.UploadClick {
+  border: none;
+  height: 100%;
+  color: #ccc;
+  text-decoration: none;
+  padding-left:1%;
+  padding-right: 1%;
+  font: 100 12px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
+  width: 10%;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  padding-top: 11px;
+}
+
+.UploadClick:hover {
+  color: white;
+}
 
 .uploadSongs {
   height: 100%;
@@ -111,11 +179,38 @@
 }
 
 .lastSearch {
+  position: absolute;
   display: flex;
-  height: 42px;
+  height: 100%;
+  width: 40%;
+  left: 68%;
+  top: 0;
+}
+
+.userdrop {
+  padding-left: 3%;
+  background: transparent;
+  width: 30%;
+  border: none;
+  height: 100%;
+  color: #ccc;
+  font: 100 12px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
 }
 
 .bellButton {
+  display: block;
   background: transparent;
   border: none;
+  height: 100%;
+  width: 10%;
+  background-image: url('../images/bell.png');
+  background-size: cover;
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+}
+
+.bellPic {
+  height: 80%;
+  width: 80%;
 }

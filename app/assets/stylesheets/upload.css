@@ -1,0 +1,142 @@
+.hiddenfornow {
+  display: none;
+}
+
+.showme {
+  display: block;
+}
+
+#selectedFile {
+  display: none;
+  color: transparent;
+  background: transparent;
+  width: 100px;
+  height: 200px;
+}
+
+.uploadSong {
+  display: block;
+  width: 700px;
+  height: 387px;
+  margin: auto;
+  margin-top: 50px;
+  border: 1px solid #f2f2f2;
+    border-top-color: rgb(242, 242, 242);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(242, 242, 242);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(242, 242, 242);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(242, 242, 242);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+
+
+.drag {
+  font: 18px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+  margin-top: 170px;
+  text-align: center;
+}
+
+
+.UploadButton {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  width: 300px;
+  height: 38px;
+  background-color: #f50;
+  border-color: #f50;
+  color: #fff;
+  border-radius: 3px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+}
+
+.subNotes {
+  text-align: center;
+  margin-top: 95px;
+  font: 11px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+}
+.blue {
+  color: #38d;
+  font: 11px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.blue:hover {
+  cursor: pointer;
+  color: #333;
+}
+
+.uploadingForm {
+  display: block;
+  width: 700px;
+  height: 650px;
+  margin: auto;
+  margin-top: 50px;
+  border: 1px solid #f2f2f2;
+    border-top-color: rgb(242, 242, 242);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(242, 242, 242);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(242, 242, 242);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(242, 242, 242);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.basicInfo {
+  color: #f50;
+  text-decoration: underline;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.titleInput {
+  font: 11px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+}
+
+.titleInput {
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #ccc;
+  transition: border-color .1s;
+}
+
+.songImg {
+  display:block;
+  height: 100px;
+  width: 100px;
+  border: 1px solid #f2f2f2
+}
+
+.footStuff {
+  display: flex;
+  border-top: 1px solid #f2f2f2;
+  justify-content: space-around;
+  bottom: 0;
+}
