@@ -1,6 +1,7 @@
 import React from "react";
 import GreetingContainer from './splash/greeting_container';
 import { Provider } from 'react-redux';
+import DashboardContainer from './Dashboard/Dashboard_Container'
 import Modal from './modal/modal';
 import UploadContainer from './upload/upload_container'
 import DiscoverContainer from './discover/discover_container';
@@ -23,6 +24,7 @@ const App = () => (
       <Route exact path="/" component={GreetingContainer} />
       <Route exact path='/discover' component={DiscoverContainer} />
       <ProtectedRoute exact path='/upload' component={UploadContainer}/>
+      <Route exact path='/:user' component={DashboardContainer} />
       <Modal />
   </div>
   <Route path='/' component={SongShowContainer}/>

@@ -3,7 +3,25 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 class NavBar extends React.Component {
+  constructor(props){
+    super(props)
+    this.handleDrop = this.handleDrop.bind(this)
+    this.state = { NavDrop: 'navDropDown' };
+  }
+
+  handleDrop(e) {
+    if (this.state.NavDrop === 'navDropDown'){
+      debugger
+      this.setState({NavDrop: 'navDropDownShow'})
+    } else {
+      this.setState({NavDrop: 'navDropDown'})
+    }
+  }
+
   render(){
+    debugger
+    const { NavDrop } = this.state
+
     if (this.props.match.isExact) {return null}
 
     if (this.props.user === null) {
@@ -28,10 +46,32 @@ class NavBar extends React.Component {
         <div className='lastSearch'>
           <button className='tryPro'>Try Pro</button>
           <Link to='/upload' className='UploadClick'>Upload</Link>
-          <button className='userdrop'>{this.props.user}</button>
+
+          <div className='userdrop' onClick={this.handleDrop}>{this.props.user} 
+            <div className={NavDrop}>
+              <li> &#x1F464; Profile</li>
+              <li>Likes</li>
+              <li>Stations</li>
+              <li>Who to follow</li>
+              <li>Try Pro</li>
+              <li>Tracks</li>
+              <li>Stats</li>
+            </div>
+
+          </div>
             <button className='bellButton'>
-                <img src={window.Bell} alt="Bell" className='bellPic'/>
+                <img src={window.betterBell} alt="Bell" className='bellPic'/>
             </button>
+
+            <div className='email'>
+              &#x2709;
+            </div>
+
+            <div className='dots'>
+              &#8230;
+            </div>
+
+            
         </div>
       </div>
       </div>

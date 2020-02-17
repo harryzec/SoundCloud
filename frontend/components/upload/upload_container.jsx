@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
 import UploadForm from './upload';
+import { createSong } from '../../actions/song_action'
 
 const mSTP = (state) => ({
   song: {
     title: '',
-    genre: '',
+    genre: 'sample',
     track: null,
-    user_id: state.session.currentUser.id
+    user_id: state.session.currentUser.id,
+    description: 'sample'
   }
 })
 
 const mDTP = (dispatch) => ({
-  validTrack: (info)=> validTrack(info)
+  createSong: (song) => dispatch(createSong(song))
 })
 
 export default connect(mSTP, mDTP)(UploadForm)
