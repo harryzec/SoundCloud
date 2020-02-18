@@ -15,3 +15,19 @@ export const closeModal = () => {
     type: CLOSE_MODAL
   };
 };
+
+export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
+export const CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL';
+
+export const openDeleteModal = modal => {
+  return {
+    type: OPEN_DELETE_MODAL,
+    modal
+  };
+};
+
+export const closeDeleteModal = () => {
+  return {
+    type: CLOSE_DELETE_MODAL
+  };
+};

@@ -5,8 +5,8 @@ import { fetchSong } from '../../actions/song_action';
 import { playSong, pauseSong } from '../../actions/song_player_actions'
 
 const mSTP = (state) => {
-  if (state.entities.songs[2]){
-      return ({song: state.entities.songs[2] })
+  if (state.entities.songs[5]){
+      return ({song: state.entities.songs[5] })
     }
     else {
       return {}

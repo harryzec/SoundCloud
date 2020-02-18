@@ -10,6 +10,7 @@ class Greeting extends React.Component {
   let { currentUser, logout, openModal } = this.props;
   return (
     <> 
+    <Modal />
     <div className='pianoCont'>
       <img src={window.pianoPlayer} alt="PianoPlayer" className="pianoImg"/>
       <div className="overImage">

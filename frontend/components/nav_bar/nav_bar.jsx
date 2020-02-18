@@ -33,7 +33,7 @@ class NavBar extends React.Component {
       <div className='navMarg'>
       <div className='navBar'>
         <div className='navButtons'>
-        <Link to='./discover' className='HomeButton'>Home</Link>
+        <Link to='/discover' className='HomeButton'>Home</Link>
         <button className='StreamButton'>Stream</button>
         <button className='LibraryButton'>Library</button>
         </div>

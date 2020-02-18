@@ -6,7 +6,8 @@ import Modal from './modal/modal';
 import UploadContainer from './upload/upload_container'
 import DiscoverContainer from './discover/discover_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import SongShowContainer from './Continuous_Play/continuous_play_container'
+import ContinuousPlayCont from './Continuous_Play/continuous_play_container'
+import SongShowCont from './Song_Show/song_show_container'
 import {
   Route,
   Redirect,
@@ -21,13 +22,15 @@ const App = () => (
   <>
   <Route path='/' component={NavBar}/>
   <div className='mainBody'>
+    <Switch>
       <Route exact path="/" component={GreetingContainer} />
-      <Route exact path='/discover' component={DiscoverContainer} />
       <ProtectedRoute exact path='/upload' component={UploadContainer}/>
-      <Route exact path='/:user' component={DashboardContainer} />
-      <Modal />
+      <Route exact path='/discover' component={DiscoverContainer} />
+      <Route exact path='/:username' component={DashboardContainer} />
+      <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
+    </Switch>
   </div>
-  <Route path='/' component={SongShowContainer}/>
+  <Route path='/' component={ContinuousPlayCont}/>
   </>
 );
 

@@ -8,8 +8,11 @@ const mSTP = (state) => ({
     genre: 'sample',
     track: null,
     user_id: state.session.currentUser.id,
-    description: 'sample'
-  }
+    description: 'sample',
+    hyperlink: ''
+  },
+  newSong: state.entities.created_recent,
+  username: state.session.currentUser.username
 })
 
 const mDTP = (dispatch) => ({

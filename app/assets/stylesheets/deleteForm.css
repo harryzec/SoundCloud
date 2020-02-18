@@ -1,0 +1,32 @@
+.deletemodal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: hsla(0,0%,94.9%,.9);
+  z-index: 10;
+}
+
+.deletemodal-child {
+  display: block;
+  background: white;
+  width: 460px;
+  height: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+
+.deleteParent {
+  height: 5px;
+  width: 100%;
+  margin-top: 35%;
+  background: hsla(0,0%,94.9%,.9);
+}
+
+.songshowhidden {
+  display: none;
+}

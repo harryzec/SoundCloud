@@ -5,14 +5,9 @@ class UploadForm extends React.Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.state = { genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track, hidden: 'hiddenfornow', customGenre: 'noshowCustom'}
+    this.update = this.update.bind(this)
+    this.state = { hyperlink: 'samplelink', user_id: this.props.song.user_id, genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track, hidden: 'hiddenfornow', customGenre: 'noshowCustom'}
   }
-
-  // componentDidUpdate() {
-  //   if (this.state.genre === 'Custom') {
-  //     this.setstate({customGenre: 'showCustom'})
-  //   }
-  // }
 
   handleFile(e) {
     e.preventDefault();
@@ -29,19 +24,44 @@ class UploadForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
     e.preventDefault();
-    const createdSong = {title: this.state.title, genre: this.state.genre, description: this.state.description, track: this.state.track}
+    debugger
+    const createdSong = new FormData();
+    createdSong.append('song[title]', this.state.title);
+    createdSong.append('song[genre]', this.state.genre);
+    createdSong.append('song[description]', this.state.description);
+    createdSong.append('song[track]', this.state.track);
+    createdSong.append('song[user_id]', this.state.user_id);
+    createdSong.append('song[hyperlink]', this.state.hyperlink);
+    debugger
     this.props.createSong(createdSong)
+    this.setState({user_id: this.props.song.user_id, genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track})
   }
 
+
+
   update(field){
-    debugger
-    return e => this.setState=({[field]: e.currentTarget.value})
+
+    if (field === 'genre') {
+      return e => {
+        if (e.currentTarget.value === 'Custom') {
+          this.setState({customGenre: 'showCustom', [field]: e.currentTarget.value})
+        } else {
+          this.setState({customGenre: 'noshowCustom', [field]: e.currentTarget.value})
+        }
+      }
+    } else {
+      return e => this.setState({[field]: e.currentTarget.value})
+    }
+  }
+
+  updateGenre(field) {
+    return e => this.setState({[field]: e.currentTarget.value})
   }
 
   render() {
-    let { hidden, title, customGenre } = this.state
+    const { hidden, title, customGenre } = this.state
+    const link = Object.assign({}, {hyper: title})
     if (this.state.track === null) {
       return (
         <>
@@ -66,6 +86,9 @@ class UploadForm extends React.Component {
           </div>
           <h2 className='errorMessage'>1 of your files is not supported. <strong className='blueE'>Read about our supported file types.</strong></h2>
         </div>
+
+
+        {this.props.newSong.title}
         </>
       )
     } else {
@@ -87,12 +110,20 @@ class UploadForm extends React.Component {
                   <input
                   className='titleInput'
                   type="text"
-                  value={title}
+                  value={this.state.title}
                   onChange={this.update('title')}
                   />
                   </div>
-                  <div className='GenreSection'>
+                  
+                  <p>clonecloud.com/{this.props.username.split(' ').join('-')}/</p>
+                  <input
+                    type='text'
+                    value={title.split(' ').join('-')}
+                    onChange={this.update('hyperlink')}
+                  />
+
                   <label className='genreLabel'>Genre</label>
+                  <div className='GenreSection'>
                     <select onChange={this.update('genre')} className='genreInput'>
                       <option>None</option>
                       <option>Custom</option>
@@ -101,7 +132,7 @@ class UploadForm extends React.Component {
                       <option>Hip-hop & Rap</option>
                       <option>Country</option>
                     </select>
-                    <input className={customGenre} type='text'/>
+                    <input className={customGenre} type='text' onChange={this.updateGenre('genre')}/>
                   </div >
                   
                   <div className='DescriptionUpload'>
@@ -121,6 +152,11 @@ class UploadForm extends React.Component {
               </div>
             </div>
           </div>
+          <br>
+          </br>
+          <br>
+          </br>
+          <br></br>
         </>
       )
     }

@@ -1,10 +1,7 @@
 class Api::SongsController < ApplicationController
 
-  def index
-  end
-
   def show
-    @song = Song.with_attached_track.includes(:user).find(params[:id])
+    @song = Song.find_by(id: params[:id])
     if @song
       render :show
     else 
@@ -15,9 +12,26 @@ class Api::SongsController < ApplicationController
   def new
   end
 
+  def by_user
+    @user = User.find_by(username: params[:username])
+    @songs = Song.where(user_id: @user.id)
+
+    if @songs
+        render :index
+    else
+        render json: ["no songs found"], status: 404
+    end
+  end
+
+  def songshow 
+    params[:hyperlink] 
+    usernameShow = User.find_by(username: params[:username].split('-').join(''))
+    @song = usernameShow.songs.where(hyperlink: params[:hyperlink])[0]
+    render :showsong
+  end
+
   def create
     @song = Song.new(song_params)
-    debugger
     if @song.save 
       render :show
     else 
@@ -34,7 +48,7 @@ class Api::SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title, :genre, :user_id, :track, :description)
+    params.require(:song).permit(:title, :genre, :user_id, :track, :description, :hyperlink, :photo)
   end
 
 end

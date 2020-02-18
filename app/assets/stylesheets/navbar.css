@@ -260,11 +260,12 @@
   padding-left: 3px;
   color: #ccc;
   height: 100%;
-  width: 20%;
-  top: 90px;
-  /* font-size: 3px; */
-  size: 100px;
+  width: 10%;
+  margin-top: -38px;
+  font-size: 70px;
   cursor: pointer;
+  padding: 4px;
+  max-width: 40%;
 }
 
 .dots:hover {

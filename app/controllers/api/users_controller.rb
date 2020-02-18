@@ -12,12 +12,15 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find_by(username: params[:id])
+
     if @user
-        render json: @user
+        render :show
     else
         render json: ["no artist found"], status: 404
     end
   end
+
+
 
   def create
     @user = User.new(user_params)
@@ -34,6 +37,6 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password)
+    params.require(:user).permit(:email, :username, :password, :profile_picture, :cover_photo)
   end
 end

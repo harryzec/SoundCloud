@@ -56,6 +56,7 @@ class SongShow extends React.Component {
     } else {
       currentButton = playButton;
     }
+    debugger
 
     return(
       <>

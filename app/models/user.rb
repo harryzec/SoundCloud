@@ -3,6 +3,8 @@ class User < ApplicationRecord
   validates :email, :username, :password_digest, :session_token, presence: true
   validates :username, :email, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
+  has_one_attached :profile_picture
+  has_one_attached :cover_photo
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 
   attr_reader :password

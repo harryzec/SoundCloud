@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 class Discover extends React.Component{
   constructor(props){
@@ -7,11 +8,11 @@ class Discover extends React.Component{
   }
 
   componentDidMount() {
-    this.props.fetchSong(2);
+    debugger
+    this.props.fetchSong(5);
   }
 
   handleSubmit(e){
-    debugger
     e.preventDefault();
     this.props.logout().then(()=> this.props.history.push('/'))
   }
@@ -22,6 +23,7 @@ class Discover extends React.Component{
   
 
   render() {
+    debugger
     if (!this.props.song) {
       return null;
     }
@@ -32,6 +34,10 @@ class Discover extends React.Component{
         <form onSubmit={this.handleSubmit} className='logoutButton'>
         <button className="header-button">Log Out</button>
         </form>
+
+      <Link to='/klamarxoxo'>Kendrick Lamar</Link>
+      <br></br>
+      <Link to='/demouser'>Demo</Link>
 
       <button onClick={()=> this.handlePlay(this.props.song)}>Play {this.props.song.title}</button>
       </div>
