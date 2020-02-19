@@ -1,0 +1,12 @@
+.noshowEmailBlank {
+  display: none;
+}
+
+.showEmailBlank {
+  font: 11px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #cf0000;
+  float: left;
+  padding-left: 10%;
+  margin: 0;
+  margin-top: 3px;
+}

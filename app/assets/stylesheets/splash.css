@@ -14,6 +14,11 @@
   height: 200px;
 }
 
+.mainBody {
+  background-color:#fff;
+}
+
+
 .movePasswordDown {
   margin-top: 15px;
   position: relative;
@@ -22,7 +27,7 @@
 }
 
 .endTerms {
-  margin-top: 15px;
+  margin-top: 18px;
   display:block;
   position: relative;
   left: -14px;
@@ -51,7 +56,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .emailEnter {
@@ -60,7 +65,7 @@
   height: 40px;
   width: 318px;
   padding-left: 8px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #333;
   border: 1px solid #ccc;
 }
@@ -78,7 +83,7 @@
   color: white;
   margin-top: 10px;
   padding-left: 8px;
-  border-radius: 5px;
+  border-radius: 4px;
   border: 1px solid #f50;
 }
 
@@ -136,7 +141,7 @@
   height: 40px;
   width: 330px;
   color:white;
-  border-radius: 5px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
 }
@@ -148,7 +153,7 @@
   width: 80px;
   color: white;
   background-color: Transparent;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -164,7 +169,7 @@
   width: 120px;
   background-color: #f50;
   color:white;
-  border-radius: 5px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
 }
@@ -185,7 +190,7 @@
   margin-right: auto;
   width: 100%;
   height: 400px;
-  border-top: 10px solid#f50;
+  border-top: 4px solid#f50;
 }
 
 .mainBody {
@@ -201,7 +206,9 @@ body {
   margin-top: 0px;
   margin-right: 0px;
   margin-left: 0px;
-  background-color:#fff;
+  background-color:#f2f2f2;
+  
+  outline: none;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }
 
@@ -271,17 +278,20 @@ body {
   transform: translate(-50%, -50%);
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 100;
-}
+} 
 
 .neverStop {
   margin-top: 60px;
   position: relative;
   width: 100%;
   height: 400px;
+  background-color:#f2f2f2;
+  padding-top: 60px;
 }
 
 .dontStop {
   width: 30%;
+  
 }
 .neverHeader {
   font-weight: 100;
@@ -300,7 +310,7 @@ body {
   color: white;
   background: black;
   width:140px;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -329,7 +339,7 @@ body {
   color: white;
   background: black;
   width:140px;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -363,7 +373,7 @@ body {
   width: 140px;
   color: white;
   background-color: Transparent;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -382,7 +392,8 @@ body {
 
 .headerSearch {
   display: flex;
-  height: 100%
+  height: 100%;
+  width: 50vw;
 }
 .header {
   display: block;
@@ -395,12 +406,14 @@ body {
 }
 
 .switch {
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .or {
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   color: #333;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
 }
 
 .subtext {
@@ -419,7 +432,7 @@ body {
   height: 30px;
   width: 60px;
   background-color: #f50;
-  border-radius: 5px;
+  border-radius: 4px;
   border: none;
 }
 
@@ -430,9 +443,8 @@ body {
   width: 330px;
   background-color: #f50;
   color: white;
-  margin-top: 10px;
   padding-left: 8px;
-  border-radius: 5px;
+  border-radius: 4px;
   border: 1px solid #f50;
 }
 
@@ -448,12 +460,12 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  width: 500px;
+  width: 100%;
   background-color: #f2f2f2;
   border: 0;
   outline: 0;
-  border-radius: 5px 0px 0px 5px;
-  padding-left: 5px;
+  border-radius: 4px 0px 0px 4px;
+  padding-left: 10px;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 100;
   font-size: 14px;
@@ -470,20 +482,28 @@ body {
   border: none;
 }
 
+.buttonBackS {
+  height: 100%;
+  width: 6%;
+  border:none;
+  padding-right: 2px;
+  background-color: #f2f2f2;
+  border-radius: 0px 4px 4px 0px;
+}
+
 .searchButton {
-  background-color: transparent;
-  margin-top: 20%;
-  margin-left: -70%;
-  font-size: 19px;
-  height: 40%;
-  width: 20px;
+  background-color: #f2f2f2;
+  font-size: 15px;
+  height: 100%;
+  width: 100%;
   border: 0;
   outline: 0;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 4px 4px 0px;
   cursor: pointer;
   padding: 2px 7px;
   background: url(https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg)0 0 no-repeat;
-  background-size: cover;
+  background-size: 17px 17px;
+  background-position: 50% 50%;
 }
 
 
@@ -492,7 +512,7 @@ body {
   width: 120px;
   background-color: #f50;
   color:white;
-  border-radius: 5px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
 }
@@ -502,7 +522,7 @@ body {
   margin: auto;
   margin-top: 20px;
   width: 700px;
-  height: 46px;
+  height: 38px;
   justify-content: space-between;
 }
 
@@ -522,7 +542,7 @@ body {
   background-color: #f50;
   border-color: #f50;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 15px;
   height: 46px;
@@ -554,7 +574,7 @@ body {
 }
 
 .endPos {
-  margin-top: 7px;
+  margin-top: 4px;
   position: absolute;
   display: block;
   height: 250px;
@@ -591,7 +611,7 @@ body {
 .validUser {
   position: absolute;
   top: 54px;
-  left: 39px;
+  left: 41px;
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   color: #cf0000;
 }
@@ -607,7 +627,7 @@ body {
 .emailErrorShow {
   position: absolute;
   top: 180px;
-  left: 39px;
+  left: 41px;
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   color: #cf0000;
 }
@@ -631,7 +651,7 @@ body {
   top: 5%;
   width: 318px;
   padding-left: 8px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #333;
   border: 1px solid #ccc;
 }
@@ -643,7 +663,7 @@ body {
   top: 5%;
   width: 318px;
   padding-left: 8px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #333;
   border: 1px solid red;
 }
@@ -655,7 +675,7 @@ body {
   height: 40px;
   width: 318px;
   padding-left: 8px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #333;
   border: 1px solid #ccc;
 }
@@ -762,7 +782,7 @@ body {
   background-color: #f50;
   font-weight: normal;
   color:white;
-  border-radius: 2px;
+  border-radius: 4px;
   border: none;
   align-items: center;
   cursor: pointer;

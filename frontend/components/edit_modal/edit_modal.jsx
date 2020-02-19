@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import EditForm from './edit_form';
 import { editSong } from '../../actions/song_action'
 
-function EditModal({edit_modal, closeEditModal, song, EditSong, current_user}) {
+function EditModal({edit_modal, closeEditModal, song, EditSong, current_user, artistSongs}) {
   debugger
   if (!edit_modal) {
     return null;
@@ -12,7 +12,7 @@ function EditModal({edit_modal, closeEditModal, song, EditSong, current_user}) {
   let component;
   switch (edit_modal) {
     case 'edit':
-      component = <EditForm song={song} editSong={EditSong} current_user={current_user} closeEditModal={closeEditModal}/>;
+      component = <EditForm song={song} editSong={EditSong} artistSongs={artistSongs} current_user={current_user} closeEditModal={closeEditModal}/>;
       break;
     default:
       return null;
@@ -37,7 +37,8 @@ const mSTP = state => {
       genre: null,
       hyperlink: null,
       description: ''
-    }
+    },
+    artistSongs: Object.values(state.entities.songs)
 
   };
 };

@@ -26,16 +26,17 @@ class Greeting extends React.Component {
     <br></br>
 
     <div className='search-submit'>
-      <form className='headerSearch'>
-      <input className='searchBar'type='text' placeholder='Search for artist, bands, tracks and podcasts'></input>
-      <button class='buttonColor'>
+    
+      <div className='headerSearch'>
+        <input type='text' placeholder='Search for artist, bands, tracks and podcasts' className='searchBar'/>
+        <div className='buttonBackS'>
           <button className='searchButton'></button>
-      </button>
-      </form>
+      </div>
+      </div>
     <p className='or'>or</p>
     <button className='upload'>Upload your own</button>
     </div>
-
+    
     <div>
       <h2 className='subHead'>Hear what’s trending for free in the SoundCloud community</h2>
     </div>

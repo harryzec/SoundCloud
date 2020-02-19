@@ -8,7 +8,15 @@ class UploadForm extends React.Component {
     this.update = this.update.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.handlePhoto = this.handlePhoto.bind(this)
-    this.state = { photo: null, hyperlink: null, user_id: this.props.song.user_id, genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track, hidden: 'hiddenfornow', customGenre: 'noshowCustom'}
+    this.state = { titleError: 'noshowTitleError', photo: null, hyperlink: null, user_id: this.props.song.user_id, genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track, hidden: 'hiddenfornow', 
+                  customGenre: 'noshowCustom',
+                  TitleInput: 'titleInput',
+                  hypererror: 'cloneInput',
+                  samePerma: 'nosamePerma'}
+  }
+
+  componentDidMount(){
+    this.props.fetchSongsByArtist(this.props.username)
   }
 
   handleCancel(e){
@@ -44,6 +52,9 @@ class UploadForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    if (this.state.samePerma === 'samePerma',this.state.TitleInput === 'titleInputred' || this.state.titleError === 'showTitleError' || this.state.hypererror === 'hyperErrorshow'){
+    } else {
     // debugger
     const createdSong = new FormData();
     createdSong.append('song[title]', this.state.title);
@@ -56,13 +67,34 @@ class UploadForm extends React.Component {
     // debugger
     this.props.createSong(createdSong)
     this.setState({user_id: this.props.song.user_id, genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track})
+    }
   }
 
 
 
   update(field){
-
-    if (field === 'genre') {
+    debugger
+    if (field === 'title'){
+      return e => {
+        if (e.currentTarget.value === '') {
+          this.setState({ TitleInput: 'titleInputred', titleError: 'showTitleError', [field]: e.currentTarget.value})
+        } else {
+          this.setState({ titleError: 'noshowTitleError', [field]: e.currentTarget.value, TitleInput: 'titleInput'})
+        }
+      }
+    } else if (field === 'hyperlink'){
+      return e => {
+        if (e.currentTarget.value === '') {
+          this.setState({ hypererror: 'hyperErrorshow', [field]: e.currentTarget.value})
+        } else if (this.props.artistSongs.some(ele => ele.hyperlink === e.currentTarget.value)){
+          this.setState({ samePerma: 'samePerma', hypererror: 'hyperErrorshow', [field]: e.currentTarget.value})
+        }
+          else {
+          this.setState({ samePerma: 'nosamePerma', hypererror: 'cloneInput', [field]: e.currentTarget.value})
+        }
+      }
+    }
+    else if (field === 'genre') {
       return e => {
         if (e.currentTarget.value === 'Custom') {
           this.setState({customGenre: 'showCustom', [field]: e.currentTarget.value})
@@ -80,8 +112,7 @@ class UploadForm extends React.Component {
   }
 
   render() {
-    const { hidden, title, customGenre, photo, hyperlink } = this.state
-    debugger
+    const { hidden, samePerma, title, customGenre, photo, hyperlink, titleError, TitleInput, hypererror } = this.state
     const link = Object.assign({}, {hyper: title})
     if (this.state.track === null) {
       return (
@@ -131,22 +162,24 @@ class UploadForm extends React.Component {
                 <div className='titleSection'>
                 <label className='titleTitle'>Title<strong className='red'>*</strong></label>
                   <input
-                  className='titleInput'
+                  className={TitleInput}
                   type="text"
                   value={this.state.title}
                   onChange={this.update('title')}
                   />
+                  <p className={titleError}>Enter a title.</p>
                   </div>
                   
                   <div className='hyperlink'>
                   <p className='clonelink'>clonecloud.com/{this.props.username.split(' ').join('-')}/</p>
                   <input
                     type='text'
-                    className='cloneInput'
+                    className={hypererror}
                     value={hyperlink}
                     onChange={this.update('hyperlink')}
                   />
                   </div>
+                  <p className={samePerma}>This permalink is already in use. Enter another one.</p>
 
                   <label className='genreLabel'>Genre</label>
                   <div className='GenreSection'>

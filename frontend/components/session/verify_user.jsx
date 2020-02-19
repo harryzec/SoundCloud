@@ -7,14 +7,21 @@ import { withRouter } from 'react-router-dom'
 class VerifyUserForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: '' };
+    this.state = { email: '', emailBlank: 'noshowEmailBlank' };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.verifyUsername(this.state)
+    if (this.state.email === '') {
+      this.setState({ emailBlank: 'showEmailBlank'})
+    } else {
+      debugger
+    let oldState = Object.assign({}, this.state)
+    delete oldState['emailBlank']
+    this.props.verifyUsername(oldState)
+    }
   }
 
   update(field) {
@@ -44,6 +51,7 @@ class VerifyUserForm extends React.Component {
                 className="emailEnter"
               />
               <br></br>
+            <p className={this.state.emailBlank}>Enter a valid email address or profile URL</p>
           <input className="email-submit" type="submit" value='Continue' />
         </form>
         <div className='terms'>

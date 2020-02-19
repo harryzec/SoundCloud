@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import UploadForm from './upload';
-import { createSong } from '../../actions/song_action'
+import { createSong, fetchSongsByArtist } from '../../actions/song_action'
 
 const mSTP = (state) => ({
   song: {
@@ -12,11 +12,14 @@ const mSTP = (state) => ({
     hyperlink: ''
   },
   newSong: state.entities.created_recent,
-  username: state.session.currentUser.username
+  username: state.session.currentUser.username,
+  userId: state.session.currentUser.id,
+  artistSongs: Object.values(state.entities.songs)
 })
 
 const mDTP = (dispatch) => ({
-  createSong: (song) => dispatch(createSong(song))
+  createSong: (song) => dispatch(createSong(song)),
+  fetchSongsByArtist: (userId) => dispatch(fetchSongsByArtist(userId))
 })
 
 export default connect(mSTP, mDTP)(UploadForm)

@@ -50,13 +50,13 @@ class NavBar extends React.Component {
         <div className='userdrop' onClick={this.handleDrop}>
           <div className='profHead'><img className='navPic' src={`${this.props.user.profileUrl}`}/><p className='navUsername'>{this.props.user.username}</p> </div>
             <div className={NavDrop}>
-              <Link to={`/${this.props.user.username.split(' ').join('-')}`}> &#x1F464; Profile</Link>
-              <li>Likes</li>
-              <li>Stations</li>
-              <li>Who to follow</li>
-              <li>Try Pro</li>
-              <li>Tracks</li>
-              <li>Stats</li>
+              <Link to={`/${this.props.user.username.split(' ').join('-')}`} className='listEle'> &#8962; Profile</Link>
+              <li className='listEle' >&#43; Likes</li>
+              <li className='listEle'>&#12316; Stations</li>
+              <li className='listEle'>&#9738; Who to follow</li>
+              <li className='listEle'>&#9734; Try Pro</li>
+              <li className='TrackLI'>	&#9835; Tracks</li>
+              <li className='listEle'>&#8599; Stats</li>
             </div>
 
           </div>
