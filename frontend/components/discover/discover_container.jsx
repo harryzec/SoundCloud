@@ -17,7 +17,7 @@ const mDTP = dispatch => ({
   logout: () => dispatch(logout()),
   currentSong: (song) => dispatch(currentSong(song)),
   playSong: (song) => dispatch(playSong(song)),
-  fetchSong: songId => dispatch(fetchSong(songId)),
+  fetchSong: songId => dispatch(fetchSong(songId))
 })
 
 export default connect(mSTP, mDTP)(Discover);

@@ -4,10 +4,10 @@ import { withRouter } from 'react-router-dom'
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    debugger
+    // debugger
     // let email=email: this.props.email
     this.props.user.email = this.props.email
-    debugger
+    // debugger
     this.state = { username: this.props.user.username, 
                   email: this.props.user.email, 
                   password:this.props.user.password, 
@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
   }
 
   update(field) {
-    debugger
+    // debugger
     return e => this.setState({
       [field]: e.currentTarget.value
     });
@@ -32,14 +32,14 @@ class LoginForm extends React.Component {
 
 
   renderErrors() {
-    debugger
+    // debugger
     if (this.props.errors.includes('Invalid username/password combination')) {
       this.setState({noMatch: 'invalidCreds', LogInCurrent: 'LogInDown'})
     }
   }
 
   render() {
-    debugger;
+    // debugger;
 
     const {noMatch, email, LogInCurrent} =this.state
  

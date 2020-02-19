@@ -11,7 +11,7 @@ class NavBar extends React.Component {
 
   handleDrop(e) {
     if (this.state.NavDrop === 'navDropDown'){
-      debugger
+      // debugger
       this.setState({NavDrop: 'navDropDownShow'})
     } else {
       this.setState({NavDrop: 'navDropDown'})
@@ -19,7 +19,7 @@ class NavBar extends React.Component {
   }
 
   render(){
-    debugger
+    // debugger
     const { NavDrop } = this.state
 
     if (this.props.match.isExact) {return null}
@@ -47,9 +47,10 @@ class NavBar extends React.Component {
           <button className='tryPro'>Try Pro</button>
           <Link to='/upload' className='UploadClick'>Upload</Link>
 
-          <div className='userdrop' onClick={this.handleDrop}>{this.props.user} 
+        <div className='userdrop' onClick={this.handleDrop}>
+          <div className='profHead'><img className='navPic' src={`${this.props.user.profileUrl}`}/><p className='navUsername'>{this.props.user.username}</p> </div>
             <div className={NavDrop}>
-              <li> &#x1F464; Profile</li>
+              <Link to={`/${this.props.user.username.split(' ').join('-')}`}> &#x1F464; Profile</Link>
               <li>Likes</li>
               <li>Stations</li>
               <li>Who to follow</li>
@@ -60,7 +61,8 @@ class NavBar extends React.Component {
 
           </div>
             <button className='bellButton'>
-                <img src={window.betterBell} alt="Bell" className='bellPic'/>
+              &#10003;
+                {/* <img src={window.betterBell} alt="Bell" className='bellPic'/> */}
             </button>
 
             <div className='email'>
@@ -68,7 +70,8 @@ class NavBar extends React.Component {
             </div>
 
             <div className='dots'>
-              &#8230;
+              {/* &#8230; */}
+              <p>...</p>
             </div>
 
             
@@ -84,11 +87,13 @@ const mSTP = state => {
   if (state.session.currentUser===null){
     current = 'log in'
   } else {
-    current = state.session.currentUser.username;
+    current = state.session.currentUser;
   }
   return{
     user: current
   }
 }
+
+
 
 export default connect(mSTP, null)(NavBar)

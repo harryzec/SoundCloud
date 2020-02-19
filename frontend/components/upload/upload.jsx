@@ -6,7 +6,14 @@ class UploadForm extends React.Component {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.update = this.update.bind(this)
-    this.state = { hyperlink: 'samplelink', user_id: this.props.song.user_id, genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track, hidden: 'hiddenfornow', customGenre: 'noshowCustom'}
+    this.handleCancel = this.handleCancel.bind(this)
+    this.handlePhoto = this.handlePhoto.bind(this)
+    this.state = { photo: null, hyperlink: null, user_id: this.props.song.user_id, genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track, hidden: 'hiddenfornow', customGenre: 'noshowCustom'}
+  }
+
+  handleCancel(e){
+    e.preventDefault();
+    this.setState({track: null, photo:null})
   }
 
   handleFile(e) {
@@ -17,15 +24,27 @@ class UploadForm extends React.Component {
     let extension = filebroken[filebroken.length-1]
     if (filetypes.includes(extension.toUpperCase())){
       const file = e.currentTarget.files[0]
-      this.setState({track: file, title: file.name.split('.')[0].split(' ').slice(1, file.name.split('.')[0].split(' ').length).join(' ')})
+      this.setState({track: file, hyperlink: file.name.split('.')[0].split(' ').slice(1, file.name.split('.')[0].split(' ').length).join('-'), title: file.name.split('.')[0].split(' ').slice(1, file.name.split('.')[0].split(' ').length).join(' ')})
     } else {
       this.setState({hidden: 'showme'})
     }
   }
+  handlePhoto(e) {
+    const reader = new FileReader();
+    const file = e.currentTarget.files[0];
+    reader.onloadend = () =>
+      this.setState({ imageUrl: reader.result, photo: file });
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    this.setState({ imageUrl: "", photo: null });
+  }
+  }
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
+    // debugger
     const createdSong = new FormData();
     createdSong.append('song[title]', this.state.title);
     createdSong.append('song[genre]', this.state.genre);
@@ -33,7 +52,8 @@ class UploadForm extends React.Component {
     createdSong.append('song[track]', this.state.track);
     createdSong.append('song[user_id]', this.state.user_id);
     createdSong.append('song[hyperlink]', this.state.hyperlink);
-    debugger
+    createdSong.append('song[photo]', this.state.photo);
+    // debugger
     this.props.createSong(createdSong)
     this.setState({user_id: this.props.song.user_id, genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track})
   }
@@ -60,7 +80,8 @@ class UploadForm extends React.Component {
   }
 
   render() {
-    const { hidden, title, customGenre } = this.state
+    const { hidden, title, customGenre, photo, hyperlink } = this.state
+    debugger
     const link = Object.assign({}, {hyper: title})
     if (this.state.track === null) {
       return (
@@ -101,8 +122,10 @@ class UploadForm extends React.Component {
               <h1 className='Metadata'>Metadata</h1>
               <h1 className='Permissions'>Permissions</h1>
             </div>
-            <div className='songImg'>
-                Here is your image
+            <div className='songImgIn'>
+                <input type='file' id='uploadPicture' onChange={this.handlePhoto}/>
+                <img src={this.state.imageUrl} className='choosePic'></img>
+                <button className='selectImgB'onClick={()=>document.getElementById('uploadPicture').click() }>&#128247; Select Image</button>
             </div>
               <form className='almostthere'>
                 <div className='titleSection'>
@@ -115,12 +138,15 @@ class UploadForm extends React.Component {
                   />
                   </div>
                   
-                  <p>clonecloud.com/{this.props.username.split(' ').join('-')}/</p>
+                  <div className='hyperlink'>
+                  <p className='clonelink'>clonecloud.com/{this.props.username.split(' ').join('-')}/</p>
                   <input
                     type='text'
-                    value={title.split(' ').join('-')}
+                    className='cloneInput'
+                    value={hyperlink}
                     onChange={this.update('hyperlink')}
                   />
+                  </div>
 
                   <label className='genreLabel'>Genre</label>
                   <div className='GenreSection'>
@@ -140,14 +166,13 @@ class UploadForm extends React.Component {
                     <textarea onChange={this.update('description')} className='descriptionArea' placeholder='Describe your track'/>
                   </div>
 
-                  
-                
               </form>
+
           </div>
             <div className='footStuff'>
               <p className='requireField'><strong className='orange'>*</strong> Required fields</p>
               <div className='uploadButtons'>
-              <button className='CancelUpload'>Cancel</button>
+              <button className='CancelUpload' onClick={this.handleCancel}>Cancel</button>
               <button className='saveUpload' onClick={this.handleSubmit}>Submit</button>
               </div>
             </div>

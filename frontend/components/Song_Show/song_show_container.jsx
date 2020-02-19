@@ -4,19 +4,14 @@ import { openDeleteModal } from '../../actions/modal_actions'
 import { fetchSongShow} from '../../actions/song_action'
 
 const mSTP = (state, ownProps) => {
-  // debugger
-  // if (state.entities.songshow[ownProps.match.params.hyperlink] === undefined){
-  //   return ({song: null})
-  // } else {
-  return ({ song: state.entities.songShow[ownProps.match.params.hyperlink] })
-  // }
+  return ({ song: state.entities.songShow[ownProps.match.params.hyperlink],
+          userId: state.session.currentUser.username })
 }
 
 const mDTP = dispatch => {
-  debugger
-  return({
+  return ({
   fetchSongShow: (hyperlink, username) => dispatch(fetchSongShow(hyperlink, username)),
-  openDeleteModal: (state)=> dispatch(openDeleteModal(state)) 
+  openDeleteModal: (keyword)=> dispatch(openDeleteModal(keyword)) 
 })}
 
 export default connect(mSTP, mDTP)(SongShow)

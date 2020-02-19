@@ -7,7 +7,7 @@ export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 // export const NO_CURRENT_USER = 'VERIFY_CURRENT_USER';
 
 export const receiveCurrentUser = (currentUser, id='') => {
-  debugger
+  // debugger
   return{
   type: RECEIVE_CURRENT_USER,
   currentUser,

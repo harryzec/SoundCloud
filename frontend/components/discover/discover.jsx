@@ -8,7 +8,7 @@ class Discover extends React.Component{
   }
 
   componentDidMount() {
-    debugger
+    // debugger
     this.props.fetchSong(5);
   }
 
@@ -23,7 +23,7 @@ class Discover extends React.Component{
   
 
   render() {
-    debugger
+    // debugger
     if (!this.props.song) {
       return null;
     }

@@ -2,16 +2,17 @@ import React from 'react';
 import { closeDeleteModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import DeleteForm from './DeleteForm';
+import { deleteSong } from '../../actions/song_action'
 
-function DeleteModal({modal, closeModal}) {
-  debugger
+function DeleteModal({modal, closeModal, song, deleteSong, userlink}) {
+  // debugger
   if (!modal) {
     return null;
   }
   let component;
   switch (modal) {
     case 'open':
-      component = <DeleteForm />;
+      component = <DeleteForm deleteSong={deleteSong} userlink={userlink} song={song} closeModal={closeModal}/>;
       break;
     default:
       return null;
@@ -25,17 +26,13 @@ function DeleteModal({modal, closeModal}) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    modal: state.ui.delete_modal
-  };
-};
+const mSTP = state => ({
+  modal: state.ui.delete_modal
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
+const mDTP = dispatch => ({
     closeModal: () => dispatch(closeDeleteModal()),
-    deleteSong: (hyperlink, user) => dispatch(deleteSong(hyperlink, user))
-  };
-};
+    deleteSong: (song) => dispatch(deleteSong(song))
+  })
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteModal);
+export default connect(mSTP, mDTP)(DeleteModal);

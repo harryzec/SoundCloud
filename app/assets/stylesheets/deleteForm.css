@@ -11,20 +11,79 @@
 .deletemodal-child {
   display: block;
   background: white;
-  width: 460px;
-  height: 380px;
+  width: 480px;
+  height: 400px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
+  /* padding: 15px; */
+}
+
+.reallyDelete {
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 400;
+  color: #333;
+  font-size: 12px;
+  padding-left: 15px;
 }
 
 .deleteParent {
   height: 5px;
   width: 100%;
   margin-top: 35%;
+  padding: 5px;
   background: hsla(0,0%,94.9%,.9);
+}
+
+.deleteboxes {
+  display: flex;
+  height: 60px;
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 50px;
+  margin-top: 10px;
+}
+
+.deleteOne {
+  width: 35%;
+  padding: 18px;
+  padding-top: 0;
+  border-radius: 4px;
+  border: 1px solid #f2f2f2;
+  font-size: 10px;
+  height: 90px;
+}
+
+.deleteTwo {
+  width: 35%;
+  padding: 18px;
+  padding-top: 0;
+  border-radius: 4px;
+  border: 1px solid #f2f2f2;
+  font-size: 10px;
+  margin-right: 10%;
+  height: 90px;
+}
+
+.cancelD {
+  border: none;
+}
+
+.deBut {
+  float: right;
+}
+
+.learnButton {
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  background-color: #f50;
+  border-color: #f50;
+  border-radius: 3px;
+  float: right;
+  color: #fff;
+  margin-top: 9.5px;
 }
 
 .songshowhidden {

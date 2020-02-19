@@ -6,13 +6,10 @@ class SongShow extends React.Component {
     super(props)
     this.volumeChange = this.volumeChange.bind(this);
   }
-
-  componentDidMount(){
-    this.props.fetchSong(2);
-  } 
+ 
 
   componentDidUpdate(prevProps, prevState){
-    debugger
+    // debugger
     if(this.props.playingStatus === 'playing'){
       document.getElementById('PlayingSong').play()
     } else if ( this.props.song !== 'none' ) {
@@ -56,7 +53,7 @@ class SongShow extends React.Component {
     } else {
       currentButton = playButton;
     }
-    debugger
+    // debugger
 
     return(
       <>

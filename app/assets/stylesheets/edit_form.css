@@ -1,0 +1,92 @@
+.editmodal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: hsla(0,0%,94.9%,.9);
+  z-index: 10;
+}
+
+
+
+.editmodal-child {
+  display: block;
+  background: white;
+  width: 715px;
+  height: 650px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+
+#noshowCustom {
+  display: none
+}
+
+#showCustom{
+  height: 80%;
+  width: 45%;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  transition: border-color .1s;
+  padding-left: 4px;
+  color: #333;
+}
+
+#genreInput {
+  width: 45%;
+  height: 100%;
+}
+.footEdit {
+  position: absolute;
+  display: flex;
+  height: 20px;
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #f2f2f2;
+  justify-content: space-between;
+  bottom: 8%;
+  margin: 0;
+  padding-right: 10px;
+  width: 705px;
+  align-content: center;
+}
+
+.CancelUpload {
+  border: none;
+  outline: none;
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.saveEdit {
+  background-color: #f50;
+  height: 20px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  border-color: #f50;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.nosaveEdit {
+  display: none;
+}
+
+.noSave {
+  height: 20px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  border-radius: 3px;
+  background-color: #f2f2f2;
+  border-color: #e5e5e5;
+  color: #ccc;
+}

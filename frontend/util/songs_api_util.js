@@ -4,8 +4,15 @@ export const fetchSong = (songId) => (
   })
 )
 
+export const deleteSong = ( songId ) => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/songs/${songId}/`
+  })
+)
+
 export const createSong = (song) => {
-  debugger
+  // debugger
   return $.ajax({
     method: 'POST',
     url: '/api/songs',
@@ -16,9 +23,10 @@ export const createSong = (song) => {
 }
 
 export const fetchSongShow = (hyperlink, username) => {
+  debugger
   return $.ajax({
     method: 'GET',
-    url: `/api/songs/songshow/${username}/${hyperlink}`,
+    url: `/api/songs/songshow/${username}/${hyperlink}`
   })
 }
 
@@ -27,4 +35,15 @@ export const fetchSongsByArtist = userId => {
       method: 'GET',
       url: `/api/songs/by_user/${userId}`,
   });
+}
+
+export const editSong = (song, id) => {
+  debugger
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/songs/${id}`,
+    data: song,
+    processData: false,
+    contentType: false
+  })
 }

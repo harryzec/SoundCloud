@@ -24,8 +24,7 @@ class Api::SongsController < ApplicationController
   end
 
   def songshow 
-    params[:hyperlink] 
-    usernameShow = User.find_by(username: params[:username].split('-').join(''))
+    usernameShow = User.find_by(username: params[:username].split('-').join(' '))
     @song = usernameShow.songs.where(hyperlink: params[:hyperlink])[0]
     render :showsong
   end
@@ -40,9 +39,19 @@ class Api::SongsController < ApplicationController
   end
 
   def update
+    debugger
+    @song = Song.find_by(id: params[:id])
+    # song_params.reject! {|k| k==:id}
+    if @song.update(song_params)
+      render :show
+    else 
+      render json: @song.errors.full_messages, status: 422
+    end
   end
 
   def destroy
+    @song = Song.find_by(id: params[:id])
+    @song.destroy
   end
 
   private

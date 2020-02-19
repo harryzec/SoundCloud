@@ -52,9 +52,16 @@ export const fetchSongsByArtist = userId => dispatch => {
   ));
 };
 
-export const deleteSong = ( hyperlink, username ) => {
-  return APIUtil.deleteSong(hyperlink, username)
-    .then(()=> dispatch(removeSong(songId)))
+export const DELETE_SONG= 'DELETE_SONG';
+
+export const removeSong = song => ({
+  type: DELETE_SONG,
+  song
+})
+
+export const deleteSong = ( song ) => dispatch => {
+  return APIUtil.deleteSong(song.id)
+    .then(()=> dispatch(removeSong(song)))
 }
 
 export const SHOW_SONG = 'SHOW_SONG';
@@ -64,7 +71,16 @@ export const songShow = song => ({
   song
 })
 
-export const fetchSongShow = ( hyperlink, username ) => {
-  return APIUtil.fetchSongShow(hyperlink, username)
-    .then((song)=> dispatch(songShow(song)))
+export const fetchSongShow = ( hyperlink, username ) => dispatch => {
+  // debugger
+  return APIUtil.fetchSongShow( hyperlink, username )
+    .then((song) => { 
+      debugger
+      dispatch(songShow(song))
+    })
+}
+
+export const editSong = (song, id) => dispatch => {
+  return APIUtil.editSong(song, id)
+    .then(song => receiveSong(song))
 }

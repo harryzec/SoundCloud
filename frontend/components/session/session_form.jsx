@@ -23,17 +23,17 @@ class SessionForm extends React.Component {
             lowTerms: 'startTerms'
           }
     this.handleSubmit = this.handleSubmit.bind(this);
-    debugger;
+    // debugger;
   }
 
   update(field) {
-    debugger
+    // debugger
     return e => this.setState({[field]: e.currentTarget.value});
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
+    // debugger
     let user = {username: this.state.username, email: this.state.email, password: this.state.password}
     this.props.processForm(user).then(() =>this.props.history.push('/discover'), ()=> this.renderErrors());
 
@@ -48,7 +48,7 @@ class SessionForm extends React.Component {
 
 
   renderErrors() {
-    debugger
+    // debugger
     if (this.props.errors.includes("Email can't be blank") || this.props.errors.includes('Email is invalid')) {
       this.setState({loginInput: 'errorLogin', 
                     emailError: 'emailErrorShow',
