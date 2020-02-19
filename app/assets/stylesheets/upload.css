@@ -44,13 +44,14 @@
 }
 
 .uploadSong {
+  height: 100vh;
   box-shadow: 0 2px 12px -5px rgba(0,0,0,.1);
   display: block;
   position: relative;
   width: 700px;
   height: 387px;
   margin: auto;
-  margin-top: 50px;
+  top: 50px;
   border: 1px solid #f2f2f2;
   border-top-color: rgb(242, 242, 242);
   border-top-style: solid;
@@ -116,30 +117,32 @@
 }
 
 .uploadingForm {
-  display: block;
-  width: 715px;
+  height: 100vh;
   box-shadow: 0 2px 12px -5px rgba(0,0,0,.1);
-  height: 650px;
+  display: block;
+  position: relative;
+  width: 700px;
+  height: 600px;
   margin: auto;
-  margin-top: 50px;
+  top: 50px;
   border: 1px solid #f2f2f2;
-    border-top-color: rgb(242, 242, 242);
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-right-color: rgb(242, 242, 242);
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-bottom-color: rgb(242, 242, 242);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-left-color: rgb(242, 242, 242);
-    border-left-style: solid;
-    border-left-width: 1px;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
+  border-top-color: rgb(242, 242, 242);
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-right-color: rgb(242, 242, 242);
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-bottom-color: rgb(242, 242, 242);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: rgb(242, 242, 242);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
 }
 
 .uploadOptions {
@@ -417,17 +420,16 @@
 .footStuff {
   position: absolute;
   display: flex;
-  top: 101%;
   height: 20px;
   width: 100%;
   display: flex;
   border-top: 1px solid #f2f2f2;
   justify-content: space-between;
-  bottom: 0;
   margin: 0;
   padding-right: 10px;
-  width: 705px;
+  width: 690px;
   align-content: center;
+  bottom: 30px;
 }
 
 .saveUpload {
@@ -443,14 +445,14 @@
 
 .uploadButtons {
   padding-right: 20px;
-  padding-top: 20px;
+  padding-top: 13px;
 }
 
 .requireField {
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   padding-left: 20px;
   font-size: 11px;
-  padding-top: 13px
+  padding-top: 8px
 }
 
 .orange {

@@ -12,8 +12,9 @@
 .coverPic {
   display: block;
   width: 100%;
-  height:300px;
+  height: 300px;
   opacity: .9;
+  overflow: hidden;
 }
 
 .usernameProf {
@@ -38,20 +39,94 @@
 .profileOptions {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 5px;
+  padding-top: 15px;
   width: 100%;
-  height: 100%;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  height: 25px;
   border-bottom: 1px solid #f2f2f2;
+}
+
+.profileExtra {
+  padding-right: 2%;
+  display: flex;
+  justify-content: space-between;
+  width: 16vw;
+}
+
+.boldthis {
+  font-weight: bold;
+}
+
+.radioW {
+  height: 5px;
+  width: 5px;
+}
+
+.recentHead {
+  font-weight: 100;
+  color: #333;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-size: 22px;
+}
+
+.profileBody{
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-top: 10px;
+}
+
+.extraButtons {
+  color: #333;
+  text-decoration: none;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  background-color: #fff;
+  text-align: center;
+  font-size: 12px;
+  padding: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.musicSection {
+  width: 56vw;
+  border-right: 1px solid #f2f2f2;
+}
+
+.recentHead {
+
+}
+
+.extraButtons:hover {
+  border: 1px solid lightgray;
 }
 
 .profileButtons {
   border: none;
   cursor: pointer;
+  padding-bottom: 5px;
   outline: none;
+  height: 100%;
+  font-weight: 500;
+  text-decoration: none;
   color: #333;
-  font-size: 18px;
+  font-size: 15px;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.profileButtonsAll {
+  border: none;
+  padding-bottom: 5px;
+  outline: none;
+  height: 100%;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  border-bottom:1px solid #f50;
+  color: #f50;
+  cursor: default;
 }
 
 .profileButtons:hover {
@@ -62,15 +137,19 @@
   border: none;
   cursor: pointer;
   outline: none;
+  display: flex;
+  justify-content: space-between;
   color: #333;
+  padding-bottom: 5px;
+  height: 100%;
+  padding-left: 2%;
+  width: 37vw;
 }
 
-.songImg {
-  /* float: left; */
-  height: 80px;
-  width: 80px;
+.songImg1 {
+  height: 120px;
+  width: 10vw;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
-
 }
 
 .songContainer {
@@ -78,7 +157,27 @@
   height: 200px;
   width: 80%;
   display: flex;
+  padding-left: 1%;
 }
+
+.playSong {
+  
+  background-color: #f50;
+  height: 38px;
+  width: 40px;
+  color: white;
+  border-radius: 100px;
+  text-align: center;
+}
+
+.playcoon {
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+}
+ 
 
 .songHelp {
   margin-top: 60px;

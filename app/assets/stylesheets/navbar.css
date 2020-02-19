@@ -36,24 +36,69 @@
   top: 37px;
   width: 80%;
   font-size: 12px;
-  height: 200px;
+  height: 199px;
+  left: 0;
+}
+
+.navDropDownShow:first-child {
+  padding-top: 6px;
 }
 
 .listEle {
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  color: #999;
-  padding: 2px;
+  color: #999;;
+  padding: 4px;
   text-decoration: none;
-  margin-top: 3px;
+  padding-top: 8px;
+  /* margin-top: 4px; */
   padding-left: 6px;
 }
 
+.listEle:hover {
+  color:white;
+  background-color: #999;
+  opacity: .75;
+}
+
+.firstEle {
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #999;;
+  padding: 4px;
+  text-decoration: none;
+  margin-top: 0px;
+  padding-left: 6px;
+  padding-top: 8px;
+}
+
+.firstEle:hover {
+  color:white;
+  background-color: #999;
+  opacity: .75;
+}
+
+.firstEle1 {
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #999;;
+  text-decoration: none;
+  width: 100%;
+}
+
+
+
 .TrackLI {
-  margin-top: 3px;
-  padding-top: 3px;
+  /* margin-top: 4px; */
+  padding: 4px;
   padding-left: 6px;
   border-top: .1px solid #999;
+  padding-top:8px;
 }
+
+.TrackLI:hover {
+  color:white;
+  background-color: #999;
+  opacity: .75;
+}
+
 
 .HomeButton {
   height:100%;
@@ -266,21 +311,39 @@
 }
 
 .userdrop {
-  float: right;
-  padding-left: 3%;
   background: transparent;
   display: block;
   position: relative;
   border:1px solid white;
   text-align: right;
-  width: 28%;
+  width: 35%;
   border: none;
-  height: 100%;
+  height: 75%;
   color: #ccc;
-  padding-left: 3px;
+  padding-left: 1%;
   cursor: pointer;
   padding-top: 10.5px;
   z-index: 5;
+  display: flex;
+  font: 100 12px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
+}
+
+.userdropclick {
+  padding-left: 3%;
+  background: black;
+  display: block;
+  position: relative;
+  border:1px solid white;
+  text-align: right;
+  width: 35%;
+  border: none;
+  height: 75%;
+  color: white;
+  padding-left: 1%;
+  cursor: pointer;
+  padding-top: 10.5px;
+  z-index: 5;
+  display: flex;
   font: 100 12px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
 }
 
@@ -293,7 +356,7 @@
   background: transparent;
   border: none;
   height: 100%;
-  width: 10%;
+  width: 7%;
   z-index: 10;
   font-size: 19px;
   color: #ccc;
@@ -314,7 +377,7 @@
   padding-left: 5px;
   color: #ccc;
   height: 100%;
-  width: 10%;
+  width: 2.5vw;
   font-size: 35px;
 }
 
@@ -325,28 +388,33 @@
   height: 25px;
   width: 25px;
   border-radius: 50px;
-  margin-left: -10%;
   margin-bottom: 40px;
   margin-top: -2px;
   margin-right: 20%;
 }
 
 .navUsername {
-  margin-left: .5vw;
   margin-top: 0px;
   width: 20vw;
+  margin-right: 15%;
+}
+.dA {
+  font-size:18px;
+  top:0;
+  margin: 0;
+  margin-top: -7px;
+  margin-left: -12%;
 }
 
 .profHead {
   display:flex;
   height: 100%;
-  width: 28%;
+  width: 100%;
   justify-content: space-between;
   padding-left: 3px;
 }
 
 .dots {
-  padding-left: 1px;
   color: #ccc;
   height: 100%;
   width: 2%;

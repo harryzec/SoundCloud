@@ -6,21 +6,21 @@ class NavBar extends React.Component {
   constructor(props){
     super(props)
     this.handleDrop = this.handleDrop.bind(this)
-    this.state = { NavDrop: 'navDropDown' };
+    this.state = { NavDrop: 'navDropDown', userdrop: 'userdrop' };
   }
 
   handleDrop(e) {
     if (this.state.NavDrop === 'navDropDown'){
       // debugger
-      this.setState({NavDrop: 'navDropDownShow'})
+      this.setState({NavDrop: 'navDropDownShow', userdrop: 'userdropclick'})
     } else {
-      this.setState({NavDrop: 'navDropDown'})
+      this.setState({NavDrop: 'navDropDown', userdrop: 'userdrop'})
     }
   }
 
   render(){
     // debugger
-    const { NavDrop } = this.state
+    const { NavDrop, userdrop } = this.state
 
     if (this.props.match.isExact) {return null}
 
@@ -47,10 +47,11 @@ class NavBar extends React.Component {
           <button className='tryPro'>Try Pro</button>
           <Link to='/upload' className='UploadClick'>Upload</Link>
 
-        <div className='userdrop' onClick={this.handleDrop}>
-          <div className='profHead'><img className='navPic' src={`${this.props.user.profileUrl}`}/><p className='navUsername'>{this.props.user.username}</p> </div>
+        <div className={userdrop} onClick={this.handleDrop}>
+          <div className='profHead'><img className='navPic' src={`${this.props.user.profileUrl}`}/><p className='navUsername'>{this.props.user.username} </p> </div>
+          <p className='dA'>&#8964;</p>
             <div className={NavDrop}>
-              <Link to={`/${this.props.user.username.split(' ').join('-')}`} className='listEle'> &#8962; Profile</Link>
+              <li className='firstEle'><Link className='firstEle1' to={`/${this.props.user.username.split(' ').join('-')}`}> &#8962; Profile</Link></li>
               <li className='listEle' >&#43; Likes</li>
               <li className='listEle'>&#12316; Stations</li>
               <li className='listEle'>&#9738; Who to follow</li>

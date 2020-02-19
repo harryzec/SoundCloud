@@ -43,9 +43,9 @@ class Dashboard extends React.Component {
       artistSongs = Object.values(this.props.songs).map(song => (
         <>
         <div className='songContainer'>
-        <img src={song.imgUrl} className='songImg'/>
+        <img src={song.imgUrl} className='songImg1'/>
           <div className='songHelp'>
-            <button onClick={()=> this.handlePlay(song)}>Play Button{song.title}</button>
+            <div className='playSong'onClick={()=> this.handlePlay(song)}><p className='playcon'>&#9654;</p></div>
             <p>      </p>
             <Link to={`/${this.props.user.username}/${song.hyperlink}`}>{song.title}</Link>
             <p>      </p>
@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
     artistSongs = Object.values(this.props.songs).map(song => (
       <>
       <div className='songContainer'>
-      <img src={song.imgUrl} className='songImg'/>
+      <img src={song.imgUrl} className='songImg1'/>
         <div className='songHelp'>
           <button onClick={()=> this.handlePlay(song)}>Play Button{song.title}</button>
           <p>      </p>
@@ -85,24 +85,32 @@ class Dashboard extends React.Component {
     <h1 className='usernameProf'>{this.props.user.username}</h1>
     <div className='profileOptions'>
       <section className='profileSections'>
-        <button className='profileButtons'>All</button>
-        <button className='profileButtons'>Popular tracks</button>
-        <button className='profileButtons'>Tracks</button>
-        <button className='profileButtons'>Albums</button>
-        <button className='profileButtons'>Playlists</button>
-        <button className='profileButtons'>Reposts</button>
+        <Link className='profileButtonsAll'>All</Link>
+        <Link className='profileButtons'>Popular tracks</Link>
+        <Link className='profileButtons'>Tracks</Link>
+        <Link className='profileButtons'>Albums</Link>
+        <Link className='profileButtons'>Playlists</Link>
+        <Link className='profileButtons'>Reposts</Link>
       </section>
-      <section>
-        <button>Station</button>
-        <button>Follow</button>
-        <button>Share</button>
-        <button>Mail</button>
-        <button>...</button>
+      <section className='profileExtra'>
+        <Link className='extraButtons'><strong className='boldthis'><img width='10'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'></img></strong> Station</Link>
+        <Link className='extraButtons'><strong className='boldthis'>&#62;</strong>  Share</Link>
+        <Link className='extraButtons'><strong className='boldthis'>&#9998;</strong>  Edit</Link>
       </section>
     </div>
-    <div> 
-    {artistSongs}
+
+    <div className='profileBody'>
+      <div className='musicSection'>
+       <h2 className='recentHead'>Recent</h2>
+        {artistSongs}
+      </div>
+      <div className='statsSection'>
+
+      </div>
+   
     </div>
+
+
     </>
     )
   }

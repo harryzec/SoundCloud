@@ -147,7 +147,7 @@ class UploadForm extends React.Component {
       return(
         <>
         <div className='uploadingForm'>
-          <div className='uploadingMarg'>
+          
             <div className='uploadOptions'>
               <h1 className='basicInfo'>Basic Info</h1>
               <h1 className='Metadata'>Metadata</h1>
@@ -209,7 +209,7 @@ class UploadForm extends React.Component {
               <button className='saveUpload' onClick={this.handleSubmit}>Submit</button>
               </div>
             </div>
-          </div>
+          
           <br>
           </br>
           <br>
