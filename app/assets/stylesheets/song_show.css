@@ -1,0 +1,36 @@
+.SongshowPage {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.songplayer {
+  display: flex;
+  height: 310px;
+  width: 100%;
+  background-image: linear-gradient(to right, rgb(49, 124, 221) , rgb(133, 133, 133));
+}
+
+.songPInf {
+  display:flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.songImgP {
+  width: 30%;
+}
+
+.songPHead {
+  display: flex;
+  justify-content: space-between;
+}
+
+.SongPlayT {
+  display: flex;
+}
+
+.SongTA {
+  display: flex;
+  flex-direction: column;
+}

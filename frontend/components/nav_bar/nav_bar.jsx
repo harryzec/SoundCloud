@@ -84,9 +84,10 @@ class NavBar extends React.Component {
 }
 
 const mSTP = state => {
+  debugger
   let current;
   if (state.session.currentUser===null){
-    current = 'log in'
+    current = null
   } else {
     current = state.session.currentUser;
   }

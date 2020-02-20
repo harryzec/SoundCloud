@@ -51,7 +51,25 @@ class SongShow extends React.Component {
     return(
       <>
       <DeleteModal song={this.props.song} userlink={this.props.match.params.username} />
+      <div className='SongshowPage'>
+        <div className='songplayer'>
+          <div className='songPInf'></div>
+            <div className='songPHead'>
+              <div className='playSong'onClick={()=> this.handlePlay(song)}><p className='playcon'>&#9654;</p></div>
+             
+              <div className='SongTA'></div>
+                <h3>{this.props.song.title}</h3>
+              <div className='SongPlayT'>
 
+              </div>
+            </div>
+
+            <div className='songWaveF'></div>
+          <div className='songImgP'></div>
+        
+        </div>
+
+      </div>
       {dropdown}
       </>
     )

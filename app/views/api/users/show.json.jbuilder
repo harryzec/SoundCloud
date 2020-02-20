@@ -7,13 +7,13 @@ json.set! @user.username do
   if @user.profile_picture.attached?
    json.profileUrl url_for(@user.profile_picture)
   else
-    json.profileUrl null
+    json.profileUrl nil
   end
 
   if @user.cover_photo.attached?
    json.coverUrl url_for(@user.cover_photo)
   else
-    json.coverUrl null
+    json.coverUrl nil
   end
 
 end

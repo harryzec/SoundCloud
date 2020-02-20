@@ -42,18 +42,45 @@ class Dashboard extends React.Component {
     if (this.props.user.id === this.props.currentuser.id) {
       artistSongs = Object.values(this.props.songs).map(song => (
         <>
+        <div className='realCont'>
         <div className='songContainer'>
+       
+       <div className='rich2Div'>
+        <div className='richDiv'>
         <img src={song.imgUrl} className='songImg1'/>
           <div className='songHelp'>
             <div className='playSong'onClick={()=> this.handlePlay(song)}><p className='playcon'>&#9654;</p></div>
-            <p>      </p>
-            <Link to={`/${this.props.user.username}/${song.hyperlink}`}>{song.title}</Link>
-            <p>      </p>
-            {this.props.user.username}
-  
-            <button onClick={e => this.handleEdit(e, song)}>Edit</button>
+            
+            <div className='songpIn'>
+            <li className='sArtist'>{this.props.user.username}</li>
+            <li className='sSong'><Link className='sSong' to={`/${this.props.user.username}/${song.hyperlink}`}>{song.title}</Link></li>
+            </div>
+
+            
+
+            </div>
           </div>
           </div>
+
+          {/* <div className='genreS'>
+            <p className='songG'>#{song.genre}</p>
+          </div> */}
+          <p className='songG'>#{song.genre}</p>
+
+          </div>
+
+          <div className='songFoot'>
+              <div className='songBO'>
+                <button className='songBu'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
+                <button className='songBu'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+                <button className='SongBu' onClick={e => this.handleEdit(e, song)}>&#9998; Edit</button>
+                <button className='songBu'>...More</button>
+              </div>
+        </div>
+          </div>
+
+          
+        
         </>
       ))
     } else {
@@ -80,6 +107,7 @@ class Dashboard extends React.Component {
     return(
     <>
     <EditModal/>
+    <div className='fullDash'>
     <img src={this.props.user.coverUrl} className='coverPic'/>
     <img src={this.props.user.profileUrl} className='proPic'/>
     <h1 className='usernameProf'>{this.props.user.username}</h1>
@@ -105,11 +133,25 @@ class Dashboard extends React.Component {
         {artistSongs}
       </div>
       <div className='statsSection'>
+      <div className='myStats'>
+        <div className='myFollowers'>
+          <p className='headz'>Followers</p>
+          <p className='statNum'>0</p>
 
+        </div>
+        <div className='myFollowing'>
+          <p className='headz'>Following</p>
+          <p className='statNum'>0</p>
+        </div>
+        <div className='myTracks'>
+          <p className='headz'>Tracks</p>
+          <p className='statNum'>{Object.keys(this.props.songs).length}</p>
+        </div>
+      </div>
       </div>
    
     </div>
-
+    </div>
 
     </>
     )
