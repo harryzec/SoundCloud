@@ -183,10 +183,6 @@
   position: relative;
 }
 
-.songContainer:first-child {
-  margin-top: 
-}
-
 .playSong {
   cursor: pointer;
   background-color: #f50;
@@ -269,7 +265,6 @@
 }
 
 .songFoot {
-  bottom: 0;
   height: 15px;
   justify-content: space-between;
   margin-left: 11.6vw;
