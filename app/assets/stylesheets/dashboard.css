@@ -104,6 +104,7 @@
 .statsSection {
   margin-left: 3%;
   margin-right: 3%;
+  position: relative;
 }
 
 .extraButtons:hover {
@@ -302,6 +303,8 @@
 .myStats {
   display: flex;
   align-items: center;
+  position: absolute;
+  width: 100%;
 }
 
 .myFollowers {
@@ -309,8 +312,8 @@
   flex-direction: column;
   color: #999;
   padding: 5px;
-  padding-left: 3%;
-  padding-right: 28%;
+  padding-left: 5%;
+  padding-right: 20%;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }
 
@@ -319,8 +322,8 @@
   flex-direction: column;
   color: #999;
   padding: 5px;
-  padding-left: 3%;
-  padding-right: 30%;
+  padding-left: 5%;
+  padding-right: 20%;
   border-right: 1px solid #f2f2f2;
   border-left: 1px solid #f2f2f2;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
@@ -331,7 +334,7 @@
   flex-direction: column;
   color: #999;
   padding: 5px;
-  padding-left: 3%;
-  padding-right: 30%;
+  padding-left: 5%;
+  padding-right: 20%;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }
