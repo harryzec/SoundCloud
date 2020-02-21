@@ -128,7 +128,7 @@ class Dashboard extends React.Component {
     </div>
 
     <div className='profileBody'>
-      <div className='musicSection'>
+      <div className='musicSectionR'>
        <h2 className='recentHead'>Recent</h2>
         {artistSongs}
       </div>
