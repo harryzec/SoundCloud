@@ -8,6 +8,15 @@ class Song < ApplicationRecord
     foreign_key: :user_id,
     class_name: 'User'
 
+  has_many :playlist_tracks,
+    foreign_key: :track_id,
+    class_name: :PlaylistTrack,
+    dependent: :destroy
+
+  has_many :playlists,
+    through: :playlist_tracks,
+    source: :playlist
+
   private 
 
   # def track_attached

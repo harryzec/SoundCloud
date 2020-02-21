@@ -15,6 +15,11 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: 'Song'
 
+  has_many :playlists,
+    class_name: :Playlist,
+    foreign_key: :user_id
+
+
 
   def self.find_by_email(email)
     user = User.find_by(email: email)

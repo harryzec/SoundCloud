@@ -33,6 +33,7 @@
   height: 5px;
   width: 100%;
   margin-top: 35%;
+  margin-bottom: 35px;
   padding: 5px;
   background: hsla(0,0%,94.9%,.9);
 }
@@ -88,4 +89,64 @@
 
 .songshowhidden {
   display: none;
+}
+
+.deltop {
+  display: flex; 
+}
+
+.delPic{
+  height: 130px;
+  width: 130px;
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.nameshit {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-left: 225px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.nameshit:hover {
+  color: black;
+}
+
+.deleu {
+  color: #cecece;
+  font-size: 12px;
+  top:10px;
+  margin-bottom: 0;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.delett {
+  color: black;
+  font-size: 15px;
+  margin-top: 0;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.playconD {
+  font-size: 25px;
+  margin-right: -13%;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.playSongPageD {
+  cursor: pointer;
+  position: absolute;
+  background-color: #f50;
+  height: 40px;
+  width: 40px;
+  color: white;
+  border-radius: 100px;
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 170px;
 }

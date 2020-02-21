@@ -1,22 +1,59 @@
 import React from 'react'
 import DeleteModal from '../delete_modal/delete_modal'
 import EditModal from '../edit_modal/edit_modal'
+import { Link } from 'react-router-dom'
 
 
 class SongShow extends React.Component {
 
   componentDidMount() {
-    debugger
     this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
+    this.props.fetchSongsByArtist(this.props.match.params.username)
+    this.shuffleArray = this.shuffleArray.bind(this)
   }
   
+  handlePlay(song){
+    this.props.playSong(song);
+  }
+
+  handleEdit (e, song) {
+    debugger
+    e.preventDefault();
+    this.props.openEditModal('edit', song)
+  }
+
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array
+  }
+
 
   render(){
     
-    debugger
+ 
     if (!this.props.song) {
       return null
     }
+
+    
+
+    let relatedSongs = this.shuffleArray(this.props.othersongs).slice(0, 3).map( song => (
+      <>
+      <div className='randomSong'>
+        <img width='50' height='50' src={song.imgUrl} />
+        <div className='OsongLinks'>
+          <Link className='songuser' to={`/${song.user.split(' ').join('-')}`}>{song.user}</Link>
+          <Link className='songtit' to={`/${song.user.split(' ').join('-')}/${song.hyperlink}`}>{song.title}</Link>
+        </div>
+      </div>
+      </>
+     ) ) 
+
+    debugger
 
     let dropdown;
 
@@ -41,7 +78,7 @@ class SongShow extends React.Component {
       <div className='SongshowPage'>
         <div className='songplayer'>
   
-            <div className='playSongPage'onClick={()=> this.handlePlay(song)}><p className='playconS'>&#9654;</p></div>
+            <div className='playSongPage'onClick={()=> this.handlePlay(this.props.song)}><p className='playconS'>&#9654;</p></div>
              
              
                 <h3 className='songPT'>{this.props.song.title}</h3>
@@ -68,7 +105,7 @@ class SongShow extends React.Component {
                 <div className='songBOS'>
                   <button className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> Like</button>
                   <button className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
-                  <button className='SongBuS' onClick={e => this.handleEdit(e, song)}>&#9998; Edit</button>
+                  <button className='songBuS' onClick={e => this.handleEdit(e, this.props.song)}>&#9998; Edit</button>
                   {dropdown}
                 </div>
               </div>
@@ -80,12 +117,22 @@ class SongShow extends React.Component {
             <div className='commentsandP'>
               <div className='profInf'>
                 <img className='profimgn' src={this.props.song.userImg}/>
+                <Link className='profimgU' to={`/${this.props.song.user.split(' ').join('-')}`}>{this.props.song.user}</Link>
               </div>
+              <div className='descriptionandCom'>
+                <p className='songDesc'>{this.props.song.description}</p>
+                
+              </div>
+
+              <img className='nocomments' height='300' width='400'src={window.nocomment}/>
             </div>
 
           </div>
           <div className='relatedContent'>
-
+            <div>
+              <p className='relatedSong'><img width='10' src='https://www.flaticon.com/premium-icon/icons/svg/2325/2325990.svg'/> Related Tracks</p>
+            </div>
+            {relatedSongs}
           </div>
 
         </div>

@@ -7,4 +7,125 @@
   border-top: 1px solid #cecece;
   width: 100%;
   z-index: 12;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#timeline{
+	width: 500px;
+  height: 1.5px;
+  padding: 2.0;
+	background: #cecece;;
+	margin-top: 20px;
+	float: left;
+}
+
+.rewind {
+  position: absolute;
+  left: 110px;
+  top: 14px;
+}
+
+.fastforward {
+  padding-left: 26px;
+  position: absolute;
+  top: 14px;
+}
+
+.shuffle {
+  top:11px;
+  margin-left: 65px;
+  position: absolute;
+
+}
+
+.repeat {
+  top:11px;
+  position: absolute;
+  margin-left: 73px;
+  padding-left: 30px;
+}
+
+.time1 {
+  font-size: 10px;
+  position: absolute;
+  color: #f50;
+  margin-left: 130px;
+  top: 3px;
+}
+
+.timeConta {
+  position: absolute;
+  margin-left: 160px;
+  top: -1px;
+}
+
+.time2 {
+  font-size: 10px;
+  position: absolute;
+  color: black;
+  margin-left: 680px;
+  top: 3px;
+}
+
+.currentbu {
+  position: absolute;
+  top: -6px;
+  z-index: 10;
+}
+
+#playhead{
+	width: 0px;
+	height: 1.5px;
+	background: #f50;
+}
+
+.volumeCont {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin-left: 720px;
+  top: 4px;
+}
+
+.imgbar {
+  position: absolute; 
+  margin-left: 758px;
+  top: 7px;
+  height: 30px;
+  width: 30px;
+}
+
+.barinfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 795px;
+}
+
+.baruse {
+  font-size: 9px;
+  color: black;
+  margin-bottom: 0;
+}
+
+.bartite {
+  margin-top: 0;
+  font-size: 9px;
+  color: #cecece;
+}
+
+.bartite:hover {
+  color: black;
+}
+
+.barHeart {
+  position: absolute;
+  margin-left: 1000px;
+  top: 9px;
+}
+
+.barOpt {
+  position: absolute;
+  margin-left: 1040px;
+  top: 9px;
 }

@@ -12,6 +12,10 @@ class DeleteForm extends React.Component {
     this.props.deleteSong(this.props.song).then(() => this.props.closeModal()).then(() =>this.props.history.push(`/${this.props.userlink}`))
   }
 
+  handlePlay(song){
+    this.props.playsong(song);
+  }
+
 
   render(){
     const dropdown = (
@@ -30,8 +34,13 @@ class DeleteForm extends React.Component {
       
     return(
       <>
-      <div>
-        
+      <div className='deltop'>
+        <img className='delPic'src={this.props.song.imgUrl}/>
+        <div className='playSongPageD'onClick={()=> this.handlePlay(this.props.song)}><p className='playconD'>&#9654;</p></div>  
+        <div className='nameshit'>
+          <p className='deleu'>{this.props.song.user}</p>
+          <p className='delett'>{this.props.song.title}</p>
+        </div>
       </div>
       <div className='deleteParent'></div>
       

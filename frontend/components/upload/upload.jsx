@@ -52,10 +52,11 @@ class UploadForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    debugger
 
     if (this.state.samePerma === 'samePerma',this.state.TitleInput === 'titleInputred' || this.state.titleError === 'showTitleError' || this.state.hypererror === 'hyperErrorshow'){
     } else {
-    // debugger
+    debugger
     const createdSong = new FormData();
     createdSong.append('song[title]', this.state.title);
     createdSong.append('song[genre]', this.state.genre);
@@ -206,7 +207,7 @@ class UploadForm extends React.Component {
               <p className='requireField'><strong className='orange'>*</strong> Required fields</p>
               <div className='uploadButtons'>
               <button className='CancelUpload' onClick={this.handleCancel}>Cancel</button>
-              <button className='saveUpload' onClick={this.handleSubmit}>Submit</button>
+              <button className='saveUploadUp' onClick={this.handleSubmit}>Submit</button>
               </div>
             </div>
           

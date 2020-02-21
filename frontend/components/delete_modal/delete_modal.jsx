@@ -3,8 +3,9 @@ import { closeDeleteModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import DeleteForm from './DeleteForm';
 import { deleteSong } from '../../actions/song_action'
+import { playSong, pauseSong } from '../../actions/song_player_actions'
 
-function DeleteModal({modal, closeModal, song, deleteSong, userlink}) {
+function DeleteModal({modal, closeModal, song, deleteSong, userlink, playSong}) {
   // debugger
   if (!modal) {
     return null;
@@ -12,7 +13,7 @@ function DeleteModal({modal, closeModal, song, deleteSong, userlink}) {
   let component;
   switch (modal) {
     case 'open':
-      component = <DeleteForm deleteSong={deleteSong} userlink={userlink} song={song} closeModal={closeModal}/>;
+      component = <DeleteForm deleteSong={deleteSong} playsong={playSong} userlink={userlink} song={song} closeModal={closeModal}/>;
       break;
     default:
       return null;
@@ -32,6 +33,7 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
     closeModal: () => dispatch(closeDeleteModal()),
+    playSong: (song) => dispatch(playSong(song)),
     deleteSong: (song) => dispatch(deleteSong(song))
   })
 

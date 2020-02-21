@@ -438,7 +438,6 @@
 }
 
 .footStuffU {
-
   display: flex;
   height: 20px;
   width: 100%;
@@ -452,11 +451,13 @@
   bottom: 30px;
 }
 
-.saveUpload {
+.saveUploadUp {
   background-color: #f50;
   border-color: #f50;
   color: #fff;
+  position: relative;
   border-radius: 3px;
+  z-index: 10;
   cursor: pointer;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   -webkit-font-smoothing: antialiased;
