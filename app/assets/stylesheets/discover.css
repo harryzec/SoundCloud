@@ -50,6 +50,10 @@
   margin-top: 5px;
 }
 
+.cale {
+  color: gray;
+}
+
 .listenHis {
   color: gray;
   border-bottom: 1px solid #f2f2f2;

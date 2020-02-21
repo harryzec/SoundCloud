@@ -32,7 +32,7 @@ class Discover extends React.Component{
 
     const recent = values.map(song => (
       <>
-        <div className='recentSong'>
+        <div key={song.id} className='recentSong'>
           <img className='recentPic'src={song.imgUrl} />
           <div className='recentInfo'>
             <p className='recentuser'>{song.user}</p>
@@ -45,7 +45,7 @@ class Discover extends React.Component{
 
     const firstp = this.props.playlists.slice(0, 4).map(playlist =>(
       <>
-        <div className='playlistshow'>
+        <div key={playlist.id}className='playlistshow'>
           <img className='playpic'src={playlist.imageUrl}/>
           <p className='playtit'>{playlist.title}</p>
         </div>
@@ -54,7 +54,7 @@ class Discover extends React.Component{
 
     const secondp = this.props.playlists.slice(4, 8).map(playlist =>(
       <>
-        <div className='playlistshow'>
+        <div key={playlist.id} className ='playlistshow'>
           <img className='playpic'src={playlist.imageUrl}/>
           <p className='playtit'>{playlist.title}</p>
         </div>
@@ -78,7 +78,7 @@ class Discover extends React.Component{
           
         </div>
         <div className='recentSection'>
-          <h3 className='listenHis'>Listening History</h3>
+          <h3 className='listenHis'><img className='cale' width='12'src ='https://image.flaticon.com/icons/svg/747/747310.svg'/>  Listening History</h3>
           
           {recent}
           
@@ -86,6 +86,8 @@ class Discover extends React.Component{
         
         
       </div>
+    
+      
       </>
     )
   }

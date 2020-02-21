@@ -9,7 +9,7 @@ class EditForm extends React.Component {
     this.state = { title: this.props.song.title, genre: this.props.song.genre, 
       hyperlink: this.props.song.hyperlink, 
       id: this.props.song.id,
-      description: this.props.song.description,
+      description: this.props.song.description || '',
       customGenre: 'noshowCustom',
       imageUrl: this.props.song.imgUrl,
       submitB: 'nosaveEdit',
@@ -38,15 +38,21 @@ class EditForm extends React.Component {
   handleEdit(e) {
     e.preventDefault();
     if (this.state.samePerma === 'samePerma',this.state.TitleInput === 'titleInputred' || this.state.titleError === 'showTitleError' || this.state.hypererror === 'hyperErrorshow'){
+    // } else if (this.props.song.imgUrl === this.state.photo){
+    //   let newsong ={song: {photo: this.state.photo, title: this.state.title, genre: this.state.genre, hyperlink: this.state.hyperlink, description: this.state.description}}
+    //   this.props.editSong(newsong, this.state.id).then(()=> this.props.closeEditModal()).then(() => this.props.location.reload())
     } else {
     const updatedSong = new FormData();
-    updatedSong.append('song[photo]', this.state.photo);
+    if (!this.state.photo instanceof String) {
+      updatedSong.append('song[photo]', this.state.photo);
+    }
     updatedSong.append('song[title]', this.state.title);
     updatedSong.append('song[genre]', this.state.genre);
     updatedSong.append('song[hyperlink]', this.state.hyperlink);
     updatedSong.append('song[description]', this.state.description);
+    updatedSong.append('song[id]', this.state.id)
     // const song = {photo: this.state.photo, id: this.state.id, title: this.state.title, genre: this.state.genre, hyperlink: this.state.hyperlink, description: this.state.description}
-    this.props.editSong(updatedSong, this.state.id).then(()=> this.props.closeEditModal()).then(() => this.props.location.reload())
+    this.props.editSong(updatedSong, this.state.id).then(()=> this.props.closeEditModal())
     }
   }
 

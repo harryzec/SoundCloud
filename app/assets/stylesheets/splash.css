@@ -16,7 +16,7 @@
 
 .mainBody {
   background-color:#fff;
-  height: 100vh;
+  height: 105vh;
 }
 
 
@@ -829,8 +829,10 @@ body {
   color: #ccc;
   border-top: 1px solid #f2f2f2;
   display: block;
-  width: 80%;
+  width: 100%;
   margin: auto;
+  bottom: 0;
+  background: white;
 }
 
 .Linkedin {

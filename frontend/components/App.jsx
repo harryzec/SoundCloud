@@ -16,6 +16,7 @@ import {
   HashRouter
 } from 'react-router-dom';
 import NavBar from './nav_bar/nav_bar'
+import Footer from './footer/footer'
 
 
 const App = () => (
@@ -30,6 +31,7 @@ const App = () => (
       <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
     </Switch>
   </div>
+  {/* <Route path='/' component={Footer}/> */}
   <Route path='/' component={ContinuousPlayCont}/>
   </>
 );

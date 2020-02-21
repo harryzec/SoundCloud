@@ -14,8 +14,8 @@ class Greeting extends React.Component {
     <div className='pianoCont'>
       <img src={window.pianoPlayer} alt="PianoPlayer" className="pianoImg"/>
       <div className="overImage">
-        <h2 className="header">What's next in music is first on SoundCloud</h2>
-        <p className='text'>Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.</p>
+        <h2 className="header">What's next in music is first on CloneCloud</h2>
+        <p className='text'>Upload your first track and begin your journey. CloneCloud gives you space to create, find your fans, and connect with other artists.</p>
       </div>
     </div>
     <nav className="login-signup">
@@ -38,7 +38,7 @@ class Greeting extends React.Component {
     </div>
     
     <div>
-      <h2 className='subHead'>Hear what’s trending for free in the SoundCloud community</h2>
+      <h2 className='subHead'>Hear what’s trending for free in the CloneCloud community</h2>
     </div>
 
     <br></br>
@@ -51,7 +51,7 @@ class Greeting extends React.Component {
     <div className='dontStop'>
       <h2 className='neverHeader'>Never stop listening</h2>
       <div className='line'></div>
-      <p className='neverNotes'>SoundCloud is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One.</p>
+      <p className='neverNotes'>CloneCloud is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One.</p>
       <div className='download'>
         <button className='Apple'>Download on the App Store</button>
         <button className='Google'>GET IT ON Google play</button>
@@ -65,7 +65,7 @@ class Greeting extends React.Component {
       <img src={window.happyFriend} alt="happyFriend" className="friendImg"/>
         <div className='onPic'>
           <h2>Calling all creators</h2>
-          <p>Get on SoundCloud to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
+          <p>Get on CloneCloud to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
           <button className='findOut'>Find out more</button>
         </div>
     </div>
@@ -81,7 +81,7 @@ class Greeting extends React.Component {
     
     </div>
 
-    <div class='footerLine'></div>
+    <div className='footerLine'></div>
     <a href='https://www.linkedin.com/in/harry-zec-7157a4a8/' className='Linkedin'>Linkedin</a>
     <a href='https://github.com/harryzec' className='Github'>Github</a>
     </>

@@ -32,7 +32,7 @@ class UploadForm extends React.Component {
     let extension = filebroken[filebroken.length-1]
     if (filetypes.includes(extension.toUpperCase())){
       const file = e.currentTarget.files[0]
-      this.setState({track: file, hyperlink: file.name.split('.')[0].split(' ').slice(1, file.name.split('.')[0].split(' ').length).join('-'), title: file.name.split('.')[0].split(' ').slice(1, file.name.split('.')[0].split(' ').length).join(' ')})
+      this.setState({hidden: 'hiddenfornow', track: file, hyperlink: file.name.split('.')[0].split(' ').slice(1, file.name.split('.')[0].split(' ').length).join('-'), title: file.name.split('.')[0].split(' ').slice(1, file.name.split('.')[0].split(' ').length).join(' ')})
     } else {
       this.setState({hidden: 'showme'})
     }
@@ -46,7 +46,7 @@ class UploadForm extends React.Component {
   if (file) {
     reader.readAsDataURL(file);
   } else {
-    this.setState({ imageUrl: "", photo: null });
+    this.setState({ imageUrl: null, photo: null });
   }
   }
 
@@ -64,8 +64,10 @@ class UploadForm extends React.Component {
     createdSong.append('song[track]', this.state.track);
     createdSong.append('song[user_id]', this.state.user_id);
     createdSong.append('song[hyperlink]', this.state.hyperlink);
-    createdSong.append('song[photo]', this.state.photo);
-    // debugger
+    if (this.state.photo !== null) {
+      createdSong.append('song[photo]', this.state.photo);
+    } 
+    
     this.props.createSong(createdSong)
     this.setState({user_id: this.props.song.user_id, genre: this.props.song.genre, description: this.props.song.description, title: this.props.song.title, track: this.props.song.track})
     }

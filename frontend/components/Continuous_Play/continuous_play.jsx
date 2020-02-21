@@ -208,8 +208,8 @@ getPosition(el) {
       <p className='time2'>{this.state.duration}</p>
 
       <div className='volumeCont'>
-        <img width='15' src='https://image.flaticon.com/icons/svg/271/271239.svg' onClick={()=> this.volumeChange('up')}/>
-        <img width='15' src ='https://image.flaticon.com/icons/svg/566/566015.svg' onClick={()=> this.volumeChange('down')}/>
+        <img className='volumec1' width='15' src='https://image.flaticon.com/icons/svg/271/271239.svg' onClick={()=> this.volumeChange('up')}/>
+        <img className='volumec2' width='15' src ='https://image.flaticon.com/icons/svg/566/566015.svg' onClick={()=> this.volumeChange('down')}/>
       </div>
 
       <img className='imgbar' src={this.props.song.imgUrl}/>

@@ -11,6 +11,14 @@
   padding-right: 10%;
 }
 
+.volumec1:active {
+  width: 17px;
+}
+
+.volumec2:active {
+  width: 17px;
+}
+
 #timeline{
 	width: 500px;
   height: 1.5px;
