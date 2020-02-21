@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
   handleEdit (e, song) {
     debugger
     e.preventDefault();
-    this.props.openEditModal('edit', song).then(() => this.props.match.params.location.reload())
+    this.props.openEditModal('edit', song)
   }
 
   render() {
