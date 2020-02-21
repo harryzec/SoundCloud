@@ -5,7 +5,7 @@ class SongShow extends React.Component {
   constructor(props) {
     super(props)
     this.volumeChange = this.volumeChange.bind(this);
-    this.state = {duration: 1, currentTime: 0}
+    this.state = {duration: '0:00', currentTime: '0:00'}
     this.handleMetaData = this.handleMetaData.bind(this)
     this.handleCurrentTime = this.handleCurrentTime.bind(this);
     this.changePlace = this.changePlace.bind(this)

@@ -9,7 +9,7 @@ class Discover extends React.Component{
 
   componentDidMount() {
     // debugger
-    this.props.fetchSong(5);
+    this.props.fetchPlaylists()
   }
 
   handleSubmit(e){
@@ -24,22 +24,67 @@ class Discover extends React.Component{
 
   render() {
     // debugger
-    if (!this.props.song) {
+    if (this.props.recentplays === {}) {
       return null;
     }
+
+    let values = Object.values(this.props.recentplays).reverse().slice(0,4)
+
+    const recent = values.map(song => (
+      <>
+        <div className='recentSong'>
+          <img className='recentPic'src={song.imgUrl} />
+          <div className='recentInfo'>
+            <p className='recentuser'>{song.user}</p>
+            <p className='recenttitle'>{song.title}</p>
+          </div>
+        </div>
+      </>
+    ))
+    debugger
+
+    const firstp = this.props.playlists.slice(0, 4).map(playlist =>(
+      <>
+        <div className='playlistshow'>
+          <img className='playpic'src={playlist.imageUrl}/>
+          <p className='playtit'>{playlist.title}</p>
+        </div>
+      </>
+    ))
+
+    const secondp = this.props.playlists.slice(4, 8).map(playlist =>(
+      <>
+        <div className='playlistshow'>
+          <img className='playpic'src={playlist.imageUrl}/>
+          <p className='playtit'>{playlist.title}</p>
+        </div>
+      </>
+    ))
 
     return(
       <>
       <div className='discoverMain'>
-        <form onSubmit={this.handleSubmit} className='logoutButton'>
-        <button className="header-button">Log Out</button>
-        </form>
-
-      <Link to='/klamarxoxo'>Kendrick Lamar</Link>
-      <br></br>
-      <Link to='/demouser'>Demo</Link>
-
-      <button onClick={()=> this.handlePlay(this.props.song)}>Play {this.props.song.title}</button>
+        <div className='musicSection'>
+          <h3 className='newMusicNow'>New Music Now</h3>
+          <p className='latestHits'>The latest hits, updated all the time</p>
+          <div className='play1'>
+          
+          {firstp}
+          </div>
+          <h3 className='newMusicNow'>CloneCloud Charts</h3>
+          <div className='play2'>
+            {secondp}
+          </div>
+          
+        </div>
+        <div className='recentSection'>
+          <h3 className='listenHis'>Listening History</h3>
+          
+          {recent}
+          
+        </div>
+        
+        
       </div>
       </>
     )

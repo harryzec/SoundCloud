@@ -2,8 +2,112 @@
   margin-left: 7%;
   margin-right: 7%;
   height: 100vh;
+  display: flex;
+}
+
+.musicSection {
+  border-right: 1px solid #f2f2f2;
+  width: 75%;
+  height: 100%;
 }
 
 .logoutButton {
   left: 0%;
+}
+
+.recentInfo {
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+}
+
+.recentuser {
+  color: #999;
+  font-size: 10px;
+  margin-bottom: 0;
+}
+
+.recenttitle {
+  color: black;
+  font-size: 11px;
+  margin-bottom: 0;
+  margin-top: 1px;
+}
+
+.recentPic {
+  height: 45px;
+  width: 45px;
+}
+
+.recentSection {
+  margin-left: 10px;
+  margin-right: 5px;
+  width: 25%;
+}
+
+.recentSong {
+  display: flex;
+  margin-top: 5px;
+}
+
+.listenHis {
+  color: gray;
+  border-bottom: 1px solid #f2f2f2;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  margin-right: 0;
+  width: 100%;
+  font-weight: 100;
+  font-size: 13px;
+  margin-top: 24px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.latestHits {
+  font-weight: 100;
+  font-size: 18px;
+  margin-top: -9px;
+  color: #999;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.newMusicNow {
+  color: #333;
+  font-size: 19px;
+  font-weight: 100;
+  margin-top: 24px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.playlistshow {
+  display: flex;
+  flex-direction: column;
+  margin-right: 25px;
+}
+
+.playpic {
+  height: 140px;
+  width: 160px;
+}
+
+.playtit {
+  font-size: 12px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: darkgray;
+  cursor: pointer;
+}
+.play1 {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.play2 {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.playtit:hover {
+  color: black;
 }

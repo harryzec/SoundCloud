@@ -1,11 +1,12 @@
-class PlaylistsController < ApplicationController
+class Api::PlaylistsController < ApplicationController
   def index
-    @playlists = Playlist.all
+    playlists = Playlist.all
+    @RPlaylists = playlists.shuffle()
+
     render :index
   end
 
-  
-  
+
   def create
     @playlist = Playlist.new(create_params)
     if @playlist.save
@@ -18,7 +19,7 @@ class PlaylistsController < ApplicationController
 
   private 
   def create_params
-    params.require(:playlist).permit(:creater_id, :title)
+    params.require(:playlist).permit(:user_id, :title)
   end
 
 end
