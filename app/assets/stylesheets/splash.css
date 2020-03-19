@@ -16,7 +16,7 @@
 
 .mainBody {
   background-color:#fff;
-  height: 105vh;
+  height: 100vh;
 }
 
 
@@ -823,6 +823,7 @@ body {
 .loginButtonTwo:hover {
   border: 1px solid lightgray;
 }
+
 
 .footerLine {
   padding-bottom: 3px;

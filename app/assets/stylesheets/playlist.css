@@ -1,0 +1,242 @@
+.playlist-modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: hsla(0,0%,94.9%,.9);
+  z-index: 10;
+}
+
+.playlist-modal-child {
+  position: absolute;
+  height: auto;
+  width: auto;
+  min-width: 440px;
+  background: white;
+  top: 50%;
+  left: 50%;
+  padding-left: 17px;
+  padding-right: 17px;
+  transform: translate(-50%, -50%);
+}
+
+.playlistForm {
+  display: flex;
+  height: 330px;
+  width: 494px;
+  flex-direction: column;
+}
+
+.createplay {
+  color: #333;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+}
+
+.playlistheader {
+  width: 100%;
+  height: 17%;
+  color: #333;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.playlistheader2 {
+  width: 100%;
+  height: 23%;
+  color: #333;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.playlistinfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 21%;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+}
+
+.whatsplaylist {
+  margin-top: 22px;
+  margin-bottom: 4px;
+}
+
+.playlistSongs {
+  margin-top: 23px;
+  display: block;
+  border: 1px solid #f2f2f2;
+  height: 33%;
+}
+
+.playlistdiv {
+  border-bottom: 1px solid #f2f2f2;
+  height: 25%;
+}
+
+.playlistdiv2 {
+  border: 1px solid #f2f2f2;
+  height: 12%;
+  width: 100%;
+}
+
+.playlistdivlast {
+  height: 25%;
+}
+
+
+
+.playlisttitleinput {
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  height: 100%;
+  transition: border-color .1s;
+  background: #fff;
+  outline: none;
+}
+
+.playlistsavebutton {
+  float: right;
+  background-color: #f50;
+  border-color: #f50;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  height: 100%;
+  width: 50px;
+  font-size: 13px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.playlistsave {
+  margin-top: 16px;
+  height: 28px;
+}
+
+.playsonginf {
+  display: flex;
+  padding-left: 5px;
+  padding-top: 4px;
+  font-size: 12px; 
+}
+
+.playsonginf2 {
+  display: flex;
+  padding-left: 5px;
+  padding-top: 4px;
+  font-size: 12px; 
+}
+
+.playlistuser {
+  color: #999;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  padding-top: 2px;
+  width: auto;
+  padding-left: 6px;
+}
+
+.playcreatr {
+  color: #999;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  padding-top: 0px;
+  font-size: 13px;
+  width: auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.playtitler {
+  color: #333;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.playtitler:hover {
+  color: #333;
+}
+
+.playcreatr:hover {
+  color: black;
+}
+
+.playlistsongtit {
+  padding-top: 2px;
+  padding-left: 6px;
+  width: auto;
+}
+
+.playlistComplete {
+  display: flex;
+  height: 228px;
+  width: 455px;
+  flex-direction: column;
+  padding-left: 17px;
+  padding-right: 17px;
+}
+
+.playlistcreated {
+  width: 100%;
+  height: 21%;
+  padding-top: 28px;
+  padding-bottom: 41px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.playcreatr {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.playtitler{
+  margin-top:0;
+  padding-top: 0;
+}
+
+.playlistimgandinfo {
+  display: flex;
+}
+
+.pcreateor {
+  display: flex;
+  flex-direction: column;
+  padding-left: 8px;
+}
+
+.gotoplaylist {
+  border: 1px solid #f2f2f2;
+    text-decoration: none;
+    font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+    font-size: 13px;
+    padding-left: 14px;
+    padding-right: 14px;
+    color: black;
+    text-align: center;
+    padding-top: 6px;
+    height: 23px;
+    margin-top: 7px;
+}
+
+.noplaylists {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 10%;
+  width: 300px;
+  height: 50%;
+  align-items: center;
+}
+
+.noplaylistpic {
+  width:200px;
+}

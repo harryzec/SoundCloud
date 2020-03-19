@@ -50,3 +50,22 @@ export const closeEditModal = () => {
     type: CLOSE_EDIT_MODAL
   };
 };
+
+export const OPEN_PLAYLIST_MODAL = 'OPEN_PLAYLIST_MODAL';
+export const CLOSE_PLAYLIST_MODAL = 'CLOSE_PLAYLIST_MODAL';
+
+
+export const openPlaylistModal = (modal, song) => {
+  debugger
+  return {
+    type: OPEN_PLAYLIST_MODAL, 
+    modal, 
+    song
+  }
+}
+
+export const closePlaylistModal = () => {
+  return {
+    type: CLOSE_PLAYLIST_MODAL
+  }
+}

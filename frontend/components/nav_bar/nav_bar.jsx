@@ -19,7 +19,7 @@ class NavBar extends React.Component {
   }
 
   render(){
-    // debugger
+    debugger
     const { NavDrop, userdrop } = this.state
 
     if (this.props.match.isExact) {return null}

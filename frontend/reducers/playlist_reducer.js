@@ -1,4 +1,4 @@
-import {RECEIVE_PLAYLISTS} from '../actions/playlist_actions'
+import {RECEIVE_PLAYLISTS, RECEIVE_PLAYLIST} from '../actions/playlist_actions'
 
 const PlaylistReducer = (state= {}, action) => {
 
@@ -8,6 +8,8 @@ const PlaylistReducer = (state= {}, action) => {
   switch(action.type) {
     case RECEIVE_PLAYLISTS:
       return action.playlists
+    case RECEIVE_PLAYLIST:
+      return action.playlist
     default:
       return state;
   }
