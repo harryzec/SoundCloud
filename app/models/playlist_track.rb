@@ -7,5 +7,5 @@ class PlaylistTrack < ApplicationRecord
 
     belongs_to :song,
     foreign_key: :track_id,
-    class_name: :song
+    class_name: :Song
 end

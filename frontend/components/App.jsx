@@ -24,18 +24,21 @@ const App = () => (
   <>
   <Route path='/' component={NavBar}/>
   <div className='mainBody'>
+
     <Switch>
       <Route exact path="/" component={GreetingContainer} />
       <ProtectedRoute exact path='/upload' component={UploadContainer}/>
       <Route exact path='/discover' component={DiscoverContainer} />
-      {/* <Route path='/:username/sets' component={Playlist}/> */}
-      <Route path='/:username' component={DashboardContainer} />
       <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
+      <Route exact path='/:username' component={DashboardContainer} />
+      <Route exact path='/:username/sets' component={Playlist}/>
     </Switch>
-  {/* <Route path='/:username' component={DashboardContainer} /> */}
+
     <Switch>
-      <Route path='/:username/sets' component={Playlist}/>
+        <Route exact path='/:username/sets' component={Playlist}/>
     </Switch>
+    
+    
     
   </div>
   {/* <Route path='/' component={Footer}/> */}

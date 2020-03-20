@@ -20,7 +20,7 @@ export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
 export const CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL';
 
 export const openDeleteModal = modal => {
-  // debugger
+  
   return {
     type: OPEN_DELETE_MODAL,
     modal

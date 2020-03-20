@@ -14,19 +14,24 @@ class PlaylistForm extends React.Component {
     const newPlaylist = new FormData();
     newPlaylist.append('playlist[title]', this.state.title)
     newPlaylist.append('playlist[user_id]', this.props.currentUser.id)
-    // newPlaylist.append('playlist[photo]', this.props.song.imgUrl)
     
-    this.props.createPlaylist(newPlaylist)
-    debugger
+    this.props.createPlaylist(newPlaylist, this.props.song)
+
     this.setState({modalnumber: 'second'})
   }
 
   update(field) {
-    debugger
     return e => { this.setState({[field]: e.currentTarget.value})}
   }
 
   render() {
+    debugger
+    if (this.props.playlist.length !== 0) {
+      const newPlaylistTrack = new FormData();
+      newPlaylistTrack.append('PlaylistTrack[track_id]', this.props.song.id)
+      newPlaylistTrack.append('PlaylistTrack[playlist_id]', this.props.playlist[0].id)
+      this.props.createPlaylistTrack(newPlaylistTrack)
+    }
 
     const {song} = this.props
 
@@ -98,7 +103,7 @@ class PlaylistForm extends React.Component {
               <div className='playsonginf2'>
                   <img width='20' src={song.imgUrl}/>
                   <div className='playlistuser'>
-                    {song.user} -
+                    {song.user}
                   </div>
                   <div className='playlistsongtit'>
                     {song.title}

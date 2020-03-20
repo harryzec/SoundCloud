@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :create, :show]
     resources :songs, only: [:show, :create, :destroy, :update]
     resources :playlists, only: [:index, :create]
+    resources :playlist_tracks, only: [:create, :destroy]
     get 'songs/by_user/:username', :to => 'songs#by_user'
     get 'playlists/by_user/:username', :to => 'playlists#by_user'
     get 'songs/songshow/:username/:hyperlink', :to => 'songs#songshow' 

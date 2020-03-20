@@ -11,7 +11,7 @@ const PlaylistReducer = (state= {}, action) => {
     case RECEIVE_PLAYLIST:
       return action.playlist
     default:
-      return state;
+      return {};
   }
 }
 

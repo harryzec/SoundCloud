@@ -9,7 +9,7 @@ class Playlist < ApplicationRecord
 
   has_many :tracks,
     through: :playlist_tracks,
-    source: :track
+    source: :song
 
   belongs_to :User,
     foreign_key: :user_id,

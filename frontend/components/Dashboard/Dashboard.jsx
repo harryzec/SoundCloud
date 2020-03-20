@@ -202,9 +202,12 @@ class Dashboard extends React.Component {
    </div>
 
    <div className='profileBody'>
-      <div className='musicSectionR'>
-        {profilebody}
+      <div className='musicsect2'>
+        <div className='musicSectionR'>
+            {profilebody}
+        </div>
       </div>
+
       <div className='statsSection'>
       <div className='myStats'>
         <div className='myFollowers'>

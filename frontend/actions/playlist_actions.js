@@ -10,6 +10,7 @@ export const receivePlaylists = playlists => {
 }}
 
 export const receivePlaylist = playlist => {
+  debugger
   return {
     type: RECEIVE_PLAYLIST,
     playlist
@@ -33,10 +34,14 @@ export const fetchPlaylistByArtist = userId => dispatch => {
 };
 
 
-export const createPlaylist = playlist => dispatch => {
+export const createPlaylist = (playlist, song) => dispatch => {
   debugger
-  return APIUtil.createPlaylist(playlist)
-    .then(playlist => (
+  return APIUtil.createPlaylist(playlist, song)
+    .then((playlist) => (
       dispatch(receivePlaylist(playlist))
     ))
+}
+
+export const createPlaylistTrack = playlisttrack => dispatch => {
+  return APIUtil.createPlaylistTrack(playlisttrack)
 }

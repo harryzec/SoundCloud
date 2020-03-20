@@ -3,8 +3,9 @@ import { closePlaylistModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import PlaylistForm from './Playlist_Form'
 import { createPlaylist } from '../../actions/playlist_actions'
+import { createPlaylistTrack } from '../../actions/playlist_actions'
 
-function Modal({modal, closePlaylistModal, song, createPlaylist, currentUser}) {
+function Modal({modal, closePlaylistModal, song, playlist, createPlaylist, currentUser, createPlaylistTrack}) {
   debugger
   if (!modal) {
     return null;
@@ -12,7 +13,7 @@ function Modal({modal, closePlaylistModal, song, createPlaylist, currentUser}) {
   let component;
   switch (modal) {
     case 'playlist':
-      component = <PlaylistForm song={song} currentUser={currentUser} createPlaylist={createPlaylist}/>;
+      component = <PlaylistForm song={song} playlist = {playlist} currentUser={currentUser} createPlaylistTrack ={createPlaylistTrack} createPlaylist={createPlaylist}/>;
       break;
     default:
       return null;
@@ -30,14 +31,16 @@ const mapStateToProps = state => {
   return {
     modal: state.ui.playlist_modal.modal,
     song: state.ui.playlist_modal.song,
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    playlist: Object.values(state.entities.PlaylistReducer)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     closePlaylistModal: () => dispatch(closePlaylistModal()),
-    createPlaylist: (playlist) => dispatch(createPlaylist(playlist))
+    createPlaylist: (playlist, song) => dispatch(createPlaylist(playlist, song)),
+    createPlaylistTrack: (playlisttrack) => dispatch(createPlaylistTrack(playlisttrack))
   };
 };
 
