@@ -254,7 +254,7 @@
 .songBO {
   display: flex;
   justify-content: space-between;
-  width: 17vw;
+  width: 271px;
   height: 19px;
   bottom: 0;
   align-items: flex-end;
@@ -309,8 +309,11 @@
 }
 
 .songBu4 {
-  width: 53px;
+  width: auto;
   height: 100%;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 3px;
   text-align: center;
   font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   border: 1px solid #e5e5e5;

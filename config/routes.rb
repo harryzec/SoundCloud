@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:index, :create, :show]
     resources :songs, only: [:show, :create, :destroy, :update]
-    resources :playlists, only: [:index, :create, :update]
+    resources :playlists, only: [:index, :create, :update, :destroy]
     resources :playlist_tracks, only: [:create]
     delete 'playlist_tracks/destroy', :to => 'playlist_tracks#destroy'
     get 'songs/by_user/:username', :to => 'songs#by_user'

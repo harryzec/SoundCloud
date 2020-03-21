@@ -497,5 +497,9 @@
 }
 
 .nosongsfound {
-
+  text-align: center;
+  font-size: 12px;
+  font-weight: normal;
+  padding-top: 24px;
+  padding-bottom: 30px;
 }

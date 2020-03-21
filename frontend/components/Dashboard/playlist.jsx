@@ -35,10 +35,15 @@ class Playlist extends React.Component {
 
       if (this.props.playlists !== {}) {
         let playlistlist = this.props.playlists.reverse().map(playlist => {
-          debugger
+          let lastbutton = (
+            <>
+              <button className='songBu4'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</button>
+
+            </>
+          )
           let nosongs = (
             <>
-              <h2>This playlist has no tracks yet</h2>
+              <h2 className='nosongsfound'>This playlist has no tracks yet</h2>
             </>
           )
           let songtits = null;
@@ -75,6 +80,17 @@ class Playlist extends React.Component {
             playicon = (
               <>
               <div className='playSongnew'><p className='playcon'>&#9654;</p></div>
+              </>
+            )
+
+            lastbutton = (
+              <>
+              <button className='songBu4'>...More
+                  <div className='moreshow'>
+                    <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                    <div className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</div>
+                  </div>
+              </button>
               </>
             )
           }
@@ -115,7 +131,7 @@ class Playlist extends React.Component {
                   <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
                   <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                   <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
-                  <button className='songBu4'>...More</button>
+                  {lastbutton}
                   </div>
                 </div>
               
