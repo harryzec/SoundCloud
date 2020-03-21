@@ -1,4 +1,4 @@
-import {RECEIVE_PLAYLISTS, RECEIVE_PLAYLIST} from '../actions/playlist_actions'
+import { RECEIVE_CREATE_PLAYLIST } from '../actions/playlist_actions'
 
 const PlaylistReducer = (state= {}, action) => {
 
@@ -6,12 +6,10 @@ const PlaylistReducer = (state= {}, action) => {
   // debugger
 
   switch(action.type) {
-    case RECEIVE_PLAYLISTS:
-      return action.playlists
-    case RECEIVE_PLAYLIST:
+    case RECEIVE_CREATE_PLAYLIST:
       return action.playlist
     default:
-      return state;
+      return {};
   }
 }
 

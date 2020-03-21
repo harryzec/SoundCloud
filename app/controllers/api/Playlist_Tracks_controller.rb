@@ -1,11 +1,12 @@
 class Api::PlaylistTracksController < ApplicationController
   def create
-    debugger
     @playlisttrack = PlaylistTrack.new(playtrack_params)
     @playlisttrack.save
   end
 
   def destroy
+    @playlisttrack = PlaylistTrack.find_by(playlist_id: params[:PlaylistTrack][:playlist_id], track_id: params[:PlaylistTrack][:track_id])
+    @playlisttrack.destroy
   end
 
   private

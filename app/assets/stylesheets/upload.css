@@ -164,6 +164,7 @@
   width: 19%;
   font-weight: 100;
   color: #333;
+  cursor: pointer;
 }
 
 .Metadata:hover {
@@ -202,6 +203,7 @@
   width: 19%;
   color: #f50;
   font-weight: 100;
+  cursor: pointer;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }
 

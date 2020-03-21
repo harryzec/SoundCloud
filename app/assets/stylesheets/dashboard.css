@@ -269,6 +269,7 @@
   border-radius: 3px;
   background-color: #fff;
   position: relative;
+  cursor: pointer;
 }
 .songBu1 {
   width: 25px;
@@ -279,6 +280,7 @@
   border-radius: 3px;
   background-color: #fff;
   position: relative;
+  cursor: pointer;
 }
 
 .songBu2 {
@@ -290,6 +292,7 @@
   border-radius: 3px;
   background-color: #fff;
   position: relative;
+  cursor: pointer;
 }
 
 .songBu3 {
@@ -302,6 +305,7 @@
   background-color: #fff;
   position: relative;
   outline: none;
+  cursor: pointer;
 }
 
 .songBu4 {
@@ -314,6 +318,7 @@
   background-color: #fff;
   position: relative;
   outline: none;
+  cursor: pointer;
 }
 
 .songBu4:focus .moreshow {
@@ -328,6 +333,7 @@
   left: -1px;
   border: 1px solid #e5e5e5;
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }

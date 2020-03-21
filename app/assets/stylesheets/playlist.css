@@ -331,6 +331,16 @@
   border-radius: 100px;
   text-align: center;
 }
+.playSongnewgone {
+  cursor: pointer;
+  background-color: #f50;
+  height: 38px;
+  width: 37px;
+  color: white;
+  border-radius: 100px;
+  text-align: center;
+  opacity: 50%;
+}
 
 .playlisttit {
   font-size: 13px;
@@ -350,6 +360,7 @@
 }
 
 .playlisttrackindivid {
+  cursor: pointer;
   display: flex;
   border-bottom: 1px solid #e5e5e5;
   font-size: 12px;
@@ -358,10 +369,6 @@
   padding-top: 2px;
   padding-bottom: 2px;
   height: auto;
-}
-
-.playlisttrackindivid > div {
-  padding-left: 2%;
 }
 
 .playlisttname {
@@ -415,4 +422,80 @@
 
 .playnameagain:hover {
   color: black;
+}
+
+.addtoplaysecond {
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 3px;;
+  height: 37%;
+  padding: 3px;
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+.addtoplaysecond:hover {
+  border: 1px solid black;
+}
+
+.trackdelete {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.picandtitle {
+  display: flex;
+}
+
+.playtrackpic{
+  height: 28px;
+  width: 28px;
+  border: 1px solid black;
+}
+
+.deletetrack {
+  height: 18%;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 8px;
+    padding: 4px;
+    border-radius: 124px;
+    background-color: #ccc;
+    font-size: 10px;
+    color: white;
+    cursor: pointer;
+}
+.xout {
+  margin:0;
+  padding: 0;
+  margin-top: -3px;
+}
+
+.playtrackfacts {
+  display:flex;
+}
+
+.trackle {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  margin-top: 5px;
+  color: #333;
+}
+
+.trktit {
+  margin: 0;
+  padding: 0;
+  padding-left: 8px;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.nosongsfound {
+
 }

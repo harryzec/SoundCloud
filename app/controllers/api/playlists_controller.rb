@@ -27,10 +27,19 @@ class Api::PlaylistsController < ApplicationController
     end
   end
 
+  def update
+    @playlist = Playlist.find_by(id: params[:id])
+    
+    if @playlist.update(create_params)
+    else 
+      render json: @playlist.errors.full_messages, status: 422
+    end
+  end
+
 
   private 
   def create_params
-    params.require(:playlist).permit(:user_id, :title, :photo)
+    params.require(:playlist).permit(:user_id, :title, :photo, :permalink, :description, :genre)
   end
 
 end

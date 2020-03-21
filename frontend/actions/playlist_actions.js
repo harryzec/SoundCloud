@@ -17,6 +17,31 @@ export const receivePlaylist = playlist => {
   }
 }
 
+export const RECEIVE_CREATE_PLAYLIST = 'RECEIVE_CREATE_PLAYLIST';
+
+export const receiveCreatePlaylist = playlist => {
+  debugger
+  return {
+    type: RECEIVE_CREATE_PLAYLIST,
+    playlist
+  }
+}
+
+export const CLOSE_EDIT_PLAYLIST_MODAL = 'CLOSE_EDIT_PLAYLIST_MODAL';
+
+
+export const closeEditPlaylistModal = () => {
+  return {
+    type: CLOSE_EDIT_PLAYLIST_MODAL
+  };
+};
+
+
+export const updatePlaylist = (playlist, id) => dispatch => {
+  return APIUtil.updatePlaylist(playlist, id)
+    .then(() => dispatch(closeEditPlaylistModal()))
+}
+
 export const fetchPlaylists = () => dispatch => {
   return APIUtil.fetchPlaylists()
     .then(playlists => (
@@ -38,10 +63,14 @@ export const createPlaylist = (playlist, song) => dispatch => {
   debugger
   return APIUtil.createPlaylist(playlist, song)
     .then((playlist) => (
-      dispatch(receivePlaylist(playlist))
+      dispatch(receiveCreatePlaylist(playlist))
     ))
 }
 
 export const createPlaylistTrack = playlisttrack => dispatch => {
   return APIUtil.createPlaylistTrack(playlisttrack)
+}
+
+export const deletePlaylistTrack = playlisttrack => dispatch => {
+  return APIUtil.deletePlaylistTrack(playlisttrack)
 }

@@ -5,6 +5,7 @@ import delete_modal from './delete_modal'
 import edit_modal from './edit_modal'
 import PlaylistModalReducer from './playlist_modal'
 import PlaylistDropdown from './dropdown'
+import EditPlaylistModalReducer from './edit_playlist_modal'
 
 export default combineReducers({
   modal,
@@ -12,5 +13,6 @@ export default combineReducers({
   edit_modal: edit_modal,
   playlist_modal: PlaylistModalReducer,
   SongPlayer: SongStatus,
-  PlaylistDropdown: PlaylistDropdown
+  PlaylistDropdown: PlaylistDropdown,
+  Edit_Playlist_Modal: EditPlaylistModalReducer
 });

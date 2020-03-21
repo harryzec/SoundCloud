@@ -32,7 +32,7 @@ const mapStateToProps = state => {
     modal: state.ui.playlist_modal.modal,
     song: state.ui.playlist_modal.song,
     currentUser: state.session.currentUser,
-    playlist: Object.values(state.entities.PlaylistReducer)
+    playlist: Object.values(state.entities.RecentPlaylist)
   };
 };
 

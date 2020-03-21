@@ -33,6 +33,24 @@ export const closeDeleteModal = () => {
   };
 };
 
+export const OPEN_EDIT_PLAYLIST_MODAL = 'OPEN_EDIT_PLAYLIST_MODAL';
+export const CLOSE_EDIT_PLAYLIST_MODAL = 'CLOSE_EDIT_PLAYLIST_MODAL';
+
+export const openEditPlaylistModal = (modal, playlist) => {
+  debugger
+  return {
+    type: OPEN_EDIT_PLAYLIST_MODAL,
+    modal,
+    playlist
+  };
+};
+
+export const closeEditPlaylistModal = () => {
+  return {
+    type: CLOSE_EDIT_PLAYLIST_MODAL
+  };
+};
+
 export const OPEN_EDIT_MODAL = 'OPEN_EDIT_MODAL';
 export const CLOSE_EDIT_MODAL = 'CLOSE_EDIT_MODAL';
 

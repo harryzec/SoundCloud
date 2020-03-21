@@ -8,12 +8,21 @@ class PlaylistForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  handleadd(e, songId, playlistId) {
+    e.preventDefault()
+    const newPlaylistTrack = new FormData();
+    newPlaylistTrack.append('PlaylistTrack[track_id]', songId)
+    newPlaylistTrack.append('PlaylistTrack[playlist_id]', playlistId)
+    this.props.createPlaylistTrack(newPlaylistTrack)
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     
     const newPlaylist = new FormData();
     newPlaylist.append('playlist[title]', this.state.title)
     newPlaylist.append('playlist[user_id]', this.props.currentUser.id)
+    newPlaylist.append('playlist[permalink]', this.state.title)
     
     this.props.createPlaylist(newPlaylist, this.props.song)
 
@@ -42,7 +51,7 @@ class PlaylistForm extends React.Component {
 
     let playlist = this.props.currentUser.playlists.reverse().slice(0, 4).map(playlist => {
       let button = (
-        <div className=''>Add to playlist</div>
+        <div onClick={(e)=>this.handleadd(e, this.props.song.id, playlist.id) } className='addtoplaysecond'>Add to playlist</div>
       )
       debugger
       
@@ -187,7 +196,7 @@ class PlaylistForm extends React.Component {
         <>
           <div className='playlistComplete'>
             <div className='playlistheader2'>
-              <h2 className='createplay'>Create a playlist</h2>
+              <h2 className='createplay2'>Create a playlist</h2>
             </div>
 
             <div className='playlistcreated'>

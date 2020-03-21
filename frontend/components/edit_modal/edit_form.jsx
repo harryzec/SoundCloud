@@ -43,7 +43,7 @@ class EditForm extends React.Component {
     //   this.props.editSong(newsong, this.state.id).then(()=> this.props.closeEditModal()).then(() => this.props.location.reload())
     } else {
     const updatedSong = new FormData();
-    if (!this.state.photo instanceof String) {
+    if (!(this.state.photo instanceof String)&&this.state.photo !== undefined) {
       updatedSong.append('song[photo]', this.state.photo);
     }
     updatedSong.append('song[title]', this.state.title);

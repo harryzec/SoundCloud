@@ -14,7 +14,8 @@
   display: block;
   background: white;
   width: 715px;
-  height: 650px;
+  /* height: 650px; */
+  height: auto;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -54,6 +55,29 @@
   padding-right: 10px;
   width: 705px;
   align-content: center;
+}
+.footEdit2 {
+  height: 20px;
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #f2f2f2;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  margin: 0;
+  margin-top: 10px;
+  align-content: center;
+}
+
+.requireField2{
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  padding-left: 20px;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.uploadButtons2 {
+    padding-right: 20px;
 }
 
 .CancelUpload {

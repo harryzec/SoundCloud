@@ -15,6 +15,17 @@ export const createPlaylist = (playlist, song) => {
   })
 }
 
+export const updatePlaylist = (playlist, id) => {
+  debugger
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/playlists/${id}`,
+    data: playlist,
+    processData: false,
+    contentType: false
+  })
+}
+
 export const fetchPlaylistByArtist = userId => {
   debugger
   return $.ajax({
@@ -27,6 +38,16 @@ export const createPlaylistTrack = playlisttrack => {
   $.ajax({
     method: 'POST',
     url: '/api/playlist_tracks',
+    data: playlisttrack,
+    processData: false,
+    contentType: false
+  })
+}
+
+export const deletePlaylistTrack = (playlisttrack) => {
+  $.ajax({
+    method: "DELETE",
+    url: '/api/playlist_tracks/destroy',
     data: playlisttrack,
     processData: false,
     contentType: false

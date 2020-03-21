@@ -5,6 +5,8 @@ import { fetchSongsByArtist} from '../../actions/song_action'
 import { fetchPlaylistByArtist } from '../../actions/playlist_actions'
 import { fetchUser } from '../../actions/user_actions'
 import { connect } from 'react-redux';
+import { openEditPlaylistModal } from '../../actions/modal_actions';
+import EditPlaylistForm from '../edit_modal/edit_playlist_modal'
 
 class Playlist extends React.Component {
 
@@ -29,22 +31,52 @@ class Playlist extends React.Component {
         </>
       )
 
-      let num = 0;
+      
 
       if (this.props.playlists !== {}) {
         let playlistlist = this.props.playlists.reverse().map(playlist => {
           debugger
+          let nosongs = (
+            <>
+              <h2>This playlist has no tracks yet</h2>
+            </>
+          )
           let songtits = null;
+          let playicon = (
+            <>
+            <div className='playSongnewgone'><p className='playcon'>&#9654;</p></div>
+            </>
+          )
+          let num = 0;
           if (playlist.tracks.length > 0) {
-            num +=1;
-            songtits = playlist.tracks.map(track => (
+           
+            songtits = playlist.tracks.map(track => {
+              num++;
+              return(
               <>
                 <div className='playlisttrackindivid'>
                   <div className='playlisttnum'>{num}</div>
                   <div className='playlisttname'>{track.title}</div>
                 </div>
+              </>)
+            })
+
+            nosongs = (
+              <>
+                <div>
+                  <h2>This is where waveforms go</h2>
+                </div>
+                  
+                <div className='playlisttracks'>
+                  {songtits}
+                </div>
               </>
-            ))
+            )
+            playicon = (
+              <>
+              <div className='playSongnew'><p className='playcon'>&#9654;</p></div>
+              </>
+            )
           }
           let pic = (
             <>
@@ -69,26 +101,20 @@ class Playlist extends React.Component {
               <div className='playlistcontent'>
                 <div className='topplaylistbox'>
                   
-                  <div className='playSongnew'><p className='playcon'>&#9654;</p></div>
+                  {playicon}
                   <div className='playlistinf'>
                     <Link className ='playlistart'to={`/${this.props.match.params.username}`}>{this.props.match.params.username}</Link>
                     <Link className='playlisttit'>{playlist.title}</Link>
                   </div>
                 </div>
                 
-                <div>
-                  <h2>This is where waveforms go</h2>
-                </div>
-                
-                <div className='playlisttracks'>
-                  {songtits}
-                </div>
+                {nosongs}
                 
 
                 <div className='songBO'>
                   <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
                   <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
-                  <button className='songBu3'>&#9998; Edit</button>
+                  <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
                   <button className='songBu4'>...More</button>
                   </div>
                 </div>
@@ -107,6 +133,7 @@ class Playlist extends React.Component {
       } 
       return(
         <>
+        <EditPlaylistForm/>
         <div className='profileOptions'>
         <section className='profileSections'>
           <Link to={`/${this.props.match.params.username}`}className='profileButtons'>All</Link>
@@ -167,7 +194,8 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => ({
   fetchSongsByArtist: (userId) => dispatch(fetchSongsByArtist(userId)),
   fetchPlaylistByArtist: (userId) => dispatch(fetchPlaylistByArtist(userId)),
-  fetchUser: (username) => dispatch(fetchUser(username))
+  fetchUser: (username) => dispatch(fetchUser(username)),
+  openEditPlaylistModal: (modal, playlist) => dispatch(openEditPlaylistModal(modal, playlist))
 })
 
 export default connect(mSTP, mDTP)(Playlist)
