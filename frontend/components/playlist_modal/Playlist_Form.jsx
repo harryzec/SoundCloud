@@ -4,11 +4,11 @@ import { withRouter, Link } from 'react-router-dom'
 class PlaylistForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { modalnumber: 'first', title: ''}
+    this.state = { modalnumber: 'zero', title: ''}
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
     
     const newPlaylist = new FormData();
@@ -34,10 +34,110 @@ class PlaylistForm extends React.Component {
     }
 
     const {song} = this.props
+    debugger
 
-    if (this.state.modalnumber === 'first') {
-    return (
+    let theForm;
+
+    if (this.state.modalnumber === 'zero' && this.props.currentUser.playlists.length > 0) {
+
+    let playlist = this.props.currentUser.playlists.reverse().slice(0, 4).map(playlist => {
+      let button = (
+        <div className=''>Add to playlist</div>
+      )
+      debugger
+      
+      // playlist.tracks.forEach(track => {
+      //   if (track.id === this.props.song.id) {
+      //     button = (
+      //       <button>Added</button>
+      //     )
+      //   }
+      // })
+
+      return(
       <>
+        <div className='addtoplay'>
+          <div className='playpicinfo'>
+            <div className='playpicz'></div>
+            <div className='playtitandinfo'>
+              <p className='playnameagain'>{playlist.title}</p>
+              {/* {playlist.tracks.length} */}
+            </div>
+
+          </div>
+          {button}
+        </div>
+      </>
+    )})
+      
+
+    theForm = (
+      <>
+      <div className='addtoplaylist'>
+        <div className='playlistheader'>
+          <h2 className='createplay'><div className='partz'>Add to playlist</div></h2>
+          <h2 onClick={() => this.setState({modalnumber: 'first'})} className='createplay2'><div className='partz'>Create a playlist</div></h2>
+        </div>
+        
+        <input className='fiterplaylists' placeholder='Filter Playlists'/>
+
+        {playlist}
+      
+       
+      </div>
+    </>
+    )} else if (this.state.modalnumber === 'first' && this.props.currentUser.playlists.length > 0) {
+      
+      theForm = (
+        <>
+      <div className='playlistForm'>
+        <div className='playlistheader'>
+          <h2 onClick={() => this.setState({modalnumber: 'zero'})} className='createplay2'><div className='partz'>Add to playlist</div></h2>
+          <h2 className='createplay'><div className='partz'>Create a playlist</div></h2>
+        </div>
+
+        <div className='playlistinfo'>
+          <p className='whatsplaylist'>Playlist title <strong className='red'>*</strong></p>
+          <input onChange={this.update('title')} className='playlisttitleinput'/>
+        </div>
+
+        <div className='playlistsave'>
+          <button onClick={this.handleSubmit} className='playlistsavebutton'>Save</button>
+        </div>
+
+        
+        <div className='playlistSongs'> 
+          <div className='playlistdiv'>
+            <div className='playsonginf'>
+              <img width='20' src={song.imgUrl}/>
+              <div className='playlistuser'>
+                {song.user} 
+              </div>
+              <div className='playlistsongtit'>
+                {song.title}
+              </div>
+            </div>
+          </div>
+          <div className='playlistdiv'>
+
+          </div>
+          <div className='playlistdiv'>
+
+          </div>
+          <div className='playlistdivlast'>
+          </div>
+        </div>
+
+        
+
+      </div>
+      </>
+      )
+    }
+
+    if (this.props.currentUser.playlists.length === 0) {
+      theForm = (
+        <>
         <div className='playlistForm'>
           <div className='playlistheader'>
             <h2 className='createplay'>Create a playlist</h2>
@@ -58,7 +158,7 @@ class PlaylistForm extends React.Component {
               <div className='playsonginf'>
                 <img width='20' src={song.imgUrl}/>
                 <div className='playlistuser'>
-                  {song.user} -
+                  {song.user} 
                 </div>
                 <div className='playlistsongtit'>
                   {song.title}
@@ -79,7 +179,10 @@ class PlaylistForm extends React.Component {
 
         </div>
       </>
-    )} else {
+      )
+    }
+
+    if (this.state.modalnumber === 'second') {
       return(
         <>
           <div className='playlistComplete'>
@@ -115,7 +218,12 @@ class PlaylistForm extends React.Component {
           
         </>
       )
-    }
+    } else {
+      return (
+        <>
+        {theForm}
+        </>
+      )}
 
   }
 }

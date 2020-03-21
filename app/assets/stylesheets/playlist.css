@@ -28,15 +28,50 @@
   flex-direction: column;
 }
 
+.addtoplaylist {
+  display: flex;
+  height: auto;
+  width: 494px;
+  flex-direction: column;
+}
+
 .createplay {
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  font-size: 22px;
+  color: #f50;
+  border-bottom: 1px solid #f50;
+  height: 100%;
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.createplay2{
   color: #333;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 100;
+  font-size: 22px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  cursor: pointer;
+  margin: 0;
+}
+
+.createplay2:hover {
+  border-bottom: 1px solid #333;
+}
+
+.partz {
+  margin-top: 15px;
 }
 
 .playlistheader {
   width: 100%;
-  height: 17%;
+  display: flex;
+  height: 50px;
   color: #333;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 100;
@@ -256,7 +291,7 @@
   display: flex;
   width: 100%;
   height: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .playlistcontent {
@@ -311,6 +346,7 @@
   display: flex;
   flex-direction: column;
   border: 1px solid #e5e5e5;
+  margin-bottom: 2%;
 }
 
 .playlisttrackindivid {
@@ -329,5 +365,54 @@
 }
 
 .playlisttname {
-  padding-left: 1%;
+  padding-left: 5px;
+}
+
+.fiterplaylists {
+  height: 20px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  padding-left: 7px;
+  margin-top: 10px;
+}
+
+.addtoplay {
+  height: 45px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.playpicz {
+  height: 100%;
+  width: 45px;
+  border: 1px solid black;
+}
+.playtitandinfo {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.playpicinfo {
+  display:flex;
+}
+
+.playnameagain {
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+  font-size: 12px;
+  margin: 0;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.playnameagain:hover {
+  color: black;
 }

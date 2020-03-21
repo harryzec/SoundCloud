@@ -29,11 +29,9 @@ const App = () => (
       <Route exact path="/" component={GreetingContainer} />
       <ProtectedRoute exact path='/upload' component={UploadContainer}/>
       <Route exact path='/discover' component={DiscoverContainer} />
-      <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
       <Route exact path='/:username' component={DashboardContainer} />
-      <Route exact path='/:username/sets' component={Playlist}/>
+      <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
     </Switch>
-
     <Switch>
         <Route exact path='/:username/sets' component={Playlist}/>
     </Switch>

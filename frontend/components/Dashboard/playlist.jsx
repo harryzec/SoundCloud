@@ -83,7 +83,16 @@ class Playlist extends React.Component {
                 <div className='playlisttracks'>
                   {songtits}
                 </div>
-              </div>
+                
+
+                <div className='songBO'>
+                  <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
+                  <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+                  <button className='songBu3'>&#9998; Edit</button>
+                  <button className='songBu4'>...More</button>
+                  </div>
+                </div>
+              
 
            
             </div>

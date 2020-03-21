@@ -6,7 +6,7 @@ import { createPlaylist } from '../../actions/playlist_actions'
 import { createPlaylistTrack } from '../../actions/playlist_actions'
 
 function Modal({modal, closePlaylistModal, song, playlist, createPlaylist, currentUser, createPlaylistTrack}) {
-  debugger
+  
   if (!modal) {
     return null;
   }
