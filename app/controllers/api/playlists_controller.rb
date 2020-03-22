@@ -16,6 +16,12 @@ class Api::PlaylistsController < ApplicationController
     end
   end
 
+  def get_playlist 
+    @user = User.find_by(username: params[:username])
+    @playlist = Playlist.find_by(user_id: @user.id, permalink: params[:permalink])
+    render :show
+  end
+
   def by_user
     @user = User.find_by(username: params[:username])
     @RPlaylists = Playlist.where(user_id: @user.id)

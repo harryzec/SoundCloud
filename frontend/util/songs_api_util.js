@@ -47,3 +47,11 @@ export const editSong = (song, id) => {
     contentType: false
   })
 }
+
+export const createComment = (comment) => {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/comments',
+    data: comment
+  })
+}

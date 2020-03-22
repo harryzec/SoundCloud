@@ -19,6 +19,11 @@ class User < ApplicationRecord
     class_name: :Playlist,
     foreign_key: :user_id
 
+  has_many :comments,
+    foreign_key: :user_id,
+    class_name: 'Comment',
+    dependent: :destroy
+
 
 
   def self.find_by_email(email)

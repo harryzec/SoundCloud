@@ -5,19 +5,30 @@ import { Link } from 'react-router-dom'
 
 
 class SongShow extends React.Component {
+  constructor(props){
+    super(props)
+    this.shuffleArray = this.shuffleArray.bind(this)
+    this._handleKeyDown = this._handleKeyDown.bind(this)
+  }
 
   componentDidMount() {
     this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
     this.props.fetchSongsByArtist(this.props.match.params.username)
-    this.shuffleArray = this.shuffleArray.bind(this)
+    debugger
   }
   
   handlePlay(song){
     this.props.playSong(song);
   }
 
-  handleEdit (e, song) {
+  _handleKeyDown(e) {
     debugger
+    if (e.key === 'Enter') {
+      this.props.createComment({body: e.target.value, user_id: this.props.currentuser.id, song_id: this.props.song.id})
+    }
+  }
+
+  handleEdit (e, song) {
     e.preventDefault();
     this.props.openEditModal('edit', song)
   }
@@ -53,7 +64,7 @@ class SongShow extends React.Component {
       </>
      ) ) 
 
-    debugger
+
 
     let dropdown;
 
@@ -70,6 +81,12 @@ class SongShow extends React.Component {
         </>
       )
     }
+
+    let comments = this.props.song.comments.map(comment => (
+      <>
+        {comment.body}
+      </>
+    ))
 
     return(
       <>
@@ -97,7 +114,7 @@ class SongShow extends React.Component {
               <div className='commentsInputBar'>
                 <img className='commentPic' src={this.props.currentuser.profileUrl}/>
                 <div className='commentWrap'>
-                  <input className='commentInput' placeholder='Write a comment'/>
+                  <input className='commentInput' onKeyDown={this._handleKeyDown} placeholder='Write a comment'/>
                 </div>
               </div>
 
@@ -125,6 +142,7 @@ class SongShow extends React.Component {
               </div>
 
               <img className='nocomments' height='300' width='400'src={window.nocomment}/>
+              {comments}
             </div>
 
           </div>

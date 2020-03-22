@@ -18,6 +18,7 @@ import {
 } from 'react-router-dom';
 import NavBar from './nav_bar/nav_bar'
 import Footer from './footer/footer'
+import playlistshow from './playlist_show/playlist_show_container'
 
 
 const App = () => (
@@ -31,6 +32,7 @@ const App = () => (
       <Route exact path='/discover' component={DiscoverContainer} />
       <Route exact path='/:username' component={DashboardContainer} />
       <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
+      <Route exact path='/:username/sets/:permalink' component={playlistshow}/>
     </Switch>
     <Switch>
         <Route exact path='/:username/sets' component={Playlist}/>

@@ -84,3 +84,7 @@ export const editSong = (song, id) => dispatch => {
   return APIUtil.editSong(song, id)
     .then(song => receiveSong(song))
 }
+
+export const createComment = (comment) => dispatch => {
+  return APIUtil.createComment(comment)
+}

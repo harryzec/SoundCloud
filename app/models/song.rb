@@ -17,6 +17,11 @@ class Song < ApplicationRecord
     through: :playlist_tracks,
     source: :playlist
 
+  has_many :comments,
+    foreign_key: :song_id,
+    class_name: 'Comment',
+    dependent: :destroy
+
   private 
 
   # def track_attached

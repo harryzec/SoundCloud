@@ -49,19 +49,20 @@ class PlaylistForm extends React.Component {
 
     if (this.state.modalnumber === 'zero' && this.props.currentUser.playlists.length > 0) {
 
-    let playlist = this.props.currentUser.playlists.reverse().slice(0, 4).map(playlist => {
+    let playlist = this.props.currentUser.playlists.slice(0, 4).map(playlist => {
       let button = (
         <div onClick={(e)=>this.handleadd(e, this.props.song.id, playlist.id) } className='addtoplaysecond'>Add to playlist</div>
       )
       debugger
-      
+
       // playlist.tracks.forEach(track => {
       //   if (track.id === this.props.song.id) {
       //     button = (
-      //       <button>Added</button>
+      //       <div onClick={(e)=>this.handleadd(e, this.props.song.id, playlist.id) } className='addtoplaysecond'>Added</div>
       //     )
       //   }
       // })
+    
 
       return(
       <>

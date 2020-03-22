@@ -60,3 +60,10 @@ export const deletePlaylist = playlist_id => {
     url: `/api/playlists/${playlist_id}`
   })
 }
+
+export const getPlaylist = (username, permalink) => {
+  $.ajax({
+    method: 'GET',
+    url: `/api/playlists/get_playlist/${username}/${permalink}`
+  })
+}

@@ -121,7 +121,7 @@ class Playlist extends React.Component {
                   {playicon}
                   <div className='playlistinf'>
                     <Link className ='playlistart'to={`/${this.props.match.params.username}`}>{this.props.match.params.username}</Link>
-                    <Link className='playlisttit'>{playlist.title}</Link>
+                    <Link to={`/${this.props.match.params.username}/sets/${playlist.permalink}`}className='playlisttit'>{playlist.title}</Link>
                   </div>
                 </div>
                 

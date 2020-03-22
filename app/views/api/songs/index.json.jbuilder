@@ -1,6 +1,6 @@
 @songs.each do |song|
   json.set! song.id do
-          json.extract! song, :title, :id, :user_id, :description, :genre, :hyperlink
+          json.extract! song, :title, :id, :user_id, :description, :genre, :hyperlink, :comments
           json.user song.user.username
           json.songUrl song.track.service_url
           if !song.photo.attached? 
