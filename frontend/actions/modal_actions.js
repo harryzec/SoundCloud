@@ -82,6 +82,23 @@ export const openPlaylistModal = (modal, song) => {
   }
 }
 
+export const OPEN_DELETE_PLAYLIST_MODAL = 'OPEN_DELETE_PLAYLIST_MODAL'
+export const CLOSE_DELETE_PLAYLIST_MODAL = 'CLOSE_DELETE_PLAYLIST_MODAL'
+
+export const openDeletePlaylistModal = (modal, playlist) => {
+  debugger
+  return {
+    type: OPEN_DELETE_PLAYLIST_MODAL,
+    modal,
+    playlist
+  }
+}
+
+export const closeDeletePlaylistModal = () => {
+  return {
+  type: CLOSE_DELETE_PLAYLIST_MODAL
+}}
+
 export const closePlaylistModal = () => {
   return {
     type: CLOSE_PLAYLIST_MODAL

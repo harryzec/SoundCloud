@@ -5,8 +5,9 @@ import { fetchSongsByArtist} from '../../actions/song_action'
 import { fetchPlaylistByArtist } from '../../actions/playlist_actions'
 import { fetchUser } from '../../actions/user_actions'
 import { connect } from 'react-redux';
-import { openEditPlaylistModal } from '../../actions/modal_actions';
+import { openEditPlaylistModal, openDeletePlaylistModal } from '../../actions/modal_actions';
 import EditPlaylistForm from '../edit_modal/edit_playlist_modal'
+import DeletePlaylist  from '../delete_modal/delete_playlist_modal'
 
 class Playlist extends React.Component {
 
@@ -37,7 +38,7 @@ class Playlist extends React.Component {
         let playlistlist = this.props.playlists.reverse().map(playlist => {
           let lastbutton = (
             <>
-              <button className='songBu4'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</button>
+              <button onClick={() => this.props.openDeletePlaylistModal('open', playlist)} className='songBu4'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</button>
 
             </>
           )
@@ -88,7 +89,7 @@ class Playlist extends React.Component {
               <button className='songBu4'>...More
                   <div className='moreshow'>
                     <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-                    <div className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</div>
+                    <div onClick={() => this.props.openDeletePlaylistModal('open', playlist)} className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</div>
                   </div>
               </button>
               </>
@@ -149,6 +150,7 @@ class Playlist extends React.Component {
       } 
       return(
         <>
+        <DeletePlaylist/>
         <EditPlaylistForm/>
         <div className='profileOptions'>
         <section className='profileSections'>
@@ -211,6 +213,7 @@ const mDTP = dispatch => ({
   fetchSongsByArtist: (userId) => dispatch(fetchSongsByArtist(userId)),
   fetchPlaylistByArtist: (userId) => dispatch(fetchPlaylistByArtist(userId)),
   fetchUser: (username) => dispatch(fetchUser(username)),
+  openDeletePlaylistModal: (modal, playlist) => dispatch(openDeletePlaylistModal(modal, playlist)),
   openEditPlaylistModal: (modal, playlist) => dispatch(openEditPlaylistModal(modal, playlist))
 })
 

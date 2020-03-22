@@ -53,3 +53,10 @@ export const deletePlaylistTrack = (playlisttrack) => {
     contentType: false
   })
 }
+
+export const deletePlaylist = playlist_id => {
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/playlists/${playlist_id}`
+  })
+}

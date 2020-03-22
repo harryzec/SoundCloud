@@ -74,3 +74,7 @@ export const createPlaylistTrack = playlisttrack => dispatch => {
 export const deletePlaylistTrack = playlisttrack => dispatch => {
   return APIUtil.deletePlaylistTrack(playlisttrack)
 }
+
+export const deletePlaylist = playlist_id => dispatch => {
+  return APIUtil.deletePlaylist(playlist_id)
+}
