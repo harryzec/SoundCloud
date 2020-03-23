@@ -34,6 +34,7 @@ gem 'pry-rails'
 gem 'annotate'
 gem 'bcrypt'
 gem 'jquery-rails'
+gem 'time_ago_in_words', '~> 0.1.1'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

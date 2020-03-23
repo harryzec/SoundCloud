@@ -14,7 +14,6 @@ class SongShow extends React.Component {
   componentDidMount() {
     this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
     this.props.fetchSongsByArtist(this.props.match.params.username)
-    debugger
   }
   
   handlePlay(song){
@@ -22,9 +21,15 @@ class SongShow extends React.Component {
   }
 
   _handleKeyDown(e) {
-    debugger
+    let oldComments;
+    let newComment;
+    let newList;
     if (e.key === 'Enter') {
       this.props.createComment({body: e.target.value, user_id: this.props.currentuser.id, song_id: this.props.song.id})
+      oldComments = this.state.comments
+      newComment = {body: e.target.value}
+      newList = oldComments.push(newComment)
+      this.setState({comments: newList})
     }
   }
 
@@ -44,6 +49,7 @@ class SongShow extends React.Component {
 
 
   render(){
+    debugger
     
  
     if (!this.props.song) {
@@ -82,11 +88,49 @@ class SongShow extends React.Component {
       )
     }
 
-    let comments = this.props.song.comments.map(comment => (
-      <>
-        {comment.body}
-      </>
-    ))
+    let comments;
+    if (this.state === null) {
+      this.setState({comments: this.props.song.comments})
+    } else {
+      if(this.state.comments.length > 0) {
+      let commentBody = this.state.comments.reverse().map(comment => {
+        let user='You'
+        if (comment.username !== this.props.currentuser.username) {
+          user = comment.username
+        }
+        return(
+        <>
+          <div className='commentcont'>
+            <img className='commentpic'src ={this.props.song.userImg}/>
+            <div className='commentinfo'>
+              <div className='flex'>
+                <p className='commenter'>{user}</p>
+                <p className='commenter'>{comment.created} ago</p>
+              </div>
+              <p className='commentbod'>{comment.body}</p>
+            </div>
+
+          </div>
+        </>
+      )})
+      comments = (
+        <>
+          <div>
+            <div className='commentlist'>
+              <h2 className='commenthead'><img className='compic'width='18' src='https://image.flaticon.com/icons/svg/1380/1380338.svg'/> {this.state.comments.length} Comments</h2>
+            </div>
+            {commentBody}
+          </div>
+        </>
+      )
+      } else {
+        comments = (
+          <>
+          <img className='nocomments' height='300' width='400'src={window.nocomment}/>
+          </>
+        )
+      }
+    }
 
     return(
       <>
@@ -138,11 +182,8 @@ class SongShow extends React.Component {
               </div>
               <div className='descriptionandCom'>
                 <p className='songDesc'>{this.props.song.description}</p>
-                
+                {comments}
               </div>
-
-              <img className='nocomments' height='300' width='400'src={window.nocomment}/>
-              {comments}
             </div>
 
           </div>

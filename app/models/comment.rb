@@ -1,3 +1,7 @@
+require 'action_view'
+require 'action_view/helpers'
+include ActionView::Helpers::DateHelper
+
 class Comment < ApplicationRecord
   belongs_to :song,
     foreign_key: :song_id,
@@ -8,6 +12,6 @@ class Comment < ApplicationRecord
     class_name: 'User'
 
   def convert_time
-      self.created_at.to_f
+    time_ago_in_words(self.created_at)
   end
 end
