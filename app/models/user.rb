@@ -10,6 +10,11 @@ class User < ApplicationRecord
   attr_reader :password
   after_initialize :ensure_session_token
 
+  has_many :followers,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: 'Follow'
+
   has_many :songs,
     primary_key: :id,
     foreign_key: :user_id,
