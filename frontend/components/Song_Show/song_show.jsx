@@ -9,13 +9,16 @@ class SongShow extends React.Component {
     super(props)
     this.shuffleArray = this.shuffleArray.bind(this)
     this._handleKeyDown = this._handleKeyDown.bind(this)
+    this.createLike = this.createLike.bind(this)
+    this.deleteLike = this.deleteLike.bind(this)
     this.handleDeleteComment = this.handleDeleteComment.bind(this)
   }
 
-  handleDeleteComment(e, id) {
+  handleDeleteComment(e, id, idx) {
     e.preventDefault()
     this.props.deleteComment(id)
-    
+    let newComments = this.state.comments.slice(0, idx).concat(this.state.comments.slice(idx+1))
+    this.setState({comments: newComments})
   }
 
   componentDidMount() {
@@ -26,6 +29,25 @@ class SongShow extends React.Component {
   handlePlay(song){
     this.props.playSong(song);
   }
+
+  createLike(e) {
+    e.preventDefault()
+    this.props.createLike({    
+      likeable_id: this.props.song.id,
+      likeable_type: "Song",
+      user_id: this.props.currentuser.id
+  })
+  this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
+
+  }
+
+  deleteLike(e, id) {
+    e.preventDefault()
+    this.props.deleteLike(id)
+    this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
+
+  }
+  
 
   _handleKeyDown(e) {
     let oldComments;
@@ -100,7 +122,7 @@ class SongShow extends React.Component {
       this.setState({comments: this.props.song.comments})
     } else {
       if(this.state.comments.length > 0) {
-      let commentBody = this.state.comments.reverse().map(comment => {
+      let commentBody = this.state.comments.map((comment, idx) => {
         let user='You'
         let garbage = null
         if (comment.username !== this.props.currentuser.username) {
@@ -108,7 +130,7 @@ class SongShow extends React.Component {
         } else {
           garbage = (
             <>
-              <div className='garbage' onClick={(e) => handleDeleteComment(e, comment.id)}>
+              <div className='garbage' onClick={(e) => this.handleDeleteComment(e, comment.id, idx)}>
                 <img width='16' className='trashcomment' src='https://image.flaticon.com/icons/svg/1345/1345823.svg'/>
                 <div className='removecomment'>
                   <p>Do you really want to remove this comment?</p>
@@ -157,6 +179,17 @@ class SongShow extends React.Component {
       }
     }
 
+    let likedbutton = (
+      <button onClick={this.createLike} className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> Like</button>
+    )
+    this.props.song.likes.forEach(like => {
+      if (like.user_id === this.props.currentuser.id) {
+        likedbutton = (
+          <button onClick={(e) => this.deleteLike(e, like.id)} className='songBuSl'>&#9829; Liked</button>
+        )
+      }
+    })
+
     return(
       <>
       <EditModal/>
@@ -189,11 +222,12 @@ class SongShow extends React.Component {
 
               <div className='songFootS'>
                 <div className='songBOS'>
-                  <button className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> Like</button>
+                  {likedbutton}
                   <button className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                   <button className='songBuS' onClick={e => this.handleEdit(e, this.props.song)}>&#9998; Edit</button>
                   {dropdown}
                 </div>
+                <p className='likesnum'>&#9829; {this.props.song.likes.length}</p>
               </div>
 
               <div className='topB'></div>

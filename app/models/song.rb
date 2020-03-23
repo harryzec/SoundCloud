@@ -4,6 +4,8 @@ class Song < ApplicationRecord
   has_one_attached :photo
   # validate :track_attached
 
+  has_many :likes, as: :likeable
+
   belongs_to :user,
     foreign_key: :user_id,
     class_name: 'User'

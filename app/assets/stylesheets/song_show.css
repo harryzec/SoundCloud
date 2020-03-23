@@ -168,6 +168,7 @@
 .songFootS {
   height: 15px;
   margin-top: 10px;
+  display: flex;
   justify-content: space-between;
   margin-left: 18px;
 }
@@ -188,6 +189,22 @@
   border-radius: 3px;
   background-color: #fff;
   padding: 3px;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  outline: none;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.songBuSl {
+  width: auto;
+  height: 100%;
+  font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  border: 1px solid #f50;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #f50;
   cursor: pointer;
   text-align: center;
   vertical-align: middle;
@@ -391,4 +408,11 @@
   justify-content: space-between;
   height: auto;
   min-height: 25px;
+}
+
+.likesnum {
+  margin-top: 0;
+  color: #999;
+  font-size: 13px;
+  margin-right: 22px;
 }

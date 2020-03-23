@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :playlists, only: [:index, :create, :update, :destroy]
     resources :playlist_tracks, only: [:create]
     resources :comments, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
     delete 'playlist_tracks/destroy', :to => 'playlist_tracks#destroy'
     get 'playlists/get_playlist/:username/:permalink', :to => 'playlists#get_playlist'
     get 'songs/by_user/:username', :to => 'songs#by_user'
