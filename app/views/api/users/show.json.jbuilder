@@ -2,7 +2,7 @@
 
 json.set! @user.username do
 
-  json.extract! @user, :id, :username, :playlists
+  json.extract! @user, :id, :username, :playlists, :followers, :follows
 
   if @user.profile_picture.attached?
    json.profileUrl url_for(@user.profile_picture)

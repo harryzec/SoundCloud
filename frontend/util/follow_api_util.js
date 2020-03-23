@@ -7,7 +7,7 @@ export const createFollow = follow => {
 };
 
 
-export const deleteLike = follow_id => {
+export const deleteFollow = follow_id => {
   return $.ajax({
       method: 'DELETE',
       url: `/api/follows/${follow_id}`

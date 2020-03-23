@@ -10,15 +10,36 @@ class Dashboard extends React.Component {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
     this.state = {}
+    this.createFollow = this.createFollow.bind(this)
+    this.deleteFollow = this.deleteFollow.bind(this)
+  }
+
+  createFollow(e) {
+    e.preventDefault()
     debugger
+    this.props.createFollow({
+      user_id: this.props.user.id,
+      follower_id: this.props.currentuser.id
+    })
+    let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchUser(username)
+  }
+
+  deleteFollow(e, id) {
+    e.preventDefault()
+    this.props.deleteFollow(id)
+    let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchUser(username)
   }
 
   
 
   
   componentDidMount(){
-    this.props.fetchUser(this.props.match.params.username)
-    this.props.fetchSongsByArtist(this.props.match.params.username)
+    debugger
+    let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchUser(username)
+    this.props.fetchSongsByArtist(username)
   }
 
   handlePlay(song){
@@ -36,7 +57,7 @@ class Dashboard extends React.Component {
 
   
 
-  if (this.props.user === undefined && this.state === null) return null
+  if (this.props.user === undefined || this.state === null) return null
 
   
    let artistSongs;
@@ -183,6 +204,23 @@ class Dashboard extends React.Component {
   }
 
   if( profilebody ) {
+    let followbutton = null
+    if (this.props.user.id !== this.props.currentuser.id) {
+      followbutton = (
+        <>
+          <div className='extraBut2' onClick={this.createFollow}>+ Follow</div>
+        </>
+      )
+      this.props.user.followers.forEach(follower => {
+        if (follower.follower_id === this.props.currentuser.id) {
+          followbutton = (
+            <>
+              <div className='extraBut2' onClick={(e) => this.deleteFollow(e, follower.id)}><strong className='bigFont'>&#9745;</strong> Following</div>
+            </>
+          )
+        }
+      })
+    }
     titler = (
       <>
      <div className='profileOptions'>
@@ -195,9 +233,10 @@ class Dashboard extends React.Component {
        <Link className='profileButtons'>Reposts</Link>
      </section>
      <section className='profileExtra'>
-       <Link className='extraButtons'><strong className='boldthis'><img width='10'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'></img></strong> Station</Link>
-       <Link className='extraButtons'><strong className='boldthis'>&#62;</strong>  Share</Link>
-       <Link className='extraButtons'><strong className='boldthis'>&#9998;</strong>  Edit</Link>
+       <Link className='extraButtons'><strong className='boldthis1'><img width='10'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'></img></strong> Station</Link>
+       {followbutton}
+       <Link className='extraButtons'><strong className='boldthis1'>&#62;</strong>  Share</Link>
+       <Link className='extraButtons'><strong className='boldthis1'>&#9998;</strong>  Edit</Link>
      </section>
    </div>
 
@@ -212,12 +251,12 @@ class Dashboard extends React.Component {
       <div className='myStats'>
         <div className='myFollowers'>
           <p className='headz'>Followers</p>
-          <p className='statNum'>0</p>
+          <p className='statNum'>{this.props.user.followers.length}</p>
 
         </div>
         <div className='myFollowing'>
           <p className='headz'>Following</p>
-          <p className='statNum'>0</p>
+          <p className='statNum'>{this.props.user.follows.length}</p>
         </div>
         <div className='myTracks'>
           <p className='headz'>Tracks</p>

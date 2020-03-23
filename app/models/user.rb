@@ -15,6 +15,11 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: 'Follow'
 
+  has_many :follows,
+    primary_key: :id,
+    foreign_key: :follower_id,
+    class_name: 'Follow'
+
   has_many :songs,
     primary_key: :id,
     foreign_key: :user_id,
