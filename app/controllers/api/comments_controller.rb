@@ -4,9 +4,14 @@ class Api::CommentsController < ApplicationController
     @comment.save    
   end
 
+  def destroy 
+    @comment = Comment.find_by(id: params[:id])
+    @comment.destroy
+  end
+
   private
 
     def comment_params
-        params.require(:comment).permit(:author_id, :track_id, :body)
+        params.require(:comment).permit(:id, :author_id, :track_id, :body)
     end
 end

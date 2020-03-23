@@ -88,3 +88,7 @@ export const editSong = (song, id) => dispatch => {
 export const createComment = (comment) => dispatch => {
   return APIUtil.createComment(comment)
 }
+
+export const deleteComment = (id) => dispatch => {
+  return APIUtil.deleteComment(id)
+}

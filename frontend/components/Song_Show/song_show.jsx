@@ -9,6 +9,13 @@ class SongShow extends React.Component {
     super(props)
     this.shuffleArray = this.shuffleArray.bind(this)
     this._handleKeyDown = this._handleKeyDown.bind(this)
+    this.handleDeleteComment = this.handleDeleteComment.bind(this)
+  }
+
+  handleDeleteComment(e, id) {
+    e.preventDefault()
+    this.props.deleteComment(id)
+    
   }
 
   componentDidMount() {
@@ -95,8 +102,20 @@ class SongShow extends React.Component {
       if(this.state.comments.length > 0) {
       let commentBody = this.state.comments.reverse().map(comment => {
         let user='You'
+        let garbage = null
         if (comment.username !== this.props.currentuser.username) {
           user = comment.username
+        } else {
+          garbage = (
+            <>
+              <div className='garbage' onClick={(e) => handleDeleteComment(e, comment.id)}>
+                <img width='16' className='trashcomment' src='https://image.flaticon.com/icons/svg/1345/1345823.svg'/>
+                <div className='removecomment'>
+                  <p>Do you really want to remove this comment?</p>
+                </div>
+              </div>
+            </>
+          )
         }
         return(
         <>
@@ -107,8 +126,14 @@ class SongShow extends React.Component {
                 <p className='commenter'>{user}</p>
                 <p className='commenter'>{comment.created} ago</p>
               </div>
-              <p className='commentbod'>{comment.body}</p>
+              <div className='flex'>
+                <p className='commentbod'>{comment.body}</p>
+                {garbage}
+              </div>
+              
             </div>
+
+            
 
           </div>
         </>
