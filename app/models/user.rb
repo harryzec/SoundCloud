@@ -34,6 +34,10 @@ class User < ApplicationRecord
     class_name: 'Comment',
     dependent: :destroy
 
+    def self.search(search)
+      User.where("lower(username) LIKE ?", "#{search.downcase}%")
+    end
+
 
 
   def self.find_by_email(email)

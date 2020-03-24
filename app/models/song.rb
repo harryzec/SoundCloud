@@ -24,6 +24,10 @@ class Song < ApplicationRecord
     class_name: 'Comment',
     dependent: :destroy
 
+  def self.search(search)
+    Song.where("lower(title) LIKE ?", "#{search.downcase}%")
+  end
+
   private 
 
   # def track_attached

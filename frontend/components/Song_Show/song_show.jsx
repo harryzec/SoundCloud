@@ -2,6 +2,7 @@ import React from 'react'
 import DeleteModal from '../delete_modal/delete_modal'
 import EditModal from '../edit_modal/edit_modal'
 import { Link } from 'react-router-dom'
+import WaveSurfer from 'wavesurfer.js';
 
 
 class SongShow extends React.Component {
@@ -12,6 +13,7 @@ class SongShow extends React.Component {
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
     this.handleDeleteComment = this.handleDeleteComment.bind(this)
+    this.waveformRef = React.createRef();
   }
 
   handleDeleteComment(e, id, idx) {
@@ -24,6 +26,16 @@ class SongShow extends React.Component {
   componentDidMount() {
     this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
     this.props.fetchSongsByArtist(this.props.match.params.username)
+
+  }
+
+  componentDidUpdate() {
+    this.wavesurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: 'violet',
+      progressColor: 'purple'
+    });
+    this.wavesurfer.load(this.props.song.songUrl);  
   }
   
   handlePlay(song){
@@ -190,6 +202,8 @@ class SongShow extends React.Component {
       }
     })
 
+    
+
     return(
       <>
       <EditModal/>
@@ -199,7 +213,10 @@ class SongShow extends React.Component {
   
             <div className='playSongPage'onClick={()=> this.handlePlay(this.props.song)}><p className='playconS'>&#9654;</p></div>
              
-             
+            <div id='waveform' ref={this.waveformRef}>
+
+            </div>
+                
                 <h3 className='songPT'>{this.props.song.title}</h3>
                 <h3 className='userPT'>{this.props.username}</h3>
 

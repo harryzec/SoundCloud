@@ -1,17 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
+import { fetchSearch } from '../../actions/search_actions'
+import searchReducer from '../../reducers/search_reducer';
 
 class NavBar extends React.Component {
   constructor(props){
     super(props)
     this.handleDrop = this.handleDrop.bind(this)
-    this.state = { NavDrop: 'navDropDown', userdrop: 'userdrop' };
+    this.update = this.update.bind(this)
+    this.shuffle = this.shuffle.bind(this)
+    this.state = { NavDrop: 'navDropDown', userdrop: 'userdrop', search: '', showsearch: 'noshowsearch'};
+  }
+
+  shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  update(field) {
+    return e => {
+     
+      if (e.currentTarget.value.length > 0) {
+       
+        this.setState({[field]: e.currentTarget.value, showsearch: 'showsearch'})
+    
+        this.props.fetchSearch(e.currentTarget.value)
+        
+      } else {
+        
+        this.setState({[field]: e.currentTarget.value, showsearch: 'noshowsearch'})
+      }
+    }
   }
 
   handleDrop(e) {
     if (this.state.NavDrop === 'navDropDown'){
-      // debugger
+   
       this.setState({NavDrop: 'navDropDownShow', userdrop: 'userdropclick'})
     } else {
       this.setState({NavDrop: 'navDropDown', userdrop: 'userdrop'})
@@ -19,7 +47,7 @@ class NavBar extends React.Component {
   }
 
   render(){
-    debugger
+  
     const { NavDrop, userdrop } = this.state
 
     if (this.props.match.isExact) {return null}
@@ -27,6 +55,36 @@ class NavBar extends React.Component {
     if (this.props.user === null) {
       return(null)
     }
+
+    let searched;
+    let results = null;
+    if (this.props.search && this.props.search !== {}) {
+      
+      results = this.props.search.map(search => {
+        let title;
+        if (search.title) {
+          title = search.title 
+        } else {
+          title = search.username
+        }
+        return(
+          <>
+            <div>
+              {title}
+            </div>
+          </>
+        )
+      })
+    }
+    searched = (
+      <>
+      <div>
+        Search for "{this.state.search}"
+      </div>
+      {results}
+      
+      </>
+    )
 
     return (
       <>
@@ -38,7 +96,8 @@ class NavBar extends React.Component {
         <button className='LibraryButton'>Library</button>
         </div>
         <div className='searchSound'>
-        <input type='text' placeholder='Search' className='searchMusicBar'/>
+        <input type='text' placeholder='Search' onChange={this.update('search')} defaultValue={this.state.search}className='searchMusicBar'/>
+          <div className={this.state.showsearch}>{searched}</div>
         <div className='buttonBack'>
           <button className='searchNotes'></button>
         </div>
@@ -84,7 +143,7 @@ class NavBar extends React.Component {
 }
 
 const mSTP = state => {
-  debugger
+
   let current;
   if (state.session.currentUser===null){
     current = null
@@ -92,10 +151,16 @@ const mSTP = state => {
     current = state.session.currentUser;
   }
   return{
-    user: current
+    user: current,
+    search: Object.values(state.entities.searched)
   }
+}
+
+const mDTP = dispatch => {
+  return (
+    {fetchSearch: (search)=> dispatch(fetchSearch(search))})
 }
 
 
 
-export default connect(mSTP, null)(NavBar)
+export default connect(mSTP, mDTP)(NavBar)

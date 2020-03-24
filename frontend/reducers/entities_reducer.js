@@ -7,6 +7,7 @@ import songShow from './songshow'
 import RecentPlays from './played_songs'
 import PlaylistReducer from './playlist_reducer'
 import RecentPlaylist from './playlist_create_reducer'
+import searchReducer from './search_reducer'
 
 const entitiesReducer = combineReducers({
   users: usersReducer,
@@ -15,7 +16,8 @@ const entitiesReducer = combineReducers({
   songShow: songShow,
   recentplays: RecentPlays,
   PlaylistReducer: PlaylistReducer,
-  RecentPlaylist: RecentPlaylist
+  RecentPlaylist: RecentPlaylist,
+  searched: searchReducer
 });
 
 export default entitiesReducer;

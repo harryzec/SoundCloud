@@ -16,4 +16,8 @@ class Playlist < ApplicationRecord
     class_name: :User
     
   has_one_attached :photo
+
+  def self.search(search)
+    Playlist.where("lower(title) LIKE ?", "#{search.downcase}%")
+  end
 end
