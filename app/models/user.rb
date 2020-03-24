@@ -34,9 +34,9 @@ class User < ApplicationRecord
     class_name: 'Comment',
     dependent: :destroy
 
-    def self.search(search)
-      User.where("lower(username) LIKE ?", "#{search.downcase}%")
-    end
+  def self.search(search)
+    User.where("lower(username) LIKE ?", "#{search.downcase}%") + User.where("lower(username) LIKE ?", "% #{search.downcase}%")
+  end
 
 
 
