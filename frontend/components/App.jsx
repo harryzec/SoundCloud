@@ -31,10 +31,10 @@ const App = () => (
       <Route exact path="/" component={GreetingContainer} />
       <ProtectedRoute exact path='/upload' component={UploadContainer}/>
       <Route exact path='/discover' component={DiscoverContainer} />
+      <Route exact path='/search' component={searchContainer}/>
       <Route exact path='/:username' component={DashboardContainer} />
       <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
       <Route exact path='/:username/sets/:permalink' component={playlistshow}/>
-      <Route exact path='/search' component={searchContainer}/>
     </Switch>
     <Switch>
         <Route exact path='/:username/sets' component={Playlist}/>

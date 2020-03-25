@@ -1,0 +1,72 @@
+.searchpage {
+  height: 100vh;
+  margin-left: 27px;
+  margin-right: 27px;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchheader {
+  width: 100%;
+  font: 14.5px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.searchHead {
+  margin-top: 33px;
+  margin-bottom: 0;
+}
+
+.searchmaterials {
+  display: flex;
+  width: 100%;
+  padding-top: 41px;
+}
+
+.searchtype {
+  display: flex;
+  flex-direction: column;
+  width: 18%;
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 14px;
+  padding-bottom: 41px;
+  height: 206px;
+}
+
+.searchclicked {
+  color: white;
+  background-color: #f50;
+  margin: 0;
+  padding: 4px;
+  cursor: pointer;
+  padding-left: 8px
+}
+
+.searchopt {
+  margin: 0;
+  padding: 4px;
+  padding-left: 8px;
+  cursor: pointer;
+}
+
+.searchResu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 82%
+}
+.circlething {
+  font-size: 389px;
+  margin: 0;
+  margin-top: -102px;
+  padding-top: 0;
+  color:  #999;
+}
+
+.sorrynothing {
+  font-size: 16px;
+  padding: 0;
+  margin-top: 0;
+  color:  #999;
+}

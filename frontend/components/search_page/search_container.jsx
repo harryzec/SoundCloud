@@ -1,17 +1,18 @@
-import Search from './search'
+import SearchPage from './search'
 import { connect } from 'react-redux';
+import { fetchSearch } from '../../actions/search_actions'
 
 
 const mSTP = state => {
-  return{
 
+  return{
+    search: Object.values(state.entities.searched)
   }
 }
 
-const mDTP = state => {
-  return{
-
-  }
+const mDTP = dispatch => {
+  return (
+    {fetchSearch: (search)=> dispatch(fetchSearch(search))})
 }
 
-export default connect(mSTP, mDTP)(Search)
+export default connect(mSTP, mDTP)(SearchPage)

@@ -63,7 +63,7 @@ class NavBar extends React.Component {
       results = this.props.search.map(search => {
         if (search.catagory === 'song') {
           return (<>
-            <Link to={`/${search.user.username.split(' ').join('-')}/${search.title.split(' ').join('-')}`} className='searchres'>
+            <Link to={`/${search.user.username.split(' ').join('-')}/${search.hyperlink}`} className='searchres'>
               &#9862; {search.title}
             </Link>
           </>)
@@ -85,9 +85,9 @@ class NavBar extends React.Component {
     }
     searched = (
       <>
-      <div className='searching'>
+      <Link to={`/search?q=${this.state.search}`}className='searching'>
         Search for "{this.state.search}"
-      </div>
+      </Link>
       {results}
       
       </>
