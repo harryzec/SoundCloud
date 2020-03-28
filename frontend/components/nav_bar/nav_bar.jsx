@@ -159,7 +159,7 @@ const mSTP = state => {
   }
   return{
     user: current,
-    search: Object.values(state.entities.searched)
+    search: Object.values(state.entities.searched.flat())
   }
 }
 

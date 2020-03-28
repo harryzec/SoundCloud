@@ -6,7 +6,7 @@ import { fetchSearch } from '../../actions/search_actions'
 const mSTP = state => {
 
   return{
-    search: Object.values(state.entities.searched)
+    search: state.entities.searched
   }
 }
 

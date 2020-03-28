@@ -26,18 +26,39 @@ const App = () => (
   <>
   <Route path='/' component={NavBar}/>
   <div className='mainBody'>
+    {/* <Route exact path="/" component={GreetingContainer} />
+    <ProtectedRoute exact path='/upload' component={UploadContainer}/>
+    <Route path='/discover' component={DiscoverContainer} />
+    <Route path='/:username' component={DashboardContainer} />
+    <Route path='/search' component={searchContainer}/>
+    <Route path='/:username/sets' component={Playlist}/>
+    <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
+    <Route exact path='/:username/sets/:permalink' component={playlistshow}/> */}
 
     <Switch>
       <Route exact path="/" component={GreetingContainer} />
-      <ProtectedRoute exact path='/upload' component={UploadContainer}/>
-      <Route exact path='/discover' component={DiscoverContainer} />
-      <Route exact path='/search' component={searchContainer}/>
-      <Route exact path='/:username' component={DashboardContainer} />
-      <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
-      <Route exact path='/:username/sets/:permalink' component={playlistshow}/>
+      <ProtectedRoute path='/upload' component={UploadContainer}/>
+      <Route path='/discover' component={DiscoverContainer} />
+      <Route exact path='/:username/sets/:permalink' component={playlistshow}/>  */}
+      
+      <Route exact path='/:username/:hyperlink' component={SongShowCont}/> 
+      <Route path='/:username' component={DashboardContainer}/>
+      
+      
+
+      
+      
+        
+     
+      <Route path='/search' component={searchContainer}/>
+      <Route path='/search/sounds'/>
+      <Route evact path='/:username/:hyperlink' component={SongShowCont}/> 
+    
+      
     </Switch>
+
     <Switch>
-        <Route exact path='/:username/sets' component={Playlist}/>
+      <Route path='/:username/sets' component={Playlist}/>
     </Switch>
     
     

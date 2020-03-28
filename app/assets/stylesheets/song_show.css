@@ -416,3 +416,19 @@
   font-size: 13px;
   margin-right: 22px;
 }
+
+#waveform {
+  width: 100%;
+  height: auto;
+
+}
+
+.waveform-holder {
+  height: 64px;
+  overflow: hidden;
+  width: 64%;
+  top: 182px;
+  left: 35px;
+  position: absolute;
+  -webkit-box-reflect: below 2px -webkit-gradient(linear, right top, right bottom, from(transparent), to(rgba(255, 255, 255, 0.4)));
+}

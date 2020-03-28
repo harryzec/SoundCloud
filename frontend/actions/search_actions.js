@@ -4,7 +4,7 @@ import * as APIUtil from '../util/search_api_util';
 export const receiveSearch = (search) => {
   return({
   type: RECEIVE_SEARCH,
-  search: search.flat()
+  search: search
 })}
 
 export const fetchSearch = (search) =>dispatch => (

@@ -14,11 +14,6 @@
   height: 200px;
 }
 
-.mainBody {
-  background-color:#fff;
-  height: 100vh;
-}
-
 
 .movePasswordDown {
   margin-top: 15px;
@@ -198,6 +193,9 @@
 .mainBody {
   margin-right: 7%;
   margin-left: 7%;
+  background-color:#fff;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .pianoCont {

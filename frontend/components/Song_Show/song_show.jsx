@@ -13,7 +13,6 @@ class SongShow extends React.Component {
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
     this.handleDeleteComment = this.handleDeleteComment.bind(this)
-    this.waveformRef = React.createRef();
   }
 
   handleDeleteComment(e, id, idx) {
@@ -30,16 +29,42 @@ class SongShow extends React.Component {
   }
 
   componentDidUpdate() {
-    this.wavesurfer = WaveSurfer.create({
-      container: '#waveform',
-      waveColor: 'violet',
-      progressColor: 'purple'
-    });
-    this.wavesurfer.load(this.props.song.songUrl);  
+    debugger
+    if (!this.wavesurfer) {
+      this.wavesurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: 'white',
+        progressColor: '#f50',
+        barGraph: 10,
+        barHeight: .75,
+        barWidth: 2,
+        reflection: true,
+        // maxCanvasWidth: 200,
+        fillParent: true,
+        scrollParent: false,
+        cursorWidth: 0,
+        // interact: false,
+        // autoCenter: true,
+        // closeAudioContext: true,
+        hideScrollbar: true,
+        // partialRender: true,
+        // removeMediaElementOnDestroy: true,
+        pixelRatio: 1
+      });
+      debugger
+      this.wavesurfer.load(this.props.song.songUrl);  
+      debugger
+    }
+    
+    
   }
   
   handlePlay(song){
+
     this.props.playSong(song);
+    this.wavesurfer.play()
+    this.wavesurfer.setVolume(0)
+    
   }
 
   createLike(e) {
@@ -90,7 +115,6 @@ class SongShow extends React.Component {
 
 
   render(){
-    debugger
     
  
     if (!this.props.song) {
@@ -213,8 +237,8 @@ class SongShow extends React.Component {
   
             <div className='playSongPage'onClick={()=> this.handlePlay(this.props.song)}><p className='playconS'>&#9654;</p></div>
              
-            <div id='waveform' ref={this.waveformRef}>
-
+            <div className='waveform-holder'>
+              <div id='waveform'></div>
             </div>
                 
                 <h3 className='songPT'>{this.props.song.title}</h3>

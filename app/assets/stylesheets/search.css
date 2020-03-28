@@ -1,5 +1,5 @@
 .searchpage {
-  height: 100vh;
+  height: auto;
   margin-left: 27px;
   margin-right: 27px;
   display: flex;
@@ -28,6 +28,7 @@
   display: flex;
   flex-direction: column;
   width: 18%;
+  min-width: 115px;
   border-bottom: 1px solid #f2f2f2;
   font-size: 14px;
   padding-bottom: 41px;
@@ -69,4 +70,57 @@
   padding: 0;
   margin-top: 0;
   color:  #999;
+}
+
+.searchresul {
+  display: flex;
+  flex-direction: column;
+  padding-left: 3%;
+  width: 82%;
+  height: auto;
+}
+.searchstats {
+  padding: 0;
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+  width: 100%;
+}
+
+.searchedme {
+  width: 100%;
+  display: flex;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 28px;
+  margin-bottom: 0;
+  height: auto;
+}
+
+.searchpic {
+  border: 1px solid black;
+  border-radius: 100px;
+  width: 142px;
+  height: 142px;
+}
+
+.searchpic2 {
+  border: 1px solid black;
+  width: 142px;
+  height: 142px;
+}
+
+.searchinfos {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+.searchtitle {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.searchtitle:hover {
+  color:black;
 }
