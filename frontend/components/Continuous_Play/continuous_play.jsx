@@ -141,6 +141,9 @@ getPosition(el) {
     
     let player = document.getElementById('PlayingSong')
     player.currentTime = dur
+    if (!e.fake) {
+      this.props.updateWave(dur)
+    }
 
     let mins = Math.floor(dur/60)
     let secs = dur % 60 

@@ -14,7 +14,8 @@ const mSTP = (state, ownProps) => {
           othersongs: Object.values(state.entities.songs),
           username: ownProps.match.params.username.split('-').join(' '),
           player: state.ui.SongPlayer,
-          time: state.ui.SongTimer
+          time: state.ui.SongTimer,
+          waveUpdate: state.ui.updateWave
         })
           
 }

@@ -35,30 +35,6 @@ class SongShow extends React.Component {
     return el.getBoundingClientRect().left;
   }
   
-  handleCurrentTime() {
-  if ( document.getElementById("PlayingSong") !== null) {
-    const currentSong = document.getElementById("PlayingSong");
-    const time = currentSong.currentTime;
-
-    const currentTimeMin = Math.floor(time / 60);
-    const currentTimeSec = (
-        Math.floor(time % 60) < 10 ? 
-        ("0" + Math.floor(time % 60)) : Math.floor(time % 60)
-    );
-    const currentTimeTotal = `${currentTimeMin + ":" + currentTimeSec}`;
-    let playhead = document.getElementById('playhead');
-    
- 
-
-    const playPercent = (((parseInt(currentTimeTotal.split(':')[0]) *60) + parseInt(currentTimeTotal.split(':')[1])) / (parseInt((this.state.duration.split(':')[0])*60) +parseInt(this.state.duration.split(':')[1])));
-    let newwid = playPercent*500
-    playhead.style.width = newwid + 'px';
-    
-    
-    this.setState({ currentTime: currentTimeTotal });
-
-  }
-}
 
   handleDeleteComment(e, id, idx) {
     e.preventDefault()
@@ -73,7 +49,7 @@ class SongShow extends React.Component {
   }
 
   componentDidUpdate() {
-    debugger
+
     if (!this.wavesurfer) {
       this.wavesurfer = WaveSurfer.create({
         container: '#waveform',
@@ -95,9 +71,9 @@ class SongShow extends React.Component {
         // removeMediaElementOnDestroy: true,
         pixelRatio: 1
       });
-      debugger
+     
       this.wavesurfer.load(this.props.song.songUrl);  
-      debugger
+ 
     }
     
     
@@ -170,6 +146,8 @@ class SongShow extends React.Component {
     }
 
     let time = '0:00'
+
+    
    
 
     let relatedSongs = this.shuffleArray(this.props.othersongs).slice(0, 3).map( song => (
@@ -204,7 +182,8 @@ class SongShow extends React.Component {
 
     let comments;
     if (this.state === null) {
-      this.setState({comments: this.props.song.comments})
+    
+      this.setState({comments: this.props.song.comments, updateWave: this.props.updateWave})
     } else {
       if(this.state.comments.length > 0) {
       let commentBody = this.state.comments.map((comment, idx) => {
@@ -293,6 +272,16 @@ class SongShow extends React.Component {
         <div className='playSongPage'onClick={()=> this.handlePlay(this.props.song)}><p className='playconS'>&#9654;</p></div>
         )
     }
+
+  if (this.state) {
+    if (this.state.updateWave === undefined) {
+      this.setState({updateWave: this.props.waveUpdate})
+    } else if (this.props.waveUpdate !== this.state.updateWave) {
+      debugger
+      this.wavesurfer.seekTo(this.props.waveUpdate/this.wavesurfer.getDuration())
+      this.setState({updateWave: this.props.updateWave})
+    }
+  }
 
 
     
