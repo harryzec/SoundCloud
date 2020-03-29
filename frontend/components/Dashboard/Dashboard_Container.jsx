@@ -7,7 +7,6 @@ import { openEditModal, openPlaylistModal } from '../../actions/modal_actions'
 import { createFollow, deleteFollow } from '../../actions/follow_action'
 
 const mSTP = (state, ownProps) => {
-  debugger
   return {
   user: state.entities.users[ownProps.match.params.username.split('-').join(' ')],
   songs: state.entities.songs,

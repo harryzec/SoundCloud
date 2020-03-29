@@ -39,7 +39,12 @@ class SongShow extends React.Component {
     
     
     this.setState({ currentTime: currentTimeTotal });
-    // this.props.timer(currentTimeTotal)
+    this.props.timer(currentTimeTotal);
+
+    if (currentTimeTotal === this.state.duration && this.state.duration !== '0:00') {
+      this.props.playSong(this.props.queue[0])
+      this.props.playedSong()
+    }
   }
     // const filler = document.getElementById("cpb-timeline-progress-timepassed");
     // const handle = document.getElementById("cpb-timeline-progress-handle");
@@ -158,6 +163,9 @@ getPosition(el) {
     let newwid = wholething*450
     playhead.style.width = newwid + 'px';
     this.setState({currentTime: newer})
+
+
+
 
   }
   

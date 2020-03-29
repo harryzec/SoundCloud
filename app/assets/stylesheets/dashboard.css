@@ -139,10 +139,9 @@
   font-size: 14px;
 }
 
-#waveform {
-  width: 300px;
-  height: 200px;
-}
+
+
+
 
 .musicsect2 {
   border-bottom: 1px solid #f2f2f2;
@@ -316,6 +315,8 @@
   border-radius: 3px;
   background-color: #fff;
   position: relative;
+  z-index: 12;
+
   cursor: pointer;
 }
 .songBu1 {
@@ -328,6 +329,8 @@
   background-color: #fff;
   position: relative;
   cursor: pointer;
+  z-index: 12;
+
 }
 
 .songBu2 {
@@ -340,6 +343,8 @@
   background-color: #fff;
   position: relative;
   cursor: pointer;
+  z-index: 12;
+
 }
 
 .songBu3 {
@@ -353,6 +358,8 @@
   position: relative;
   outline: none;
   cursor: pointer;
+  z-index: 12;
+
 }
 
 .songBu4 {
@@ -368,7 +375,10 @@
   background-color: #fff;
   position: relative;
   outline: none;
+  z-index: 12;
+
   cursor: pointer;
+
 }
 
 .songBu4:focus .moreshow {
@@ -511,4 +521,30 @@
   padding-left: 5%;
   padding-right: 12%;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.durationsong2 {
+  background: black;
+  width: auto;
+  height: auto;
+  padding: 1px;
+  font-size: 11px;
+  position: absolute;
+  color: #f50;
+  top: 78px;
+  left: 90%;
+  z-index: 12;
+}
+
+.timersong2{
+  background: black;
+  width: auto;
+  height: auto;
+  padding: 1px;
+  font-size: 11px;
+  position: absolute;
+  color: #f50;
+  top: 78px;
+  left: 19.5%;
+  z-index: 12;
 }

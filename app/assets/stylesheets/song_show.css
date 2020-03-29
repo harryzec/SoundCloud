@@ -420,7 +420,32 @@
 #waveform {
   width: 100%;
   height: auto;
+}
 
+.timersong{
+  background: black;
+  width: auto;
+  height: auto;
+  padding: 1px;
+  font-size: 11px;
+  position: absolute;
+  color: #f50;
+  top: 231px;
+  left: 35px;
+  z-index: 12;
+}
+
+.durationsong{
+  background: black;
+  width: auto;
+  height: auto;
+  padding: 1px;
+  font-size: 11px;
+  position: absolute;
+  color: #f50;
+  top: 231px;
+  left: 64.9%;
+  z-index: 12;
 }
 
 .waveform-holder {
@@ -429,6 +454,16 @@
   width: 64%;
   top: 182px;
   left: 35px;
+  position: absolute;
+  -webkit-box-reflect: below 2px -webkit-gradient(linear, right top, right bottom, from(transparent), to(rgba(255, 255, 255, 0.4)));
+}
+
+.waveform-holders {
+  height: 64px;
+  overflow: hidden;
+  margin-top: -13px;
+  width: 42%;
+  z-index: 1;
   position: absolute;
   -webkit-box-reflect: below 2px -webkit-gradient(linear, right top, right bottom, from(transparent), to(rgba(255, 255, 255, 0.4)));
 }

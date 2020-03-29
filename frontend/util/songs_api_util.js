@@ -12,7 +12,6 @@ export const deleteSong = ( songId ) => (
 )
 
 export const createSong = (song) => {
-  // debugger
   return $.ajax({
     method: 'POST',
     url: '/api/songs',
@@ -23,7 +22,6 @@ export const createSong = (song) => {
 }
 
 export const fetchSongShow = (hyperlink, username) => {
-  debugger
   return $.ajax({
     method: 'GET',
     url: `/api/songs/songshow/${username}/${hyperlink}`
@@ -38,7 +36,6 @@ export const fetchSongsByArtist = userId => {
 }
 
 export const editSong = (song, id) => {
-  debugger
   return $.ajax({
     method: 'PATCH',
     url: `/api/songs/${id}`,

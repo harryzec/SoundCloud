@@ -8,8 +8,16 @@ import { connect } from 'react-redux';
 import { openEditPlaylistModal, openDeletePlaylistModal } from '../../actions/modal_actions';
 import EditPlaylistForm from '../edit_modal/edit_playlist_modal'
 import DeletePlaylist  from '../delete_modal/delete_playlist_modal'
+import { playSong, pauseSong } from '../../actions/song_player_actions'
+import { addQueue } from '../../actions/queue_action'
+import Waves from '../waves/waves_container'
+
 
 class Playlist extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handlePlay = this.handlePlay.bind(this)
+  }
 
   componentDidMount(){
     this.props.fetchUser(this.props.match.params.username)
@@ -17,9 +25,22 @@ class Playlist extends React.Component {
     this.props.fetchPlaylistByArtist(this.props.match.params.username)
   }
 
+  handlePlay(track, playlisttracks) {
+
+    if (this.props.player.song === track && this.props.player.player ==='playing' ) {
+      this.props.pauseSong(track)
+    } else if (this.props.player.song === track && this.props.player.player ==='paused' ) {
+      this.props.playSong(track)
+    } else {
+
+      this.props.playSong(track)
+      this.props.addQueue(playlisttracks)
+    }
+  }
+
   render() {
     if (this.props.songs === null) return null
-    debugger
+    
 
     if (this.props.user.id === this.props.currentuser.id){
 
@@ -35,6 +56,7 @@ class Playlist extends React.Component {
       
 
       if (this.props.playlists !== {}) {
+        let cursong = this.props.player.song; 
         let playlistlist = this.props.playlists.reverse().map(playlist => {
           let lastbutton = (
             <>
@@ -56,21 +78,39 @@ class Playlist extends React.Component {
           let num = 0;
           if (playlist.tracks.length > 0) {
            
-            songtits = playlist.tracks.map(track => {
+            songtits = playlist.tracks.map((track, i) => {
               num++;
               return(
               <>
-                <div className='playlisttrackindivid'>
+                <div onClick={()=> this.handlePlay(track, playlist.tracks.slice(i+1))} className='playlisttrackindivid'>
                   <div className='playlisttnum'>{num}</div>
                   <div className='playlisttname'>{track.title}</div>
                 </div>
               </>)
             })
 
+            let wave;
+            if (playlist.tracks.includes(cursong)) {
+              wave = (
+              <>
+                <Waves song={cursong}/>
+              </>
+              )
+            } else {
+     
+              wave = (
+                <>
+                  <Waves song={playlist.tracks[0]}/>
+                </>
+              )
+            }
+            debugger
+
             nosongs = (
               <>
-                <div>
-                  <h2>This is where waveforms go</h2>
+                <div className='songwvz'>
+
+                  {wave}
                 </div>
                   
                 <div className='playlisttracks'>
@@ -204,6 +244,7 @@ const mSTP = (state, ownProps) => {
   return {
     user: state.entities.users[ownProps.match.params.username],
     songs: state.entities.songs,
+    player: state.ui.SongPlayer,
     currentuser: state.session.currentUser,
     playlists: Object.values(state.entities.PlaylistReducer)
   }
@@ -214,7 +255,10 @@ const mDTP = dispatch => ({
   fetchPlaylistByArtist: (userId) => dispatch(fetchPlaylistByArtist(userId)),
   fetchUser: (username) => dispatch(fetchUser(username)),
   openDeletePlaylistModal: (modal, playlist) => dispatch(openDeletePlaylistModal(modal, playlist)),
-  openEditPlaylistModal: (modal, playlist) => dispatch(openEditPlaylistModal(modal, playlist))
+  openEditPlaylistModal: (modal, playlist) => dispatch(openEditPlaylistModal(modal, playlist)),
+  playSong: (song) => dispatch(playSong(song)),
+  pauseSong: (song) => dispatch(pauseSong(song)),
+  addQueue: (songs) => dispatch(addQueue(songs))
 })
 
 export default connect(mSTP, mDTP)(Playlist)

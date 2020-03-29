@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import EditModal from '../edit_modal/edit_modal'
 import PlaylistModal from '../playlist_modal/playlist_modal'
 import { openPlaylistModal } from '../../actions/modal_actions';
+import Wave from '../waves/waves_container'
 
 
 class Dashboard extends React.Component {
@@ -16,7 +17,6 @@ class Dashboard extends React.Component {
 
   createFollow(e) {
     e.preventDefault()
-    debugger
     this.props.createFollow({
       user_id: this.props.user.id,
       follower_id: this.props.currentuser.id
@@ -36,7 +36,6 @@ class Dashboard extends React.Component {
 
   
   componentDidMount(){
-    debugger
     let username= this.props.match.params.username.split('-').join(' ')
     this.props.fetchUser(username)
     this.props.fetchSongsByArtist(username)
@@ -53,7 +52,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-  debugger
 
   
 
@@ -109,8 +107,14 @@ class Dashboard extends React.Component {
       artistSongs = Object.values(this.props.songs).map(song => {
         // let num = song.id
         // const { [num] } = this.state
+        debugger
         
-
+        let wave = (
+          <>
+          < Wave song={song}/>
+          </>
+        ) 
+        debugger
        
         return (
         <>
@@ -131,9 +135,11 @@ class Dashboard extends React.Component {
 
             
 
-            </div>
           </div>
           </div>
+          </div>
+
+          {wave}
 
           {/* <div className='genreS'>
             <p className='songG'>#{song.genre}</p>

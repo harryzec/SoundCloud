@@ -69,7 +69,7 @@ class EditForm extends React.Component {
   }
 
   update(field){
-    debugger
+    
     if (field === 'title'){
       return e => {
         if (e.currentTarget.value === '') {

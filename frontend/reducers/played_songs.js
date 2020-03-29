@@ -1,7 +1,6 @@
 export const SONG_PLAYING = 'SONG_PLAYING';
 
 const RecentPlays = (state= {}, action) => {
-  // debugger
   Object.freeze(state);
 
   switch(action.type) {

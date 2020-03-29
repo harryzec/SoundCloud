@@ -6,7 +6,7 @@ import { updatePlaylist, deletePlaylistTrack, fetchPlaylistByArtist } from '../.
 
 
 function EditModal({edit_modal, deletePlaylistTrack, fetchPlaylistByArtist, updatePlaylist, closeEditPlaylistModal,currentUser, current_user, playlist}) {
-  debugger
+  
   if (!edit_modal) {
     return null;
   }
@@ -28,7 +28,6 @@ function EditModal({edit_modal, deletePlaylistTrack, fetchPlaylistByArtist, upda
 }
 
 const mSTP = state => {
-  debugger
   return {
     edit_modal: state.ui.Edit_Playlist_Modal.modal,
     playlist: state.ui.Edit_Playlist_Modal.playlist,

@@ -4,7 +4,6 @@ import {
 } from '../actions/song_player_actions';
 
 const SongPlayerReducer = (state= { player: 'paused', song: 'none'}, action) => {
-  // debugger
   Object.freeze(state);
 
   switch(action.type) {

@@ -1,7 +1,6 @@
 import { SHOW_SONG, DELETE_SONG } from '../actions/song_action'
 
 const songShow = (state = {}, action) => {
-  // debugger
   Object.freeze(state);
   switch(action.type) {
     case SHOW_SONG:

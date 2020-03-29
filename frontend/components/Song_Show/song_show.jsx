@@ -23,16 +23,16 @@ class SongShow extends React.Component {
   }
 
   handleWave(e) {
+    if (this.props.song.id !== this.props.player.song.id) {
+      this.handlePlay(this.props.song)
+    } else {
     e.preventDefault()
     let timeline = document.getElementById("waveform")
     let part1 = (e.clientX - this.getPosition(timeline))
     let part2 = (timeline.clientWidth);
     let wholething = (part1/part2)
     this.props.waveEvent({wholething: wholething, fake: true})
-  }
-
-  getPosition(el) {
-    return el.getBoundingClientRect().left;
+    }
   }
   
 
@@ -50,10 +50,10 @@ class SongShow extends React.Component {
 
   componentDidUpdate() {
 
-    if (!this.wavesurfer) {
+    if (!this.wavesurfer&& this.props.song) {
       this.wavesurfer = WaveSurfer.create({
         container: '#waveform',
-        waveColor: 'white',
+        waveColor: '#ccc',
         progressColor: '#f50',
         barGraph: 10,
         barHeight: .75,
@@ -73,23 +73,65 @@ class SongShow extends React.Component {
       });
      
       this.wavesurfer.load(this.props.song.songUrl);  
+
+      this.wavesurfer.on('ready', ()=> {
+        if (this.props.player.song.id === this.props.song.id) {
+          let timeparts = this.props.time.split(':')
+          let timesec = parseInt(timeparts[0]*60) + parseInt(timeparts[1])
+          this.wavesurfer.seekTo(timesec/this.wavesurfer.getDuration())
+          if (this.props.player.player !== 'paused') {
+            this.wavesurfer.play()
+            this.wavesurfer.setVolume(0)
+          }
+        } 
+
+        let tim = this.wavesurfer.getDuration()
+        let min = Math.floor(tim/60)
+        let sec = tim - (min*60) 
+        sec = sec.toString().split('.')[0]
+        if (sec.length < 2 ) {
+          sec = '0' + sec
+        }
+        let duration = min.toString() + ':' + sec
+        this.setState({duration: duration})
+      })
+
+      
  
-    }
+    } else if (this.wavesurfer && this.props.time === '0:00') {
+      this.wavesurfer.seekTo(0)
+    
+  }
     
     
   }
   
   handlePlay(song){
+    if (song.id === this.props.player.song.id) {
+      this.wavesurfer.play()
+      this.props.playSong(this.props.player.song);
+      this.wavesurfer.setWaveColor('white')
+      this.wavesurfer.setVolume(0)
+    } else {
 
-    this.props.playSong(song);
-    this.wavesurfer.play()
-    this.wavesurfer.setVolume(0)
+      this.props.playSong(song);
+      this.wavesurfer.play()
+      this.wavesurfer.setWaveColor('white')
+      this.wavesurfer.setVolume(0)
+    }
     
   }
 
   handlePause(song) {
-    this.props.pauseSong(song)
+    if (song.id === this.props.player.song.id) {
+      this.props.pauseSong(this.props.player.song)
     this.wavesurfer.pause()
+    this.wavesurfer.setWaveColor('#ccc')
+    } else {
+      this.props.pauseSong(song)
+      this.wavesurfer.pause()
+      this.wavesurfer.setWaveColor('#ccc')
+    }
   }
   createLike(e) {
     e.preventDefault()
@@ -145,7 +187,7 @@ class SongShow extends React.Component {
       return null
     }
 
-    let time = '0:00'
+    let time;
 
     
    
@@ -255,14 +297,17 @@ class SongShow extends React.Component {
     })
 
     let play;
+    if (this.props.player.song.id === this.props.song.id) {
+      time = (
+        <>
+          <div className='timersong'>{this.props.time}</div>
+        </>
+      )
+    }
 
 
     if (this.props.player.song.id === this.props.song.id && this.props.player.player === 'playing') {
-      time = (
-        <>
-        {this.props.time}
-        </>
-      )
+      
       play = (
         <div className='playSongPage'onClick={()=> this.handlePause(this.props.song)}><p className='playconS'>||</p></div>
       )
@@ -277,9 +322,31 @@ class SongShow extends React.Component {
     if (this.state.updateWave === undefined) {
       this.setState({updateWave: this.props.waveUpdate})
     } else if (this.props.waveUpdate !== this.state.updateWave) {
-      debugger
+      
       this.wavesurfer.seekTo(this.props.waveUpdate/this.wavesurfer.getDuration())
       this.setState({updateWave: this.props.updateWave})
+    }
+  }
+
+  
+
+  if (this.props.player.player === 'playing' && this.props.song.id === this.props.player.song.id && this.wavesurfer) {
+    this.wavesurfer.setWaveColor('white')
+    this.wavesurfer.play()
+  } else if (this.wavesurfer) {
+    this.wavesurfer.setWaveColor('#ccc')
+    this.wavesurfer.pause()
+  }
+  
+  let duration;
+
+  
+  if (this.state) {
+    if (this.state.duration){
+      duration = (
+        <>
+          <div className='durationsong'>{this.state.duration}</div>
+        </>)
     }
   }
 
@@ -292,11 +359,15 @@ class SongShow extends React.Component {
       <DeleteModal song={this.props.song} userlink={this.props.match.params.username} />
       <div className='SongshowPage'>
         <div className='songplayer'>
-            {time}
-            {play}             
-            <div className='waveform-holder'>
-              <div onClick={this.handleWave} id='waveform'></div>
-            </div>
+            
+            {play}        
+            {time}     
+            {duration}
+         
+              <div className='waveform-holder'>
+                <div onClick={this.handleWave} id='waveform'></div>
+              </div>
+           
                 
                 <h3 className='songPT'>{this.props.song.title}</h3>
                 <h3 className='userPT'>{this.props.username}</h3>

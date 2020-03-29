@@ -21,6 +21,11 @@
   transform: translate(-50%, -50%);
 }
 
+.songwvz {
+  height: auto;
+  width: 70%;
+}
+
 .playlistForm {
   display: flex;
   height: 330px;
@@ -357,6 +362,7 @@
   flex-direction: column;
   border: 1px solid #e5e5e5;
   margin-bottom: 2%;
+  margin-top: 96px;
 }
 
 .playlisttrackindivid {
@@ -369,6 +375,7 @@
   padding-top: 2px;
   padding-bottom: 2px;
   height: auto;
+  z-index: 3;
 }
 
 .playlisttname {

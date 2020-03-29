@@ -5,7 +5,7 @@ import EditForm from './edit_form';
 import { editSong } from '../../actions/song_action'
 
 function EditModal({edit_modal, closeEditModal, song, EditSong, current_user, artistSongs}) {
-  debugger
+  
   if (!edit_modal) {
     return null;
   }
@@ -27,7 +27,7 @@ function EditModal({edit_modal, closeEditModal, song, EditSong, current_user, ar
 }
 
 const mSTP = state => {
-  debugger
+  
   return {
     edit_modal: state.ui.edit_modal.modal,
     song: state.ui.edit_modal.song,

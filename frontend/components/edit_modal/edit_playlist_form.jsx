@@ -96,7 +96,6 @@ class EditPlaylistForm extends React.Component {
   }
 
   update(field){
-    debugger
     if (field === 'title'){
       return e => {
         if (e.currentTarget.value === '') {
@@ -160,7 +159,6 @@ class EditPlaylistForm extends React.Component {
     
     let tracklist = this.state.tracks.map((track, index) => {
 
-      debugger
       return(
         <>
           <div className='trackdelete'>
