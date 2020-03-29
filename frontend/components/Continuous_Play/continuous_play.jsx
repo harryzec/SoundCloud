@@ -39,7 +39,7 @@ class SongShow extends React.Component {
     
     
     this.setState({ currentTime: currentTimeTotal });
-
+    this.props.timer(currentTimeTotal)
   }
     // const filler = document.getElementById("cpb-timeline-progress-timepassed");
     // const handle = document.getElementById("cpb-timeline-progress-handle");

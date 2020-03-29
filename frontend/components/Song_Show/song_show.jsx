@@ -13,7 +13,35 @@ class SongShow extends React.Component {
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
     this.handleDeleteComment = this.handleDeleteComment.bind(this)
+    this.handlePause = this.handlePause.bind(this)
+    this.handleCurrentTime = this.handleCurrentTime.bind(this)
+    
   }
+  
+  handleCurrentTime() {
+  if ( document.getElementById("PlayingSong") !== null) {
+    const currentSong = document.getElementById("PlayingSong");
+    const time = currentSong.currentTime;
+
+    const currentTimeMin = Math.floor(time / 60);
+    const currentTimeSec = (
+        Math.floor(time % 60) < 10 ? 
+        ("0" + Math.floor(time % 60)) : Math.floor(time % 60)
+    );
+    const currentTimeTotal = `${currentTimeMin + ":" + currentTimeSec}`;
+    let playhead = document.getElementById('playhead');
+    
+ 
+
+    const playPercent = (((parseInt(currentTimeTotal.split(':')[0]) *60) + parseInt(currentTimeTotal.split(':')[1])) / (parseInt((this.state.duration.split(':')[0])*60) +parseInt(this.state.duration.split(':')[1])));
+    let newwid = playPercent*500
+    playhead.style.width = newwid + 'px';
+    
+    
+    this.setState({ currentTime: currentTimeTotal });
+
+  }
+}
 
   handleDeleteComment(e, id, idx) {
     e.preventDefault()
@@ -25,7 +53,6 @@ class SongShow extends React.Component {
   componentDidMount() {
     this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
     this.props.fetchSongsByArtist(this.props.match.params.username)
-
   }
 
   componentDidUpdate() {
@@ -67,6 +94,10 @@ class SongShow extends React.Component {
     
   }
 
+  handlePause(song) {
+    this.props.pauseSong(song)
+    this.wavesurfer.pause()
+  }
   createLike(e) {
     e.preventDefault()
     this.props.createLike({    
@@ -121,7 +152,8 @@ class SongShow extends React.Component {
       return null
     }
 
-    
+    let time = '0:00'
+   
 
     let relatedSongs = this.shuffleArray(this.props.othersongs).slice(0, 3).map( song => (
       <>
@@ -226,6 +258,25 @@ class SongShow extends React.Component {
       }
     })
 
+    let play;
+
+
+    if (this.props.player.song.id === this.props.song.id && this.props.player.player === 'playing') {
+      time = (
+        <>
+        {this.props.time}
+        </>
+      )
+      play = (
+        <div className='playSongPage'onClick={()=> this.handlePause(this.props.song)}><p className='playconS'>||</p></div>
+      )
+
+    } else {
+      play = (
+        <div className='playSongPage'onClick={()=> this.handlePlay(this.props.song)}><p className='playconS'>&#9654;</p></div>
+        )
+    }
+
     
 
     return(
@@ -234,9 +285,8 @@ class SongShow extends React.Component {
       <DeleteModal song={this.props.song} userlink={this.props.match.params.username} />
       <div className='SongshowPage'>
         <div className='songplayer'>
-  
-            <div className='playSongPage'onClick={()=> this.handlePlay(this.props.song)}><p className='playconS'>&#9654;</p></div>
-             
+            {time}
+            {play}             
             <div className='waveform-holder'>
               <div id='waveform'></div>
             </div>

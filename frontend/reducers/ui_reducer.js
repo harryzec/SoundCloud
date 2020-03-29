@@ -7,6 +7,7 @@ import PlaylistModalReducer from './playlist_modal'
 import PlaylistDropdown from './dropdown'
 import EditPlaylistModalReducer from './edit_playlist_modal'
 import DeletePlaylistModal from './delete_playlist_modal'
+import TIMER from './timer_reducer'
 
 export default combineReducers({
   modal,
@@ -14,6 +15,7 @@ export default combineReducers({
   edit_modal: edit_modal,
   playlist_modal: PlaylistModalReducer,
   SongPlayer: SongStatus,
+  SongTimer: TIMER,
   PlaylistDropdown: PlaylistDropdown,
   Edit_Playlist_Modal: EditPlaylistModalReducer,
   delete_playlist_modal: DeletePlaylistModal

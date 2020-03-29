@@ -12,7 +12,11 @@ const mSTP = (state, ownProps) => {
           userId: state.session.currentUser.username,
           currentuser: state.session.currentUser,
           othersongs: Object.values(state.entities.songs),
-          username: ownProps.match.params.username.split('-').join(' ') })
+          username: ownProps.match.params.username.split('-').join(' '),
+          player: state.ui.SongPlayer,
+          time: state.ui.SongTimer
+        })
+          
 }
 
 const mDTP = dispatch => {
@@ -21,6 +25,7 @@ const mDTP = dispatch => {
   openDeleteModal: (keyword)=> dispatch(openDeleteModal(keyword)),
   openEditModal: (edit, song)=> dispatch(openEditModal(edit, song)),
   playSong: (song) => dispatch(playSong(song)),
+  pauseSong: (song) => dispatch(pauseSong(song)),
   fetchSongsByArtist: (userId) => dispatch(fetchSongsByArtist(userId)),
   createComment: (comment) => dispatch(createComment(comment)),
   deleteComment: (id) => dispatch(deleteComment(id)),
