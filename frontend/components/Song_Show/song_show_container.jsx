@@ -4,7 +4,7 @@ import { createLike, deleteLike } from '../../actions/like_action'
 import { openDeleteModal } from '../../actions/modal_actions'
 import { fetchSongShow} from '../../actions/song_action'
 import { openEditModal } from '../../actions/modal_actions'
-import { playSong, pauseSong } from '../../actions/song_player_actions'
+import { playSong, pauseSong, waveClick } from '../../actions/song_player_actions'
 import { fetchSongsByArtist, createComment, deleteComment } from '../../actions/song_action'
 
 const mSTP = (state, ownProps) => {
@@ -30,7 +30,8 @@ const mDTP = dispatch => {
   createComment: (comment) => dispatch(createComment(comment)),
   deleteComment: (id) => dispatch(deleteComment(id)),
   createLike: (like)=> dispatch(createLike(like)),
-  deleteLike: (like_id) => dispatch(deleteLike(like_id))
+  deleteLike: (like_id) => dispatch(deleteLike(like_id)),
+  waveEvent: (event) => dispatch(waveClick(event))
   }) 
 }
 

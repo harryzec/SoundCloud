@@ -6,7 +6,8 @@ import {timer} from '../../actions/song_player_actions'
 
 const mSTP = (state) => ({
   song: state.ui.SongPlayer.song,
-  playingStatus: state.ui.SongPlayer.player
+  playingStatus: state.ui.SongPlayer.player,
+  wave: state.ui.WaveReducer
 })
 
 const mDTP = dispatch => ({

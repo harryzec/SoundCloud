@@ -5,7 +5,7 @@ class SongShow extends React.Component {
   constructor(props) {
     super(props)
     this.volumeChange = this.volumeChange.bind(this);
-    this.state = {duration: '0:00', currentTime: '0:00'}
+    this.state = {duration: '0:00', currentTime: '0:00', waveEvent: this.props.wave}
     this.handleMetaData = this.handleMetaData.bind(this)
     this.handleCurrentTime = this.handleCurrentTime.bind(this);
     this.changePlace = this.changePlace.bind(this)
@@ -39,7 +39,7 @@ class SongShow extends React.Component {
     
     
     this.setState({ currentTime: currentTimeTotal });
-    this.props.timer(currentTimeTotal)
+    // this.props.timer(currentTimeTotal)
   }
     // const filler = document.getElementById("cpb-timeline-progress-timepassed");
     // const handle = document.getElementById("cpb-timeline-progress-handle");
@@ -119,16 +119,22 @@ getPosition(el) {
 }
 
   handleTimeline(e) {
-    e.preventDefault;
-    debugger
-    let timeline = document.getElementById("timeline")
-    let part1 = (e.clientX - this.getPosition(timeline))
-    let part2 = (timeline.clientWidth);
+    let wholething;
+
+    if (!e.fake) {
+      e.persist()
+      e.preventDefault;
+      let timeline = document.getElementById("timeline")
+      let part1 = (e.clientX - this.getPosition(timeline))
+      let part2 = (timeline.clientWidth);
+      wholething = (part1/part2)
+    } else {
+      wholething = e.wholething
+    }
+    
+   
 
     
-    debugger
-
-    let wholething = (part1/part2)
     let songmin = this.state.duration.split(':')[0]*60
     let songsec = this.state.duration.split(':')[1]
     let dur = wholething * (songmin + parseInt(songsec))
@@ -184,6 +190,11 @@ getPosition(el) {
       currentButton = pauseButton;
     } else {
       currentButton = playButton;
+    }
+
+    if (this.props.wave !== this.state.waveEvent) {
+      this.handleTimeline(this.props.wave)
+      this.setState({waveEvent: this.props.wave})
     }
 
 

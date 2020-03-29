@@ -14,8 +14,25 @@ class SongShow extends React.Component {
     this.deleteLike = this.deleteLike.bind(this)
     this.handleDeleteComment = this.handleDeleteComment.bind(this)
     this.handlePause = this.handlePause.bind(this)
-    this.handleCurrentTime = this.handleCurrentTime.bind(this)
-    
+    this.getPosition = this.getPosition.bind(this)
+    this.handleWave = this.handleWave.bind(this)
+  }
+
+  getPosition(el) {
+    return el.getBoundingClientRect().left;
+  }
+
+  handleWave(e) {
+    e.preventDefault()
+    let timeline = document.getElementById("waveform")
+    let part1 = (e.clientX - this.getPosition(timeline))
+    let part2 = (timeline.clientWidth);
+    let wholething = (part1/part2)
+    this.props.waveEvent({wholething: wholething, fake: true})
+  }
+
+  getPosition(el) {
+    return el.getBoundingClientRect().left;
   }
   
   handleCurrentTime() {
@@ -277,6 +294,7 @@ class SongShow extends React.Component {
         )
     }
 
+
     
 
     return(
@@ -288,7 +306,7 @@ class SongShow extends React.Component {
             {time}
             {play}             
             <div className='waveform-holder'>
-              <div id='waveform'></div>
+              <div onClick={this.handleWave} id='waveform'></div>
             </div>
                 
                 <h3 className='songPT'>{this.props.song.title}</h3>

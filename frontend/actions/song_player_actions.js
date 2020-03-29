@@ -1,6 +1,7 @@
 export const SONG_PLAYING = 'SONG_PLAYING';
 export const SONG_PAUSED = 'SONG_PAUSED'; 
 export const TIMER = 'TIMER'
+export const EVENT = 'EVENT'
 
 
 export const playSong = (song) => ({
@@ -16,4 +17,9 @@ export const pauseSong = (song) => ({
 export const timer = (time) => ({
   type: TIMER,
   time
+})
+
+export const waveClick = (event) => ({
+  type: EVENT,
+  event: event
 })
