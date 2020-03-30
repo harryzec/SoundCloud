@@ -202,6 +202,33 @@ class SearchPage extends React.Component {
                 </div>
               </>
             )
+          } else {
+            let num = 0;
+
+            let songtits = search.tracks.map((track, i) => {
+              num++;
+              return(
+              <>
+                <div onClick={()=> this.handlePlay(track, playlist.tracks.slice(i+1))} className='playlisttrackindividsearch'>
+                  <div className='flexed'>
+                    <img width='20' height='20'src={track.imgUrl}/>
+                    <div className='playlisttnum'>{num}</div>
+                    <div className='playlisttname'>{track.title}</div>
+                  </div>
+                  <div>&#9654; {track.plays}</div>
+                </div>
+              </>)
+            })
+
+            info = (
+              <div className='searchplaynone'>
+                <Wave song={search.tracks[0]} songtype={'search'}/>
+
+                <div className='playlisttrackssearch'>
+                  {songtits}
+                </div>
+              </div>
+            )
           }
 
         }

@@ -382,6 +382,18 @@
   overflow: scroll;
 }
 
+.playlisttrackssearch {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 2%;
+  margin-top: 96px;
+  height: auto;
+  width: 600px;
+  max-height: 72px;
+  overflow: scroll;
+}
+
 .playlisttrackindivid {
   cursor: pointer;
   display: flex;
@@ -393,6 +405,21 @@
   padding-bottom: 2px;
   height: auto;
   z-index: 3;
+}
+
+.playlisttrackindividsearch {
+  cursor: pointer;
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 12px;
+  color: black;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  height: auto;
+  z-index: 3;
+  justify-content: space-between;
 }
 
 .playlisttname {
