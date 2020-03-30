@@ -5,6 +5,7 @@ import { fetchSongsByArtist } from '../../actions/song_action'
 import { playSong, pauseSong } from '../../actions/song_player_actions'
 import { openEditModal, openPlaylistModal } from '../../actions/modal_actions'
 import { createFollow, deleteFollow } from '../../actions/follow_action'
+import { createLike, deleteLike } from '../../actions/like_action'
 
 const mSTP = (state, ownProps) => {
   return {
@@ -23,6 +24,8 @@ const mDTP = dispatch => ({
   openEditModal: (edit, song)=> dispatch(openEditModal(edit, song)),
   createFollow: (follow) => dispatch(createFollow(follow)),
   deleteFollow: (follow_id) => dispatch(deleteFollow(follow_id)),
+  createLike: (like)=> dispatch(createLike(like)),
+  deleteLike: (like_id) => dispatch(deleteLike(like_id)),
 })
 
 export default connect(mSTP, mDTP)(Dashboard)

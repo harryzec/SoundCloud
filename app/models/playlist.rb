@@ -18,6 +18,7 @@ class Playlist < ApplicationRecord
   has_one_attached :photo
 
   def self.search(search)
-    Playlist.where("lower(title) LIKE ?", "#{search.downcase}%").select("title, catagory, user, permalink") + Playlist.where("lower(title) LIKE ?", "% #{search.downcase}%").select("title, catagory, user, permalink")
+    playlists = Playlist.where("lower(title) LIKE ?", "#{search.downcase}%").select("id") + Playlist.where("lower(title) LIKE ?", "% #{search.downcase}%").select("id")
+    playlists.map {|playlist| playlist.id }
   end
 end

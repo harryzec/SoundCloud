@@ -34,7 +34,7 @@ class SearchPage extends React.Component {
             )
             searchpic = (
               <>
-              <div className='searchpic'></div>
+              <img className='searchpic' src={search.profileUrl}/>
               </>
             )     
         } else if (search.catagory === 'song'){
@@ -45,7 +45,7 @@ class SearchPage extends React.Component {
             )
             searchpic = (
               <>
-              <div className='searchpic2'></div>
+              <img className='searchpic2' src={search.imgUrl}/>
               </>
             )
         }

@@ -2,7 +2,16 @@
 
 json.set! @user.username do
 
-  json.extract! @user, :id, :username, :playlists, :followers 
+  json.extract! @user, :id, :username, :playlists, :followers, :comments
+
+  json.comments @user.comments do |comment|
+    song = Song.find_by(id: comment.user_id)
+    json.title song.title
+    json.body comment.body
+    json.hyperlink song.hyperlink
+    json.username song.user.username
+    json.created comment.convert_time
+  end
 
   json.follows @user.follows do |follow|
     user = User.find_by(id: follow.user_id)

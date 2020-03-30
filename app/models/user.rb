@@ -37,7 +37,8 @@ class User < ApplicationRecord
     dependent: :destroy
 
   def self.search(search)
-    User.where("lower(username) LIKE ?", "#{search.downcase}%") + User.where("lower(username) LIKE ?", "% #{search.downcase}%")
+    users = User.where("lower(username) LIKE ?", "#{search.downcase}%") + User.where("lower(username) LIKE ?", "% #{search.downcase}%")
+    users.map {|user| user.id }
   end
 
 

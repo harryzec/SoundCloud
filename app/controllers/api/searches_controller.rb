@@ -1,13 +1,19 @@
 class Api::SearchesController < ApplicationController
   def search
-    
+ 
     @songs = [Song.search(params[:search])]
-    
+    @songs = @songs.flatten
+    @songs = @songs.map {|id| Song.find_by(id: id)}
+
     @playlists = [Playlist.search(params[:search])]
-    @artists = [User.search(params[:search])]
-    
-    @return = @songs + @playlists + @artists
-    render json: @return
+    @playlists = @playlists.flatten
+    @playlists = @playlists.map { |id| Playlist.find_by(id: id)}
+
+    @users = [User.search(params[:search])]
+    @users = @users.flatten
+    @users = @users.map {|id| User.find_by(id: id)}
+    @searched = @songs + @playlists + @users
+    render :index
   end
 
   private 

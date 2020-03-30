@@ -25,7 +25,8 @@ class Song < ApplicationRecord
     dependent: :destroy
 
   def self.search(search)
-    Song.where("lower(title) LIKE ?", "#{search.downcase}%").select("title, catagory, user_id, hyperlink, user") +  Song.where("lower(title) LIKE ?", "% #{search.downcase}%").select("title, catagory, hyperlink,user_id, user")
+    songs = Song.where("lower(title) LIKE ?", "#{search.downcase}%").select("id") +  Song.where("lower(title) LIKE ?", "% #{search.downcase}%").select("id") 
+    songs.map {|song| song.id }
   end
 
   private 

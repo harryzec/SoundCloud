@@ -14,6 +14,8 @@ class Dashboard extends React.Component {
     this.state = {}
     this.createFollow = this.createFollow.bind(this)
     this.deleteFollow = this.deleteFollow.bind(this)
+    this.createLike = this.createLike.bind(this)
+    this.deleteLike = this.deleteLike.bind(this)
   }
 
   createFollow(e) {
@@ -31,6 +33,26 @@ class Dashboard extends React.Component {
     this.props.deleteFollow(id)
     let username= this.props.match.params.username.split('-').join(' ')
     this.props.fetchUser(username)
+  }
+
+  createLike(e, id) {
+    e.preventDefault()
+    this.props.createLike({    
+      likeable_id: id,
+      likeable_type: "Song",
+      user_id: this.props.currentuser.id
+  })
+    let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchSongsByArtist(username)
+
+  }
+
+  deleteLike(e, id) {
+    e.preventDefault()
+    this.props.deleteLike(id)
+    let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchSongsByArtist(username)
+
   }
 
   
@@ -108,7 +130,6 @@ class Dashboard extends React.Component {
       artistSongs = Object.values(this.props.songs).map(song => {
         // let num = song.id
         // const { [num] } = this.state
-        debugger
         
         let wave = (
           <>
@@ -116,6 +137,22 @@ class Dashboard extends React.Component {
           </>
         ) 
         debugger
+
+        let likebutton = (
+          <>
+            <button onClick={(e) => this.createLike(e, song.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {song.likes.length}</button>
+          </>
+        )
+
+        song.likes.forEach(like => {
+          if (like.user_id === this.props.currentuser.id) {
+            likebutton = (
+              <>
+                <button onClick={(e) => this.deleteLike(e, like.id)}className='songBuliked'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {song.likes.length}</button>
+              </>
+            )
+          }
+        })
        
         return (
         <>
@@ -142,7 +179,7 @@ class Dashboard extends React.Component {
 
             <div className='songFoot'>
               <div className='songBO'>
-                <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
+                {likebutton}
                 <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                 <button className='songBu3' onClick={e => this.handleEdit(e, song)}>&#9998; Edit</button>
                 <button className='songBu4' onClick={() => this.setState({[song.id]: 'moreshow'})}>...More
@@ -243,7 +280,6 @@ class Dashboard extends React.Component {
       }
 
       let actual = this.props.user.likes.slice(0,3).map(like => {
-        debugger
         
         return(
           <>
@@ -307,6 +343,39 @@ class Dashboard extends React.Component {
      )
     }
 
+    let comments = null;
+
+    if (this.props.user.comments.length > 0) {
+      let number;
+
+      if (this.props.user.comments.length === 1) {
+        number= '1 Comment'
+      } else {
+        number = `${this.props.user.comments.length} Comments`
+      }
+      let comment = this.props.user.comments.slice(0, 3).map(comment => {
+        return(
+          <>
+            <div className='commentcont2'>
+              <div className='commenttop'>
+                <p className='commenton'>on <Link className='commentlink'to={`/${comment.username.split(' ').join('-')}/${comment.hyperlink}`}>{comment.title}</Link></p>
+                <p className='commenton2'>{comment.created} ago</p>
+              </div>
+              <p className='commenton'>"{comment.body}"</p>
+            </div>
+          </>
+        )
+      })
+
+      comments = (
+        <>
+          <div className='howmanylikes'>&#9998; {number}</div>
+          {comment}
+        </>
+      )
+
+    }
+
     titler = (
       <>
      <div className='profileOptions'>
@@ -351,6 +420,7 @@ class Dashboard extends React.Component {
         </div>
         {likes}
         {follows}
+        {comments}
       </div>
    
     </div>
