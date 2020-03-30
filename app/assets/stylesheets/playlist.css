@@ -527,6 +527,19 @@
   padding-top: 24px;
   padding-bottom: 30px;
 }
+.nosongsfound2 {
+  text-align: center;
+  font-size: 12px;
+  font-weight: normal;
+  padding-left: 115px;
+  padding-top: 24px;
+  padding-bottom: 30px;
+}
+
+.searchplaynone {
+  display: flex;
+  flex-direction: column;
+}
 
 .deleteplaylistmodal-background {
   position: fixed;

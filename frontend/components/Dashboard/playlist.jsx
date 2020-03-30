@@ -258,7 +258,8 @@ const mDTP = dispatch => ({
   openEditPlaylistModal: (modal, playlist) => dispatch(openEditPlaylistModal(modal, playlist)),
   playSong: (song) => dispatch(playSong(song)),
   pauseSong: (song) => dispatch(pauseSong(song)),
-  addQueue: (songs) => dispatch(addQueue(songs))
+  addQueue: (songs) => dispatch(addQueue(songs)),
+  
 })
 
 export default connect(mSTP, mDTP)(Playlist)

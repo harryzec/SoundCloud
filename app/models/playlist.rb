@@ -11,7 +11,7 @@ class Playlist < ApplicationRecord
     through: :playlist_tracks,
     source: :song
 
-  belongs_to :User,
+  belongs_to :user,
     foreign_key: :user_id,
     class_name: :User
     

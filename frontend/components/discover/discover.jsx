@@ -82,10 +82,7 @@ class Discover extends React.Component{
           
           {recent}
           
-        </div>
-        
-        <Link className='firstEle1' to='/Kendrick-Lamar'> <li className='firstEle'>&#8962;KEndrick</li></Link>
-        
+        </div>        
       </div>
     
       

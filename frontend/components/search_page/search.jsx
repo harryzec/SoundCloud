@@ -1,32 +1,83 @@
 import React from 'react'
 import {  Link } from 'react-router-dom'
+import Wave from '../waves/waves_container'
+import PlaylistModal from '../playlist_modal/playlist_modal'
 
 class SearchPage extends React.Component {
   constructor(props) {
     super(props)
+    this.createFollow = this.createFollow.bind(this)
+    this.deleteFollow = this.deleteFollow.bind(this)
+    this.createLike = this.createLike.bind(this)
+    this.deleteLike = this.deleteLike.bind(this)
+  }
+
+  createLike(e, id) {
+    e.preventDefault()
+    this.props.createLike({    
+      likeable_id: id,
+      likeable_type: "Song",
+      user_id: this.props.currentuser.id
+  })
+    this.props.fetchSearch(this.props.location.search.slice(3))
+  }
+
+  deleteLike(e, id) {
+    e.preventDefault()
+    this.props.deleteLike(id)
+    this.props.fetchSearch(this.props.location.search.slice(3))
+  }
+
+  createFollow(e, user_id) {
+    e.preventDefault()
+    this.props.createFollow({
+      user_id: user_id,
+      follower_id: this.props.currentuser.id
+    })
+    debugger
+    // let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchSearch(this.props.location.search.slice(3))
+  }
+
+  deleteFollow(e, id) {
+    e.preventDefault()
+    this.props.deleteFollow(id)
+    this.props.fetchSearch(this.props.location.search.slice(3))
+
+    // let username= this.props.match.params.username.split('-').join(' ')
+    // this.props.fetchUser(username)
   }
 
   componentDidMount() {
     this.props.fetchSearch(this.props.location.search.slice(3).split('%20').join(' '))
   }
 
-  shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
+  // shuffle(a) {
+  //   for (let i = a.length - 1; i > 0; i--) {
+  //       const j = Math.floor(Math.random() * (i + 1));
+  //       [a[i], a[j]] = [a[j], a[i]];
+  //   }
+  //   return a;
+  // }
   
   render() {
     let content;
 
     if (this.props.search.length > 0) {
-      let results = this.shuffle(Object.values(this.props.search.flat()))
+      let tracknum = 0;
+      let usernum = 0;
+      let playlistnum = 0;
+
+      let results = (Object.values(this.props.search.flat()))
       results = results.map(search => {
         let searchpic;
         let title;
+        let info;
         if (search.catagory === 'user') {
+          if (search.id === this.props.currentuser.id) {
+            return null;
+          }
+            usernum += 1;
             title = (
               <>
               <Link className='searchtitle' to={`/${search.username.split(' ').join('-')}`}>{search.username}</Link>
@@ -36,8 +87,34 @@ class SearchPage extends React.Component {
               <>
               <img className='searchpic' src={search.profileUrl}/>
               </>
-            )     
+            )  
+            let followbutton = (
+                <>
+                  <div className='extraBut2' onClick={(e)=>this.createFollow(e, search.id)}>+ Follow</div>
+                </>
+              
+            )
+            Object.values(search.follows).forEach(follower => {
+              debugger
+              if (follower.follower === this.props.currentuser.id) {
+                followbutton = (
+                  <>
+                    <div className='extraBut2' onClick={(e) => this.deleteFollow(e, follower.id)}><strong className='bigFont'>&#9745;</strong> Following</div>
+                  </>
+                )
+              }
+            })
+            info = (
+              <>
+                <p className='searchfollow'><img width='13' className='searchfpic' src='https://image.flaticon.com/icons/svg/747/747376.svg'/> {Object.values(search.follows).length}</p>
+                {followbutton}
+              </>
+            )   
         } else if (search.catagory === 'song'){
+            // if (search.user_id === this.props.currentuser.id) {
+            //   return null;
+            // }
+            tracknum += 1;
             title = (
               <>
               <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/${search.hyperlink}`}>{search.title}</Link>
@@ -48,6 +125,85 @@ class SearchPage extends React.Component {
               <img className='searchpic2' src={search.imgUrl}/>
               </>
             )
+
+            let likebutton = (
+              <>
+                <button onClick={(e) => this.createLike(e, search.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+              </>
+            )
+    
+            search.likes.forEach(like => {
+              if (like.user_id === this.props.currentuser.id) {
+                likebutton = (
+                  <>
+                    <button onClick={(e) => this.deleteLike(e, like.id)}className='songBuliked'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+                  </>
+                )
+              }
+            })
+
+
+            info = (
+              <>
+                <div className='searchwv'>
+                  <Wave song={search} songtype={'search'}/>
+
+                  <div className='songFootsearch'>
+                    <div className='songBOsearch'>
+                      {likebutton}
+                      <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+                      <button className='songBu4'>...More
+                        <div className='moreshow'>
+                          <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                          <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+                          <div className='moreshowli'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/641/641360.svg'/>  Stats</div>
+                          <div className='moreshowli'><img width='12'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'/>  Station</div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </>
+            )
+            
+        } else if (search.catagory ==='playlist') {
+          if (search.user === null) {
+            return null;
+          }
+          playlistnum +=1;
+          debugger
+          title = (
+            <>
+            <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/sets/${search.permalink}`}>{search.title}</Link>
+            </>
+          )
+          searchpic = (
+            <>
+            <img className='searchpic2' src={search.imageUrl}/>
+            </>
+          )
+        
+
+          if (search.tracks.length === 0) {
+            info = (
+              <>
+                <div className='searchplaynone'>
+                  <h2 className='nosongsfound2'>This playlist has no tracks yet</h2>
+                  <div className='songBOsearch'>
+                  <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
+                  <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+                  <button className='songBu4'>...More
+                    <div className='moreshow'>
+                      <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                    </div>
+                  </button>
+                  </div>
+                </div>
+              </>
+            )
+          }
+
         }
 
         return(
@@ -56,6 +212,7 @@ class SearchPage extends React.Component {
               {searchpic}
               <div className='searchinfos'>
                 {title}
+                {info}
 
                 
               </div>
@@ -66,7 +223,7 @@ class SearchPage extends React.Component {
       content = (
         <>
           <div className='searchresul'>
-            <p className='searchstats'>Found {this.props.search[0].length} tracks, {this.props.search[1].length} playlists, {this.props.search[2].length} people</p>
+            <p className='searchstats'>Found {tracknum} tracks, {playlistnum} playlists, {usernum} people</p>
             {results}
           </div>
         </>
@@ -87,6 +244,7 @@ class SearchPage extends React.Component {
     
     return(
       <>
+      <PlaylistModal/>
         <div className='searchpage'>
           <div className='searchheader'>
             <h2 className='searchHead'>Search results for "{this.props.location.search.slice(3).split('%20').join(' ')}"</h2>

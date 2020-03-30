@@ -299,6 +299,15 @@
   align-items: flex-end;
 }
 
+.songBOsearch {
+  display: flex;
+  justify-content: space-between;
+  width: 195px;
+  height: 19px;
+  bottom: 0;
+  align-items: flex-end;
+}
+
 .songBu {
   width: auto;
   height: 100%;
@@ -464,6 +473,12 @@
 .songFoot {
   height: 15px;
   justify-content: space-between;
+}
+
+.songFootsearch {
+  height: 15px;
+  justify-content: space-between;
+  margin-top: 98px;
 }
 .genreS {
   padding-right: 3%;

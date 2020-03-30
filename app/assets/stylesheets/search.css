@@ -110,10 +110,27 @@
   height: 142px;
 }
 
+.searchfollow {
+  margin: 0;
+  font-size: 12px;
+  margin-top: 10px;
+  padding-bottom: 15px;
+}
+
+.searchwv {
+  height:auto;
+  width: auto;
+}
+
 .searchinfos {
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
+  padding-left: 22px;
+  padding-top: 10px;
+}
+
+.searchfpic {
+  padding-right: 5px;
 }
 .searchtitle {
   color: #333;

@@ -151,8 +151,10 @@ handlePlay(song){
 
    let type = 'waveform-holders';
 
-   if (this.props.songtype) {
+   if (this.props.songtype === true) {
      type = 'waveform-holderssong'
+   } else if (this.props.songtype === 'search') {
+     type = 'waveform-holderssearch'
    }
 
 
