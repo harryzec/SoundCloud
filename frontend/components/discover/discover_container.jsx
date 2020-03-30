@@ -7,7 +7,8 @@ import { fetchPlaylists } from '../../actions/playlist_actions'
 
 const mSTP = (state) => ({ 
   recentplays: Object.values(state.entities.recentplays),
-  playlists: Object.values(state.entities.PlaylistReducer)
+  playlists: Object.values(state.entities.PlaylistReducer),
+  currentuser: state.session.currentUser
 })
 
 

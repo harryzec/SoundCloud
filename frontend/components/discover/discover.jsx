@@ -61,6 +61,27 @@ class Discover extends React.Component{
       </>
     ))
 
+    let actual = this.props.currentuser.likes.slice(0,3).map(like => {
+        
+      return(
+        <>
+          <div className='likeshow'>
+            <img src={like.imgUrl} width='50' height='50'/>
+            <div className='likeInfo'>
+              <Link className='likeuser' to={`/${like.username.split(' ').join('-')}`}>{like.username}</Link>
+              <Link className='liketitle'to={`/${like.username.split(' ').join('-')}/${like.hyperlink}`}>{like.title}</Link>
+              
+              <div className='likestats'>
+                <p className='likestat1'>&#9654; {like.plays}</p>
+                <p className='likestat'>&#9829; {like.likes}</p>
+                <p className='likestat3'>&#9998; {like.comments}</p>
+              </div>
+            </div>
+          </div>
+        </>
+      )
+    })
+
     return(
       <>
       <div className='discoverMain'>
@@ -78,6 +99,9 @@ class Discover extends React.Component{
           
         </div>
         <div className='recentSection'>
+          <h3 className='listenHis'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/2725/2725222.svg'/> Who to follow</h3>
+          <h3 className='listenHis'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/2725/2725161.svg'/> Likes</h3>
+          {actual}
           <h3 className='listenHis'><img className='cale' width='12'src ='https://image.flaticon.com/icons/svg/747/747310.svg'/>  Listening History</h3>
           
           {recent}
