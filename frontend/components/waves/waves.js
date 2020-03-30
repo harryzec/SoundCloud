@@ -149,6 +149,12 @@ handlePlay(song){
    }
    
 
+   let type = 'waveform-holders';
+
+   if (this.props.songtype) {
+     type = 'waveform-holderssong'
+   }
+
 
    
 
@@ -157,7 +163,7 @@ handlePlay(song){
       <>
       {time}
       {duration}
-      <div className='waveform-holders'>
+      <div className={type}>
         <div onClick={this.handleWave} id={`waveformsong${this.props.song.id}`}></div>
       </div>
       </>

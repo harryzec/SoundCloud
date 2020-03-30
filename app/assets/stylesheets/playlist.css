@@ -19,6 +19,20 @@
   padding-left: 17px;
   padding-right: 17px;
   transform: translate(-50%, -50%);
+  animation-name: modal-in;
+  animation-duration: 0.7s;
+  z-index: 10;
+}
+
+@keyframes modal-in {
+  from {
+    top: -100%;
+    bottom: -100%;
+  }
+  to {
+    top: 50%;
+    bottom: 0%;
+  }
 }
 
 .songwvz {
@@ -363,6 +377,9 @@
   border: 1px solid #e5e5e5;
   margin-bottom: 2%;
   margin-top: 96px;
+  height: auto;
+  max-height: 72px;
+  overflow: scroll;
 }
 
 .playlisttrackindivid {
@@ -531,6 +548,20 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
+  animation-name: modal-in;
+  animation-duration: 0.7s;
+  z-index: 10;
+}
+
+@keyframes modal-in {
+  from {
+    top: -100%;
+    bottom: -100%;
+  }
+  to {
+    top: 50%;
+    bottom: 0%;
+  }
 }
 
 .deleteplaylistmod {

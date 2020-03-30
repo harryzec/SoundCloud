@@ -4,6 +4,7 @@ import EditModal from '../edit_modal/edit_modal'
 import PlaylistModal from '../playlist_modal/playlist_modal'
 import { openPlaylistModal } from '../../actions/modal_actions';
 import Wave from '../waves/waves_container'
+import Waves from '../waves/waves';
 
 
 class Dashboard extends React.Component {
@@ -111,44 +112,35 @@ class Dashboard extends React.Component {
         
         let wave = (
           <>
-          < Wave song={song}/>
+          < Wave song={song} songtype={true}/>
           </>
         ) 
         debugger
        
         return (
         <>
-        {/* {title} */}
-        <div className='realCont'>
+
+   
         <div className='songContainer'>
        
-       <div className='rich2Div'>
-        <div className='richDiv'>
+       
         <img src={song.imgUrl} className='songImg1'/>
           <div className='songHelp'>
-            <div className='playSong'onClick={()=> this.handlePlay(song)}><p className='playcon'>&#9654;</p></div>
-            
-            <div className='songpIn'>
-            <li className='sArtist'>{this.props.user.username}</li>
-            <li className='sSong'><Link className='sSong' to={`/${this.props.user.username}/${song.hyperlink}`}>{song.title}</Link></li>
+            <div className='topsongcont'>
+              <div className='playSong'onClick={()=> this.handlePlay(song)}><p className='playcon'>&#9654;</p></div>
+              
+              <div className='songpIn'>
+                <li className='sArtist'>{this.props.user.username}</li>
+                <li className='sSong'><Link className='sSong' to={`/${this.props.user.username}/${song.hyperlink}`}>{song.title}</Link></li>
+              </div>
+
+              <p className='songG'>#{song.genre}</p>
+            </div>
+            <div className='sngwvc'>
+              {wave}
             </div>
 
-            
-
-          </div>
-          </div>
-          </div>
-
-          {wave}
-
-          {/* <div className='genreS'>
-            <p className='songG'>#{song.genre}</p>
-          </div> */}
-          <p className='songG'>#{song.genre}</p>
-
-          </div>
-
-          <div className='songFoot'>
+            <div className='songFoot'>
               <div className='songBO'>
                 <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
                 <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
@@ -163,8 +155,20 @@ class Dashboard extends React.Component {
                   </div>
                 </button>
               </div>
-        </div>
+            </div>
+              
+
           </div>
+
+          
+
+          
+          
+
+          </div>
+
+         
+          
 
           
         
@@ -227,6 +231,82 @@ class Dashboard extends React.Component {
         }
       })
     }
+    let likes = null;
+
+    if (this.props.user.likes.length > 0) {
+
+      let number;
+      if (this.props.user.likes.length === 1) {
+        number= '1 like'
+      } else {
+        number = `${this.props.user.likes.length} likes`
+      }
+
+      let actual = this.props.user.likes.slice(0,3).map(like => {
+        debugger
+        
+        return(
+          <>
+            <div className='likeshow'>
+              <img src={like.imgUrl} width='50' height='50'/>
+              <div className='likeInfo'>
+                <Link className='likeuser' to={`/${like.username.split(' ').join('-')}`}>{like.username}</Link>
+                <Link className='liketitle'to={`/${like.username.split(' ').join('-')}/${like.hyperlink}`}>{like.title}</Link>
+                
+                <div className='likestats'>
+                  <p className='likestat1'>&#9654; {like.plays}</p>
+                  <p className='likestat'>&#9829; {like.likes}</p>
+                  <p className='likestat3'>&#9998; {like.comments}</p>
+                </div>
+              </div>
+            </div>
+          </>
+        )
+      })
+      likes = (
+        <>
+          <div className='howmanylikes'>&#9829; {number}</div>
+          {actual}
+        </>
+      )
+    }
+
+    let follows = null;
+
+    if (this.props.user.follows.length > 0) {
+      let number;
+
+      if (this.props.user.follows.length === 1) {
+        number= '1 follow'
+      } else {
+        number = `${this.props.user.follows.length} follows`
+      }
+
+      let follow = this.props.user.follows.slice(0, 3).map(follow => {
+        return(
+          <>
+            <div className='followshow'>
+              <img className='followpic' src={follow.profileUrl}/>
+              <div className='followInf'>
+                <Link className='followlink' to={`/${follow.username.split(' ').join('-')}`}>{follow.username}</Link>
+                <div className='followsts'>
+                  <p className='followst1'><strong className='larger1'>&#9745;</strong> {follow.followers}</p>
+                  <p className='followst'><strong className='larger2'>&#9835;</strong> {follow.songs}</p>
+                </div>
+              </div>
+            </div>
+          </>
+        )
+      })
+
+     follows = (
+       <>
+        <div className='howmanylikes'>&#9745; {number}</div>
+        {follow}
+       </>
+     )
+    }
+
     titler = (
       <>
      <div className='profileOptions'>
@@ -254,21 +334,23 @@ class Dashboard extends React.Component {
       </div>
 
       <div className='statsSection'>
-      <div className='myStats'>
-        <div className='myFollowers'>
-          <p className='headz'>Followers</p>
-          <p className='statNum'>{this.props.user.followers.length}</p>
+        <div className='myStats'>
+          <div className='myFollowers'>
+            <p className='headz'>Followers</p>
+            <p className='statNum'>{this.props.user.followers.length}</p>
 
+          </div>
+          <div className='myFollowing'>
+            <p className='headz'>Following</p>
+            <p className='statNum'>{this.props.user.follows.length}</p>
+          </div>
+          <div className='myTracks'>
+            <p className='headz'>Tracks</p>
+            <p className='statNum'>{Object.keys(this.props.songs).length}</p>
+          </div>
         </div>
-        <div className='myFollowing'>
-          <p className='headz'>Following</p>
-          <p className='statNum'>{this.props.user.follows.length}</p>
-        </div>
-        <div className='myTracks'>
-          <p className='headz'>Tracks</p>
-          <p className='statNum'>{Object.keys(this.props.songs).length}</p>
-        </div>
-      </div>
+        {likes}
+        {follows}
       </div>
    
     </div>

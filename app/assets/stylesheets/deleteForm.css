@@ -18,6 +18,20 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
+  animation-name: modal-in;
+  animation-duration: 0.7s;
+  z-index: 10;
+}
+
+@keyframes modal-in {
+  from {
+    top: -100%;
+    bottom: -100%;
+  }
+  to {
+    top: 50%;
+    bottom: 0%;
+  }
 }
 
 .reallyDelete {

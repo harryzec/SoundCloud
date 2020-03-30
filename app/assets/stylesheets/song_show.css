@@ -467,3 +467,13 @@
   position: absolute;
   -webkit-box-reflect: below 2px -webkit-gradient(linear, right top, right bottom, from(transparent), to(rgba(255, 255, 255, 0.4)));
 }
+
+.waveform-holderssong {
+  height: 64px;
+  overflow: hidden;
+  margin-top: -13px;
+  width: 70%;
+  z-index: 1;
+  position: absolute;
+  -webkit-box-reflect: below 2px -webkit-gradient(linear, right top, right bottom, from(transparent), to(rgba(255, 255, 255, 0.4)));
+}

@@ -159,9 +159,11 @@
 
 
 .statsSection {
-  margin-left: 3%;
-  margin-right: 3%;
-  position: relative;
+  padding-left: 20px;
+  margin-right: 2px;
+  
+  display: flex;
+  flex-direction: column;
 }
 
 .extraButtons:hover {
@@ -231,8 +233,7 @@
 
 .songContainer {
   display: flex;
-  justify-content: space-between;
-  height: 107px;
+  height: auto;
   width: 100%;
   display: flex;
   margin-top: 40px;
@@ -248,25 +249,17 @@
   border-radius: 100px;
   text-align: center;
   margin-top: 5px;
-  margin-left: -15px;
 }
 
-.richDiv {
-  display: flex;
-  justify-content: space-between;
-}
 
-.rich2Div {
-  display: flex;
-  justify-content:space-between;
-}
 
 .songpIn {
   width: 10vw;
-  height: 8vw;
   padding-left: 10px;
   list-style: none;
   margin-top: 5px;
+  display:flex;
+  flex-direction: column;
 }
 .sArtist {
   color: #999;
@@ -315,8 +308,7 @@
   border-radius: 3px;
   background-color: #fff;
   position: relative;
-  z-index: 12;
-
+  z-index: 2;
   cursor: pointer;
 }
 .songBu1 {
@@ -329,8 +321,7 @@
   background-color: #fff;
   position: relative;
   cursor: pointer;
-  z-index: 12;
-
+  z-index: 2;
 }
 
 .songBu2 {
@@ -343,8 +334,7 @@
   background-color: #fff;
   position: relative;
   cursor: pointer;
-  z-index: 12;
-
+  z-index: 2;
 }
 
 .songBu3 {
@@ -358,8 +348,7 @@
   position: relative;
   outline: none;
   cursor: pointer;
-  z-index: 12;
-
+  z-index: 2;
 }
 
 .songBu4 {
@@ -375,8 +364,7 @@
   background-color: #fff;
   position: relative;
   outline: none;
-  z-index: 12;
-
+  z-index: 2;
   cursor: pointer;
 
 }
@@ -456,7 +444,6 @@
 .songFoot {
   height: 15px;
   justify-content: space-between;
-  margin-left: 11.6vw;
 }
 .genreS {
   padding-right: 3%;
@@ -481,13 +468,23 @@
 .songHelp {
   padding-left: 30px;
   display:flex;
-  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+}
+
+.topsongcont {
+  display:flex;
+}
+.sngwvc {
+  margin-top: 0;
+  width: 100%;
+  height: 91px;
 }
 
 .myStats {
   display: flex;
   align-items: center;
-  position: absolute;
   width: 23vw;
 }
 
@@ -547,4 +544,133 @@
   top: 78px;
   left: 19.5%;
   z-index: 12;
+}
+
+.howmanylikes {
+  border-bottom: 1px solid #f2f2f2;
+  width: 100%;
+  color: #999;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.likeshow {
+  display: flex;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.likeInfo {
+  display: flex;
+  flex-direction: column;
+  padding-left: 7px;
+}
+
+.likestats {
+  display: flex;
+}
+
+.likeuser {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.likeuser:hover {
+  color: #333;
+}
+
+.liketitle {
+  color: #333;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.liketitle {
+  color: black;
+}
+
+.likestat {
+  margin: 0;
+  padding: 1px;
+  padding-right: 10px;
+  font-size: 11px;
+  color: rgb(179, 178, 178);
+}
+
+.likestat1{
+  margin: 0;
+  padding: 1px;
+  padding-top: 2.4px;
+  padding-right: 10px;
+  font-size: 11px;
+  color: rgb(179, 178, 178);
+}
+.likestat3{
+  margin: 0;
+  padding: 1px;
+  padding-top: 2.5px;
+  padding-right: 10px;
+  font-size: 11px;
+  color: rgb(179, 178, 178);
+}
+
+.followshow {
+  margin-top: 15px;
+  display: flex;
+}
+
+.followpic {
+  border-radius: 100px;
+  height: 50px;
+  width: 50px;
+}
+
+.followInf {
+  display: flex;
+  flex-direction: column;
+  padding-left: 7px;
+}
+
+.followsts {
+  display: flex;
+  margin-top: 5px;
+}
+
+.followlink {
+  color: #333;
+  text-decoration: none;
+  font-size: 12px;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+.followlink:hover {
+  color: black;
+}
+
+.followst {
+  margin: 0;
+  font-size: 12px;
+  padding-right: 8px;
+  color: rgb(179, 178, 178);
+}
+
+.followst1 {
+  margin: 0;
+  font-size: 12px;
+  padding-right: 8px;
+  color: rgb(179, 178, 178);
+}
+
+
+
+.larger1 {
+  font-size: 14px;
+}
+
+.larger2 {
+  font-size: 13px;
 }
