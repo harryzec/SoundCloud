@@ -11,6 +11,8 @@ import DeletePlaylist  from '../delete_modal/delete_playlist_modal'
 import { playSong, pauseSong } from '../../actions/song_player_actions'
 import { addQueue } from '../../actions/queue_action'
 import Waves from '../waves/waves_container'
+import { withRouter } from "react-router";
+
 
 
 class Playlist extends React.Component {
@@ -19,11 +21,11 @@ class Playlist extends React.Component {
     this.handlePlay = this.handlePlay.bind(this)
   }
 
-  componentDidMount(){
-    this.props.fetchUser(this.props.match.params.username)
-    this.props.fetchSongsByArtist(this.props.match.params.username)
-    this.props.fetchPlaylistByArtist(this.props.match.params.username)
-  }
+  // componentDidMount(){
+  //   this.props.fetchUser(this.props.match.params.username)
+  //   this.props.fetchSongsByArtist(this.props.match.params.username)
+  //   this.props.fetchPlaylistByArtist(this.props.match.params.username)
+  // }
 
   handlePlay(track, playlisttracks) {
 
@@ -241,6 +243,7 @@ class Playlist extends React.Component {
 }
 
 const mSTP = (state, ownProps) => {
+  debugger
   return {
     user: state.entities.users[ownProps.match.params.username],
     songs: state.entities.songs,
@@ -251,9 +254,6 @@ const mSTP = (state, ownProps) => {
 }
 
 const mDTP = dispatch => ({
-  fetchSongsByArtist: (userId) => dispatch(fetchSongsByArtist(userId)),
-  fetchPlaylistByArtist: (userId) => dispatch(fetchPlaylistByArtist(userId)),
-  fetchUser: (username) => dispatch(fetchUser(username)),
   openDeletePlaylistModal: (modal, playlist) => dispatch(openDeletePlaylistModal(modal, playlist)),
   openEditPlaylistModal: (modal, playlist) => dispatch(openEditPlaylistModal(modal, playlist)),
   playSong: (song) => dispatch(playSong(song)),
@@ -262,4 +262,4 @@ const mDTP = dispatch => ({
   
 })
 
-export default connect(mSTP, mDTP)(Playlist)
+export default withRouter(Playlist)

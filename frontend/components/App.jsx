@@ -40,21 +40,20 @@ const App = () => (
       <ProtectedRoute path='/upload' component={UploadContainer}/>
       <Route path='/discover' component={DiscoverContainer} />
       <Route path='/search' component={searchContainer}/>
-      <Route exact path='/:username/sets/:permalink' component={playlistshow}/>  */}
-      
+      <Route exact path='/:username/sets/:permalink' component={playlistshow}/> 
+      <Route exact path='/:username/sets' component={DashboardContainer}/>
       <Route exact path='/:username/:hyperlink' component={SongShowCont}/> 
+
       <Route path='/:username' component={DashboardContainer}/>
      
       
       {/* <Route path='/search/sounds'/> */}
-      <Route evact path='/:username/:hyperlink' component={SongShowCont}/> 
+      
     
       
     </Switch>
 
-    <Switch>
-      <Route path='/:username/sets' component={Playlist}/>
-    </Switch>
+    
     
     
     

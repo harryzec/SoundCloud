@@ -5,6 +5,7 @@ import PlaylistModal from '../playlist_modal/playlist_modal'
 import { openPlaylistModal } from '../../actions/modal_actions';
 import Wave from '../waves/waves_container'
 import Waves from '../waves/waves';
+import PlaylistDashboard from './playlist'
 
 
 class Dashboard extends React.Component {
@@ -62,6 +63,7 @@ class Dashboard extends React.Component {
     let username= this.props.match.params.username.split('-').join(' ')
     this.props.fetchUser(username)
     this.props.fetchSongsByArtist(username)
+    this.props.fetchPlaylistByArtist(this.props.match.params.username)
   }
 
   handlePlay(song){
@@ -84,11 +86,11 @@ class Dashboard extends React.Component {
    let artistSongs;
    let titler = null;
   
-
+    debugger
    if (this.props.match.isExact) {
-
+    debugger
   
-    
+  if (this.props.match.path === '/:username') {
 
    if (this.props.songs === {}) {
      return(
@@ -136,7 +138,7 @@ class Dashboard extends React.Component {
           < Wave song={song} songtype={true}/>
           </>
         ) 
-        debugger
+        
 
         let likebutton = (
           <>
@@ -429,8 +431,23 @@ class Dashboard extends React.Component {
   } else {
     titler = null
   }
+
+
+
+  } 
   
- 
+  
+  if (this.props.match.path === '/:username/sets') {
+    titler= (
+      <>
+        <PlaylistDashboard/>
+      </>
+    )
+  }
+
+  debugger
+
+
   
   
 
