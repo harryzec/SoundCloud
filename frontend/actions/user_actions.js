@@ -7,7 +7,7 @@ export const receiveUser = (user) => ({
   user: user
 })
 
-export const receieRandomUsers = (users) => ({
+export const receiveRandomUsers = (users) => ({
   type: RECEIVE_RANDOM_USERS,
   users
 })

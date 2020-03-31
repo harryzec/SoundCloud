@@ -10,6 +10,23 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def randomusers
+    
+  
+    @users = []
+    while @users.length != 3
+      user = User.all.sample
+      if user.id == current_user.id
+      else 
+        if user.followers.all? { |follow| follow.follower_id != @current_user.id } 
+          @users.push(user)
+        end
+      end
+
+    end
+    render :index
+  end
+
   def show
     @user = User.find_by(username: params[:id])
 
@@ -37,6 +54,6 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :profile_picture, :cover_photo)
+    params.require(:user).permit(:email, :username, :password, :profile_picture, :cover_photo, :id)
   end
 end

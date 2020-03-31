@@ -9,6 +9,7 @@ import PlaylistReducer from './playlist_reducer'
 import RecentPlaylist from './playlist_create_reducer'
 import searchReducer from './search_reducer'
 import QueueReducer from './queue_reducer'
+import RandomUsers from './random_users_reducer'
 
 const entitiesReducer = combineReducers({
   users: usersReducer,
@@ -19,7 +20,8 @@ const entitiesReducer = combineReducers({
   PlaylistReducer: PlaylistReducer,
   RecentPlaylist: RecentPlaylist,
   searched: searchReducer,
-  Queue: QueueReducer
+  Queue: QueueReducer,
+  randomUsers: RandomUsers
 });
 
 export default entitiesReducer;

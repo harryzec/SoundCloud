@@ -7,6 +7,7 @@ export const fetchUser = username => {
 
 export const fetchRandomUsers = () => {
   return $.ajax({
-    url: `/api/users`
-  })
+    method: "GET",
+    url: '/api/users/random/follow'
+  });
 }

@@ -74,10 +74,8 @@ export const createPlaylistTrack = playlisttrack => dispatch => {
 export const fetchPlaylist = (username, permalink) => dispatch => {
   debugger
   return APIUtil.getPlaylist(username, permalink)
-    .then((playlist) => (
-      dispatch(receivePlaylist(playlist))
-    ))
-    .catch(err => console.log(err))
+    .then((playlist) => (dispatch(receivePlaylist(playlist))))
+    // .catch(err => console.log(err))
 }
 
 export const deletePlaylistTrack = playlisttrack => dispatch => {
