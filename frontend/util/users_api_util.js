@@ -4,3 +4,9 @@ export const fetchUser = username => {
     method: "GET"
   });
 };
+
+export const fetchRandomUsers = () => {
+  return $.ajax({
+    url: `/api/users`
+  })
+}

@@ -190,6 +190,114 @@ class Playlist extends React.Component {
           </>
         )
       } 
+
+      let likes = null;
+
+    if (this.props.user.likes.length > 0) {
+
+      let number;
+      if (this.props.user.likes.length === 1) {
+        number= '1 like'
+      } else {
+        number = `${this.props.user.likes.length} likes`
+      }
+
+      let actual = this.props.user.likes.slice(0,3).map(like => {
+        
+        return(
+          <>
+            <div className='likeshow'>
+              <img src={like.imgUrl} width='50' height='50'/>
+              <div className='likeInfo'>
+                <Link className='likeuser' to={`/${like.username.split(' ').join('-')}`}>{like.username}</Link>
+                <Link className='liketitle'to={`/${like.username.split(' ').join('-')}/${like.hyperlink}`}>{like.title}</Link>
+                
+                <div className='likestats'>
+                  <p className='likestat1'>&#9654; {like.plays}</p>
+                  <p className='likestat'>&#9829; {like.likes}</p>
+                  <p className='likestat3'>&#9998; {like.comments}</p>
+                </div>
+              </div>
+            </div>
+          </>
+        )
+      })
+      likes = (
+        <>
+          <div className='howmanylikes'>&#9829; {number}</div>
+          {actual}
+        </>
+      )
+    }
+
+    let follows = null;
+
+    if (this.props.user.follows.length > 0) {
+      let number;
+
+      if (this.props.user.follows.length === 1) {
+        number= '1 follow'
+      } else {
+        number = `${this.props.user.follows.length} follows`
+      }
+
+      let follow = this.props.user.follows.slice(0, 3).map(follow => {
+        return(
+          <>
+            <div className='followshow'>
+              <img className='followpic' src={follow.profileUrl}/>
+              <div className='followInf'>
+                <Link className='followlink' to={`/${follow.username.split(' ').join('-')}`}>{follow.username}</Link>
+                <div className='followsts'>
+                  <p className='followst1'><strong className='larger1'>&#9745;</strong> {follow.followers}</p>
+                  <p className='followst'><strong className='larger2'>&#9835;</strong> {follow.songs}</p>
+                </div>
+              </div>
+            </div>
+          </>
+        )
+      })
+
+     follows = (
+       <>
+        <div className='howmanylikes'>&#9745; {number}</div>
+        {follow}
+       </>
+     )
+    }
+
+    let comments = null;
+
+    if (this.props.user.comments.length > 0) {
+      let number;
+
+      if (this.props.user.comments.length === 1) {
+        number= '1 Comment'
+      } else {
+        number = `${this.props.user.comments.length} Comments`
+      }
+      let comment = this.props.user.comments.slice(0, 3).map(comment => {
+        return(
+          <>
+            <div className='commentcont2'>
+              <div className='commenttop'>
+                <p className='commenton'>on <Link className='commentlink'to={`/${comment.username.split(' ').join('-')}/${comment.hyperlink}`}>{comment.title}</Link></p>
+                <p className='commenton2'>{comment.created} ago</p>
+              </div>
+              <p className='commenton'>"{comment.body}"</p>
+            </div>
+          </>
+        )
+      })
+
+      comments = (
+        <>
+          <div className='howmanylikes'>&#9998; {number}</div>
+          {comment}
+        </>
+      )
+
+    }
       return(
         <>
         <DeletePlaylist/>
@@ -231,6 +339,9 @@ class Playlist extends React.Component {
             <p className='statNum'>{Object.keys(this.props.songs).length}</p>
           </div>
         </div>
+          {likes}
+          {follows}
+          {comments}
         </div>
     
       </div>
@@ -242,24 +353,5 @@ class Playlist extends React.Component {
   }
 }
 
-const mSTP = (state, ownProps) => {
-  debugger
-  return {
-    user: state.entities.users[ownProps.match.params.username],
-    songs: state.entities.songs,
-    player: state.ui.SongPlayer,
-    currentuser: state.session.currentUser,
-    playlists: Object.values(state.entities.PlaylistReducer)
-  }
-}
-
-const mDTP = dispatch => ({
-  openDeletePlaylistModal: (modal, playlist) => dispatch(openDeletePlaylistModal(modal, playlist)),
-  openEditPlaylistModal: (modal, playlist) => dispatch(openEditPlaylistModal(modal, playlist)),
-  playSong: (song) => dispatch(playSong(song)),
-  pauseSong: (song) => dispatch(pauseSong(song)),
-  addQueue: (songs) => dispatch(addQueue(songs)),
-  
-})
 
 export default withRouter(Playlist)

@@ -4,11 +4,12 @@ import { logout } from '../../actions/session_actions';
 import { fetchSong } from '../../actions/song_action';
 import { playSong, pauseSong } from '../../actions/song_player_actions'
 import { fetchPlaylists } from '../../actions/playlist_actions'
+import { fetchRandomUsers } from '../../actions/user_actions'
 
 const mSTP = (state) => ({ 
   recentplays: Object.values(state.entities.recentplays),
   playlists: Object.values(state.entities.PlaylistReducer),
-  currentuser: state.session.currentUser
+  currentuser: state.session.currentUser,
 })
 
 
@@ -17,7 +18,8 @@ const mDTP = dispatch => ({
   currentSong: (song) => dispatch(currentSong(song)),
   playSong: (song) => dispatch(playSong(song)),
   fetchSong: songId => dispatch(fetchSong(songId)),
-  fetchPlaylists: () => dispatch(fetchPlaylists())
+  fetchPlaylists: () => dispatch(fetchPlaylists()),
+  suggestedFollows: () => dispatch(fetchRandomUsers())
 })
 
 export default connect(mSTP, mDTP)(Discover);

@@ -440,7 +440,7 @@ class Dashboard extends React.Component {
   if (this.props.match.path === '/:username/sets') {
     titler= (
       <>
-        <PlaylistDashboard/>
+        <PlaylistDashboard user={this.props.user} songs={this.props.songs} player= {this.props.player} currentuser={this.props.currentuser} playlists ={this.props.playlists} openDeletePlaylistModal={this.props.openDeletePlaylistModal} openEditPlaylistModal={this.props.openEditPlaylistModal} pauseSong={this.props.pauseSong} addQueue={this.props.addQueue} playSong={this.props.playSong}/>
       </>
     )
   }

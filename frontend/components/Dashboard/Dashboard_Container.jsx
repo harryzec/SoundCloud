@@ -8,6 +8,8 @@ import { createFollow, deleteFollow } from '../../actions/follow_action'
 import { createLike, deleteLike } from '../../actions/like_action'
 import { openEditPlaylistModal, openDeletePlaylistModal } from '../../actions/modal_actions';
 import { addQueue } from '../../actions/queue_action'
+import { fetchPlaylistByArtist } from '../../actions/playlist_actions'
+
 
 
 const mSTP = (state, ownProps) => {
@@ -35,6 +37,7 @@ const mDTP = dispatch => ({
   pauseSong: (song) => dispatch(pauseSong(song)),
   addQueue: (songs) => dispatch(addQueue(songs)),
   playSong: (song) => dispatch(playSong(song)),
+  fetchPlaylistByArtist: (username) => dispatch(fetchPlaylistByArtist(username))
 })
 
 export default connect(mSTP, mDTP)(Dashboard)

@@ -62,11 +62,21 @@ class SearchPage extends React.Component {
   
   render() {
     let content;
+    let links = (
+      <>
+        <Link to={`/search?q=${this.props.location.search.slice(3)}`} className='searchclicked'>&#9862; Everything</Link>
+        <Link to={`/search/sounds?q=${this.props.location.search.slice(3)}`} className='searchopt'>&#12316; Tracks</Link>
+        <Link to={`/search/people?q=${this.props.location.search.slice(3)}`} className='searchopt'>&#9734; People</Link>
+        <Link to={`/search/sets?q=${this.props.location.search.slice(3)}`}className='searchopt'>&#9886; Playlists</Link>
+      </>
+    )
 
     if (this.props.search.length > 0) {
       let tracknum = 0;
       let usernum = 0;
       let playlistnum = 0;
+      debugger
+      if(this.props.match.path === '/search') {
 
       let results = (Object.values(this.props.search.flat()))
       results = results.map(search => {
@@ -232,6 +242,8 @@ class SearchPage extends React.Component {
           }
 
         }
+     
+      
 
         return(
           <>
@@ -256,6 +268,340 @@ class SearchPage extends React.Component {
         </>
       )
       
+    } if (this.props.match.path === '/search/sounds') {
+      links = (
+        <>
+          <Link to={`/search?q=${this.props.location.search.slice(3)}`} className='searchopt'>&#9862; Everything</Link>
+          <Link to={`/search/sounds?q=${this.props.location.search.slice(3)}`} className='searchclicked'>&#12316; Tracks</Link>
+          <Link to={`/search/people?q=${this.props.location.search.slice(3)}`} className='searchopt'>&#9734; People</Link>
+          <Link to={`/search/sets?q=${this.props.location.search.slice(3)}`}className='searchopt'>&#9886; Playlists</Link>
+        </>
+      )
+      let results = (Object.values(this.props.search.flat()))
+      results = results.map(search => {
+        let searchpic;
+        let title;
+        let info;
+        if (search.catagory !== 'song') {
+          return null;
+        } else {
+          // if (search.user_id === this.props.currentuser.id) {
+          //   return null;
+          // }
+          tracknum += 1;
+          title = (
+            <>
+            <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/${search.hyperlink}`}>{search.title}</Link>
+            </>
+          )
+          searchpic = (
+            <>
+            <img className='searchpic2' src={search.imgUrl}/>
+            </>
+          )
+
+          let likebutton = (
+            <>
+              <button onClick={(e) => this.createLike(e, search.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+            </>
+          )
+  
+          search.likes.forEach(like => {
+            if (like.user_id === this.props.currentuser.id) {
+              likebutton = (
+                <>
+                  <button onClick={(e) => this.deleteLike(e, like.id)}className='songBuliked'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+                </>
+              )
+            }
+          })
+
+
+          info = (
+            <>
+              <div className='searchwv'>
+                <Wave song={search} songtype={'search'}/>
+
+                <div className='songFootsearch'>
+                  <div className='songBOsearch'>
+                    {likebutton}
+                    <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+                    <button className='songBu4'>...More
+                      <div className='moreshow'>
+                        <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                        <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+                        <div className='moreshowli'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/641/641360.svg'/>  Stats</div>
+                        <div className='moreshowli'><img width='12'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'/>  Station</div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </>
+          ) 
+          return (
+            <>
+              <div className='searchedme'>
+                {searchpic}
+                <div className='searchinfos'>
+                  {title}
+                  {info}
+  
+                  
+                </div>
+              </div>
+            </>
+          )
+        }})
+        
+        if (tracknum === 0) {
+          content = (
+            <>
+            <div className='searchResu'>
+              <p className='circlething'>&#9862;</p>
+              <p className='sorrynothing'>Sorry we didn't find any results for "{this.props.location.search.slice(3).split('%20').join(' ')}".</p>
+              <p className='sorrynothing'>Check the spelling, or try a different search.</p>
+            </div>
+            </>
+          )
+        } else {
+            let howmany = `Found ${tracknum} tracks`
+                if (tracknum === 1) {
+                  howmany = `Found ${tracknum} track`
+                }
+            content = (
+              <>
+                <div className='searchresul'>
+                  <p className='searchstats'>{howmany}</p>
+                  {results}
+                </div>
+              </>
+            )
+        }
+        
+      }
+      if (this.props.match.path === '/search/people') {
+        links = (
+          <>
+            <Link to={`/search?q=${this.props.location.search.slice(3)}`} className='searchopt'>&#9862; Everything</Link>
+            <Link to={`/search/sounds?q=${this.props.location.search.slice(3)}`} className='searchopt'>&#12316; Tracks</Link>
+            <Link to={`/search/people?q=${this.props.location.search.slice(3)}`} className='searchclicked'>&#9734; People</Link>
+            <Link to={`/search/sets?q=${this.props.location.search.slice(3)}`}className='searchopt'>&#9886; Playlists</Link>
+          </>
+        )
+        let results = (Object.values(this.props.search.flat()))
+        results = results.map(search => {
+          let searchpic;
+          let title;
+          let info;
+          if (search.catagory !== 'user') {
+            return null;
+          } else {
+            if (search.id === this.props.currentuser.id) {
+              return null;
+            }
+              usernum += 1;
+              title = (
+                <>
+                <Link className='searchtitle' to={`/${search.username.split(' ').join('-')}`}>{search.username}</Link>
+                </>
+              )
+              searchpic = (
+                <>
+                <img className='searchpic' src={search.profileUrl}/>
+                </>
+              )  
+              let followbutton = (
+                  <>
+                    <div className='extraBut2' onClick={(e)=>this.createFollow(e, search.id)}>+ Follow</div>
+                  </>
+                
+              )
+              Object.values(search.follows).forEach(follower => {
+                debugger
+                if (follower.follower === this.props.currentuser.id) {
+                  followbutton = (
+                    <>
+                      <div className='extraBut2' onClick={(e) => this.deleteFollow(e, follower.id)}><strong className='bigFont'>&#9745;</strong> Following</div>
+                    </>
+                  )
+                }
+              })
+              info = (
+                <>
+                  <p className='searchfollow'><img width='13' className='searchfpic' src='https://image.flaticon.com/icons/svg/747/747376.svg'/> {Object.values(search.follows).length}</p>
+                  {followbutton}
+                </>
+              )   
+            return (
+              <>
+                <div className='searchedme'>
+                  {searchpic}
+                  <div className='searchinfos'>
+                    {title}
+                    {info}
+    
+                    
+                  </div>
+                </div>
+              </>
+            )
+          }})
+          
+          if (usernum === 0) {
+            content = (
+              <>
+              <div className='searchResu'>
+                <p className='circlething'>&#9862;</p>
+                <p className='sorrynothing'>Sorry we didn't find any results for "{this.props.location.search.slice(3).split('%20').join(' ')}".</p>
+                <p className='sorrynothing'>Check the spelling, or try a different search.</p>
+              </div>
+              </>
+            )
+          } else {
+              let howmany = `Found ${usernum} people`
+                if (usernum === 1) {
+                  howmany = `Found ${usernum} person`
+                }
+              content = (
+                <>
+                  <div className='searchresul'>
+                    <p className='searchstats'>{howmany}</p>
+                    {results}
+                  </div>
+                </>
+              )
+          }
+          
+        }
+
+
+
+        if (this.props.match.path === '/search/sets') {
+          links = (
+            <>
+              <Link to={`/search?q=${this.props.location.search.slice(3)}`} className='searchopt'>&#9862; Everything</Link>
+              <Link to={`/search/sounds?q=${this.props.location.search.slice(3)}`} className='searchopt'>&#12316; Tracks</Link>
+              <Link to={`/search/people?q=${this.props.location.search.slice(3)}`} className='searchopt'>&#9734; People</Link>
+              <Link to={`/search/sets?q=${this.props.location.search.slice(3)}`}className='searchclicked'>&#9886; Playlists</Link>
+            </>
+          )
+          let results = (Object.values(this.props.search.flat()))
+          results = results.map(search => {
+            let searchpic;
+            let title;
+            let info;
+            if (search.catagory !== 'playlist') {
+              return null;
+            } else {
+              if (search.user === null) {
+                return null;
+              }
+              playlistnum +=1;
+              debugger
+              title = (
+                <>
+                <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/sets/${search.permalink}`}>{search.title}</Link>
+                </>
+              )
+              searchpic = (
+                <>
+                <img className='searchpic2' src={search.imageUrl}/>
+                </>
+              )
+            
+    
+              if (search.tracks.length === 0) {
+                info = (
+                  <>
+                    <div className='searchplaynone'>
+                      <h2 className='nosongsfound2'>This playlist has no tracks yet</h2>
+                      <div className='songBOsearch'>
+                      <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
+                      <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+                      <button className='songBu4'>...More
+                        <div className='moreshow'>
+                          <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                        </div>
+                      </button>
+                      </div>
+                    </div>
+                  </>
+                )
+              } else {
+                let num = 0;
+    
+                let songtits = search.tracks.map((track, i) => {
+                  num++;
+                  return(
+                  <>
+                    <div onClick={()=> this.handlePlay(track, playlist.tracks.slice(i+1))} className='playlisttrackindividsearch'>
+                      <div className='flexed'>
+                        <img width='20' height='20'src={track.imgUrl}/>
+                        <div className='playlisttnum'>{num}</div>
+                        <div className='playlisttname'>{track.title}</div>
+                      </div>
+                      <div>&#9654; {track.plays}</div>
+                    </div>
+                  </>)
+                })
+    
+                info = (
+                  <div className='searchplaynone'>
+                    <Wave song={search.tracks[0]} songtype={'search'}/>
+    
+                    <div className='playlisttrackssearch'>
+                      {songtits}
+                    </div>
+                  </div>
+                )}
+              return (
+                <>
+                  <div className='searchedme'>
+                    {searchpic}
+                    <div className='searchinfos'>
+                      {title}
+                      {info}
+      
+                      
+                    </div>
+                  </div>
+                </>
+              )
+            }})
+            
+            if (playlistnum === 0) {
+              content = (
+                <>
+                <div className='searchResu'>
+                  <p className='circlething'>&#9862;</p>
+                  <p className='sorrynothing'>Sorry we didn't find any results for "{this.props.location.search.slice(3).split('%20').join(' ')}".</p>
+                  <p className='sorrynothing'>Check the spelling, or try a different search.</p>
+                </div>
+                </>
+              )
+            } else {
+                let howmany = `Found ${playlistnum} playlists`
+                if (playlistnum === 1) {
+                  howmany = `Found ${playlistnum} playlist`
+                }
+                content = (
+                  <>
+                    <div className='searchresul'>
+                      <p className='searchstats'>{howmany}</p>
+                      {results}
+                    </div>
+                  </>
+                )
+            }
+            
+          }
+
+
+
+
+    
     } else {
       content = (
         <>
@@ -267,6 +613,9 @@ class SearchPage extends React.Component {
         </>
       )
     }
+    
+    debugger
+    
    
     
     return(
@@ -278,11 +627,7 @@ class SearchPage extends React.Component {
           </div>
           <div className='searchmaterials'>
             <div className='searchtype'>
-              <p className='searchclicked'>&#9862; Everything</p>
-              <Link to='/search/sounds'className='searchopt'>&#12316; Tracks</Link>
-              <p className='searchopt'>&#9734; People</p>
-              <p className='searchopt'>&#9886; Albums</p>
-              <p className='searchopt'>&#9886; Playlists</p>
+              {links}
             </div>
 
             

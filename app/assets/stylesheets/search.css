@@ -41,7 +41,8 @@
   margin: 0;
   padding: 4px;
   cursor: pointer;
-  padding-left: 8px
+  padding-left: 8px;
+  text-decoration: none;
 }
 
 .searchopt {
@@ -49,6 +50,8 @@
   padding: 4px;
   padding-left: 8px;
   cursor: pointer;
+  text-decoration: none;
+  color: #333;
 }
 
 .searchResu {
@@ -136,6 +139,8 @@
   color: #333;
   text-decoration: none;
   font-size: 16px;
+  cursor: pointer;
+  z-index: 3;
 }
 
 .searchtitle:hover {

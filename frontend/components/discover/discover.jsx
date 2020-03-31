@@ -10,6 +10,7 @@ class Discover extends React.Component{
   componentDidMount() {
     // debugger
     this.props.fetchPlaylists()
+    this.props.fetchRandomUsers()
   }
 
   handleSubmit(e){

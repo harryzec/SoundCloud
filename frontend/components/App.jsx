@@ -26,19 +26,15 @@ const App = () => (
   <>
   <Route path='/' component={NavBar}/>
   <div className='mainBody'>
-    {/* <Route exact path="/" component={GreetingContainer} />
-    <ProtectedRoute exact path='/upload' component={UploadContainer}/>
-    <Route path='/discover' component={DiscoverContainer} />
-    <Route path='/:username' component={DashboardContainer} />
-    <Route path='/search' component={searchContainer}/>
-    <Route path='/:username/sets' component={Playlist}/>
-    <Route exact path='/:username/:hyperlink' component={SongShowCont}/>
-    <Route exact path='/:username/sets/:permalink' component={playlistshow}/> */}
+   
 
     <Switch>
       <Route exact path="/" component={GreetingContainer} />
       <ProtectedRoute path='/upload' component={UploadContainer}/>
       <Route path='/discover' component={DiscoverContainer} />
+      <Route path='/search/sets' component={searchContainer}/>
+      <Route path='/search/people' component={searchContainer}/>
+      <Route path='/search/sounds' component={searchContainer}/>
       <Route path='/search' component={searchContainer}/>
       <Route exact path='/:username/sets/:permalink' component={playlistshow}/> 
       <Route exact path='/:username/sets' component={DashboardContainer}/>
@@ -47,7 +43,6 @@ const App = () => (
       <Route path='/:username' component={DashboardContainer}/>
      
       
-      {/* <Route path='/search/sounds'/> */}
       
     
       
