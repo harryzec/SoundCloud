@@ -2,6 +2,8 @@ class Playlist < ApplicationRecord
   validates :title, presence: true
   validates :user_id, presence: true
 
+  has_many :likes, as: :likeable
+
   has_many :playlist_tracks,
     foreign_key: :playlist_id,
     class_name: :PlaylistTrack,

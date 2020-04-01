@@ -1,0 +1,205 @@
+.userPT:hover {
+  color: white;
+}
+
+.userPT2{
+  position: absolute;
+  color: #999;
+  top: 11%;
+  font-size: 16px;
+  margin-left: 100px;
+  width: auto;
+  background-color: black;
+  height: auto;
+  font-weight: 100;
+  padding: 5px;
+  text-decoration: none;
+  font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.PlaylistshowPage {
+  height: 100%;
+}
+
+.songPT2 {
+  position: absolute;
+  top: 13%;
+  margin-left: 100px;
+  width: auto;
+  color: white;
+  background-color: black;
+  height: auto;
+  font-size: 25px;
+  font-weight: 100;
+  padding: 5px;
+  font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;;
+}
+
+.playlistfacts {
+  border-radius: 100px;
+  background: black;
+  width: 100px;
+  height: 100px;
+  top: 60%;
+  left: 35px;
+  position: absolute;
+  opacity: 90%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.margin {
+  margin-top: 10px;
+  font-size: 31px;
+}
+
+.factword {
+  font-size: 12px;
+}
+
+.playshowpagereal {
+  display: flex;
+  margin: 30px;
+  height: 100%;
+}
+
+.playlistshowinfreal {
+  width: 67%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ccc;
+  min-width: 450px;
+  padding-right: 3%;
+}
+.playshowbutton {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.playlistshowcontent {
+  display:flex;
+  margin-top: 20px;
+}
+
+.playlistuserinf {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexinfz {
+  display: flex;
+  margin-top: 4px;
+}
+
+.playuserpics {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+}
+
+.listofplaysongs{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  padding-left: 15px;
+}
+
+.playlisttrackindividsearch2 {
+  cursor: pointer;
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 12px;
+  color: black;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  height: auto;
+  z-index: 3;
+  justify-content: space-between;
+}
+
+.playlisttrackindividsearch2:hover {
+  background-color: rgb(236, 235, 235);
+}
+
+.playindividser {
+  color: #999;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-left: 13px;
+  padding-right: 3px;
+}
+
+.playindividser3 {
+  color: #999;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-left: 13px;
+  cursor: pointer;
+  padding-right: 3px;
+}
+
+.playindividser3:hover {
+  color: #333;
+}
+
+.playindividser2:hover {
+  color:black;
+}
+
+.playindividser2 {
+  color: #333;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-left: 13px;
+  padding-right: 3px;
+  cursor: pointer;
+}
+
+.playlistplaycount {
+  padding-top: 5px;
+  color: #999;
+  display: flex;
+}
+
+.padding {
+  padding-left: 7px;
+}
+
+
+.flexed2 {
+  display: flex;
+}
+
+.bradius {
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+}
+
+.playlistshowother {
+  margin-left: 9px;
+  margin-right: 9px;
+  display: flex;
+  width: 28%;
+  flex-direction: column;
+}
+
+.displayflex {
+  display: flex;
+}
+
+.recplays {
+  display: flex;
+  margin-bottom: 10px
+}
+
+.recplaysinf {
+  display:flex;
+  padding-left: 8px;
+  flex-direction: column;
+}

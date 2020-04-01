@@ -148,7 +148,6 @@ class SongShow extends React.Component {
     e.preventDefault()
     this.props.deleteLike(id)
     this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
-
   }
   
 

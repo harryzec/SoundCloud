@@ -19,7 +19,7 @@ class Api::PlaylistsController < ApplicationController
   def get_playlist 
     user = User.find_by(username: params[:username])
     @playlist = Playlist.find_by(user_id: user.id, permalink: params[:permalink])
-    render json: @playlist
+    render :show
   end
 
   def by_user

@@ -686,6 +686,18 @@
   color: black;
 }
 
+.followlink2 {
+  color: #333;
+  text-decoration: none;
+  font-size: 13.5px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.followlink2:hover {
+  color: black;
+}
+
 .followst {
   margin: 0;
   font-size: 12px;
