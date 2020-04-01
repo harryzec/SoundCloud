@@ -1,7 +1,7 @@
 @RPlaylists.each do |playlist|
   
   json.set! playlist.id do
-  json.extract! playlist, :id, :user_id, :title, :description, :genre, :permalink
+  json.extract! playlist, :id, :user_id, :title, :description, :genre, :permalink, :likes
   json.likes playlist.likes do |like|
     json.id like.id
     json.user_id like.user_id

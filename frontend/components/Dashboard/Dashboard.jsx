@@ -56,7 +56,17 @@ class Dashboard extends React.Component {
 
   }
 
-  
+  componentDidUpdate() {
+    
+    if (this.props.user) {
+      if (this.props.match.params.username.split('-').join(' ') !== this.props.user.username) {
+        let username= this.props.match.params.username.split('-').join(' ')
+        this.props.fetchUser(username)
+        this.props.fetchSongsByArtist(username)
+        this.props.fetchPlaylistByArtist(this.props.match.params.username)
+      }
+    }
+  }
 
   
   componentDidMount(){
@@ -86,19 +96,19 @@ class Dashboard extends React.Component {
    let artistSongs;
    let titler = null;
   
-    debugger
+    
    if (this.props.match.isExact) {
-    debugger
+    
   
   if (this.props.match.path === '/:username') {
 
-   if (this.props.songs === {}) {
-     return(
-       <>
-       <li>This artist has no songs!</li>
-       </>
-     )
-   }  
+  //  if (Object.values(this.props.songs).length === 0) {
+  //    return(
+  //      <>
+  //      <li>This artist has no songs!</li>
+  //      </>
+  //    )
+  //  }  
 
    
    
@@ -129,6 +139,15 @@ class Dashboard extends React.Component {
    
    
     if ((this.props.user.id === this.props.currentuser.id)&&this.state !== null) {
+      debugger
+      if (Object.values(this.props.songs) === 0) {
+        artistSongs = (
+          <>
+            <h1>This boi aint got no songs!</h1>
+          </>
+        )
+      } else {
+
       artistSongs = Object.values(this.props.songs).map(song => {
         // let num = song.id
         // const { [num] } = this.state
@@ -212,7 +231,7 @@ class Dashboard extends React.Component {
           
         
         </>
-      )})
+      )})}
     } else {
     
 
@@ -440,12 +459,12 @@ class Dashboard extends React.Component {
   if (this.props.match.path === '/:username/sets') {
     titler= (
       <>
-        <PlaylistDashboard user={this.props.user} songs={this.props.songs} player= {this.props.player} currentuser={this.props.currentuser} playlists ={this.props.playlists} openDeletePlaylistModal={this.props.openDeletePlaylistModal} openEditPlaylistModal={this.props.openEditPlaylistModal} pauseSong={this.props.pauseSong} addQueue={this.props.addQueue} playSong={this.props.playSong}/>
+        <PlaylistDashboard user={this.props.user} fetchPlaylistByArtist={this.props.fetchPlaylistByArtist} createLike={this.props.createLike} deleteLike={this.props.deleteLike} songs={this.props.songs} player= {this.props.player} currentuser={this.props.currentuser} playlists ={this.props.playlists} openDeletePlaylistModal={this.props.openDeletePlaylistModal} openEditPlaylistModal={this.props.openEditPlaylistModal} pauseSong={this.props.pauseSong} addQueue={this.props.addQueue} playSong={this.props.playSong}/>
       </>
     )
   }
 
-  debugger
+  
 
 
   

@@ -19,6 +19,25 @@ class Playlist extends React.Component {
   constructor(props) {
     super(props)
     this.handlePlay = this.handlePlay.bind(this)
+    this.createLike = this.createLike.bind(this)
+    this.deleteLike = this.deleteLike.bind(this)
+  }
+
+  createLike(e, id) {
+    e.preventDefault()
+    this.props.createLike({    
+      likeable_id: id,
+      likeable_type: "Playlist",
+      user_id: this.props.currentuser.id
+    })
+
+    this.props.fetchPlaylistByArtist(this.props.match.params.username.split('-').join(' '))
+  }
+
+  deleteLike(e, id) {
+    e.preventDefault()
+    this.props.deleteLike(id)
+    this.props.fetchPlaylistByArtist(this.props.match.params.username.split('-').join(' '))
   }
 
   // componentDidMount(){
@@ -150,6 +169,21 @@ class Playlist extends React.Component {
               </>
             )
           }
+
+          let likebutton = (
+            <>
+              <button onClick={(e)=> this.createLike(e, playlist.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {playlist.likes.length}</button>
+            </>
+          )
+
+          playlist.likes.forEach(like =>
+            {
+              if (like.user_id === this.props.currentuser.id) {
+                likebutton = (
+                  <button onClick={(e)=> this.deleteLike(e, like.id)}className='songBuSl'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {playlist.likes.length}</button>
+                )
+              }
+            })
           
           return (
           <>
@@ -171,7 +205,7 @@ class Playlist extends React.Component {
                 
 
                 <div className='songBO'>
-                  <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
+                  {likebutton}
                   <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                   <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
                   {lastbutton}

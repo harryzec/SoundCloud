@@ -297,7 +297,7 @@ class PlaylistShow extends React.Component {
 
     let userlikes = (
       <>
-        <h2>This user has no likes</h2>
+        <h2 className='likethisfirst'>Be the first to like this Playlist!</h2>
       </>
     )
 
@@ -315,7 +315,7 @@ class PlaylistShow extends React.Component {
     
     let relatedPlaylists = (
       <>
-        <h2>No playlists BITCH</h2>
+        <h2 className='likethisfirst'>This user has no other playlists!</h2>
       </>
     )
     
