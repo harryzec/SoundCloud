@@ -1,22 +1,63 @@
 import React from 'react'
 import ReactDOM from "react-dom";
+import { Link } from 'react-router-dom'
 
 class SongShow extends React.Component {
   constructor(props) {
     super(props)
     this.volumeChange = this.volumeChange.bind(this);
-    this.state = {duration: '0:00', currentTime: '0:00', waveEvent: this.props.wave}
+    this.state = {duration: '0:00', currentTime: '0:00', waveEvent: this.props.wave, queue: this.props.queue}
     this.handleMetaData = this.handleMetaData.bind(this)
     this.handleCurrentTime = this.handleCurrentTime.bind(this);
     this.changePlace = this.changePlace.bind(this)
     this.seekBar = React.createRef();
     this.handleTimeline = this.handleTimeline.bind(this);
     this.getPosition = this.getPosition.bind(this)
+    this.createLike = this.createLike.bind(this)
+    this.deleteLike = this.deleteLike.bind(this)
+    this.removeQueue = this.removeQueue.bind(this)
+    this.restart = this.restart.bind(this)
+    this.nextSong = this.nextSong.bind(this)
+  }
+
+  nextSong() {
+    this.props.playSong(this.props.queue[0])
+    this.props.playedSong()
+  }
+
+  restart() {
+    const currentSong = document.getElementById("PlayingSong");
+    currentSong.currentTime = 0;
+  }
+
+  removeQueue(e, i) {
+    debugger
+    let newqueue = this.state.queue.slice(0, i).concat(this.state.queue.slice(i +1))
+    this.props.replaceQueue(newqueue)
+  }
+
+  createLike(e) {
+    e.preventDefault()
+    this.props.createLike({    
+      likeable_id: this.props.song.id,
+      likeable_type: "Song",
+      user_id: this.props.currentuser.id
+  })
+
+  }
+
+  deleteLike(e, id) {
+    e.preventDefault()
+    this.props.deleteLike(id)
+    let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchSongsByArtist(username)
+
   }
 
   componentDidMount() {
     setInterval(this.handleCurrentTime, 100);
   }
+
 
   handleCurrentTime(e) {
     if ( document.getElementById("PlayingSong") !== null) {
@@ -84,13 +125,9 @@ class SongShow extends React.Component {
 
   
 
-  volumeChange(type) {
-    debugger
-      if (type==='up'){
-        document.getElementById('PlayingSong').volume += .1
-      } else {
-        document.getElementById('PlayingSong').volume -= .1
-      }
+  volumeChange(e) {
+    e.preventDefault();
+    document.getElementById('PlayingSong').volume = (e.currentTarget.value / 100)
   }
 
   handleMetaData(e) {
@@ -115,7 +152,7 @@ class SongShow extends React.Component {
 }
 
 changePlace(e) {
-  debugger
+  
   this.setState({ currentTime: e.target.value });
 }
 
@@ -150,13 +187,15 @@ getPosition(el) {
       this.props.updateWave(dur)
     }
 
+
     let mins = Math.floor(dur/60)
-    let secs = dur % 60 
+    let secs = Math.floor(dur % 60)
     let newer = mins + ':' + secs
+    if (secs < 10) {
+      newer = mins + ':' + '0' + secs
+    }
+    
 
-
-
-    this.setState({currentTime: newer})
 
     let playhead = document.getElementById('playhead');
 
@@ -175,6 +214,37 @@ getPosition(el) {
     if (this.props.song === 'none') {
       return(
         null
+      )
+    }
+
+    if (this.state.queue !== this.props.queue) {
+      this.setState({queue: this.props.queue})
+    }
+
+
+    let queue = this.state.queue.map((song, i) => {
+      return(
+        <>
+          <div className='queueflex'>
+            <img height='50' width='50' src={song.imgUrl}/>
+            <div className='queueinf'>
+              <div className='queuetit'>{song.title}</div>
+              <div className='queueuser'>
+                <div>{song.user}</div>
+                <div onClick={(e) => this.removeQueue(e, i)}className='lilx'>x</div>
+              </div>
+            </div>
+
+          </div>
+        </>
+      )
+    })
+
+    if (this.state.queue.length === 0) {
+      queue = (
+        <>
+          <p className='addsongstoqueue'>Add songs to Queue!</p>
+        </>
       )
     }
 
@@ -213,37 +283,50 @@ getPosition(el) {
       <>
       <div className='continuousPlay'>
       {music}
-      <p><img className='rewind' width='11'src='https://image.flaticon.com/icons/svg/860/860740.svg'/></p>
+      <img className='rewind' onClick={this.restart} width='11'src='https://image.flaticon.com/icons/svg/860/860740.svg'/>
       {currentButton}
-      <p><img className='fastforward'width='11'src='https://image.flaticon.com/icons/svg/660/660276.svg'/></p>
-      <p><img className='shuffle' width='17' src='https://image.flaticon.com/icons/svg/724/724979.svg'/></p>
-      <p><img className='repeat' width='18' src='https://www.flaticon.com/premium-icon/icons/svg/632/632966.svg'/></p>
+      <img onClick={this.nextSong} className='fastforward'width='11'src='https://image.flaticon.com/icons/svg/660/660276.svg'/>
+      <img className='shuffle' width='17' src='https://image.flaticon.com/icons/svg/724/724979.svg'/>
+      <img className='repeat' width='18' src='https://www.flaticon.com/premium-icon/icons/svg/632/632966.svg'/>
 
       <p className='time1'>{this.state.currentTime}</p>
 
       <div className='timeConta'>
-      <div id="timeline" onClick={this.handleTimeline}>
-		    <div id="playhead"></div>
-	    </div>
+        <div id="timeline" onClick={this.handleTimeline}>
+          <div id="playhead"></div>
+        </div>
       </div>
 
       <p className='time2'>{this.state.duration}</p>
 
       <div className='volumeCont'>
-        <img className='volumec1' width='15' src='https://image.flaticon.com/icons/svg/271/271239.svg' onClick={()=> this.volumeChange('up')}/>
-        <img className='volumec2' width='15' src ='https://image.flaticon.com/icons/svg/566/566015.svg' onClick={()=> this.volumeChange('down')}/>
+        <img className='volcontrol' width='17' src='https://image.flaticon.com/icons/svg/483/483365.svg'/>
+        
+        <div className='rangecontainer'>
+          <input type='range' min='0' max='100' onChange={this.volumeChange} className='soundbar'/>
+        </div>
+        
+        
+        {/* <img className='volumec1' width='15' src='https://image.flaticon.com/icons/svg/271/271239.svg' onClick={()=> this.volumeChange('up')}/> */}
+        {/* <img className='volumec2' width='15' src ='https://image.flaticon.com/icons/svg/566/566015.svg' onClick={()=> this.volumeChange('down')}/> */}
       </div>
 
       <img className='imgbar' src={this.props.song.imgUrl}/>
 
       <div className='barinfo'>
-        <p className='baruse'>{this.props.song.user}</p>
-        <p className='bartite'>{this.props.song.title}</p>
+        <Link to={`/${this.props.song.user}`}className='baruse'>{this.props.song.user}</Link>
+        <Link to={`/${this.props.song.user}/${this.props.song.hyperlink}`} className='bartite'>{this.props.song.title}</Link>
       </div>
 
-      <img className='barHeart' width='20' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/>
+      <img className='barHeart' onClick={this.createLike} width='20' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/>
 
-      <img className='barOpt' width='20' src='https://image.flaticon.com/icons/svg/545/545705.svg'/>
+      <div className='showqueue'>
+        <img className='barOpt' width='20' src='https://image.flaticon.com/icons/svg/545/545705.svg'/>
+        <div className='realqueue'>
+          <h2 className='upnext'>Up Next</h2>
+          {queue}
+        </div>
+      </div>
 
       </div>
       </>

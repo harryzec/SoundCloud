@@ -17,6 +17,7 @@
   color: #333;
   font-size: 24px;
   margin-right: 25px;
+  cursor: pointer;
 }
 
 .libraryheadclick {
@@ -25,6 +26,7 @@
   color: #f50;
   border-bottom: 1px solid #f50;
   font-size: 24px;
+  cursor: pointer;
 }
 
 .recentplayshead {
@@ -34,15 +36,45 @@
   margin-top: 20px;
 }
 
+.recentplayshead2 {
+  color: #999;
+  font-weight: 200;
+  font-size: 17px;
+  margin-bottom: 40px;
+}
+
+.trackslikes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.filterlikes {
+  border:  1px solid #ccc;
+  border-radius: 3px;
+  padding-left: 7px;
+  width: 270px;
+  height: 28px;
+  outline: none;
+  color: gray
+}
+
+.filterlikes:focus {
+  border: 1px solid black;
+}
+
 .libraryrecentplays {
   display: flex;
+  padding-bottom: 50px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .box {
   border: 1px solid #ccc;
   height: 150px;
   width: 150px;
-  margin-right: 18px;
+  margin-right: 27px;
 }
 
 .boxadjust {
@@ -55,6 +87,7 @@
   cursor: pointer;
   text-decoration: none;
   font-size: 12px;
+
 }
 
 .boxtitle:hover {

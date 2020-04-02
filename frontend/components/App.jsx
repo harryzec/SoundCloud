@@ -35,6 +35,7 @@ const App = () => (
       <ProtectedRoute path='/upload' component={UploadContainer}/>
       <Route path='/discover' component={DiscoverContainer} />
       <Route path='/you/library' component={LibraryContainer} />
+      <Route path='/you/likes' component={LibraryContainer}/>
 
       <Route path='/search/sets' component={searchContainer}/>
       <Route path='/search/people' component={searchContainer}/>

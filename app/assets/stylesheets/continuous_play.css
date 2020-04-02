@@ -7,8 +7,8 @@
   border-top: 1px solid #cecece;
   width: 100%;
   z-index: 12;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 7%;
+  padding-right: 7%;
 }
 
 .volumec1:active {
@@ -29,57 +29,47 @@
 }
 
 .rewind {
-  position: absolute;
-  left: 110px;
-  top: 14px;
+  padding-left: 20px;
 }
 
 .fastforward {
-  padding-left: 26px;
-  position: absolute;
-  top: 14px;
+  padding-left: 25px;
 }
 
 .shuffle {
   top:11px;
-  margin-left: 65px;
-  position: absolute;
-
+  padding-left: 60px;
 }
 
 .repeat {
-  top:11px;
-  position: absolute;
-  margin-left: 73px;
   padding-left: 30px;
+  height: 18px;
+  margin-top: 13px;
 }
 
 .time1 {
   font-size: 10px;
-  position: absolute;
   color: #f50;
-  margin-left: 130px;
-  top: 3px;
+  padding-left: 40px;
+  margin-top: 15px;
 }
 
 .timeConta {
-  position: absolute;
-  margin-left: 160px;
-  top: -1px;
+  margin-left: 30px;
 }
 
 .time2 {
   font-size: 10px;
-  position: absolute;
   color: black;
-  margin-left: 680px;
   top: 3px;
+  padding-left: 30px;
+  margin-top: 14px;
 }
 
 .currentbu {
-  position: absolute;
-  top: -6px;
+  padding-left: 25px;
   z-index: 10;
+  margin-top: 13px;
 }
 
 #playhead{
@@ -89,17 +79,48 @@
 }
 
 .volumeCont {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  margin-left: 720px;
   top: 4px;
+  padding-left: 30px;
+  position: relative;
+}
+.rangecontainer {
+  display: none;
+}
+
+.volcontrol {
+  margin-top: 7.5px;
+}
+
+.volumeCont:hover .rangecontainer {
+  display: block;
+    position: absolute;
+    background-color: #f2f2f2;
+    margin-top: -117px;
+    /* width: 10%; */
+    width: 39px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    align-items: center;
+    border: 1px solid #999;
+}
+
+
+.soundbar {
+  -webkit-appearance: none; 
+  appearance: none;
+  -webkit-appearance: slider-vertical;
+  margin-left: -46px;
+  height: 98px;
+  color: #f50;
+  background: #f50;
 }
 
 .imgbar {
-  position: absolute; 
-  margin-left: 758px;
+  padding-left: 19px;
   top: 7px;
+  margin-top: 6px;
   height: 30px;
   width: 30px;
 }
@@ -107,17 +128,22 @@
 .barinfo {
   display: flex;
   flex-direction: column;
-  margin-left: 795px;
+  padding-left: 24px;
 }
 
 .baruse {
   font-size: 9px;
   color: black;
   margin-bottom: 0;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 9px;
 }
 
 .bartite {
   margin-top: 0;
+  text-decoration: none;
+  cursor: pointer;
   font-size: 9px;
   color: #cecece;
 }
@@ -127,13 +153,75 @@
 }
 
 .barHeart {
-  position: absolute;
-  margin-left: 1000px;
+  padding-left: 60px;
+  padding-left: 20px;
+
   top: 9px;
 }
 
-.barOpt {
-  position: absolute;
-  margin-left: 1040px;
+.showqueue {
+  padding-left: 10px;
   top: 9px;
+  position: relative;
+}
+
+/* .realqueue {
+  display: none;
+} */
+
+.realqueue {
+  position: absolute;
+  width: 400px;
+  background-color: white;
+  border: 1px solid #999;
+  height: auto;
+  bottom: 70px;
+  margin-left: -300px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.queueflex {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.queueinf {
+  display: flex;
+  flex-direction: column;
+  padding-left: 8px;
+  width: 100%;
+}
+
+.queuetit {
+  color: #333;
+  font-size: 11px;
+  margin-top: 7px;
+}
+
+.addsongstoqueue {
+  font-size: 11px;
+  color: #999;
+}
+
+.lilx {
+  border: 1px solid #999;
+  border-radius: 100px;
+  width: 12px;
+  height: 12px;
+  text-align: center;
+  line-height: 10px;
+}
+
+.queueuser {
+  color: #999;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.upnext {
+  font-size: 14px;
+  font-weight: 100;
+  border-bottom: 1px solid #999;
 }

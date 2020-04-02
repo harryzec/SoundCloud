@@ -46,7 +46,22 @@ json.likes @user.likes do |like|
     json.likes song.likes.length
     json.comments song.comments.length
 
-
+  elsif like.likeable_type ==='Playlist'
+      playlist = Playlist.find_by(id: like.likeable_id)
+      json.title playlist.title
+      
+      if !playlist.photo.attached? 
+        json.imgUrl nil
+      else 
+        json.imgUrl url_for(playlist.photo)
+      end
+  
+      json.hyperlink playlist.permalink
+      json.username playlist.user.username
+      json.likes playlist.likes.length
+  
+  
+    
   end
 end
 

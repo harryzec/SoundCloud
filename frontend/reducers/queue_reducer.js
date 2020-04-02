@@ -9,6 +9,8 @@ const QueueReducer = (state= [], action) => {
       return state.concat(action.songs) 
     case NEXT_SONG:
       return state.slice(1)
+    case REPLACE_QUEUE:
+      return action.queue
     default:
       return state;
   }

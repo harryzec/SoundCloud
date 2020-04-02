@@ -105,7 +105,7 @@ class NavBar extends React.Component {
         <div className='navButtons'>
         <Link to='/discover' className='HomeButton'>Home</Link>
         <Link to='/stream' className='StreamButton'>Stream</Link>
-        <Link to='you/library' className='LibraryButton'>Library</Link>
+        <Link to='/you/library' className='LibraryButton'>Library</Link>
         </div>
         <div className='searchSound'>
         <input type='text' placeholder='Search' onChange={this.update('search')} defaultValue={this.state.search}className='searchMusicBar'/>

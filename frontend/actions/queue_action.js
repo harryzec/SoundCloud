@@ -9,6 +9,13 @@ export const addQueue = songs => {
   songs
 }}
 
+export const replaceQueue = queue => {
+  return{
+    type: REPLACE_QUEUE,
+    queue
+  }
+}
+
 export const playedSong = () => {
   return {
     type: NEXT_SONG
