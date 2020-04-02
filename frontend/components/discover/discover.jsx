@@ -65,7 +65,7 @@ class Discover extends React.Component{
       <>
         <div key={playlist.id}className='playlistshow'>
           <img className='playpic'src={playlist.imageUrl}/>
-          <p className='playtit'>{playlist.title}</p>
+          <Link to={`/${playlist.username.split(' ').join('-')}/sets/${playlist.permalink}`} className='playtit'>{playlist.title}</Link>
         </div>
       </>
     ))

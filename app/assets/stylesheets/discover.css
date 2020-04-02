@@ -136,6 +136,7 @@
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   color: darkgray;
   cursor: pointer;
+  text-decoration: none;
 }
 .play1 {
   display: flex;

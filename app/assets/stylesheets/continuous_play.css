@@ -24,7 +24,9 @@
   height: 1.5px;
   padding: 2.0;
 	background: #cecece;;
-	margin-top: 20px;
+  margin-top: 16px;
+  border-bottom: 5px solid #f2f2f2;
+  border-top: 5px solid #f2f2f2;
 	float: left;
 }
 

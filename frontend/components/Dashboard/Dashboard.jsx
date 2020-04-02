@@ -184,14 +184,11 @@ class Dashboard extends React.Component {
         let buttons = (
           <>
           {likebutton}
-            <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
             <button className='songBu3' onClick={e => this.handleEdit(e, song)}>&#9998; Edit</button>
             <button className='songBu4' onClick={() => this.setState({[song.id]: 'moreshow'})}>...More
               <div className={`${this.state[song.id]}`}>
                 <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                 <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                <div className='moreshowli'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/641/641360.svg'/>  Stats</div>
-                <div className='moreshowli'><img width='12'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'/>  Station</div>
                 <div className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Track</div>
                 </div>
             </button>
@@ -202,7 +199,6 @@ class Dashboard extends React.Component {
           buttons = (
             <>
               {likebutton}
-              <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
               <button className='songBu3' onClick={() => this.props.openPlaylistModal('playlist', song)}>&#9998; Add to Playlist</button>
               <button className='songBu4' onClick={() => this.setState({[song.id]: 'moreshow'})}>Add to up next</button>
             </>
@@ -409,12 +405,9 @@ class Dashboard extends React.Component {
        <Link to={`/${this.props.match.params.username}/popular-tracks`}className='profileButtons'>Popular tracks</Link>
        <Link to={`/${this.props.match.params.username}/tracks`}className='profileButtons'>Tracks</Link>
        <Link to={`/${this.props.match.params.username}/sets`}className='profileButtons'>Playlists</Link>
-       <Link className='profileButtons'>Reposts</Link>
      </section>
      <section className='profileExtra'>
-       <Link className='extraButtons'><strong className='boldthis1'><img width='10'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'></img></strong> Station</Link>
        {followbutton}
-       <Link className='extraButtons'><strong className='boldthis1'>&#62;</strong>  Share</Link>
        <Link className='extraButtons'><strong className='boldthis1'>&#9998;</strong>  Edit</Link>
      </section>
    </div>
@@ -462,7 +455,7 @@ class Dashboard extends React.Component {
   if (this.props.match.path === '/:username/sets') {
     titler= (
       <>
-        <PlaylistDashboard user={this.props.user} fetchPlaylistByArtist={this.props.fetchPlaylistByArtist} createLike={this.props.createLike} deleteLike={this.props.deleteLike} songs={this.props.songs} player= {this.props.player} currentuser={this.props.currentuser} playlists ={this.props.playlists} openDeletePlaylistModal={this.props.openDeletePlaylistModal} openEditPlaylistModal={this.props.openEditPlaylistModal} pauseSong={this.props.pauseSong} addQueue={this.props.addQueue} playSong={this.props.playSong}/>
+        <PlaylistDashboard user={this.props.user} fetchPlaylistByArtist={this.props.fetchPlaylistByArtist} createLike={this.props.createLike} deleteLike={this.props.deleteLike} songs={this.props.songs} player= {this.props.player} currentuser={this.props.currentuser} playlists ={this.props.playlists} openDeletePlaylistModal={this.props.openDeletePlaylistModal} openEditPlaylistModal={this.props.openEditPlaylistModal} pauseSong={this.props.pauseSong} addQueue={this.props.addQueue} playSong={this.props.playSong} queue={this.props.queue}/>
       </>
     )
   }

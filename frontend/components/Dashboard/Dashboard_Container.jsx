@@ -19,7 +19,8 @@ const mSTP = (state, ownProps) => {
   player: state.ui.SongPlayer,
   currentuser: state.session.currentUser,
   playlists: Object.values(state.entities.PlaylistReducer),
-  dropdown: state.ui.PlaylistDropdown
+  dropdown: state.ui.PlaylistDropdown,
+  queue: state.entities.Queue
   }
 }
 

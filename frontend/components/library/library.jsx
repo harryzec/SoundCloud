@@ -61,7 +61,7 @@ class Library extends React.Component {
     }
     let likes
 
-    likes = this.props.currentuser.likes.reverse().slice(0, 6).map(like=>{
+    likes = this.props.currentuser.likes.slice(0, 6).map(like=>{
       return(
         <>
           <div className='boxadjust'>
@@ -89,7 +89,7 @@ class Library extends React.Component {
     }
 
     if (this.props.match.path === '/you/likes') {
-      likes = this.state.likes.reverse().slice(0, 6).map(like=>{
+      likes = this.state.likes.slice(0, 6).map(like=>{
         return(
           <>
             <div className='boxadjust'>

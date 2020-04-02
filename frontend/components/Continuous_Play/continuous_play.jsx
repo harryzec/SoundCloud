@@ -287,7 +287,6 @@ getPosition(el) {
       {currentButton}
       <img onClick={this.nextSong} className='fastforward'width='11'src='https://image.flaticon.com/icons/svg/660/660276.svg'/>
       <img className='shuffle' width='17' src='https://image.flaticon.com/icons/svg/724/724979.svg'/>
-      <img className='repeat' width='18' src='https://www.flaticon.com/premium-icon/icons/svg/632/632966.svg'/>
 
       <p className='time1'>{this.state.currentTime}</p>
 

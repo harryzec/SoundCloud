@@ -96,13 +96,10 @@ class Stream extends React.Component {
                 <div className='songFootsearch'>
                   <div className='songBOsearch'>
                     {likebutton}
-                    <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                     <button className='songBu4'>...More
                       <div className='moreshow'>
                         <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                         <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                        <div className='moreshowli'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/641/641360.svg'/>  Stats</div>
-                        <div className='moreshowli'><img width='12'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'/>  Station</div>
                       </div>
                     </button>
                   </div>
@@ -153,7 +150,6 @@ class Stream extends React.Component {
                 <h2 className='nosongsfound2'>This playlist has no tracks yet</h2>
                 <div className='songBOsearch'>
                 {likebutton}
-                <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                 <button className='songBu4'>...More
                   <div className='moreshow'>
                     <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>

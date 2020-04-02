@@ -53,9 +53,12 @@ class Playlist extends React.Component {
     } else if (this.props.player.song === track && this.props.player.player ==='paused' ) {
       this.props.playSong(track)
     } else {
+      debugger
 
       this.props.playSong(track)
-      this.props.addQueue(playlisttracks)
+      if (this.props.queue.length === 0) {
+        this.props.addQueue(playlisttracks)
+      }
     }
   }
 
@@ -218,7 +221,6 @@ class Playlist extends React.Component {
 
                 <div className='songBO'>
                   {likebutton}
-                  <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                   <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
                   {lastbutton}
                   </div>
@@ -354,11 +356,8 @@ class Playlist extends React.Component {
           <Link to={`/${this.props.match.params.username}/popular-tracks`}className='profileButtons'>Popular tracks</Link>
           <Link to={`/${this.props.match.params.username}/tracks`} className='profileButtons'>Tracks</Link>
           <Link to={`/${this.props.match.params.username}/sets`}className='profileButtonsAll'>Playlists</Link>
-          <Link className='profileButtons'>Reposts</Link>
         </section>
         <section className='profileExtra'>
-          <Link className='extraButtons'><strong className='boldthis'><img width='10'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'></img></strong> Station</Link>
-          <Link className='extraButtons'><strong className='boldthis'>&#62;</strong>  Share</Link>
           <Link className='extraButtons'><strong className='boldthis'>&#9998;</strong>  Edit</Link>
         </section>
       </div>
