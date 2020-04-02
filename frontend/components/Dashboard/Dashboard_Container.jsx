@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Dashboard from './Dashboard';
-import { fetchUser } from '../../actions/user_actions'
-import { fetchSongsByArtist } from '../../actions/song_action'
+import { fetchUser, fetchRecent} from '../../actions/user_actions'
+import { fetchSongsByArtist, fetchPopularSongs } from '../../actions/song_action'
 import { playSong, pauseSong } from '../../actions/song_player_actions'
 import { openEditModal, openPlaylistModal } from '../../actions/modal_actions'
 import { createFollow, deleteFollow } from '../../actions/follow_action'
@@ -37,7 +37,9 @@ const mDTP = dispatch => ({
   pauseSong: (song) => dispatch(pauseSong(song)),
   addQueue: (songs) => dispatch(addQueue(songs)),
   playSong: (song) => dispatch(playSong(song)),
-  fetchPlaylistByArtist: (username) => dispatch(fetchPlaylistByArtist(username))
+  fetchPlaylistByArtist: (username) => dispatch(fetchPlaylistByArtist(username)),
+  fetchPopularSongs: (username)=> dispatch(fetchPopularSongs(username)),
+  fetchRecent: (username) => dispatch(fetchRecent(username))
 })
 
 export default connect(mSTP, mDTP)(Dashboard)

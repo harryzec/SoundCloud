@@ -3,6 +3,7 @@
 json.set! @user.username do
 
   json.extract! @user, :id, :username, :playlists, :followers, :comments
+  json.songs @user.songs.length
 
   json.comments @user.comments do |comment|
     song = Song.find_by(id: comment.user_id)

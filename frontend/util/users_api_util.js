@@ -11,3 +11,15 @@ export const fetchRandomUsers = () => {
     url: '/api/users/random/follow'
   });
 }
+
+export const fetchRecent = username => {
+  return $.ajax({
+    url: `api/users/recent_creations/${username}`
+  })
+}
+
+export const fetchFollowerContent = (id) => {
+  return $.ajax({
+    url: `api/users/follower_content/${id}`
+  })
+}

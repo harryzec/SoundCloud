@@ -1,0 +1,65 @@
+.nofollowing {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.nofollowimg {
+  width: 150px;
+  height: 150px;
+  margin-top: 200px;
+}
+
+.searchtofindfriends {
+  font-weight: 100;
+}
+
+.followsheader {
+  color: #999;
+  font-weight: 100;
+  font-size: 17px;
+}
+
+.searchedfollow {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchedme2 {
+  width: 100%;
+  display: flex;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 11px;
+  margin-bottom: 0;
+  height: auto;
+}
+
+.searchedimgfol {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+}
+
+.meow {
+  margin: 0;
+  font-size: 12px;
+  display: flex;
+  margin-top: 14px;
+  text-decoration: none;
+}
+
+.greyfont {
+  color: #999;
+  font-weight: 100;
+  margin-top: 6px;
+  margin-left: 3px;
+}
+
+.nodecoration {
+  text-decoration: none;
+  color: #333;
+  margin-top: 6px;
+  margin-left: 6px;
+}

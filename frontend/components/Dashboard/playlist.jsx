@@ -60,10 +60,11 @@ class Playlist extends React.Component {
   }
 
   render() {
+    debugger
     if (this.props.songs === null) return null
     
 
-    if (this.props.user.id === this.props.currentuser.id){
+    
 
       let content = (
         <>
@@ -73,10 +74,21 @@ class Playlist extends React.Component {
           </div>
         </>
       )
+      
+      if (this.props.currentuser.id !== this.props.user.id) {
+        let content = (
+          <>
+            <div className='noplaylists'>
+              <img className='noplaylistpic'src='https://image.flaticon.com/icons/svg/2311/2311991.svg'/>
+              <p>Seems a little quiet over here.</p>
+            </div>
+          </>
+        )
+      }
 
       
 
-      if (this.props.playlists !== {}) {
+      if (this.props.playlists !== {} & this.props.playlists.length > 0) {
         let cursong = this.props.player.song; 
         let playlistlist = this.props.playlists.reverse().map(playlist => {
           let lastbutton = (
@@ -339,9 +351,8 @@ class Playlist extends React.Component {
         <div className='profileOptions'>
         <section className='profileSections'>
           <Link to={`/${this.props.match.params.username}`}className='profileButtons'>All</Link>
-          <Link className='profileButtons'>Popular tracks</Link>
-          <Link className='profileButtons'>Tracks</Link>
-          <Link className='profileButtons'>Albums</Link>
+          <Link to={`/${this.props.match.params.username}/popular-tracks`}className='profileButtons'>Popular tracks</Link>
+          <Link to={`/${this.props.match.params.username}/tracks`} className='profileButtons'>Tracks</Link>
           <Link to={`/${this.props.match.params.username}/sets`}className='profileButtonsAll'>Playlists</Link>
           <Link className='profileButtons'>Reposts</Link>
         </section>
@@ -361,12 +372,12 @@ class Playlist extends React.Component {
         <div className='myStats'>
           <div className='myFollowers'>
             <p className='headz'>Followers</p>
-            <p className='statNum'>0</p>
+            <p className='statNum'>{this.props.user.followers.length}</p>
 
           </div>
           <div className='myFollowing'>
             <p className='headz'>Following</p>
-            <p className='statNum'>0</p>
+            <p className='statNum'>{this.props.user.follows.length}</p>
           </div>
           <div className='myTracks'>
             <p className='headz'>Tracks</p>
@@ -383,7 +394,7 @@ class Playlist extends React.Component {
         
         </>
       )
-    }
+    
   }
 }
 

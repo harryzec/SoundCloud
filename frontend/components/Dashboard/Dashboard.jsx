@@ -6,6 +6,8 @@ import { openPlaylistModal } from '../../actions/modal_actions';
 import Wave from '../waves/waves_container'
 import Waves from '../waves/waves';
 import PlaylistDashboard from './playlist'
+import PopularTracks from './popular-tracks'
+import Tracks from './tracks'
 
 
 class Dashboard extends React.Component {
@@ -56,27 +58,36 @@ class Dashboard extends React.Component {
 
   }
 
-  componentDidUpdate() {
+  // componentDidUpdate() {
     
-    if (this.props.user) {
-      if (this.props.match.params.username.split('-').join(' ') !== this.props.user.username) {
-        let username= this.props.match.params.username.split('-').join(' ')
-        this.props.fetchUser(username)
-        this.props.fetchSongsByArtist(username)
-        this.props.fetchPlaylistByArtist(this.props.match.params.username)
-      }
-    }
-  }
+  //   if (this.props.user) {
+  //     if (this.props.match.params.username.split('-').join(' ') !== this.props.user.username) {
+  //       let username= this.props.match.params.username.split('-').join(' ')
+  //       this.props.fetchUser(username)
+  //       this.props.fetchSongsByArtist(username)
+  //       this.props.fetchPlaylistByArtist(username)
+  //     }
+  //   }
+  // }
 
   
   componentDidMount(){
+    debugger
     let username= this.props.match.params.username.split('-').join(' ')
     this.props.fetchUser(username)
     this.props.fetchSongsByArtist(username)
-    this.props.fetchPlaylistByArtist(this.props.match.params.username)
+    this.props.fetchPlaylistByArtist(username)
   }
 
   handlePlay(song){
+    debugger
+    if (this.props.player.song.id !== song.id) {
+      if (!song.plays) {
+        song.plays = 1;
+      } else {
+        song.plays += 1;
+      }
+    }
     this.props.playSong(song);
   }
 
@@ -102,14 +113,7 @@ class Dashboard extends React.Component {
   
   if (this.props.match.path === '/:username') {
 
-  //  if (Object.values(this.props.songs).length === 0) {
-  //    return(
-  //      <>
-  //      <li>This artist has no songs!</li>
-  //      </>
-  //    )
-  //  }  
-
+   
    
    
 
@@ -137,16 +141,18 @@ class Dashboard extends React.Component {
    }
    
    
-   
-    if ((this.props.user.id === this.props.currentuser.id)&&this.state !== null) {
-      debugger
-      if (Object.values(this.props.songs) === 0) {
+    if (this.state !== null) {
+      if (Object.values(this.props.songs).length === 0) {
         artistSongs = (
           <>
-            <h1>This boi aint got no songs!</h1>
+          <div className='noplaylists'>
+            <img className='noplaylistpic'src='https://image.flaticon.com/icons/svg/2311/2311991.svg'/>
+            <p>Seems a little quiet over here</p>
+          </div>
+          
           </>
         )
-      } else {
+      }  else {   
 
       artistSongs = Object.values(this.props.songs).map(song => {
         // let num = song.id
@@ -174,6 +180,34 @@ class Dashboard extends React.Component {
             )
           }
         })
+
+        let buttons = (
+          <>
+          {likebutton}
+            <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+            <button className='songBu3' onClick={e => this.handleEdit(e, song)}>&#9998; Edit</button>
+            <button className='songBu4' onClick={() => this.setState({[song.id]: 'moreshow'})}>...More
+              <div className={`${this.state[song.id]}`}>
+                <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+                <div className='moreshowli'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/641/641360.svg'/>  Stats</div>
+                <div className='moreshowli'><img width='12'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'/>  Station</div>
+                <div className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Track</div>
+                </div>
+            </button>
+          </>
+        )
+
+        if (this.props.user.id !== this.props.currentuser.id) {
+          buttons = (
+            <>
+              {likebutton}
+              <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+              <button className='songBu3' onClick={() => this.props.openPlaylistModal('playlist', song)}>&#9998; Add to Playlist</button>
+              <button className='songBu4' onClick={() => this.setState({[song.id]: 'moreshow'})}>Add to up next</button>
+            </>
+          )
+        }
        
         return (
         <>
@@ -200,18 +234,7 @@ class Dashboard extends React.Component {
 
             <div className='songFoot'>
               <div className='songBO'>
-                {likebutton}
-                <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
-                <button className='songBu3' onClick={e => this.handleEdit(e, song)}>&#9998; Edit</button>
-                <button className='songBu4' onClick={() => this.setState({[song.id]: 'moreshow'})}>...More
-                  <div className={`${this.state[song.id]}`}>
-                    <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-                    <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                    <div className='moreshowli'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/641/641360.svg'/>  Stats</div>
-                    <div className='moreshowli'><img width='12'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'/>  Station</div>
-                    <div className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Track</div>
-                  </div>
-                </button>
+                {buttons}
               </div>
             </div>
               
@@ -232,26 +255,7 @@ class Dashboard extends React.Component {
         
         </>
       )})}
-    } else {
-    
-
-   
-     
-    artistSongs = Object.values(this.props.songs).map(song => (
-      <>
-      <div className='songContainer'>
-      <img src={song.imgUrl} className='songImg1'/>
-        <div className='songHelp'>
-          <button onClick={()=> this.handlePlay(song)}>Play Button{song.title}</button>
-          <p>      </p>
-          <Link to={`/${this.props.user.username}/${song.hyperlink}`}>{song.title}</Link>
-          <p>      </p>
-          {this.props.user.username}
-        </div>
-        </div>
-      </>
-    ))
-   }
+    } 
 
   } else {
     artistSongs = null;
@@ -261,7 +265,7 @@ class Dashboard extends React.Component {
 
     profilebody = (
     <>
-    <h2 className='recentHead'>Recent</h2>
+    <h2 className='recentHead'>Spotlight</h2>
     {artistSongs}
     </>
 
@@ -401,11 +405,10 @@ class Dashboard extends React.Component {
       <>
      <div className='profileOptions'>
      <section className='profileSections'>
-       <Link to={`/${this.props.match.params.username}`}className={this.state.all}>All</Link>
-       <Link className='profileButtons'>Popular tracks</Link>
-       <Link className='profileButtons'>Tracks</Link>
-       <Link className='profileButtons'>Albums</Link>
-       <Link to={`/${this.props.match.params.username}/sets`}className={this.state.sets}>Playlists</Link>
+       <Link to={`/${this.props.match.params.username}`}className='profileButtonsAll'>All</Link>
+       <Link to={`/${this.props.match.params.username}/popular-tracks`}className='profileButtons'>Popular tracks</Link>
+       <Link to={`/${this.props.match.params.username}/tracks`}className='profileButtons'>Tracks</Link>
+       <Link to={`/${this.props.match.params.username}/sets`}className='profileButtons'>Playlists</Link>
        <Link className='profileButtons'>Reposts</Link>
      </section>
      <section className='profileExtra'>
@@ -460,6 +463,22 @@ class Dashboard extends React.Component {
     titler= (
       <>
         <PlaylistDashboard user={this.props.user} fetchPlaylistByArtist={this.props.fetchPlaylistByArtist} createLike={this.props.createLike} deleteLike={this.props.deleteLike} songs={this.props.songs} player= {this.props.player} currentuser={this.props.currentuser} playlists ={this.props.playlists} openDeletePlaylistModal={this.props.openDeletePlaylistModal} openEditPlaylistModal={this.props.openEditPlaylistModal} pauseSong={this.props.pauseSong} addQueue={this.props.addQueue} playSong={this.props.playSong}/>
+      </>
+    )
+  }
+
+  if (this.props.match.path === '/:username/popular-tracks') {
+    titler = (
+      <>
+        <PopularTracks user={this.props.user} currentuser={this.props.currentuser} songs={this.props.songs} fetchPopularSongs={this.props.fetchPopularSongs}/>
+      </>
+    )
+  }
+
+  if (this.props.match.path === '/:username/tracks') {
+    titler = (
+      <>
+        <Tracks user={this.props.user} currentuser={this.props.currentuser} songs={this.props.songs} fetchPopularSongs={this.props.fetchPopularSongs}/>
       </>
     )
   }

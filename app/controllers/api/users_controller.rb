@@ -12,7 +12,6 @@ class Api::UsersController < ApplicationController
 
   def randomusers
     
-  
     @users = []
     while @users.length != 3
       user = User.all.sample
@@ -37,6 +36,34 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def follower_content
+    
+    follows = User.find_by(id: params[:id]).follows
+    users = follows.map {|follow| User.find_by(id: follow.user_id) }
+    @results = []
+    users.each do |user|
+      partial = user.songs + user.playlists
+      @results += partial
+    end
+    
+
+    @results.sort_by(&:created_at)
+    render :recent
+
+  end 
+
+  def recent_creations
+    user = User.find_by(username: params[:username])
+    songs = Song.where(user_id: user.id).select('id')
+    songs = songs.map {|id| Song.find_by(id: id)}
+    playlists = Playlist.where(user_id: user.id).select('id')
+    playlists = playlists.map {|id| Playlist.find_by(id: id)}
+    
+    @results = (playlists + songs)
+    @results.shuffle
+    
+    render :recent
+  end
 
 
   def create

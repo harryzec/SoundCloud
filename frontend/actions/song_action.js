@@ -52,6 +52,12 @@ export const fetchSongsByArtist = userId => dispatch => {
   ));
 };
 
+export const fetchPopularSongs = username => dispatch => {
+  return APIUtil.fetchPopularSongs(username).then(songs => (
+    dispatch(receiveSongs(songs))
+));
+}
+
 export const DELETE_SONG= 'DELETE_SONG';
 
 export const removeSong = song => ({
@@ -74,15 +80,14 @@ export const songShow = song => ({
 export const fetchSongShow = ( hyperlink, username ) => dispatch => {
   // debugger
   return APIUtil.fetchSongShow( hyperlink, username )
-    .then((song) => { 
-      debugger
+    .then((song) => {
       dispatch(songShow(song))
     })
 }
 
 export const editSong = (song, id) => dispatch => {
   return APIUtil.editSong(song, id)
-    .then(song => receiveSong(song))
+    .then(() => receiveSong(song))
 }
 
 export const createComment = (comment) => dispatch => {

@@ -23,13 +23,14 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def by_user
+    
     @user = User.find_by(username: params[:username])
     @RPlaylists = Playlist.where(user_id: @user.id)
 
     if @RPlaylists
-        render :index
+      render :index
     else
-        render json: ["no playlists found"], status: 404
+      render json: {}
     end
   end
 

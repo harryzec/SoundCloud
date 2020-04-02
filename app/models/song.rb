@@ -1,3 +1,7 @@
+require 'action_view'
+require 'action_view/helpers'
+include ActionView::Helpers::DateHelper
+
 class Song < ApplicationRecord
   validates :title, :user_id, :genre, :hyperlink, presence: true
   has_one_attached :track
@@ -27,6 +31,10 @@ class Song < ApplicationRecord
   def self.search(search)
     songs = Song.where("lower(title) LIKE ?", "#{search.downcase}%").select("id") +  Song.where("lower(title) LIKE ?", "% #{search.downcase}%").select("id") 
     songs.map {|song| song.id }
+  end
+
+  def convert_time
+    time_ago_in_words(self.created_at)
   end
 
   private 

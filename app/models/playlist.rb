@@ -1,3 +1,7 @@
+require 'action_view'
+require 'action_view/helpers'
+include ActionView::Helpers::DateHelper
+
 class Playlist < ApplicationRecord
   validates :title, presence: true
   validates :user_id, presence: true
@@ -22,5 +26,9 @@ class Playlist < ApplicationRecord
   def self.search(search)
     playlists = Playlist.where("lower(title) LIKE ?", "#{search.downcase}%").select("id") + Playlist.where("lower(title) LIKE ?", "% #{search.downcase}%").select("id")
     playlists.map {|playlist| playlist.id }
+  end
+
+  def convert_time
+    time_ago_in_words(self.created_at)
   end
 end

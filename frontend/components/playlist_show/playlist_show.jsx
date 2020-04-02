@@ -301,7 +301,14 @@ class PlaylistShow extends React.Component {
       </>
     )
 
+    let plural = 'Likes'
+
+    if (this.props.playlist.likes.length === 1) {
+      plural ='Like'
+    }
+
     if (this.props.playlist.likes.length > 0) {
+      
 
       userlikes = this.props.playlist.likes.map(like => {
 
@@ -404,7 +411,7 @@ class PlaylistShow extends React.Component {
               </div>
 
               <div className='playlistshowother'>
-                <h3 className='listenHis'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/2725/2725161.svg'/> Likes</h3>
+                <h3 className='listenHis'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/2725/2725161.svg'/>{this.props.playlist.likes.length} {plural}</h3>
                 <div className='displayflex'>
                   {userlikes}
                 </div>

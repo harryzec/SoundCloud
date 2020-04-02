@@ -13,13 +13,28 @@ class Api::SongsController < ApplicationController
   end
 
   def by_user
+
     @user = User.find_by(username: params[:username])
     @songs = Song.where(user_id: @user.id)
+    
 
     if @songs
         render :index
     else
-        render json: ["no songs found"], status: 404
+        render json: {}
+    end
+  end
+
+  def by_user_popular
+    
+    @user = User.find_by(username: params[:username])
+    @songs = Song.where(user_id: @user.id).order('plays DESC')
+    
+
+    if @songs
+        render :index
+    else
+        render json: {}
     end
   end
 
@@ -39,6 +54,7 @@ class Api::SongsController < ApplicationController
   end
 
   def update
+    
     @song = Song.find_by(id: params[:id])
     
 
@@ -58,7 +74,7 @@ class Api::SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title, :genre, :user_id, :track, :description, :hyperlink, :photo)
+    params.require(:song).permit(:title, :genre, :user_id, :track, :description, :hyperlink, :photo, :plays)
   end
 
 end

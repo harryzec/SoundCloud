@@ -45,6 +45,21 @@ export const editSong = (song, id) => {
   })
 }
 
+export const fetchPopularSongs = (username) => {
+  return $.ajax({
+      method: 'GET',
+      url: `/api/songs/by_user/popular/${username}`,
+  });
+}
+
+export const updateSong = (song, id) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/songs/${id}`,
+    data: {song}
+  })
+}
+
 export const createComment = (comment) => {
   return $.ajax({
     method: 'POST',

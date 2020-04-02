@@ -10,10 +10,13 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :follows, only: [:create, :destroy]
     delete 'playlist_tracks/destroy', :to => 'playlist_tracks#destroy'
+    get 'users/follower_content/:id' => 'users#follower_content'
     get 'users/random/follow', :to => 'users#randomusers'
+    get 'users/recent_creations/:username', :to => 'users#recent_creations'
     get 'searches/search/:search', :to => 'searches#search'
     get 'playlists/get_playlist/:username/:permalink', :to => 'playlists#get_playlist'
     get 'songs/by_user/:username', :to => 'songs#by_user'
+    get 'songs/by_user/popular/:username', :to => 'songs#by_user_popular'
     get 'playlists/by_user/:username', :to => 'playlists#by_user'
     get 'songs/songshow/:username/:hyperlink', :to => 'songs#songshow' 
   end

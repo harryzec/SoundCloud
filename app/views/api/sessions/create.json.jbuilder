@@ -1,5 +1,7 @@
 json.extract! @user, :id, :playlists, :followers, :username, :session_token, :password_digest, :email, :created_at, :updated_at, :comments
 
+json.songs @user.songs.length
+
 json.follows @user.follows do |follow|
   user = User.find_by(id: follow.user_id)
   json.id user.id
