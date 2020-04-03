@@ -50,11 +50,15 @@ class SongShow extends React.Component {
 
   componentDidUpdate() {
     debugger
-    if (this.state.currentsong === null) {
-      this.setState({currentsong: this.props.song})
-    } else if (this.state.currentsong.hyperlink !== this.props.match.params.hyperlink) {
+    // if (this.state.currentsong === null) {
+    //   this.setState({currentsong: this.props.song})
+    // } else if (this.state.currentsong.hyperlink !== this.props.match.params.hyperlink) {
+    //   this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
+    //   this.setState({change: true, othersongs: this.shuffleArray(this.props.othersongs).slice(0, 3), currentsong: {hyperlink: this.props.match.params.hyperlink}})
+    // }
+    if (this.props.song === undefined) {
       this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
-      this.setState({change: true, othersongs: this.shuffleArray(this.props.othersongs).slice(0, 3), currentsong: {hyperlink: this.props.match.params.hyperlink}})
+      // this.setState({change: true, othersongs: this.shuffleArray(this.props.othersongs).slice(0, 3), currentsong: {hyperlink: this.props.match.params.hyperlink}})
     }
  
 

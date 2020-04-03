@@ -313,8 +313,8 @@ getPosition(el) {
       <img className='imgbar' src={this.props.song.imgUrl}/>
 
       <div className='barinfo'>
-        <Link to={`/${this.props.song.user}`}className='baruse'>{this.props.song.user}</Link>
-        <Link to={`/${this.props.song.user}/${this.props.song.hyperlink}`} className='bartite'>{this.props.song.title}</Link>
+        <Link to={`/${this.props.song.user.split(' ').join('-')}`}className='baruse'>{this.props.song.user}</Link>
+        <Link to={`/${this.props.song.user.split(' ').join('-')}/${this.props.song.hyperlink}`} className='bartite'>{this.props.song.title}</Link>
       </div>
 
       <img className='barHeart' onClick={this.createLike} width='20' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/>

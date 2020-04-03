@@ -21,6 +21,25 @@ class Playlist extends React.Component {
     this.handlePlay = this.handlePlay.bind(this)
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
+    this.createFollow = this.createFollow.bind(this)
+    this.deleteFollow = this.deleteFollow.bind(this)
+  }
+
+  createFollow(e) {
+    e.preventDefault()
+    this.props.createFollow({
+      user_id: this.props.user.id,
+      follower_id: this.props.currentuser.id
+    })
+    let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchUser(username)
+  }
+
+  deleteFollow(e, id) {
+    e.preventDefault()
+    this.props.deleteFollow(id)
+    let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchUser(username)
   }
 
   createLike(e, id) {
@@ -346,6 +365,36 @@ class Playlist extends React.Component {
       )
 
     }
+
+    let followbutton = null
+    let editbutton=null
+    if (this.props.user.id === this.props.currentuser.id) {
+      editbutton= (
+        <>
+          <Link className='extraButtons'><strong className='boldthis1'>&#9998;</strong>  Edit</Link>
+        </>
+      )
+    }
+
+
+    if (this.props.user.id !== this.props.currentuser.id) {
+      followbutton = (
+        <>
+          <div className='extraBut2' onClick={this.createFollow}>+ Follow</div>
+        </>
+      )
+      this.props.user.followers.forEach(follower => {
+        if (follower.follower_id === this.props.currentuser.id) {
+          followbutton = (
+            <>
+              <div className='extraBut2' onClick={(e) => this.deleteFollow(e, follower.id)}><strong className='bigFont'>&#9745;</strong> Following</div>
+            </>
+          )
+        }
+      })
+    }
+
+
       return(
         <>
         <DeletePlaylist/>
@@ -358,7 +407,8 @@ class Playlist extends React.Component {
           <Link to={`/${this.props.match.params.username}/sets`}className='profileButtonsAll'>Playlists</Link>
         </section>
         <section className='profileExtra'>
-          <Link className='extraButtons'><strong className='boldthis'>&#9998;</strong>  Edit</Link>
+          {followbutton}
+          {editbutton}
         </section>
       </div>
       <div className='profileBody'>

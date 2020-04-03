@@ -29,6 +29,8 @@ class Waves extends React.Component {
   }
 
   componentDidUpdate() {
+
+    
     
     if (this.wavesurfer && this.props.song === this.props.player.song){
       let parts = this.props.time.split(':')
@@ -36,16 +38,18 @@ class Waves extends React.Component {
       if (this.wavesurfer.getDuration() > 0 && seconds !== Math.floor(this.wavesurfer.getCurrentTime())) {
         this.wavesurfer.seekTo(seconds/this.wavesurfer.getDuration())
       }
-      
     }
-    if (this.state.song !== this.props.song) {
-      this.wavesurfer.load(this.props.song.songUrl);  
-      this.setState({song: this.props.song})
-    }
+    
+    // if (this.state.song.id !== this.props.song.id) {
+    //   this.wavesurfer.load(this.props.song.songUrl);  
+    //   this.setState({song: this.props.song})
+    // }
   }
 
   componentDidMount() {
+
     if (!this.wavesurfer&& this.props.song) {
+      if (this.props.song.catagory === 'song') {
       this.wavesurfer = WaveSurfer.create({
         container: `#waveformsong${this.props.song.id}`,
         waveColor: '#ccc',
@@ -90,8 +94,8 @@ class Waves extends React.Component {
         let duration = min.toString() + ':' + sec
         this.setState({duration: duration})
       })
- 
-    } 
+    }
+    }
 }
 
 handlePlay(song){
@@ -159,7 +163,7 @@ handlePlay(song){
      type ='waveform-holdersstream'
    }
 
-   debugger
+   
 
 
    

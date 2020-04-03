@@ -80,11 +80,13 @@ export const songShow = song => {
 }}
 
 export const fetchSongShow = ( hyperlink, username ) => dispatch => {
-  // debugger
-  return APIUtil.fetchSongShow( hyperlink, username )
-    .then((song) => {
+  debugger
+  return APIUtil.fetchSongShow( hyperlink, username ).then((song) => {
+      debugger
       dispatch(songShow(song))
     })
+
+    debugger
 }
 
 export const editSong = (song, id) => dispatch => {
