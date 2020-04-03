@@ -137,6 +137,8 @@
   color: darkgray;
   cursor: pointer;
   text-decoration: none;
+  padding-top: 7px;
+  padding-bottom: 9px;
 }
 .play1 {
   display: flex;

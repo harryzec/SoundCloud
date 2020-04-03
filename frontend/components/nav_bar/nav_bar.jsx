@@ -10,7 +10,7 @@ class NavBar extends React.Component {
     this.handleDrop = this.handleDrop.bind(this)
     this.update = this.update.bind(this)
     this.shuffle = this.shuffle.bind(this)
-    this.state = { NavDrop: 'navDropDown', userdrop: 'userdrop', search: '', showsearch: 'noshowsearch'};
+    this.state = { looked: this.props.location.search, path: this.props.location.pathname, NavDrop: 'navDropDown', userdrop: 'userdrop', search: '', showsearch: 'noshowsearch'};
   }
 
   shuffle(a) {
@@ -33,6 +33,23 @@ class NavBar extends React.Component {
       } else {
         
         this.setState({[field]: e.currentTarget.value, showsearch: 'noshowsearch'})
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    debugger
+    if (this.props.location.pathname !==  this.state.path) {
+
+        let bar = document.getElementById('searchedbar')
+        bar.value = ''
+        this.setState({path: this.props.location.pathname, showsearch: 'noshowsearch'})
+      
+    } else if (this.props.location.pathname === '/search') {
+      if (this.props.location.search !== this.state.looked) {
+        let bar = document.getElementById('searchedbar')
+        bar.value = ''
+        this.setState({path: this.props.location.pathname, showsearch: 'noshowsearch', looked: this.props.location.search})
       }
     }
   }
@@ -69,7 +86,7 @@ class NavBar extends React.Component {
           </>)
         } else if (search.catagory === 'playlist') {
           return (<>
-            <Link className='searchres'>
+            <Link to={`/${search.user.username.split(' ').join('-')}/sets/${search.permalink}`} className='searchres'>
               &#9862; {search.title}
             </Link>
           </>)
@@ -86,7 +103,9 @@ class NavBar extends React.Component {
     searched = (
       <>
       <Link to={`/search?q=${this.state.search}`}className='searching'>
+        <div className='clicklink'>
         Search for "{this.state.search}"
+        </div>
       </Link>
       {results}
       
@@ -108,7 +127,7 @@ class NavBar extends React.Component {
         <Link to='/you/library' className='LibraryButton'>Library</Link>
         </div>
         <div className='searchSound'>
-        <input type='text' placeholder='Search' onChange={this.update('search')} defaultValue={this.state.search}className='searchMusicBar'/>
+        <input type='text' placeholder='Search' onChange={this.update('search')} defaultValue={this.state.search}className='searchMusicBar' id='searchedbar'/>
           <div className={this.state.showsearch}>{searched}</div>
         <div className='buttonBack'>
           <button className='searchNotes'></button>

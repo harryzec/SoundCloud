@@ -168,7 +168,6 @@ class EditPlaylistForm extends React.Component {
             </div>
 
             <div className='playtrackfacts'>
-              <p className='trackle'>SongLength</p>
               <div onClick={(e) => this.handleDeleteTrack(e, track.id, this.props.playlist.id, index) } className='deletetrack'><p className='xout'>X</p></div>
             </div>
 

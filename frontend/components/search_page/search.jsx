@@ -11,6 +11,14 @@ class SearchPage extends React.Component {
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
     this.addQueue = this.addQueue.bind(this)
+    debugger
+    this.state = {search: this.props.search, path: this.props.location.search}
+  }
+
+  componentDidUpdate() {
+    if (this.props.location.search !== this.state.path) {
+      this.setState({search: this.props.search, path: this.props.location.search})
+    }
   }
 
   addQueue(e, song) {
@@ -76,14 +84,14 @@ class SearchPage extends React.Component {
       </>
     )
 
-    if (this.props.search.length > 0) {
+    if (this.state.search.length > 0) {
       let tracknum = 0;
       let usernum = 0;
       let playlistnum = 0;
       debugger
       if(this.props.match.path === '/search') {
 
-      let results = (Object.values(this.props.search.flat()))
+      let results = (Object.values(this.state.search.flat()))
       results = results.map(search => {
         let searchpic;
         let title;
@@ -294,7 +302,7 @@ class SearchPage extends React.Component {
           <Link to={`/search/sets?q=${this.props.location.search.slice(3)}`}className='searchopt'>&#9886; Playlists</Link>
         </>
       )
-      let results = (Object.values(this.props.search.flat()))
+      let results = (Object.values(this.state.search.flat()))
       results = results.map(search => {
         let searchpic;
         let title;
@@ -404,7 +412,7 @@ class SearchPage extends React.Component {
             <Link to={`/search/sets?q=${this.props.location.search.slice(3)}`}className='searchopt'>&#9886; Playlists</Link>
           </>
         )
-        let results = (Object.values(this.props.search.flat()))
+        let results = (Object.values(this.state.search.flat()))
         results = results.map(search => {
           let searchpic;
           let title;
@@ -501,7 +509,7 @@ class SearchPage extends React.Component {
               <Link to={`/search/sets?q=${this.props.location.search.slice(3)}`}className='searchclicked'>&#9886; Playlists</Link>
             </>
           )
-          let results = (Object.values(this.props.search.flat()))
+          let results = (Object.values(this.state.search.flat()))
           results = results.map(search => {
             let searchpic;
             let title;

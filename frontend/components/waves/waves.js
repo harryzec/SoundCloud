@@ -32,7 +32,7 @@ class Waves extends React.Component {
 
     
     
-    if (this.wavesurfer && this.props.song === this.props.player.song){
+    if (this.wavesurfer && this.props.song.id === this.props.player.song.id){
       let parts = this.props.time.split(':')
       let seconds = parseInt(parts[0])*60 + parseInt(parts[1])
       if (this.wavesurfer.getDuration() > 0 && seconds !== Math.floor(this.wavesurfer.getCurrentTime())) {

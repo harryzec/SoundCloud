@@ -59,3 +59,9 @@ export const verifyUser = (username) => dispatch => (
          
     )
 )
+
+export const updateUser = user => dispatch => (
+  APIUtil.updateUser(user)
+    .then(user => (
+    dispatch(receiveCurrentUser(user))
+)))

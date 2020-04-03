@@ -4,8 +4,53 @@ import { withRouter, Link } from 'react-router-dom'
 class PlaylistForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { modalnumber: 'zero', title: ''}
+    this.filterplaylists = this.filterplaylists.bind(this)
+    this.state = { modalnumber: 'zero', title: '', playlists: this.props.currentUser.playlists}
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handledelete = this.handledelete.bind(this)
+    this.updateplaylists = this.updateplaylists.bind(this)
+  }
+
+  updateplaylists(e) {
+    debugger
+    e.preventDefault()
+    let newplaylists = []
+    let value = document.getElementById('playfilt')
+    
+    let length = value.length
+    this.props.currentUser.playlists.forEach(playlist => {
+      let title = playlist.title.toLowerCase().split(' ')
+      if (playlist.title.toLowerCase().slice(0, length) === value.toLowerCase()) {
+        newplaylists.push(playlist)
+      }
+      title.forEach(part => {
+        if (!newplaylists.includes(playlist) && part.slice(0, length) === value.toLowerCase()) {
+          newplaylists.push(playlist)
+        }
+      })
+    })
+
+    this.setState({playlists: newplaylists})
+  }
+
+  filterplaylists(e) {
+    e.preventDefault()
+    let newplaylists = []
+    
+    let length = e.currentTarget.value.length
+    this.props.currentUser.playlists.forEach(playlist => {
+      let title = playlist.title.toLowerCase().split(' ')
+      if (playlist.title.toLowerCase().slice(0, length) === e.currentTarget.value.toLowerCase()) {
+        newplaylists.push(playlist)
+      }
+      title.forEach(part => {
+        if (!newplaylists.includes(playlist) && part.slice(0, length) === e.currentTarget.value.toLowerCase()) {
+          newplaylists.push(playlist)
+        }
+      })
+    })
+
+    this.setState({playlists: newplaylists})
   }
 
   handleadd(e, songId, playlistId) {
@@ -14,6 +59,16 @@ class PlaylistForm extends React.Component {
     newPlaylistTrack.append('PlaylistTrack[track_id]', songId)
     newPlaylistTrack.append('PlaylistTrack[playlist_id]', playlistId)
     this.props.createPlaylistTrack(newPlaylistTrack)
+    this.props.updateUser({id: this.props.currentUser.id})
+  }
+
+  handledelete(e, songId, playlistId) {
+    e.preventDefault()
+    const newPlaylistTrack = new FormData();
+    newPlaylistTrack.append('PlaylistTrack[track_id]', songId)
+    newPlaylistTrack.append('PlaylistTrack[playlist_id]', playlistId)
+    this.props.deletePlaylistTrack(newPlaylistTrack)
+    this.props.updateUser({id: this.props.currentUser.id})
   }
 
   handleSubmit(e) {
@@ -35,6 +90,7 @@ class PlaylistForm extends React.Component {
 
   render() {
     debugger
+    
     if (this.props.playlist.length !== 0) {
       const newPlaylistTrack = new FormData();
       newPlaylistTrack.append('PlaylistTrack[track_id]', this.props.song.id)
@@ -43,17 +99,50 @@ class PlaylistForm extends React.Component {
     }
 
     const {song} = this.props
-    debugger
 
     let theForm;
-
+    
     if (this.state.modalnumber === 'zero' && this.props.currentUser.playlists.length > 0) {
+    debugger
+    let playlist = this.state.playlists.slice(0, 4).map(playlist => {
 
-    let playlist = this.props.currentUser.playlists.slice(0, 4).map(playlist => {
-      let button = (
-        <div onClick={(e)=>this.handleadd(e, this.props.song.id, playlist.id) } className='addtoplaysecond'>Add to playlist</div>
-      )
-      debugger
+      if (!this.props.currentUser.playlists.some((match) => match === playlist)) {
+        // this.setState({playlists: this.props.currentUser.playlists})
+
+      
+    let newplaylists = []
+    
+    let value = document.getElementById('playfilt').value
+    
+    let length = value.length
+    this.props.currentUser.playlists.forEach(playlist => {
+      let title = playlist.title.toLowerCase().split(' ')
+      if (playlist.title.toLowerCase().slice(0, length) === value.toLowerCase()) {
+        newplaylists.push(playlist)
+      }
+      title.forEach(part => {
+        if (!newplaylists.includes(playlist) && part.slice(0, length) === value.toLowerCase()) {
+          newplaylists.push(playlist)
+        }
+      })
+    })
+
+    this.setState({playlists: newplaylists})
+        
+      }
+
+      let button
+      if (playlist.tracks.some((track) => track.id === this.props.song.id)) {
+        button = (
+          <div onClick={(e)=>this.handledelete(e, this.props.song.id, playlist.id) } className='addtoplaysecond'>Added</div>
+        )
+      } else {
+        
+        button = (
+          <div onClick={(e)=>this.handleadd(e, this.props.song.id, playlist.id) } className='addtoplaysecond'>Add to playlist</div>
+        )
+      }
+      
 
       // playlist.tracks.forEach(track => {
       //   if (track.id === this.props.song.id) {
@@ -68,7 +157,7 @@ class PlaylistForm extends React.Component {
       <>
         <div className='addtoplay'>
           <div className='playpicinfo'>
-            <div className='playpicz'></div>
+            <img src={playlist.imageUrl} className='playpicz'/>
             <div className='playtitandinfo'>
               <p className='playnameagain'>{playlist.title}</p>
               {/* {playlist.tracks.length} */}
@@ -89,7 +178,7 @@ class PlaylistForm extends React.Component {
           <h2 onClick={() => this.setState({modalnumber: 'first'})} className='createplay2'><div className='partz'>Create a playlist</div></h2>
         </div>
         
-        <input className='fiterplaylists' placeholder='Filter Playlists'/>
+        <input onChange={this.filterplaylists} className='fiterplaylists' id='playfilt' placeholder='Filter Playlists'/>
 
         {playlist}
       
@@ -197,7 +286,7 @@ class PlaylistForm extends React.Component {
         <>
           <div className='playlistComplete'>
             <div className='playlistheader2'>
-              <h2 className='createplay2'>Create a playlist</h2>
+              <h2 className='createplay3'>Create a playlist</h2>
             </div>
 
             <div className='playlistcreated'>
@@ -209,7 +298,7 @@ class PlaylistForm extends React.Component {
                 </div>
               </div>
 
-              <Link className='gotoplaylist'>Go to playlist</Link>
+              <Link to={`/${this.props.currentUser.username.split(' ').join('-')}/sets/${this.state.title}`} className='gotoplaylist'>Go to playlist</Link>
               
             </div>
             <div className='playlistdiv2'>

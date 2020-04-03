@@ -3,9 +3,10 @@ import { closePlaylistModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import PlaylistForm from './Playlist_Form'
 import { createPlaylist } from '../../actions/playlist_actions'
-import { createPlaylistTrack } from '../../actions/playlist_actions'
+import { createPlaylistTrack, deletePlaylistTrack } from '../../actions/playlist_actions'
+import { updateUser } from '../../actions/session_actions'
 
-function Modal({modal, closePlaylistModal, song, playlist, createPlaylist, currentUser, createPlaylistTrack}) {
+function Modal({modal, updateUser, deletePlaylistTrack, closePlaylistModal, song, playlist, createPlaylist, currentUser, createPlaylistTrack}) {
   
   if (!modal) {
     return null;
@@ -13,7 +14,7 @@ function Modal({modal, closePlaylistModal, song, playlist, createPlaylist, curre
   let component;
   switch (modal) {
     case 'playlist':
-      component = <PlaylistForm song={song} playlist = {playlist} currentUser={currentUser} createPlaylistTrack ={createPlaylistTrack} createPlaylist={createPlaylist}/>;
+      component = <PlaylistForm deletePlaylistTrack={deletePlaylistTrack} song={song} updateUser={updateUser} playlist = {playlist} currentUser={currentUser} createPlaylistTrack ={createPlaylistTrack} createPlaylist={createPlaylist}/>;
       break;
     default:
       return null;
@@ -40,7 +41,9 @@ const mapDispatchToProps = dispatch => {
   return {
     closePlaylistModal: () => dispatch(closePlaylistModal()),
     createPlaylist: (playlist, song) => dispatch(createPlaylist(playlist, song)),
-    createPlaylistTrack: (playlisttrack) => dispatch(createPlaylistTrack(playlisttrack))
+    createPlaylistTrack: (playlisttrack) => dispatch(createPlaylistTrack(playlisttrack)),
+    updateUser: (user) => dispatch(updateUser(user)),
+    deletePlaylistTrack: (playlisttrack) => dispatch(deletePlaylistTrack(playlisttrack)),
   };
 };
 

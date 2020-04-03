@@ -28,3 +28,12 @@ export const verifyUser = email => (
     data: { email }
   })
 )
+
+export const updateUser = user => {
+  debugger
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/users/${user.id}`,
+    data: { user }
+  })
+}

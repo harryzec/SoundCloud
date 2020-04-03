@@ -13,6 +13,15 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find_by(id: id)
+
+    if @user.update(user_params)
+      render :create
+    else 
+    end
+  end
+
   def destroy
     dummy = current_user.dup
     @user = current_user
@@ -23,4 +32,9 @@ class Api::SessionsController < ApplicationController
       render json: ["Nobody signed in"], status: 404
     end
   end
+
+  def user_params
+    params.require(:user).permit(:email, :username, :password, :profile_picture, :cover_photo, :id)
+  end 
+
 end
