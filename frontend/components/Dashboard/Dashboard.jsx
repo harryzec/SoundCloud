@@ -81,15 +81,16 @@ class Dashboard extends React.Component {
   //   }
   // }
 
-  // componentDidUpdate() {
-  //   debugger
-  //   let username= this.props.match.params.username.split('-').join(' ')
-  //   if (username !== this.props.user.username) {
-  //     this.props.fetchUser(username)
-  //     this.props.fetchSongsByArtist(username)
-  //     this.props.fetchPlaylistByArtist(username)
-  //   }
-  // }
+  componentDidUpdate() {
+
+    let username= this.props.match.params.username.split('-').join(' ')
+    
+    if (this.props.user === undefined) {
+      this.props.fetchUser(username)
+      this.props.fetchSongsByArtist(username)
+      this.props.fetchPlaylistByArtist(username)
+    }
+  }
   
   componentDidMount(){
     debugger
