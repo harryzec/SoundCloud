@@ -3,7 +3,8 @@
     if search.catagory == 'song'
       json.extract! search, :title, :id, :user_id, :description, :genre, :hyperlink, :comments, :catagory, :likes
       json.created search.convert_time
-      json.user search.user
+      json.user search.user.username
+      json.creator search.user
       if search.user.profile_picture.attached?
         json.userpic url_for(search.user.profile_picture)
       else 
@@ -18,7 +19,8 @@
 
     elsif search.catagory == 'playlist'
       json.extract! search, :id, :title, :catagory, :likes
-      json.user search.user
+      json.user search.user.username
+      json.creator search.user
       json.created search.convert_time
 
       if search.user.profile_picture.attached?

@@ -153,8 +153,6 @@ class UploadForm extends React.Component {
             <div className='uploadContent'>
             <div className='uploadOptions'>
               <h1 className='basicInfo'>Basic Info</h1>
-              <h1 className='Metadata'>Metadata</h1>
-              <h1 className='Permissions'>Permissions</h1>
             </div>
             <div className='songImgIn'>
                 <input type='file' id='uploadPicture' onChange={this.handlePhoto}/>

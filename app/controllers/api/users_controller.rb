@@ -27,7 +27,8 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(username: params[:id])
+    
+    @user = User.find_by(username: params[:username])
 
     if @user
         render :show
@@ -51,6 +52,16 @@ class Api::UsersController < ApplicationController
     render :recent
 
   end 
+
+  def find_by_username
+    @user = User.find_by(username: params[:username])
+
+    if @user
+        render :show
+    else
+        render json: ["no artist found"], status: 404
+    end
+  end
 
   def recent_creations
     user = User.find_by(username: params[:username])

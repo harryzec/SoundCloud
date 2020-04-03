@@ -23,7 +23,7 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => {
   return ({
   fetchSongShow: (hyperlink, username) => dispatch(fetchSongShow(hyperlink, username)),
-  openDeleteModal: (keyword)=> dispatch(openDeleteModal(keyword)),
+  openDeleteModal: (status, song)=> dispatch(openDeleteModal(status, song)),
   openEditModal: (edit, song)=> dispatch(openEditModal(edit, song)),
   playSong: (song) => dispatch(playSong(song)),
   pauseSong: (song) => dispatch(pauseSong(song)),

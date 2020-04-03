@@ -5,7 +5,8 @@ export default function EditModalReducer(state = { modal: null, song: null}, act
     case OPEN_EDIT_MODAL:
       return { modal: action.modal, song: action.song};
     case CLOSE_EDIT_MODAL:
+      return {modal: null, song: null}
     default:
-      return { modal: null, song: null};
+      return state
   }
 }

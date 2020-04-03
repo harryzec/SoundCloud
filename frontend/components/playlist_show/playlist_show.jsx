@@ -355,6 +355,14 @@ class PlaylistShow extends React.Component {
         })
       }
     }
+
+    if (this.props.player.player === 'playing' && this.props.tracks.some((track) => track.id === this.props.player.song.id) && this.wavesurfer) {
+      this.wavesurfer.setWaveColor('white')
+      this.wavesurfer.play()
+    } else if (this.wavesurfer) {
+      this.wavesurfer.setWaveColor('#ccc')
+      this.wavesurfer.pause()
+    }
   
     return(
       <>
@@ -382,7 +390,6 @@ class PlaylistShow extends React.Component {
                 <div className='playshowbutton'>
                   <div className='songBO'>
                         {likedbutton}
-                        <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                         <button onClick={() => this.props.openEditPlaylistModal('edit', this.props.playlist)}className='songBu3'>&#9998; Edit</button>
                         {lastbutton}
                   </div>

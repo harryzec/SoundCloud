@@ -1,6 +1,6 @@
 export const fetchUser = username => {
   return $.ajax({
-    url: `/api/users/${username}`,
+    url: `/api/users/find_by_username/${username}`,
     method: "GET"
   });
 };

@@ -9,6 +9,7 @@ class SongShow extends React.Component {
   constructor(props){
     super(props)
     this.shuffleArray = this.shuffleArray.bind(this)
+    this.state = {othersongs: this.shuffleArray(this.props.othersongs).slice(0, 3), currentsong: null, change: false}
     this._handleKeyDown = this._handleKeyDown.bind(this)
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
@@ -39,8 +40,7 @@ class SongShow extends React.Component {
   handleDeleteComment(e, id, idx) {
     e.preventDefault()
     this.props.deleteComment(id)
-    let newComments = this.state.comments.slice(0, idx).concat(this.state.comments.slice(idx+1))
-    this.setState({comments: newComments})
+    setTimeout(() => this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' ')), 500)
   }
 
   componentDidMount() {
@@ -49,8 +49,66 @@ class SongShow extends React.Component {
   }
 
   componentDidUpdate() {
+    debugger
+    if (this.state.currentsong === null) {
+      this.setState({currentsong: this.props.song})
+    } else if (this.state.currentsong.hyperlink !== this.props.match.params.hyperlink) {
+      this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
+      this.setState({change: true, othersongs: this.shuffleArray(this.props.othersongs).slice(0, 3), currentsong: {hyperlink: this.props.match.params.hyperlink}})
+    }
+ 
 
-    if (!this.wavesurfer&& this.props.song) {
+    if ((!this.wavesurfer&& this.props.song)|| this.state.change === true) {
+      if (this.state.change === true) {
+        this.setState({change: false})
+        setTimeout(()=>{
+          this.wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: '#ccc',
+            progressColor: '#f50',
+            barGraph: 10,
+            barHeight: .75,
+            barWidth: 2,
+            reflection: true,
+            // maxCanvasWidth: 200,
+            fillParent: true,
+            scrollParent: false,
+            cursorWidth: 0,
+            // interact: false,
+            // autoCenter: true,
+            // closeAudioContext: true,
+            hideScrollbar: true,
+            // partialRender: true,
+            // removeMediaElementOnDestroy: true,
+            pixelRatio: 1
+          });
+         
+          this.wavesurfer.load(this.props.song.songUrl);  
+    
+          this.wavesurfer.on('ready', ()=> {
+            if (this.props.player.song.id === this.props.song.id) {
+              let timeparts = this.props.time.split(':')
+              let timesec = parseInt(timeparts[0]*60) + parseInt(timeparts[1])
+              this.wavesurfer.seekTo(timesec/this.wavesurfer.getDuration())
+              if (this.props.player.player !== 'paused') {
+                this.wavesurfer.play()
+                this.wavesurfer.setVolume(0)
+              }
+            } 
+    
+            let tim = this.wavesurfer.getDuration()
+            let min = Math.floor(tim/60)
+            let sec = tim - (min*60) 
+            sec = sec.toString().split('.')[0]
+            if (sec.length < 2 ) {
+              sec = '0' + sec
+            }
+            let duration = min.toString() + ':' + sec
+            this.setState({duration: duration})
+          })
+        }, 500)
+      } else {
+      
       this.wavesurfer = WaveSurfer.create({
         container: '#waveform',
         waveColor: '#ccc',
@@ -95,6 +153,7 @@ class SongShow extends React.Component {
         let duration = min.toString() + ':' + sec
         this.setState({duration: duration})
       })
+    }
 
       
  
@@ -157,10 +216,10 @@ class SongShow extends React.Component {
     let newList;
     if (e.key === 'Enter') {
       this.props.createComment({body: e.target.value, user_id: this.props.currentuser.id, song_id: this.props.song.id})
-      oldComments = this.state.comments
-      newComment = {body: e.target.value}
-      newList = oldComments.push(newComment)
-      this.setState({comments: newList})
+      let ele = document.getElementById('commentInput')
+      ele.value = '';
+      this.setState({comments: null})
+      setTimeout(() => this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' ')), 500)
     }
   }
 
@@ -180,18 +239,17 @@ class SongShow extends React.Component {
 
 
   render(){
+    debugger
     
  
     if (!this.props.song) {
       return null
     }
 
-    let time;
-
-    
+    let time
    
 
-    let relatedSongs = this.shuffleArray(this.props.othersongs).slice(0, 3).map( song => (
+    let relatedSongs = this.state.othersongs.map( song => (
       <>
       <div className='randomSong'>
         <img width='50' height='50' src={song.imgUrl} />
@@ -210,7 +268,7 @@ class SongShow extends React.Component {
     if (this.props.song.user === this.props.userId) {
       dropdown = (
         <>
-          <button className='songBuS' onClick={()=>this.props.openDeleteModal('open')}>Delete track</button>
+          <button className='songBuS' onClick={()=>this.props.openDeleteModal('open', this.props.song)}>Delete track</button>
         </>
       )
     } else {
@@ -226,8 +284,9 @@ class SongShow extends React.Component {
     
       this.setState({comments: this.props.song.comments, updateWave: this.props.updateWave})
     } else {
-      if(this.state.comments.length > 0) {
-      let commentBody = this.state.comments.map((comment, idx) => {
+      debugger
+      if(this.props.song.comments.length > 0) {
+      let commentBody = this.props.song.comments.map((comment, idx) => {
         let user='You'
         let garbage = null
         if (comment.username !== this.props.currentuser.username) {
@@ -269,7 +328,7 @@ class SongShow extends React.Component {
         <>
           <div>
             <div className='commentlist'>
-              <h2 className='commenthead'><img className='compic'width='18' src='https://image.flaticon.com/icons/svg/1380/1380338.svg'/> {this.state.comments.length} Comments</h2>
+              <h2 className='commenthead'><img className='compic'width='18' src='https://image.flaticon.com/icons/svg/1380/1380338.svg'/> {this.props.song.comments.length} Comments</h2>
             </div>
             {commentBody}
           </div>
@@ -278,7 +337,7 @@ class SongShow extends React.Component {
       } else {
         comments = (
           <>
-          <img className='nocomments' height='300' width='400'src={window.nocomment}/>
+            <img className='nocomments' height='300' width='400'src={window.nocomment}/>
           </>
         )
       }
@@ -355,7 +414,7 @@ class SongShow extends React.Component {
     return(
       <>
       <EditModal/>
-      <DeleteModal song={this.props.song} userlink={this.props.match.params.username} />
+      <DeleteModal userlink={this.props.match.params.username} />
       <div className='SongshowPage'>
         <div className='songplayer'>
             
@@ -384,14 +443,13 @@ class SongShow extends React.Component {
               <div className='commentsInputBar'>
                 <img className='commentPic' src={this.props.currentuser.profileUrl}/>
                 <div className='commentWrap'>
-                  <input className='commentInput' onKeyDown={this._handleKeyDown} placeholder='Write a comment'/>
+                  <input id='commentInput' className='commentInput' onKeyDown={this._handleKeyDown} placeholder='Write a comment'/>
                 </div>
               </div>
 
               <div className='songFootS'>
                 <div className='songBOS'>
                   {likedbutton}
-                  <button className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                   <button className='songBuS' onClick={e => this.handleEdit(e, this.props.song)}>&#9998; Edit</button>
                   {dropdown}
                 </div>

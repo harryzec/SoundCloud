@@ -63,7 +63,7 @@ class NavBar extends React.Component {
       results = this.props.search.map(search => {
         if (search.catagory === 'song') {
           return (<>
-            <Link to={`/${search.user.username.split(' ').join('-')}/${search.hyperlink}`} className='searchres'>
+            <Link to={`/${search.user.split(' ').join('-')}/${search.hyperlink}`} className='searchres'>
               &#9862; {search.title}
             </Link>
           </>)
@@ -115,7 +115,7 @@ class NavBar extends React.Component {
         </div>
         </div>
         <div className='lastSearch'>
-          <button className='tryPro'>Try Pro</button>
+          <a href='https://github.com/harryzec' className='tryPro'>Github</a>
           <Link to='/upload' className='UploadClick'>Upload</Link>
 
         <div className={userdrop} onClick={this.handleDrop}>
@@ -123,28 +123,14 @@ class NavBar extends React.Component {
           <p className='dA'>&#8964;</p>
             <div className={NavDrop}>
               <Link className='firstEle1' to={`/${this.props.user.username.split(' ').join('-')}`}> <li className='firstEle'>&#8962; Profile</li></Link>
-              <li className='listEle' >&#43; Likes</li>
-              <li className='listEle'>&#12316; Stations</li>
-              <li className='listEle'>&#9738; Who to follow</li>
-              <li className='listEle'>&#9734; Try Pro</li>
-              <li className='TrackLI'>	&#9835; Tracks</li>
-              <li className='listEle'>&#8599; Stats</li>
+              <Link to={`/you/likes`} className='listEle' >&#43; Likes</Link>
+              <Link to={`/${this.props.user.username.split(' ').join('-')}/tracks`}className='TrackLI'>	&#9835; Tracks</Link>
             </div>
 
           </div>
             <button className='bellButton'>
-              &#10003;
-                {/* <img src={window.betterBell} alt="Bell" className='bellPic'/> */}
+              <a className='findmylinkedin' href='https://www.linkedin.com/in/harry-zec-7157a4a8/'>Linkedin</a>
             </button>
-
-            <div className='email'>
-              &#x2709;
-            </div>
-
-            <div className='dots'>
-              {/* &#8230; */}
-              <p>...</p>
-            </div>
 
             
         </div>

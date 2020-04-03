@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :follows, only: [:create, :destroy]
     delete 'playlist_tracks/destroy', :to => 'playlist_tracks#destroy'
     get 'users/follower_content/:id' => 'users#follower_content'
+    get 'users/find_by_username/:username' => 'users#find_by_username'
     get 'users/random/follow', :to => 'users#randomusers'
     get 'users/recent_creations/:username', :to => 'users#recent_creations'
     get 'searches/search/:search', :to => 'searches#search'

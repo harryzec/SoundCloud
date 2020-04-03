@@ -28,7 +28,8 @@ function DeleteModal({modal, closeModal, song, deleteSong, userlink, playSong}) 
 }
 
 const mSTP = state => ({
-  modal: state.ui.delete_modal
+  modal: state.ui.delete_modal.modal,
+  song: state.ui.delete_modal.song
 })
 
 const mDTP = dispatch => ({

@@ -4,6 +4,7 @@ import { fetchSearch } from '../../actions/search_actions'
 import { createFollow, deleteFollow } from '../../actions/follow_action'
 import { createLike, deleteLike } from '../../actions/like_action'
 import { openPlaylistModal } from '../../actions/modal_actions'
+import { addQueue } from '../../actions/queue_action'
 
 
 
@@ -24,7 +25,9 @@ const mDTP = dispatch => {
       fetchSearch: (search)=> dispatch(fetchSearch(search)),
       createLike: (like)=> dispatch(createLike(like)),
       deleteLike: (like_id) => dispatch(deleteLike(like_id)),
-      openPlaylistModal: (modal, song) => dispatch(openPlaylistModal(modal, song))
+      openPlaylistModal: (modal, song) => dispatch(openPlaylistModal(modal, song)),
+      addQueue: (songs) => dispatch(addQueue(songs)),
+      openPlaylistModal: (modal, song) => dispatch(openPlaylistModal(modal, song)),
     }
 }
 

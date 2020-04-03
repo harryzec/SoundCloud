@@ -6,7 +6,8 @@ export default function EditModalReducer(state = { modal: null, playlist: null},
     case OPEN_EDIT_PLAYLIST_MODAL:
       return { modal: action.modal, playlist: action.playlist};
     case CLOSE_EDIT_PLAYLIST_MODAL:
-    default:
       return { modal: null, playlist: null};
+    default:
+      return state
   }
 }

@@ -86,8 +86,10 @@
   top: 37px;
   width: 80%;
   font-size: 12px;
-  height: 199px;
+  height: auto;
   left: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .navDropDownShow:first-child {
@@ -141,6 +143,8 @@
   padding-left: 6px;
   border-top: .1px solid #999;
   padding-top:8px;
+  color: #999;
+  text-decoration: none;
 }
 
 .TrackLI:hover {
@@ -321,17 +325,29 @@
   height: 100%;
   color: #ccc;
   margin: 0;
+  margin-top: 11px;
   width: 12%;
   padding: 0;
   padding-bottom: 3px;
   background-color: Transparent;
   font: 100 12px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
   cursor: pointer;
+  text-decoration: none;
   -webkit-font-smoothing: antialiased;
   text-align: center;
 }
 
 .tryPro:hover {
+  color: white;
+}
+
+.findmylinkedin {
+  color: #ccc;
+  text-decoration: none;
+  font: 100 12px/1.5 Interstate,Lucida Grande,Arial,sans-serif; 
+}
+
+.findmylinkedin:hover {
   color: white;
 }
 
@@ -416,10 +432,10 @@
   height: 100%;
   width: 7%;
   z-index: 10;
-  font-size: 19px;
   color: #ccc;
   padding: 0;
   margin-left: 3px;
+  padding-left: 8px;
 }
 
 .bellButton:hover {

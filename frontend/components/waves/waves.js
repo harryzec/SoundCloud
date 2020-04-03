@@ -159,6 +159,8 @@ handlePlay(song){
      type ='waveform-holdersstream'
    }
 
+   debugger
+
 
    
 

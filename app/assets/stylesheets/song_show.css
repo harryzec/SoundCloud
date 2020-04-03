@@ -121,7 +121,7 @@
   display: flex;
   width: 100%;
   background: white;
-  height: auto;
+  height: 100vh;
 }
 
 .commentsEtc {

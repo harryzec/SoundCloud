@@ -22,7 +22,7 @@ json.set! @user.username do
     json.songs user.songs.length
 
     if user.profile_picture.attached?
-      json.profileUrl url_for(uuser.profile_picture)
+      json.profileUrl url_for(user.profile_picture)
      else
        json.profileUrl nil
      end

@@ -72,10 +72,12 @@ export const deleteSong = ( song ) => dispatch => {
 
 export const SHOW_SONG = 'SHOW_SONG';
 
-export const songShow = song => ({
+export const songShow = song => {
+  debugger
+  return {
   type: SHOW_SONG,
   song
-})
+}}
 
 export const fetchSongShow = ( hyperlink, username ) => dispatch => {
   // debugger

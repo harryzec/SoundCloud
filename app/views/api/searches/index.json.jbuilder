@@ -4,7 +4,7 @@
   json.set! search.id do
     if search.catagory == 'song'
       json.extract! search, :title, :id, :user_id, :description, :genre, :hyperlink, :comments, :catagory, :likes
-      json.user search.user
+      json.user search.user.username
       json.songUrl search.track.service_url
       if !search.photo.attached? 
               json.imgUrl nil
@@ -13,7 +13,7 @@
       end
 
     elsif search.catagory == 'playlist'
-      json.extract! search, :title, :catagory
+      json.extract! search, :title, :catagory, :likes, :id
       json.user search.user
 
       json.tracks search.tracks do |track|

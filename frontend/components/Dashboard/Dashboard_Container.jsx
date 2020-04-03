@@ -9,6 +9,8 @@ import { createLike, deleteLike } from '../../actions/like_action'
 import { openEditPlaylistModal, openDeletePlaylistModal } from '../../actions/modal_actions';
 import { addQueue } from '../../actions/queue_action'
 import { fetchPlaylistByArtist } from '../../actions/playlist_actions'
+import { openDeleteModal } from '../../actions/modal_actions'
+
 
 
 
@@ -40,7 +42,9 @@ const mDTP = dispatch => ({
   playSong: (song) => dispatch(playSong(song)),
   fetchPlaylistByArtist: (username) => dispatch(fetchPlaylistByArtist(username)),
   fetchPopularSongs: (username)=> dispatch(fetchPopularSongs(username)),
-  fetchRecent: (username) => dispatch(fetchRecent(username))
+  fetchRecent: (username) => dispatch(fetchRecent(username)),
+  openDeleteModal: (keyword, song)=> dispatch(openDeleteModal(keyword, song)),
+
 })
 
 export default connect(mSTP, mDTP)(Dashboard)

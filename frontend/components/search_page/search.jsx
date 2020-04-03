@@ -10,15 +10,23 @@ class SearchPage extends React.Component {
     this.deleteFollow = this.deleteFollow.bind(this)
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
+    this.addQueue = this.addQueue.bind(this)
   }
 
-  createLike(e, id) {
+  addQueue(e, song) {
+    debugger
     e.preventDefault()
+    this.props.addQueue(song)
+  }
+
+  createLike(e, id, type) {
+    e.preventDefault()
+    type = type[0].toUpperCase() + type.slice(1).toLowerCase()
     this.props.createLike({    
       likeable_id: id,
-      likeable_type: "Song",
+      likeable_type: type,
       user_id: this.props.currentuser.id
-  })
+   })
     this.props.fetchSearch(this.props.location.search.slice(3))
   }
 
@@ -48,10 +56,6 @@ class SearchPage extends React.Component {
     // this.props.fetchUser(username)
   }
 
-  componentDidMount() {
-    this.props.fetchSearch(this.props.location.search.slice(3).split('%20').join(' '))
-  }
-
   // shuffle(a) {
   //   for (let i = a.length - 1; i > 0; i--) {
   //       const j = Math.floor(Math.random() * (i + 1));
@@ -61,6 +65,7 @@ class SearchPage extends React.Component {
   // }
   
   render() {
+    debugger
     let content;
     let links = (
       <>
@@ -127,7 +132,7 @@ class SearchPage extends React.Component {
             tracknum += 1;
             title = (
               <>
-              <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/${search.hyperlink}`}>{search.title}</Link>
+              <Link className='searchtitle' to={`/${search.user.split(' ').join('-')}/${search.hyperlink}`}>{search.title}</Link>
               </>
             )
             searchpic = (
@@ -138,7 +143,7 @@ class SearchPage extends React.Component {
 
             let likebutton = (
               <>
-                <button onClick={(e) => this.createLike(e, search.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+                <button onClick={(e) => this.createLike(e, search.id, search.catagory)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
               </>
             )
     
@@ -161,13 +166,10 @@ class SearchPage extends React.Component {
                   <div className='songFootsearch'>
                     <div className='songBOsearch'>
                       {likebutton}
-                      <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                       <button className='songBu4'>...More
                         <div className='moreshow'>
-                          <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                          <div onClick={(e)=> this.addQueue(e, [search])} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                           <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                          <div className='moreshowli'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/641/641360.svg'/>  Stats</div>
-                          <div className='moreshowli'><img width='12'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'/>  Station</div>
                         </div>
                       </button>
                     </div>
@@ -193,6 +195,22 @@ class SearchPage extends React.Component {
             <img className='searchpic2' src={search.imageUrl}/>
             </>
           )
+
+          let likebutton = (
+            <>
+              <button onClick={(e) => this.createLike(e, search.id, search.catagory)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+            </>
+          )
+  
+          search.likes.forEach(like => {
+            if (like.user_id === this.props.currentuser.id) {
+              likebutton = (
+                <>
+                  <button onClick={(e) => this.deleteLike(e, like.id)}className='songBuliked'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+                </>
+              )
+            }
+          })
         
 
           if (search.tracks.length === 0) {
@@ -201,11 +219,10 @@ class SearchPage extends React.Component {
                 <div className='searchplaynone'>
                   <h2 className='nosongsfound2'>This playlist has no tracks yet</h2>
                   <div className='songBOsearch'>
-                  <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
-                  <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+                  {likebutton}
                   <button className='songBu4'>...More
                     <div className='moreshow'>
-                      <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                      <div onClick={(e)=> this.addQueue(e, search.tracks)} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                     </div>
                   </button>
                   </div>
@@ -291,7 +308,7 @@ class SearchPage extends React.Component {
           tracknum += 1;
           title = (
             <>
-            <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/${search.hyperlink}`}>{search.title}</Link>
+            <Link className='searchtitle' to={`/${search.user.split(' ').join('-')}/${search.hyperlink}`}>{search.title}</Link>
             </>
           )
           searchpic = (
@@ -302,7 +319,7 @@ class SearchPage extends React.Component {
 
           let likebutton = (
             <>
-              <button onClick={(e) => this.createLike(e, search.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+              <button onClick={(e) => this.createLike(e, search.id, search.catagory)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
             </>
           )
   
@@ -325,13 +342,10 @@ class SearchPage extends React.Component {
                 <div className='songFootsearch'>
                   <div className='songBOsearch'>
                     {likebutton}
-                    <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
                     <button className='songBu4'>...More
                       <div className='moreshow'>
-                        <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                        <div onClick={(e)=> this.addQueue(e, [search])} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                         <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                        <div className='moreshowli'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/641/641360.svg'/>  Stats</div>
-                        <div className='moreshowli'><img width='12'  src='https://image.flaticon.com/icons/svg/1765/1765672.svg'/>  Station</div>
                       </div>
                     </button>
                   </div>
@@ -510,6 +524,22 @@ class SearchPage extends React.Component {
                 <img className='searchpic2' src={search.imageUrl}/>
                 </>
               )
+
+              let likebutton = (
+                <>
+                  <button onClick={(e) => this.createLike(e, search.id, search.catagory)} className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+                </>
+              )
+      
+              search.likes.forEach(like => {
+                if (like.user_id === this.props.currentuser.id) {
+                  likebutton = (
+                    <>
+                      <button onClick={(e) => this.deleteLike(e, like.id)}className='songBuliked'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+                    </>
+                  )
+                }
+              })
             
     
               if (search.tracks.length === 0) {
@@ -518,11 +548,10 @@ class SearchPage extends React.Component {
                     <div className='searchplaynone'>
                       <h2 className='nosongsfound2'>This playlist has no tracks yet</h2>
                       <div className='songBOsearch'>
-                      <button className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/></button>
-                      <button className='songBu2'><img width='10' src='https://image.flaticon.com/icons/svg/1828/1828956.svg'/> Share</button>
+                      {likebutton}
                       <button className='songBu4'>...More
                         <div className='moreshow'>
-                          <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                          <div onClick={(e)=> this.addQueue(e, search.tracks)} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                         </div>
                       </button>
                       </div>
@@ -546,6 +575,8 @@ class SearchPage extends React.Component {
                     </div>
                   </>)
                 })
+
+                debugger
     
                 info = (
                   <div className='searchplaynone'>
@@ -614,9 +645,8 @@ class SearchPage extends React.Component {
       )
     }
     
-    debugger
-    
    
+   debugger
     
     return(
       <>

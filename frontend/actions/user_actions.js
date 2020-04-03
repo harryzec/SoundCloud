@@ -4,10 +4,13 @@ import * as APIUtil from '../util/users_api_util'
 export const RECEIVE_SONGS = 'RECEIVE_SONGS';
 
 
-export const receiveUser = (user) => ({
-  type: RECEIVE_USER,
-  user: user
-})
+export const receiveUser = (user) => {
+  debugger
+  return {
+    type: RECEIVE_USER,
+    user: user
+  }
+}
 
 export const receiveContent = content => {
   debugger
@@ -21,12 +24,13 @@ export const receiveRandomUsers = (users) => ({
   users
 })
 
-export const fetchUser = (username) =>dispatch => (
-  APIUtil.fetchUser(username)
+export const fetchUser = (username) =>dispatch => {
+  debugger
+  return APIUtil.fetchUser(username)
     .then(user => (
       dispatch(receiveUser(user))
     ))
-)
+}
 
 export const fetchRecent = (username) => dispatch => {
   return APIUtil.fetchRecent(username)

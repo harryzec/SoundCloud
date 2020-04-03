@@ -114,8 +114,6 @@ class EditForm extends React.Component {
           <div className='uploadingMarg'>
             <div className='uploadOptions'>
               <h1 className='basicInfo'>Basic Info</h1>
-              <h1 className='Metadata'>Metadata</h1>
-              <h1 className='Permissions'>Permissions</h1>
             </div>
 
             <div className='songImgIn'>

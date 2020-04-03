@@ -62,7 +62,7 @@ class Stream extends React.Component {
           // }
           title = (
             <>
-            <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/${search.hyperlink}`}>{search.title}</Link>
+            <Link className='searchtitle' to={`/${search.user.split(' ').join('-')}/${search.hyperlink}`}>{search.title}</Link>
             </>
           )
           searchpic = (
@@ -117,7 +117,7 @@ class Stream extends React.Component {
 
         title = (
           <>
-          <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/sets/${search.permalink}`}>{search.title}</Link>
+          <Link className='searchtitle' to={`/${search.user.split(' ').join('-')}/sets/${search.permalink}`}>{search.title}</Link>
           </>
         )
         searchpic = (
@@ -195,7 +195,7 @@ class Stream extends React.Component {
       return(
         <>
           <div className='searchedfollow'>
-            <div className='meow'><img className='searchedimgfol' src={search.userpic}/><Link className='nodecoration' to={`/${search.user.username.split(' ').join('-')}`}>{search.user.username}</Link> <strong className='greyfont'>post a {search.catagory} {search.created} ago</strong></div>
+            <div className='meow'><img className='searchedimgfol' src={search.userpic}/><Link className='nodecoration' to={`/${search.user.split(' ').join('-')}`}>{search.user}</Link> <strong className='greyfont'>post a {search.catagory} {search.created} ago</strong></div>
             <div className='searchedme2'>
               {searchpic}
               <div className='searchinfos'>

@@ -5,7 +5,8 @@ export default function DeleteModalReducer(state = { modal: null, playlist: null
     case OPEN_DELETE_PLAYLIST_MODAL:
       return { modal: action.modal, playlist: action.playlist};
     case CLOSE_DELETE_PLAYLIST_MODAL :
-    default:
       return { modal: null, playlist: null};
+    default:
+      return state;
   }
 }

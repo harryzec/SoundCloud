@@ -4,7 +4,7 @@ const songShow = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case SHOW_SONG:
-      return Object.assign({}, action.song)
+      return Object.assign({}, state, action.song)
     case DELETE_SONG:
         let nextState = Object.assign({}, state)
         delete nextState[action.song.hyperlink]

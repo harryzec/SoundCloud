@@ -6,6 +6,43 @@ import Wave from '../waves/waves_container';
 
 
 class PopularTracks extends React.Component {
+  constructor(props) {
+    super(props)
+    this.createLike = this.createLike.bind(this)
+    this.deleteLike = this.deleteLike.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
+    this.addQueue = this.addQueue.bind(this)
+  }
+
+  addQueue(e, song) {
+    debugger
+    e.preventDefault()
+    debugger
+    this.props.addQueue(song)
+  }
+
+  handleEdit (e, song) {
+
+    e.preventDefault();
+    this.props.openEditModal('edit', song)
+  }
+
+  createLike(e, id) {
+    e.preventDefault()
+    this.props.createLike({    
+      likeable_id: id,
+      likeable_type: "Song",
+      user_id: this.props.currentuser.id
+  })
+    this.props.fetchSongsByArtist(this.props.match.params.username.split('-').join('-'))
+  }
+
+  deleteLike(e, id) {
+    e.preventDefault()
+    this.props.deleteLike(id)
+    this.props.fetchSongsByArtist(this.props.match.params.username.split('-').join('-'))
+  }
+
   render() {
     let content = null;
     debugger
@@ -54,9 +91,9 @@ class PopularTracks extends React.Component {
             <button className='songBu3' onClick={e => this.handleEdit(e, song)}>&#9998; Edit</button>
             <button className='songBu4'>...More
               <div className='moreshow'>
-                <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                <div onClick={(e) => this.addQueue(e, song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                 <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                <div className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Track</div>
+                <div className='moreshowlil' onClick={()=>this.props.openDeleteModal('open', song)}><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Track</div>
                 </div>
             </button>
           </>
