@@ -16,7 +16,8 @@ const mSTP = state => {
     currentuser: state.session.currentUser,
     player: state.ui.SongPlayer,
     time: state.ui.SongTimer,
-    waveUpdate: state.ui.updateWave
+    waveUpdate: state.ui.updateWave,
+    queue: state.entities.Queue
   }
 }
 

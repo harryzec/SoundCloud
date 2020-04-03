@@ -14,7 +14,14 @@ class PlaylistShow extends React.Component {
     this.updateWave = this.updateWave.bind(this)
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
+    this.addQueue = this.addQueue.bind(this)
   }
+
+  addQueue(e) {
+    e.preventDefault()
+    this.props.addQueue(this.props.tracks)
+  }
+
 
   createLike(e) {
     e.preventDefault()
@@ -153,7 +160,9 @@ class PlaylistShow extends React.Component {
       this.props.playSong(track)
     } else {
       this.props.playSong(track)
-      this.props.addQueue(playlisttracks)
+      if (this.props.queue.length === 0) {
+        this.props.addQueue(playlisttracks)
+      }
       this.updateWave(track)
     }
   }
@@ -175,8 +184,8 @@ class PlaylistShow extends React.Component {
         <>
         <button className='songBu4'>...More
             <div className='moreshow'>
-              <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-              <div onClick={() => this.props.openDeletePlaylistModal('open', playlist)} className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</div>
+              <div onClick={(e) => this.addQueue(e)} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+              <div onClick={() => this.props.openDeletePlaylistModal('open', this.props.playlist)} className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</div>
             </div>
         </button>
         </>
@@ -185,7 +194,9 @@ class PlaylistShow extends React.Component {
       lastbutton = (
         <>
         <button className='songBu4'>...More
-            <img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up
+          <div className='moreshow'>
+          <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+          </div>
         </button>
         </>
       )
@@ -210,7 +221,7 @@ class PlaylistShow extends React.Component {
     if (this.props.currentuser.id !== this.props.playlist.user_id) {
       followbutton = (
         <>
-          <h1>haha bitch!</h1>
+          <h1></h1>
         </>
       )
     }
@@ -363,6 +374,16 @@ class PlaylistShow extends React.Component {
       this.wavesurfer.setWaveColor('#ccc')
       this.wavesurfer.pause()
     }
+
+    let editbutton = null;
+
+    if (this.props.playlist.user_id === this.props.currentuser.id) {
+      editbutton = (
+        <>
+          <button onClick={() => this.props.openEditPlaylistModal('edit', this.props.playlist)}className='songBu3'>&#9998; Edit</button>
+        </>
+      )
+    }
   
     return(
       <>
@@ -390,7 +411,7 @@ class PlaylistShow extends React.Component {
                 <div className='playshowbutton'>
                   <div className='songBO'>
                         {likedbutton}
-                        <button onClick={() => this.props.openEditPlaylistModal('edit', this.props.playlist)}className='songBu3'>&#9998; Edit</button>
+                        {editbutton}
                         {lastbutton}
                   </div>
 

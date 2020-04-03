@@ -13,6 +13,20 @@ class PopularTracks extends React.Component {
     this.handleEdit = this.handleEdit.bind(this)
     this.createFollow = this.createFollow.bind(this)
     this.deleteFollow = this.deleteFollow.bind(this)
+    this.handlePlay = this.handlePlay.bind(this)
+
+  }
+
+  handlePlay(song){
+    
+    if (this.props.player.song.id !== song.id) {
+      if (!song.plays) {
+        song.plays = 1;
+      } else {
+        song.plays += 1;
+      }
+    }
+    this.props.playSong(song);
   }
 
   createFollow(e) {
@@ -133,6 +147,19 @@ class PopularTracks extends React.Component {
             </>
           )
         }
+
+        let playbutton = (
+          <>
+            <div className='playSong'onClick={()=> this.handlePlay(song)}><p className='playcon'>&#9654;</p></div>
+          </>
+        )
+        if (this.props.player.song.id === song.id && this.props.player.player === 'playing') {
+          playbutton = (
+            <>
+              <div className='playSong'onClick={()=> this.props.pauseSong(song)}><p className='pausecon'>||</p></div>
+            </>
+          )
+        }
        
         return (
         <>
@@ -144,7 +171,7 @@ class PopularTracks extends React.Component {
         <img src={song.imgUrl} className='songImg1'/>
           <div className='songHelp'>
             <div className='topsongcont'>
-              <div className='playSong'onClick={()=> this.handlePlay(song)}><p className='playcon'>&#9654;</p></div>
+              {playbutton}
               
               <div className='songpIn'>
                 <li className='sArtist'>{this.props.user.username}</li>

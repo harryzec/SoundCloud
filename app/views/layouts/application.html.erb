@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+  <%= favicon_link_tag asset_path('fav.png') %>
   <script src="https://unpkg.com/wavesurfer.js"></script>
   <script type='text/javascript'>
     window.pianoPlayer = "<%= image_url('piano_player.jpg')%>"

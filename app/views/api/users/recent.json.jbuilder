@@ -18,7 +18,7 @@
       end
 
     elsif search.catagory == 'playlist'
-      json.extract! search, :id, :title, :catagory, :likes
+      json.extract! search, :id, :title, :catagory, :likes, :permalink
       json.user search.user.username
       json.creator search.user
       json.created search.convert_time

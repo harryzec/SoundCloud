@@ -38,7 +38,7 @@ class NavBar extends React.Component {
   }
 
   componentDidUpdate() {
-    debugger
+    
     if (this.props.location.pathname !==  this.state.path) {
 
         let bar = document.getElementById('searchedbar')

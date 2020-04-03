@@ -1,7 +1,7 @@
 
 json.set! @song.hyperlink do
   
-  json.extract! @song, :title, :id, :genre, :description, :hyperlink, :likes, :catagory
+  json.extract! @song, :title, :id, :genre, :description, :hyperlink, :likes, :catagory, :user_id
   json.comments @song.comments do |comment|
     json.id comment.id
     json.body comment.body

@@ -3,6 +3,7 @@ import DeleteModal from '../delete_modal/delete_modal'
 import EditModal from '../edit_modal/edit_modal'
 import { Link } from 'react-router-dom'
 import WaveSurfer from 'wavesurfer.js';
+import PlaylistModal from '../playlist_modal/playlist_modal'
 
 
 class SongShow extends React.Component {
@@ -17,6 +18,13 @@ class SongShow extends React.Component {
     this.handlePause = this.handlePause.bind(this)
     this.getPosition = this.getPosition.bind(this)
     this.handleWave = this.handleWave.bind(this)
+    this.addQueue = this.addQueue.bind(this)
+
+  }
+
+  addQueue(e, song) {
+    e.preventDefault()
+    this.props.addQueue(song)
   }
 
   getPosition(el) {
@@ -269,16 +277,27 @@ class SongShow extends React.Component {
 
     let dropdown;
 
-    if (this.props.song.user === this.props.userId) {
+    if (this.props.song.user_id === this.props.currentuser.id) {
       dropdown = (
         <>
-          <button className='songBuS' onClick={()=>this.props.openDeleteModal('open', this.props.song)}>Delete track</button>
+          <button className='songBu4'>...More
+            <div className='moreshow'>
+              <div onClick={(e) => this.addQueue(e, this.props.song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+              <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', this.props.song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+              <div className='moreshowlil' onClick={()=>this.props.openDeleteModal('open', this.props.song)}><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Track</div>
+            </div>
+          </button>
         </>
       )
     } else {
       dropdown = (
         <>
-          <button className='songBuS'>...More</button>
+          <button className='songBu4'>...More
+              <div className='moreshow'>
+              <div onClick={(e) => this.addQueue(e, this.props.song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+              <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', this.props.song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+              </div>
+            </button>
         </>
       )
     }
@@ -371,7 +390,7 @@ class SongShow extends React.Component {
     if (this.props.player.song.id === this.props.song.id && this.props.player.player === 'playing') {
       
       play = (
-        <div className='playSongPage'onClick={()=> this.handlePause(this.props.song)}><p className='playconS'>||</p></div>
+        <div className='playSongPage'onClick={()=> this.handlePause(this.props.song)}><p className='pausecon2'>||</p></div>
       )
 
     } else {
@@ -412,12 +431,23 @@ class SongShow extends React.Component {
     }
   }
 
+  let editbutton = null;
+
+  if (this.props.currentuser === this.props.song.user_id) {
+    editbutton = (
+      <>
+        <button className='songBuS' onClick={e => this.handleEdit(e, this.props.song)}>&#9998; Edit</button>
+      </>
+    )
+  }
+
 
     
 
     return(
       <>
       <EditModal/>
+      <PlaylistModal />
       <DeleteModal userlink={this.props.match.params.username} />
       <div className='SongshowPage'>
         <div className='songplayer'>
@@ -454,7 +484,7 @@ class SongShow extends React.Component {
               <div className='songFootS'>
                 <div className='songBOS'>
                   {likedbutton}
-                  <button className='songBuS' onClick={e => this.handleEdit(e, this.props.song)}>&#9998; Edit</button>
+                  {editbutton}
                   {dropdown}
                 </div>
                 <p className='likesnum'>&#9829; {this.props.song.likes.length}</p>

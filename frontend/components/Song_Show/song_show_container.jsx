@@ -3,7 +3,8 @@ import SongShow from './song_show'
 import { createLike, deleteLike } from '../../actions/like_action'
 import { openDeleteModal } from '../../actions/modal_actions'
 import { fetchSongShow} from '../../actions/song_action'
-import { openEditModal } from '../../actions/modal_actions'
+import { openEditModal, openPlaylistModal } from '../../actions/modal_actions'
+import { addQueue } from '../../actions/queue_action'
 import { playSong, pauseSong, waveClick } from '../../actions/song_player_actions'
 import { fetchSongsByArtist, createComment, deleteComment } from '../../actions/song_action'
 
@@ -32,7 +33,9 @@ const mDTP = dispatch => {
   deleteComment: (id) => dispatch(deleteComment(id)),
   createLike: (like)=> dispatch(createLike(like)),
   deleteLike: (like_id) => dispatch(deleteLike(like_id)),
-  waveEvent: (event) => dispatch(waveClick(event))
+  waveEvent: (event) => dispatch(waveClick(event)),
+  addQueue: (songs) => dispatch(addQueue(songs)),
+  openPlaylistModal: (modal, song) => dispatch(openPlaylistModal(modal, song)),
   }) 
 }
 

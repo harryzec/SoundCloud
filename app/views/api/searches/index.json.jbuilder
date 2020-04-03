@@ -13,7 +13,7 @@
       end
 
     elsif search.catagory == 'playlist'
-      json.extract! search, :title, :catagory, :likes, :id
+      json.extract! search, :title, :catagory, :likes, :id, :permalink
       json.user search.user
 
       json.tracks search.tracks do |track|
