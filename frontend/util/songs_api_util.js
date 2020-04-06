@@ -4,6 +4,13 @@ export const fetchSong = (songId) => (
   })
 )
 
+export const randomSong = () => {
+  $.ajax({
+    method: 'GET',
+    url: '/api/songs/random'
+  })
+}
+
 export const deleteSong = ( songId ) => (
   $.ajax({
     method: 'DELETE',

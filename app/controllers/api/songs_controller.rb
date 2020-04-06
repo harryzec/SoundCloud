@@ -12,6 +12,12 @@ class Api::SongsController < ApplicationController
   def new
   end
 
+  def random 
+    @song = Song.all.shuffle[0]
+    render :show
+  end
+
+
   def by_user
 
     @user = User.find_by(username: params[:username])

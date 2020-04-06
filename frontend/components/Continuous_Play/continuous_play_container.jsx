@@ -1,5 +1,5 @@
 import SongShow from './continuous_play'
-import { fetchSong } from '../../actions/song_action'
+import { fetchSong, randomSong } from '../../actions/song_action'
 import { connect } from 'react-redux';
 import { playSong, pauseSong,updateWave } from '../../actions/song_player_actions'
 import {timer} from '../../actions/song_player_actions'
@@ -26,7 +26,7 @@ const mDTP = dispatch => ({
   createLike: (like)=> dispatch(createLike(like)),
   deleteLike: (like_id) => dispatch(deleteLike(like_id)),
   replaceQueue: (queue) => dispatch(replaceQueue(queue)),
-  
+  randomSong: () => dispatch(randomSong()),
 })
 
 export default connect(mSTP, mDTP)(SongShow)

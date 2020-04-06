@@ -89,6 +89,21 @@ export const fetchSongShow = ( hyperlink, username ) => dispatch => {
     debugger
 }
 
+export const PLAY_RANDOM = 'PLAY_RANDOM'
+
+export const randomPlay = song => {
+  return {
+    type: PLAY_RANDOM,
+    song
+  }
+}
+
+export const randomSong = () => dispatch => {
+  return APIUtil.randomSong().then(song => {
+    dispatch(randomPlay(song))
+  })
+}
+
 export const editSong = (song, id) => dispatch => {
   return APIUtil.editSong(song, id)
     .then(() => receiveSong(song))

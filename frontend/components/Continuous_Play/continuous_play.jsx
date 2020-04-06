@@ -83,8 +83,12 @@ class SongShow extends React.Component {
     this.props.timer(currentTimeTotal);
 
     if (currentTimeTotal === this.state.duration && this.state.duration !== '0:00') {
-      this.props.playSong(this.props.queue[0])
-      this.props.playedSong()
+      if (this.props.queue.length > 0) {
+        this.props.playSong(this.props.queue[0])
+        this.props.playedSong()
+      } else {
+        this.props.randomSong()
+      }
     }
   }
     // const filler = document.getElementById("cpb-timeline-progress-timepassed");
