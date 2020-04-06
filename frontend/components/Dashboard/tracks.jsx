@@ -345,7 +345,6 @@ class PopularTracks extends React.Component {
           <div className='profileOptions'>
             <section className='profileSections'>
               <Link to={`/${this.props.match.params.username}`}className='profileButtons'>All</Link>
-              <Link to={`/${this.props.match.params.username}/popular-tracks`} className='profileButtons'>Popular tracks</Link>
               <Link to={`/${this.props.match.params.username}/tracks`} className='profileButtonsAll'>Tracks</Link>
               <Link to={`/${this.props.match.params.username}/sets`} className='profileButtons'>Playlists</Link>
             </section>

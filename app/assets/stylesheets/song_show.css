@@ -14,8 +14,8 @@
   cursor: pointer;
   position: absolute;
   background-color: #f50;
-  height: 56px;
-  width: 53px;
+  height: 55px;
+  width: 55px;
   color: white;
   border-radius: 100px;
   text-align: center;
@@ -177,7 +177,7 @@
 .songBOS {
   display: flex;
   justify-content: space-between;
-  width: 25vw;
+  width: 130px;
   height: 19px;
   align-items: flex-end;
 }

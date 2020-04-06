@@ -222,7 +222,7 @@
   color: #333;
   padding-bottom: 5px;
   height: 100%;
-  width: 30vw;
+  width: 18vw;
 }
 
 .songImg1 {
@@ -302,7 +302,7 @@
 .songBOsearch {
   display: flex;
   justify-content: space-between;
-  width: 195px;
+  width: 115px;
   height: 19px;
   bottom: 0;
   align-items: flex-end;

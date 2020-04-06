@@ -26,7 +26,6 @@ class Dashboard extends React.Component {
   addQueue(e, song) {
     
     e.preventDefault()
-    
     this.props.addQueue(song)
   }
 
@@ -111,6 +110,7 @@ class Dashboard extends React.Component {
     this.props.fetchUser(username)
     this.props.fetchSongsByArtist(username)
     this.props.fetchPlaylistByArtist(username)
+    this.props.fetchRecent(username)
   }
 
   handlePlay(song){
@@ -435,7 +435,6 @@ class Dashboard extends React.Component {
      <div className='profileOptions'>
      <section className='profileSections'>
        <Link to={`/${this.props.match.params.username}`}className='profileButtonsAll'>All</Link>
-       <Link to={`/${this.props.match.params.username}/popular-tracks`}className='profileButtons'>Popular tracks</Link>
        <Link to={`/${this.props.match.params.username}/tracks`}className='profileButtons'>Tracks</Link>
        <Link to={`/${this.props.match.params.username}/sets`}className='profileButtons'>Playlists</Link>
      </section>

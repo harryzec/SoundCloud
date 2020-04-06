@@ -153,8 +153,10 @@ class PlaylistShow extends React.Component {
 
 
   handlePlay(track, playlisttracks) {
-
-    if (this.props.player.song === track && this.props.player.player ==='playing' ) {
+    if (this.props.player.song.playlist !== this.props.playlist.id) {
+      this.props.playSong(track)
+      this.props.addQueue(playlisttracks)
+    } else if (this.props.player.song === track && this.props.player.player ==='playing' ) {
       this.props.pauseSong(track)
     } else if (this.props.player.song === track && this.props.player.player ==='paused' ) {
       this.props.playSong(track)
