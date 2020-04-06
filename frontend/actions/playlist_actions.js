@@ -4,6 +4,7 @@ export const RECEIVE_PLAYLISTS = 'RECEIVE_PLAYLISTS';
 export const RECEIVE_PLAYLIST = 'RECEIVE_PLAYLIST'
 
 export const receivePlaylists = playlists => {
+  debugger
   return{
   type: RECEIVE_PLAYLISTS,
   playlists

@@ -79,6 +79,15 @@ class Discover extends React.Component{
       </>
     ))
 
+    const thirdp = this.props.playlists.slice(8, 12).map(playlist =>(
+      <>
+        <div key={playlist.id} className ='playlistshow'>
+          <img className='playpic'src={playlist.imageUrl}/>
+          <Link to={`/${playlist.username.split(' ').join('-')}/sets/${playlist.permalink}`} className='playtit'>{playlist.title}</Link>
+        </div>
+      </>
+    ))
+
     let actual = this.props.currentuser.likes.slice(0,3).map(like => {
         
       return(
@@ -152,8 +161,16 @@ class Discover extends React.Component{
           {firstp}
           </div>
           <h3 className='newMusicNow'>CloneCloud Charts</h3>
+          <p className='latestHits'>Discover tomorrow's music today</p>
           <div className='play2'>
             {secondp}
+          </div>
+
+          <h3 className='newMusicNow'>Top Playlists</h3>
+          <p className='latestHits'>The biggest hits on CloneCloud</p>
+          <div className='play1'>
+          
+          {thirdp}
           </div>
           
         </div>

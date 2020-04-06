@@ -1,7 +1,6 @@
 class Api::PlaylistsController < ApplicationController
   def index
-    
-    @RPlaylists = Playlist.all.shuffle 
+    @RPlaylists = Playlist.random
     render :index
   end
 

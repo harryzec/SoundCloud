@@ -28,6 +28,10 @@ class Playlist < ApplicationRecord
     playlists.map {|playlist| playlist.id }
   end
 
+  def self.random
+    Playlist.all.shuffle.slice(0...12)
+  end
+
   def convert_time
     time_ago_in_words(self.created_at)
   end
