@@ -268,6 +268,11 @@ class SongShow extends React.Component {
         <div className='OsongLinks'>
           <Link className='songuser' to={`/${song.user.split(' ').join('-')}`}>{song.user}</Link>
           <Link className='songtit' to={`/${song.user.split(' ').join('-')}/${song.hyperlink}`}>{song.title}</Link>
+          <div className='likestats'>
+            <p className='likestat1'>&#9654; {song.plays}</p>
+            <p className='likestat'>&#9829; {song.likes.length}</p>
+            <p className='likestat3'>&#9998; {song.comments.length}</p>
+          </div>
         </div>
       </div>
       </>
@@ -276,7 +281,7 @@ class SongShow extends React.Component {
 
 
     let dropdown;
-
+    if (this.props.currentuser) {
     if (this.props.song.user_id === this.props.currentuser.id) {
       dropdown = (
         <>
@@ -296,6 +301,17 @@ class SongShow extends React.Component {
               <div className='moreshow'>
               <div onClick={(e) => this.addQueue(e, this.props.song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
               <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', this.props.song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+              </div>
+            </button>
+        </>
+      )
+    }
+    } else {
+      dropdown = (
+        <>
+          <button className='songBu4'>...More
+              <div className='moreshow'>
+              <div onClick={(e) => this.addQueue(e, this.props.song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
               </div>
             </button>
         </>
@@ -365,17 +381,23 @@ class SongShow extends React.Component {
         )
       }
     }
-
-    let likedbutton = (
-      <button onClick={this.createLike} className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> Like</button>
-    )
-    this.props.song.likes.forEach(like => {
-      if (like.user_id === this.props.currentuser.id) {
-        likedbutton = (
-          <button onClick={(e) => this.deleteLike(e, like.id)} className='songBuSl'>&#9829; Liked</button>
-        )
-      }
-    })
+    
+    let likedbutton;
+    if (this.props.currentuser) {
+      likedbutton = (
+        <button onClick={this.createLike} className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> Like</button>
+      )
+    }
+    
+    if (this.props.currentuser) {
+      this.props.song.likes.forEach(like => {
+        if (like.user_id === this.props.currentuser.id) {
+          likedbutton = (
+            <button onClick={(e) => this.deleteLike(e, like.id)} className='songBuSl'>&#9829; Liked</button>
+          )
+        }
+      })
+    }
 
     let play;
     if (this.props.player.song.id === this.props.song.id) {
@@ -441,14 +463,33 @@ class SongShow extends React.Component {
     )
   }
 
+  let modals;
+  let commentsinput;
+  if (this.props.currentuser) {
+    modals = (
+      <>
+        <EditModal/>
+        <PlaylistModal />
+        <DeleteModal userlink={this.props.match.params.username} />
+      </>
+    )
 
+    commentsinput = (
+      <>
+        <div className='commentsInputBar'>
+          <img className='commentPic' src={this.props.currentuser.profileUrl}/>
+            <div className='commentWrap'>
+              <input id='commentInput' className='commentInput' onKeyDown={this._handleKeyDown} placeholder='Write a comment'/>
+            </div>
+        </div>
+      </>
+    )
+  }
     
 
     return(
       <>
-      <EditModal/>
-      <PlaylistModal />
-      <DeleteModal userlink={this.props.match.params.username} />
+      {modals}
       <div className='SongshowPage'>
         <div className='songplayer'>
             
@@ -474,12 +515,7 @@ class SongShow extends React.Component {
 
             <div className='topSec'>
 
-              <div className='commentsInputBar'>
-                <img className='commentPic' src={this.props.currentuser.profileUrl}/>
-                <div className='commentWrap'>
-                  <input id='commentInput' className='commentInput' onKeyDown={this._handleKeyDown} placeholder='Write a comment'/>
-                </div>
-              </div>
+              {commentsinput}
 
               <div className='songFootS'>
                 <div className='songBOS'>

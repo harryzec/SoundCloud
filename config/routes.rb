@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :follows, only: [:create, :destroy]
     delete 'playlist_tracks/destroy', :to => 'playlist_tracks#destroy'
-    get 'songs/random' => 'songs#random'
+    get 'songs/random_song/get', :to => 'songs#random_song'
     get 'users/follower_content/:id' => 'users#follower_content'
     get 'users/find_by_username/:username' => 'users#find_by_username'
     get 'users/random/follow', :to => 'users#randomusers'

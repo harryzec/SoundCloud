@@ -267,6 +267,22 @@
   border: 1px solid #f2f2f2;
 }
 
+.navLogin {
+  margin-top: -5px;
+  /* width: 20vw; */
+  padding-top: 4px;
+  padding-left: 7px;
+  padding-right: 7px;
+  margin-left: 39%;
+  /* margin-right: 15%; */
+  border: 1px solid #f50;
+  color: white;
+  background: #f50;
+  border-radius: 3px;
+  text-align: center;
+  height: 22px;
+}
+
 .searchSound {
   display: flex;
   position: absolute;

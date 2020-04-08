@@ -12,11 +12,13 @@ export const receiveUser = (user) => {
   }
 }
 
+export const RECEIVE_CONTENT = 'RECEIVE_CONTENT'
+
 export const receiveContent = content => {
   debugger
   return{
-  type: RECEIVE_SONGS,
-  songs: content
+  type: RECEIVE_CONTENT,
+  content: content
 }}
 
 export const receiveRandomUsers = (users) => ({

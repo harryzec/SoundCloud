@@ -6,7 +6,7 @@ class SongShow extends React.Component {
   constructor(props) {
     super(props)
     this.volumeChange = this.volumeChange.bind(this);
-    this.state = {duration: '0:00', currentTime: '0:00', waveEvent: this.props.wave, queue: this.props.queue}
+    this.state = {showqueue: false,shuffle: true, duration: '0:00', currentTime: '0:00', waveEvent: this.props.wave, queue: this.props.queue, shufflestate: 'shuffle'}
     this.handleMetaData = this.handleMetaData.bind(this)
     this.handleCurrentTime = this.handleCurrentTime.bind(this);
     this.changePlace = this.changePlace.bind(this)
@@ -18,11 +18,32 @@ class SongShow extends React.Component {
     this.removeQueue = this.removeQueue.bind(this)
     this.restart = this.restart.bind(this)
     this.nextSong = this.nextSong.bind(this)
+    this.handleShuffle = this.handleShuffle.bind(this)
+    this.toggleShowQueue = this.toggleShowQueue.bind(this)
+  }
+
+  toggleShowQueue(e){
+    e.preventDefault()
+    this.setState({showqueue: (!this.state.showqueue)})
+  }
+
+  handleShuffle(e) {
+    e.preventDefault()
+    if (this.state.shuffle) {
+      this.setState({shuffle: false, shufflestate: 'noshuffle'})
+    } else {
+      this.setState({shuffle: true, shufflestate: 'shuffle'})
+    }
+
   }
 
   nextSong() {
-    this.props.playSong(this.props.queue[0])
-    this.props.playedSong()
+    if (this.props.queue.length > 0) {
+      this.props.playSong(this.props.queue[0])
+      this.props.playedSong()
+    } else if (this.state.shuffle) {
+      this.props.randomSong()
+    }
   }
 
   restart() {
@@ -42,16 +63,20 @@ class SongShow extends React.Component {
       likeable_id: this.props.song.id,
       likeable_type: "Song",
       user_id: this.props.currentuser.id
-  })
+    })
+    let updatedUser = new FormData()
 
+    updatedUser.append('user[id]', this.props.currentuser.id);
+    this.props.updateUser( updatedUser, this.props.currentuser.id)
   }
 
   deleteLike(e, id) {
     e.preventDefault()
     this.props.deleteLike(id)
-    let username= this.props.match.params.username.split('-').join(' ')
-    this.props.fetchSongsByArtist(username)
+    let updatedUser = new FormData()
 
+    updatedUser.append('user[id]', this.props.currentuser.id);
+    this.props.updateUser( updatedUser, this.props.currentuser.id)
   }
 
   componentDidMount() {
@@ -82,7 +107,7 @@ class SongShow extends React.Component {
     this.setState({ currentTime: currentTimeTotal });
     this.props.timer(currentTimeTotal);
 
-    if (currentTimeTotal === this.state.duration && this.state.duration !== '0:00') {
+    if (currentTimeTotal === this.state.duration && this.state.duration !== '0:00' && this.state.shuffle === true ) {
       if (this.props.queue.length > 0) {
         this.props.playSong(this.props.queue[0])
         this.props.playedSong()
@@ -212,9 +237,13 @@ getPosition(el) {
 
   }
   
+
+  
+
   
 
   render(){
+    
     if (this.props.song === 'none') {
       return(
         null
@@ -282,7 +311,37 @@ getPosition(el) {
       this.setState({waveEvent: this.props.wave})
     }
 
+    let likebutton = (
+      <>
+        <img className='barHeart' onClick={this.createLike} width='20' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/>
+      </>
+    )
 
+    if (this.props.currentuser) {
+      this.props.currentuser.likes.forEach((like) => {
+        if (like.likeable_id === this.props.song.id && like.type === 'Song') {
+          likebutton = (
+            <>
+              <img className='barHeart2' onClick={(e) => this.deleteLike(e, like.id)} width='20' height='20' src='https://www.flaticon.com/premium-icon/icons/svg/367/367519.svg'/>
+            </>
+          )
+        }
+      })
+    }
+    
+    debugger
+    
+
+    let showqueue = this.state.showqueue ?  
+      <div className='realqueue'>
+       <h2 className='upnext'>Up Next</h2>
+      {queue}
+      </div>
+      :
+      null
+
+
+    
     return(
       <>
       <div className='continuousPlay'>
@@ -290,7 +349,8 @@ getPosition(el) {
       <img className='rewind' onClick={this.restart} width='11'src='https://image.flaticon.com/icons/svg/860/860740.svg'/>
       {currentButton}
       <img onClick={this.nextSong} className='fastforward'width='11'src='https://image.flaticon.com/icons/svg/660/660276.svg'/>
-      <img className='shuffle' width='17' src='https://image.flaticon.com/icons/svg/724/724979.svg'/>
+      {/* <img className='shuffle' width='17' src='https://image.flaticon.com/icons/svg/724/724979.svg'/> */}
+      <p onClick={this.handleShuffle} className={this.state.shufflestate}>&#9851;</p>
 
       <p className='time1'>{this.state.currentTime}</p>
 
@@ -321,14 +381,11 @@ getPosition(el) {
         <Link to={`/${this.props.song.user.split(' ').join('-')}/${this.props.song.hyperlink}`} className='bartite'>{this.props.song.title}</Link>
       </div>
 
-      <img className='barHeart' onClick={this.createLike} width='20' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/>
+      {likebutton}
 
-      <div className='showqueue'>
+      <div onClick={this.toggleShowQueue}className='showqueue'>
         <img className='barOpt' width='20' src='https://image.flaticon.com/icons/svg/545/545705.svg'/>
-        <div className='realqueue'>
-          <h2 className='upnext'>Up Next</h2>
-          {queue}
-        </div>
+        {showqueue}
       </div>
 
       </div>

@@ -20,7 +20,7 @@
   json.follows playlist.user.followers.length
 
   json.tracks playlist.tracks do |track|
-    json.extract! track, :title, :id, :genre, :description, :hyperlink, :likes, :plays
+    json.extract! track, :title, :id, :genre, :description, :hyperlink, :likes, :plays, :catagory
     json.user track.user.username
     json.playlist playlist.id
     

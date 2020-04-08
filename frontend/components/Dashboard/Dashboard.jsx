@@ -9,6 +9,9 @@ import PlaylistDashboard from './playlist'
 import PopularTracks from './popular-tracks'
 import Tracks from './tracks'
 import DeleteModal from '../delete_modal/delete_modal'
+import EditPlaylistForm from '../edit_modal/edit_playlist_modal'
+import DeletePlaylist  from '../delete_modal/delete_playlist_modal'
+import EditUser from '../edit_user/edit_user_modal'
 
 
 class Dashboard extends React.Component {
@@ -21,10 +24,43 @@ class Dashboard extends React.Component {
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
     this.addQueue = this.addQueue.bind(this)
+    this.changeCover = this.changeCover.bind(this)
+    this.handlePlayButton = this.handlePlayButton.bind(this)
   }
 
-  addQueue(e, song) {
+  handlePlayButton(e, playlist) {
+    debugger
+    e.preventDefault()
+    if (playlist.id === this.props.player.song.playlist) {
+      if (this.props.player.player === 'playing') {
+        this.props.pauseSong(this.props.player.song)
+        this.wavesurfer.pause()
+        this.wavesurfer.setWaveColor('#ccc')
+      } else {
+        this.props.playSong(this.props.player.song);
+        this.wavesurfer.play()
+        this.wavesurfer.setWaveColor('white')
+      }
+    } else {
+        this.props.playSong(playlist.tracks[0])
+      }
+  }
+
+  changeCover(e) {
+    e.preventDefault
+
+
+      const file = e.currentTarget.files[0];
+        let update = new FormData()
+        update.append('user[cover_photo]', file)
+        this.props.updateUser(update ,this.props.currentuser.id)
+        let username= this.props.match.params.username.split('-').join(' ')
+        this.props.fetchUser(username)
     
+  }
+  
+
+  addQueue(e, song) {
     e.preventDefault()
     this.props.addQueue(song)
   }
@@ -89,6 +125,7 @@ class Dashboard extends React.Component {
       this.props.fetchUser(username)
       this.props.fetchSongsByArtist(username)
       this.props.fetchPlaylistByArtist(username)
+      this.props.fetchRecent(username)
       this.setState({username: this.props.match.params.username})
     }
     
@@ -105,7 +142,7 @@ class Dashboard extends React.Component {
   }
   
   componentDidMount(){
-    
+    debugger
     let username= this.props.match.params.username.split('-').join(' ')
     this.props.fetchUser(username)
     this.props.fetchSongsByArtist(username)
@@ -149,7 +186,7 @@ class Dashboard extends React.Component {
    
    
     if (this.state !== null) {
-      if (Object.values(this.props.songs).length === 0) {
+      if (Object.values(this.props.content).length === 0) {
         artistSongs = (
           <>
           <div className='noplaylists'>
@@ -161,120 +198,297 @@ class Dashboard extends React.Component {
         )
       }  else {   
 
-      artistSongs = Object.values(this.props.songs).map(song => {
+      artistSongs = Object.values(this.props.content).map(song => {
         // let num = song.id
         // const { [num] } = this.state
-        
-        let wave = (
-          <>
-            <Wave song={song} songtype={true}/>
-          </>
-        ) 
-        
-
-        let likebutton = (
-          <>
-            <button onClick={(e) => this.createLike(e, song.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {song.likes.length}</button>
-          </>
-        )
-
-        song.likes.forEach(like => {
-          if (like.user_id === this.props.currentuser.id) {
-            likebutton = (
-              <>
-                <button onClick={(e) => this.deleteLike(e, like.id)}className='songBuliked'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {song.likes.length}</button>
-              </>
-            )
-          }
-        })
-
-        let buttons = (
-          <>
-          {likebutton}
-            <button className='songBu3' onClick={e => this.handleEdit(e, song)}>&#9998; Edit</button>
-            <button className='songBu4'>...More
-              <div className='moreshow'>
-                <div onClick={(e) => this.addQueue(e, song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-                <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                <div className='moreshowlil' onClick={()=>this.props.openDeleteModal('open', song)}><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Track</div>
-                </div>
-            </button>
-          </>
-        )
-        if (this.props.user.id !== this.props.currentuser.id) {
-          buttons = (
+        if (song.catagory === 'song') {
+          let wave = (
             <>
-              {likebutton}
+              <Wave song={song} songtype={true} changedur={true}/>
+            </>
+          ) 
+          
+
+          let likebutton;
+          
+          if (this.props.currentuser) {
+            likebutton = (
+            <>
+              <button onClick={(e) => this.createLike(e, song.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {song.likes.length}</button>
+            </>
+          )
+          }
+
+          if (this.props.currentuser) {
+          song.likes.forEach(like => {
+            if (like.user_id === this.props.currentuser.id) {
+              likebutton = (
+                <>
+                  <button onClick={(e) => this.deleteLike(e, like.id)}className='songBuliked'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {song.likes.length}</button>
+                </>
+              )
+            }
+          })
+          }
+
+          let buttons = (
+            <>
+            {likebutton}
+              <button className='songBu3' onClick={e => this.handleEdit(e, song)}>&#9998; Edit</button>
               <button className='songBu4'>...More
-               <div className='moreshow'>
-                <div onClick={(e) => this.addQueue(e, song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-                <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                </div>
+                <div className='moreshow'>
+                  <div onClick={(e) => this.addQueue(e, song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                  <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+                  <div className='moreshowlil' onClick={()=>this.props.openDeleteModal('open', song)}><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Track</div>
+                  </div>
               </button>
             </>
           )
-        }
+          if (this.props.currentuser) {
+            if (this.props.user.id !== this.props.currentuser.id) {
+              buttons = (
+                <>
+                  {likebutton}
+                  <button className='songBu4'>...More
+                  <div className='moreshow'>
+                    <div onClick={(e) => this.addQueue(e, song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                    <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+                    </div>
+                  </button>
+                </>
+              )
+            }
+          } else if (!this.props.currentuser) {
+            buttons = (
+              <>
+                <button onClick={(e) => this.addQueue(e, song)} className='songBu4'>Add to Next up</button>
+              </>
+            )
+          }
 
-        let playbutton = (
-          <>
-            <div className='playSong'onClick={()=> this.handlePlay(song)}><p className='playcon'>&#9654;</p></div>
-          </>
-        )
-        if (this.props.player.song.id === song.id && this.props.player.player === 'playing') {
-          playbutton = (
+          let playbutton = (
             <>
-              <div className='playSong'onClick={()=> this.props.pauseSong(song)}><p className='pausecon'>||</p></div>
+              <div className='playSong'onClick={()=> this.handlePlay(song)}><p className='playcon'>&#9654;</p></div>
             </>
           )
-        }
-       
-        return (
-        <>
-
-   
-        <div className='songContainer'>
-       
-       
-        <img src={song.imgUrl} className='songImg1'/>
-          <div className='songHelp'>
-            <div className='topsongcont'>
-              {playbutton}
-              
-              <div className='songpIn'>
-                <li className='sArtist'>{this.props.user.username}</li>
-                <li className='sSong'><Link className='sSong' to={`/${this.props.user.username.split(' ').join('-')}/${song.hyperlink}`}>{song.title}</Link></li>
-              </div>
-
-              <p className='songG'>#{song.genre}</p>
-            </div>
-            <div className='sngwvc'>
-              {wave}
-            </div>
-
-            <div className='songFoot'>
-              <div className='songBO'>
-                {buttons}
-              </div>
-            </div>
-              
-
-          </div>
-
-          
-
-          
-          
-
-          </div>
-
-         
-          
-
-          
+          if (this.props.player.song.id === song.id && this.props.player.player === 'playing') {
+            playbutton = (
+              <>
+                <div className='playSong'onClick={()=> this.props.pauseSong(song)}><p className='pausecon'>||</p></div>
+              </>
+            )
+          }
         
-        </>
-      )})}
-    } 
+          return (
+          <>
+
+    
+          <div className='songContainer'>
+        
+        
+          <img src={song.imgUrl} className='songImg1'/>
+            <div className='songHelp'>
+              <div className='topsongcont'>
+                {playbutton}
+                
+                <div className='songpIn'>
+                  <li className='sArtist'>{this.props.user.username}</li>
+                  <li className='sSong'><Link className='sSong' to={`/${this.props.user.username.split(' ').join('-')}/${song.hyperlink}`}>{song.title}</Link></li>
+                </div>
+
+                <p className='songG'>#{song.genre}</p>
+              </div>
+              <div className='sngwvc'>
+                {wave}
+              </div>
+
+              <div className='songFoot'>
+                <div className='songBO'>
+                  {buttons}
+                </div>
+
+                <p className='playtat'>&#9654; {song.plays}</p> 
+              </div>
+                
+
+            </div>
+
+            
+
+            
+            
+
+            </div>
+
+          
+            
+
+            
+          
+          </>
+        )} else if (song.catagory === 'playlist') {
+          let lastbutton = (
+            <>
+            <button className='songBu4'>...More
+                <div className='moreshow'>
+                  <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                  <div onClick={() => this.props.openDeletePlaylistModal('open', song)} className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</div>
+                </div>
+            </button>
+            </>
+          )
+          let nosongs = (
+            <>
+              <h2 className='nosongsfound'>This playlist has no tracks yet</h2>
+            </>
+          )
+          let songtits = null;
+          let playicon = (
+            <>
+            <div className='playSongnewgone'><p className='playcon'>&#9654;</p></div>
+            </>
+          )
+          let num = 0;
+          if (song.tracks.length > 0) {
+           
+            songtits = song.tracks.map((track, i) => {
+              num++;
+              return(
+              <>
+                <div onClick={()=> this.handlePlay(track, song.tracks.slice(i+1))} className='playlisttrackindivid'>
+                  <div className='playlisttnum'>{num}</div>
+                  <div className='playlisttname'>{track.title}</div>
+                </div>
+              </>)
+            })
+
+            let wave;
+            if (this.props.player.song.playlist === song.id) {
+              wave = (
+              <>
+                <Wave song={this.props.player.song} playlistdur={true}/>
+              </>
+              )
+            } else {
+     
+              wave = (
+                <>
+                  <Wave song={song.tracks[0]}/>
+                </>
+              )
+            }
+            
+
+            nosongs = (
+              <>
+                <div className='sngwvz'>
+                  {wave}
+                </div>
+                  
+                <div className='playlisttracks'>
+                  {songtits}
+                </div>
+              </>
+            )
+            if (this.props.player.song.playlist === song.id) {
+              if (this.props.player.player === 'paused') {
+                playicon = (
+                  <>
+                    <div className='playSongnew' onClick={(e) => this.handlePlayButton(e, song)}><p className='playcon'>&#9654;</p></div>
+                  </>
+                )
+              } else {
+                playicon = (
+                  <>
+                    <div className='playSong' onClick={(e) => this.handlePlayButton(e, song)}><p className='pausecon'>||</p></div>
+                  </>
+                )
+              }
+            } else {
+              playicon = (
+                <>
+                  <div className='playSongnew' onClick={(e) => this.handlePlayButton(e, song)}><p className='playcon'>&#9654;</p></div>
+                </>
+              )
+            }
+          }
+          let pic = (
+            <>
+              <div className='emptyplaylistpic'></div>
+            </>
+          )
+
+          if (song.imageUrl) {
+            pic = (
+              <>
+                <img className='playlistpicer' src = {song.imageUrl}/>
+              </>
+            )
+          }
+
+          let likebutton = (
+            <>
+              <button onClick={(e)=> this.createLike(e, song.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {song.likes.length}</button>
+            </>
+          )
+
+          song.likes.forEach(like =>
+            {
+              if (like.user_id === this.props.currentuser.id) {
+                likebutton = (
+                  <button onClick={(e)=> this.deleteLike(e, like.id)}className='songBuSl'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {song.likes.length}</button>
+                )
+              }
+            })
+
+            let buttons = (
+              <>
+              {likebutton}
+                  <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
+                  {lastbutton}
+              </>
+            )
+
+            if (!this.props.currentuser) {
+                buttons = (
+                  <>
+                    <button onClick={(e) => this.addQueue(e, song)} className='songBu4'>Add to Next up</button>
+                  </>
+                )
+            }
+          
+          return (
+          <>
+            <div className='playlistslice'>
+              <div>
+                {pic}
+              </div>
+              <div className='playlistcontent'>
+                <div className='topplaylistbox'>
+                  
+                  {playicon}
+                  <div className='playlistinf'>
+                    <Link className ='playlistart'to={`/${this.props.match.params.username}`}>{this.props.match.params.username}</Link>
+                    <Link to={`/${this.props.match.params.username}/sets/${song.permalink}`}className='playlisttit'>{song.title}</Link>
+                  </div>
+                </div>
+                
+                {nosongs}
+                
+
+                <div className='songBO'>
+                  {buttons}
+                  </div>
+                </div>
+              
+
+           
+            </div>
+          </>
+          )
+        }
+      })}
+      } 
 
   } else {
     artistSongs = null;
@@ -297,15 +511,17 @@ class Dashboard extends React.Component {
   if( profilebody ) {
     let followbutton = null
     let editbutton=null
-    if (this.props.user.id === this.props.currentuser.id) {
-      editbutton= (
-        <>
-          <Link className='extraButtons'><strong className='boldthis1'>&#9998;</strong>  Edit</Link>
-        </>
-      )
+    if (this.props.currentuser) {
+      if (this.props.user.id === this.props.currentuser.id) {
+        editbutton= (
+          <>
+            <div onClick={()=> this.props.openUserModal('edit_user')} className='extraButtons'><strong className='boldthis1'>&#9998;</strong>  Edit</div>
+          </>
+        )
+      }
     }
 
-
+    if (this.props.currentuser) {
     if (this.props.user.id !== this.props.currentuser.id) {
       followbutton = (
         <>
@@ -322,6 +538,7 @@ class Dashboard extends React.Component {
         }
       })
     }
+  }
     let likes = null;
 
     if (this.props.user.likes.length > 0) {
@@ -510,19 +727,68 @@ class Dashboard extends React.Component {
 
   
 
-
+  let changeCover = null;
   
-  
+  if (this.props.currentuser) {
+    if (this.props.currentuser.id === this.props.user.id) {
+      changeCover = (
+        <>
+          <input type='file' id='uploadCoverPicture' onChange={this.changeCover}/>
+          <button className='selectImgB3'onClick={()=>document.getElementById('uploadCoverPicture').click() }>&#128247; Select Cover Image</button>
+        </>
+      )
+    }
+  }
 
+  let proPic = (
+    <>
+      <img src={this.props.user.profileUrl} className='proPic'/>
+    </>
+  )
+  
+  if (!this.props.user.profileUrl) {
+    proPic = (
+      <>
+        <div className='proPic2'>
+        </div>
+      </>
+    )
+  }
+
+  let coverpic = (
+    <>
+      <img src={this.props.user.coverUrl} className='coverPic'/>
+    </>
+  )
+
+  if (!this.props.user.coverUrl) {
+    coverpic = (
+      <>
+        <div src={this.props.user.coverUrl} className='coverPic2'/>
+      </>
+    )
+  }
+  let modals;
+  if (this.props.currentuser) {
+    modals = (
+      <>
+        <PlaylistModal />
+        <EditModal/>
+        <DeleteModal/>
+        <DeletePlaylist/>
+        <EditPlaylistForm/>
+        <EditUser/>
+      </>
+    )
+  }
 
     return(
     <>
-    <PlaylistModal />
-    <EditModal/>
-    <DeleteModal/>
+    {modals}
     <div className='fullDash'> 
-    <img src={this.props.user.coverUrl} className='coverPic'/>
-    <img src={this.props.user.profileUrl} className='proPic'/>
+    {coverpic}
+    {proPic}
+    {changeCover}
     <h1 className='usernameProf'>{this.props.user.username}</h1>
     {titler}
 

@@ -10,7 +10,7 @@ import { createLike, deleteLike } from '../../actions/like_action'
 
 export const mSTP = state => ({
   recentplays: Object.values(state.entities.recentplays),
-  content: Object.values(state.entities.songs),
+  content: Object.values(state.entities.content),
   currentuser: state.session.currentUser,
   mightlike: Object.values(state.entities.randomUsers),
   follows: Object.values(state.ui.follows)

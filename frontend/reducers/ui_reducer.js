@@ -11,6 +11,7 @@ import TIMER from './timer_reducer'
 import WaveReducer from './wave_reducer'
 import updateWave from './update_wave'
 import FollowReducer from './follow_reducer';
+import editUser from './edit_user_modal'
 
 export default combineReducers({
   modal,
@@ -24,5 +25,6 @@ export default combineReducers({
   delete_playlist_modal: DeletePlaylistModal,
   WaveReducer: WaveReducer,
   updateWave: updateWave,
-  follows: FollowReducer
+  follows: FollowReducer,
+  editUser: editUser
 });

@@ -5,9 +5,9 @@ export const fetchSong = (songId) => (
 )
 
 export const randomSong = () => {
-  $.ajax({
+  return $.ajax({
     method: 'GET',
-    url: '/api/songs/random'
+    url: '/api/songs/random_song/get'
   })
 }
 

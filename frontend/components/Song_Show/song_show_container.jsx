@@ -10,7 +10,6 @@ import { fetchSongsByArtist, createComment, deleteComment } from '../../actions/
 
 const mSTP = (state, ownProps) => {
   return ({ song: state.entities.songShow[ownProps.match.params.hyperlink],
-          userId: state.session.currentUser.username,
           currentuser: state.session.currentUser,
           othersongs: Object.values(state.entities.songs),
           username: ownProps.match.params.username.split('-').join(' '),

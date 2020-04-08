@@ -1,0 +1,169 @@
+.edituser-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: hsla(0,0%,94.9%,.9);
+  z-index: 12;
+}
+
+.edituser-child {
+  display: block;
+  background: white;
+  width: 715px;
+  height: 242px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  animation-name: modal-in;
+  animation-duration: 0.7s;
+  z-index: 13;
+}
+
+.selectImgB2 {
+  background-color: hsla(0,0%,100%,.8);
+  border-color: rgba(0,0,0,.1);
+  background-clip: padding-box;
+  margin-top: 8px;
+  cursor: pointer;
+  color: #333;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  border-radius: 3px;
+  transition: background-color .2s ease-in-out,border-color .2s ease-in-out;
+}
+
+
+@keyframes modal-in {
+  from {
+    top: -100%;
+    bottom: -100%;
+  }
+  to {
+    top: 50%;
+    bottom: 0%;
+  }
+}
+
+.edituserform {
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.editprofileheader {
+  border-bottom: 1px solid #f2f2f2;
+  font-weight: 100;
+  font-size: 21px;
+  color: #999;
+  padding-bottom: 10px;
+}
+
+.profilepicchange {
+  border-radius: 100px;
+  height: 100px;
+  width: 100px;
+}
+
+.editprofilecontent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.makeitflex {
+  display: flex;
+}
+
+.edituserbuttons {
+  display: flex; 
+  margin-top: 108px;
+
+}
+
+.updateusername {
+  outline: none;
+  height: 20px;
+  margin-left: 10px;
+  padding-left: 7px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid #e2e1e1;
+}
+
+.songImgIn2 {
+  float: left;
+  display: block;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  padding: 0;
+  margin-top: 5%;
+  margin-left: 0%;
+  border: 1px solid #f2f2f2;
+  border-radius: 100px;
+}
+
+.flexedituser {
+  display: flex;
+  flex-direction: column;
+}
+
+.displayflexuser {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 41px;
+}
+.enteruser {
+  color: #999;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  padding-top: 4px;
+}
+
+.canceledituser {
+  border: none;
+  outline: none;
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  z-index: 10;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding-top: 2px;
+  margin-right: 6px;
+}
+.saveedituser {
+  background-color: #f50;
+  height: 19px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  border-color: #f50;
+  color: #fff;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  font-size: 12px;
+}
+
+.nosaveuser {
+  height: 19px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  border-color: #f2f2f2;
+  color: #999;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  font-size: 12px;
+}

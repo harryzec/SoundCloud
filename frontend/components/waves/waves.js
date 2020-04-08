@@ -16,11 +16,18 @@ class Waves extends React.Component {
   }
 
   handleWave(e) {
+    debugger
     if (this.props.song.id !== this.props.player.song.id) {
       this.handlePlay(this.props.song)
+    } else if ( this.props.song.id === this.props.player.song.id && this.props.song.playlist !== this.props.player.song.playlist) { 
+      debugger
+      this.handlePlay(this.props.song)
+      this.props.waveEvent({wholething: 0, fake: true})
+      this.wavesurfer.seekTo(0)
+      this.wavesurfer.play()
     } else {
     e.preventDefault()
-    let timeline = document.getElementById(`waveformsong${this.props.song.id}`)
+    let timeline = document.getElementById(`waveformsong${this.props.song.id}${this.props.song.playlist || null}`)
     let part1 = (e.clientX - this.getPosition(timeline))
     let part2 = (timeline.clientWidth);
     let wholething = (part1/part2)
@@ -32,7 +39,7 @@ class Waves extends React.Component {
 
     
     
-    if (this.wavesurfer && this.props.song.id === this.props.player.song.id){
+    if (this.wavesurfer && this.props.song.id === this.props.player.song.id && this.props.song.playlist === this.props.player.song.playlist){
       let parts = this.props.time.split(':')
       let seconds = parseInt(parts[0])*60 + parseInt(parts[1])
       if (this.wavesurfer.getDuration() > 0 && seconds !== Math.floor(this.wavesurfer.getCurrentTime())) {
@@ -48,10 +55,11 @@ class Waves extends React.Component {
 
   componentDidMount() {
 
+
     if (!this.wavesurfer&& this.props.song) {
       if (this.props.song.catagory === 'song') {
       this.wavesurfer = WaveSurfer.create({
-        container: `#waveformsong${this.props.song.id}`,
+        container: `#waveformsong${this.props.song.id}${this.props.song.playlist || null}`,
         waveColor: '#ccc',
         progressColor: '#f50',
         barGraph: 10,
@@ -99,7 +107,7 @@ class Waves extends React.Component {
 }
 
 handlePlay(song){
-  if (song.id === this.props.player.song.id) {
+  if (song.id === this.props.player.song.id && song.playlist=== this.props.player.song.playlist) {
     this.wavesurfer.play()
     this.props.playSong(this.props.player.song);
     this.wavesurfer.setWaveColor('rgb(148, 148, 148)')
@@ -123,6 +131,13 @@ handlePlay(song){
           <div className='timersong2'>{this.props.time}</div>
         </>
       )
+      if (this.props.playlistdur) {
+        time = (
+          <>
+            <div className='timersong3'>{this.props.time}</div>
+          </>
+        )
+      }
     }
     let duration;
 
@@ -133,6 +148,12 @@ handlePlay(song){
             <div className='durationsong2'>{this.state.duration}</div>
           </>)
       }
+    }
+    if (this.props.changedur) {
+      duration = (
+        <>
+          <div className='durationsong3'>{this.state.duration}</div>
+        </>)
     }
 
     if (this.wavesurfer && this.props.song === this.props.player.song && this.props.player.player === 'playing') {
@@ -148,7 +169,7 @@ handlePlay(song){
       this.wavesurfer.pause()
     }
 
-   if (this.props.player.song.id !== this.props.song.id && this.wavesurfer) {
+   if ((this.props.player.song.id !== this.props.song.id && this.wavesurfer) || (this.props.player.song.playlist !== this.props.song.playlist && this.props.player.song.id === this.props.song.id && this.wavesurfer)) {
     this.wavesurfer.seekTo(0)
    }
    
@@ -164,8 +185,10 @@ handlePlay(song){
    }
 
    
-
-
+   let second = null
+   if (this.props.song.playlist) {
+    second = this.props.song.playlist
+   }
    
 
 
@@ -174,7 +197,7 @@ handlePlay(song){
       {time}
       {duration}
       <div className={type}>
-        <div onClick={this.handleWave} id={`waveformsong${this.props.song.id}`}></div>
+        <div onClick={this.handleWave} id={`waveformsong${this.props.song.id}${second}`}></div>
       </div>
       </>
     )

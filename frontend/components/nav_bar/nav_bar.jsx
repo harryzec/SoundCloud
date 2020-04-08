@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchSearch } from '../../actions/search_actions'
 import searchReducer from '../../reducers/search_reducer';
+import { openModal } from '../../actions/modal_actions';
+import Modal from '../modal/modal';
 
 class NavBar extends React.Component {
   constructor(props){
@@ -22,6 +24,7 @@ class NavBar extends React.Component {
   }
 
   update(field) {
+    debugger
     return e => {
      
       if (e.currentTarget.value.length > 0) {
@@ -42,13 +45,17 @@ class NavBar extends React.Component {
     if (this.props.location.pathname !==  this.state.path) {
 
         let bar = document.getElementById('searchedbar')
-        bar.value = ''
+        if (bar) {
+          bar = ''
+        }
         this.setState({path: this.props.location.pathname, showsearch: 'noshowsearch'})
       
     } else if (this.props.location.pathname === '/search') {
       if (this.props.location.search !== this.state.looked) {
         let bar = document.getElementById('searchedbar')
-        bar.value = ''
+        if (bar) {
+          bar.value = ''
+        }
         this.setState({path: this.props.location.pathname, showsearch: 'noshowsearch', looked: this.props.location.search})
       }
     }
@@ -68,10 +75,6 @@ class NavBar extends React.Component {
     const { NavDrop, userdrop } = this.state
 
     if (this.props.match.isExact) {return null}
-
-    if (this.props.user === null) {
-      return(null)
-    }
 
     let searched;
     let results = null;
@@ -111,6 +114,45 @@ class NavBar extends React.Component {
       
       </>
     )
+
+    if (this.props.user === null) {
+      return(
+        <>
+        <Modal />
+      <div className='navMarg'>
+      <div className='navBar'>
+        <div className='navButtons'>
+        <Link to='/discover' className='HomeButton'>Home</Link>
+        <div to='/stream' onClick={() => this.props.openModal('verifyUsername')} className='StreamButton'>Stream</div>
+        <div to='/you/library' onClick={() => this.props.openModal('verifyUsername')} className='LibraryButton'>Library</div>
+        </div>
+        <div className='searchSound'>
+        <input type='text' placeholder='Search' onChange={this.update('search')} defaultValue={this.state.search}className='searchMusicBar' id='searchedbar'/>
+          <div className={this.state.showsearch}>{searched}</div>
+        <div className='buttonBack'>
+          <button className='searchNotes'></button>
+        </div>
+        </div>
+        <div className='lastSearch'>
+          <a href='https://github.com/harryzec' className='tryPro'>Github</a>
+          <div onClick={() => this.props.openModal('verifyUsername')} className='UploadClick'>Upload</div>
+        <div className='userdrop' onClick={() => this.props.openModal('verifyUsername')}>
+          <div className='profHead'><p className='navLogin'> Sign In</p> </div>
+        </div>
+            <button className='bellButton'>
+              <a className='findmylinkedin' href='https://www.linkedin.com/in/harry-zec-7157a4a8/'>Linkedin</a>
+            </button>
+
+            
+        </div>
+      </div>
+      </div>
+      </>)
+    }
+    
+
+
+
     
 
     if (this.props.user.username === undefined) {
@@ -175,7 +217,9 @@ const mSTP = state => {
 
 const mDTP = dispatch => {
   return (
-    {fetchSearch: (search)=> dispatch(fetchSearch(search))})
+    {fetchSearch: (search)=> dispatch(fetchSearch(search)),
+    openModal: modal => dispatch(openModal(modal)),
+})
 }
 
 

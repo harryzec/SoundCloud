@@ -23,6 +23,27 @@ class Playlist extends React.Component {
     this.deleteLike = this.deleteLike.bind(this)
     this.createFollow = this.createFollow.bind(this)
     this.deleteFollow = this.deleteFollow.bind(this)
+    this.handlePlay = this.handlePlay.bind(this)
+    this.handlePlayButton = this.handlePlayButton.bind(this)
+
+  }
+
+  handlePlayButton(e, playlist) {
+    debugger
+    e.preventDefault()
+    if (playlist.id === this.props.player.song.playlist) {
+      if (this.props.player.player === 'playing') {
+        this.props.pauseSong(this.props.player.song)
+        this.wavesurfer.pause()
+        this.wavesurfer.setWaveColor('#ccc')
+      } else {
+        this.props.playSong(this.props.player.song);
+        this.wavesurfer.play()
+        this.wavesurfer.setWaveColor('white')
+      }
+    } else {
+        this.props.playSong(playlist.tracks[0])
+      }
   }
 
   createFollow(e) {
@@ -72,7 +93,7 @@ class Playlist extends React.Component {
     } else if (this.props.player.song === track && this.props.player.player ==='paused' ) {
       this.props.playSong(track)
     } else {
-      debugger
+      
 
       this.props.playSong(track)
       if (this.props.queue.length === 0) {
@@ -82,7 +103,7 @@ class Playlist extends React.Component {
   }
 
   render() {
-    debugger
+    
     if (this.props.songs === null) return null
     
 
@@ -92,20 +113,22 @@ class Playlist extends React.Component {
         <>
           <div className='noplaylists'>
             <img className='noplaylistpic'src='https://image.flaticon.com/icons/svg/2311/2311991.svg'/>
-            <p>You haven't created any playlists.</p>
+            <p>Seems a little quiet over here.</p>
           </div>
         </>
       )
       
-      if (this.props.currentuser.id !== this.props.user.id) {
-        let content = (
-          <>
-            <div className='noplaylists'>
-              <img className='noplaylistpic'src='https://image.flaticon.com/icons/svg/2311/2311991.svg'/>
-              <p>Seems a little quiet over here.</p>
-            </div>
-          </>
-        )
+      if (this.props.currentuser) {
+        if (this.props.currentuser.id !== this.props.user.id) {
+          let content = (
+            <>
+              <div className='noplaylists'>
+                <img className='noplaylistpic'src='https://image.flaticon.com/icons/svg/2311/2311991.svg'/>
+                <p>Seems a little quiet over here.</p>
+              </div>
+            </>
+          )
+        }
       }
 
       
@@ -115,8 +138,12 @@ class Playlist extends React.Component {
         let playlistlist = this.props.playlists.reverse().map(playlist => {
           let lastbutton = (
             <>
-              <button onClick={() => this.props.openDeletePlaylistModal('open', playlist)} className='songBu4'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</button>
-
+            <button className='songBu4'>...More
+                <div className='moreshow'>
+                  <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                  <div onClick={() => this.props.openDeletePlaylistModal('open', playlist)} className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</div>
+                </div>
+            </button>
             </>
           )
           let nosongs = (
@@ -148,18 +175,18 @@ class Playlist extends React.Component {
             if (playlist.tracks.includes(cursong)) {
               wave = (
               <>
-                <Waves song={cursong}/>
+                <Waves song={cursong} playlistdur={true}/>
               </>
               )
             } else {
      
               wave = (
                 <>
-                  <Waves song={playlist.tracks[0]}/>
+                  <Waves song={playlist.tracks[0]} playlistdur={true}/>
                 </>
               )
             }
-            debugger
+            
 
             nosongs = (
               <>
@@ -173,11 +200,29 @@ class Playlist extends React.Component {
                 </div>
               </>
             )
-            playicon = (
-              <>
-              <div className='playSongnew'><p className='playcon'>&#9654;</p></div>
-              </>
-            )
+            
+
+            if (this.props.player.song.playlist === playlist.id) {
+              if (this.props.player.player === 'paused') {
+                playicon = (
+                  <>
+                    <div className='playSongnew' onClick={(e) => this.handlePlayButton(e, playlist)}><p className='playcon'>&#9654;</p></div>
+                  </>
+                )
+              } else {
+                playicon = (
+                  <>
+                    <div className='playSong' onClick={(e) => this.handlePlayButton(e, playlist)}><p className='pausecon'>||</p></div>
+                  </>
+                )
+              }
+            } else {
+              playicon = (
+                <>
+                  <div className='playSongnew' onClick={(e) => this.handlePlayButton(e, playlist)}><p className='playcon'>&#9654;</p></div>
+                </>
+              )
+            }
 
             lastbutton = (
               <>
@@ -218,6 +263,22 @@ class Playlist extends React.Component {
                 )
               }
             })
+
+          let buttons = (
+            <>
+              {likebutton}
+              <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
+              {lastbutton}
+            </>
+          )
+
+          if (!this.props.currentuser) {
+            buttons = (
+              <>
+                <button onClick={(e) => this.addQueue(e, song)} className='songBu4'>Add to Next up</button>
+              </>
+            )
+          }
           
           return (
           <>
@@ -239,9 +300,7 @@ class Playlist extends React.Component {
                 
 
                 <div className='songBO'>
-                  {likebutton}
-                  <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
-                  {lastbutton}
+                  {buttons}
                   </div>
                 </div>
               
@@ -368,6 +427,7 @@ class Playlist extends React.Component {
 
     let followbutton = null
     let editbutton=null
+    if (this.props.currentuser) {
     if (this.props.user.id === this.props.currentuser.id) {
       editbutton= (
         <>
@@ -375,8 +435,10 @@ class Playlist extends React.Component {
         </>
       )
     }
+    }
 
 
+    if (this.props.currentuser) {
     if (this.props.user.id !== this.props.currentuser.id) {
       followbutton = (
         <>
@@ -393,12 +455,11 @@ class Playlist extends React.Component {
         }
       })
     }
+  }
 
 
       return(
         <>
-        <DeletePlaylist/>
-        <EditPlaylistForm/>
         <div className='profileOptions'>
         <section className='profileSections'>
           <Link to={`/${this.props.match.params.username}`}className='profileButtons'>All</Link>

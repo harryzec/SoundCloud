@@ -92,6 +92,7 @@ export const fetchSongShow = ( hyperlink, username ) => dispatch => {
 export const PLAY_RANDOM = 'PLAY_RANDOM'
 
 export const randomPlay = song => {
+  debugger
   return {
     type: PLAY_RANDOM,
     song
@@ -100,7 +101,7 @@ export const randomPlay = song => {
 
 export const randomSong = () => dispatch => {
   return APIUtil.randomSong().then(song => {
-    dispatch(randomPlay(song))
+    dispatch(randomPlay(Object.values(song)[0]))
   })
 }
 

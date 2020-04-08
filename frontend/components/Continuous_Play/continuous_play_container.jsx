@@ -6,6 +6,7 @@ import {timer} from '../../actions/song_player_actions'
 import { playedSong } from '../../actions/queue_action'
 import { createLike, deleteLike } from '../../actions/like_action'
 import { replaceQueue } from '../../actions/queue_action'
+import { updateUser } from '../../actions/session_actions'
 
 
 const mSTP = (state) => ({
@@ -27,6 +28,8 @@ const mDTP = dispatch => ({
   deleteLike: (like_id) => dispatch(deleteLike(like_id)),
   replaceQueue: (queue) => dispatch(replaceQueue(queue)),
   randomSong: () => dispatch(randomSong()),
+  updateUser: (user, id) => dispatch(updateUser(user, id)),
+
 })
 
 export default connect(mSTP, mDTP)(SongShow)

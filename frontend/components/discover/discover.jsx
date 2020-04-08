@@ -87,34 +87,48 @@ class Discover extends React.Component{
         </div>
       </>
     ))
-
-    let actual = this.props.currentuser.likes.slice(0,3).map(like => {
+   
+      
+    let actual;
+    let likesheader;
+    if (this.props.currentuser) {
+    likesheader = (
+      <>
+        <h3 className='listenHis'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/2725/2725161.svg'/> Likes</h3>
+      </>
+    )
+    actual = this.props.currentuser.likes.slice(0,3).map(like => {
         
       return(
-        <>
-          <div className='likeshow'>
-            <img src={like.imgUrl} width='50' height='50'/>
-            <div className='likeInfo'>
-              <Link className='likeuser' to={`/${like.username.split(' ').join('-')}`}>{like.username}</Link>
-              <Link className='liketitle'to={`/${like.username.split(' ').join('-')}/${like.hyperlink}`}>{like.title}</Link>
-              
-              <div className='likestats'>
-                <p className='likestat1'>&#9654; {like.plays}</p>
-                <p className='likestat'>&#9829; {like.likes}</p>
-                <p className='likestat3'>&#9998; {like.comments}</p>
+          <>
+            <div className='likeshow'>
+              <img src={like.imgUrl} width='50' height='50'/>
+              <div className='likeInfo'>
+                <Link className='likeuser' to={`/${like.username.split(' ').join('-')}`}>{like.username}</Link>
+                <Link className='liketitle'to={`/${like.username.split(' ').join('-')}/${like.hyperlink}`}>{like.title}</Link>
+                
+                <div className='likestats'>
+                  <p className='likestat1'>&#9654; {like.plays}</p>
+                  <p className='likestat'>&#9829; {like.likes}</p>
+                  <p className='likestat3'>&#9998; {like.comments}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </>
-      )
-    })
+          </>
+        )
+      })
+    }
 
     let randomusers = this.props.mightlike.map((user, i) => {
-      let button = (
-        <>
-         <div className='extraBut2' onClick={(e)=> this.createFollow(e, user.id, i)}>+ Follow</div>
-        </>
-      )
+      let followbutton;
+      
+      if (this.props.currentuser) {
+        followbutton = (
+          <>
+          <div className='extraBut2' onClick={(e)=> this.createFollow(e, user.id, i)}>+ Follow</div>
+          </>
+        )
+      }
       if (this.state !== null) {
         if(this.state[[i]]) {
           let follow;
@@ -123,7 +137,7 @@ class Discover extends React.Component{
               follow = follower.id
             }
           })
-          button = (
+          followbutton = (
             <>
              <div className='extraBut2' onClick={(e) => this.deleteFollow(e, follow, i)}><strong className='bigFont'>&#9745;</strong> Following</div>
             </>
@@ -141,7 +155,7 @@ class Discover extends React.Component{
                 <p className='followst1'><strong className='larger1'>&#9745;</strong> {user.followers.length}</p>
                 <p className='followst'><strong className='larger2'>&#9835;</strong> {user.songs}</p>
               </div>
-                {button}
+                {followbutton}
             </div>
           </div>
 
@@ -149,6 +163,7 @@ class Discover extends React.Component{
         </>
       )
     })
+
 
     return(
       <>
@@ -177,7 +192,7 @@ class Discover extends React.Component{
         <div className='recentSection'>
           <h3 className='listenHis'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/2725/2725222.svg'/> Who to follow</h3>
           {randomusers}
-          <h3 className='listenHis'><img width='12' src='https://www.flaticon.com/premium-icon/icons/svg/2725/2725161.svg'/> Likes</h3>
+          {likesheader}
           {actual}
           <h3 className='listenHis'><img className='cale' width='12'src ='https://image.flaticon.com/icons/svg/747/747310.svg'/>  Listening History</h3>
           

@@ -12,9 +12,9 @@ class Api::SongsController < ApplicationController
   def new
   end
 
-  def random 
+  def random_song
     @song = Song.all.shuffle[0]
-    render :show
+    render :showsong
   end
 
 

@@ -39,8 +39,23 @@
 }
 
 .shuffle {
-  top:11px;
+  font-size: 19px;
+  top: 0px;
+  padding-top: 0;
+  margin-top: 8px;
   padding-left: 60px;
+  color: #f50;
+  cursor: pointer;
+}
+
+.noshuffle {
+  font-size: 19px;
+  top: 0px;
+  padding-top: 0;
+  margin-top: 8px;
+  padding-left: 60px;
+  color: black;
+  cursor: pointer;
 }
 
 .repeat {
@@ -157,19 +172,27 @@
 .barHeart {
   padding-left: 60px;
   padding-left: 20px;
-
+  cursor: pointer;
   top: 9px;
+}
+.barHeart2 {
+  padding-left: 60px;
+  padding-left: 20px;
+  cursor: pointer;
+  top: 9px;
+  margin-top: 10px;
 }
 
 .showqueue {
   padding-left: 10px;
   top: 9px;
   position: relative;
+  cursor: pointer;
 }
 
-/* .realqueue {
+.realqueuehidden {
   display: none;
-} */
+}
 
 .realqueue {
   position: absolute;

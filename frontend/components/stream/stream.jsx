@@ -8,6 +8,25 @@ class Stream extends React.Component {
     super(props)
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
+    this.createFollow = this.createFollow.bind(this)
+    this.deleteFollow = this.deleteFollow.bind(this)
+  }
+
+  createFollow(e, user_id, i) {
+    e.preventDefault()
+    this.props.createFollow({
+      user_id: user_id,
+      follower_id: this.props.currentuser.id
+    })
+
+    this.setState({[i]: true})
+  }
+
+  deleteFollow(e, id, i) {
+    e.preventDefault()
+    this.props.deleteFollow(id)
+    this.setState({[i]: false})
+
   }
 
   createLike(e, id, type) {
@@ -29,6 +48,7 @@ class Stream extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     this.props.fetchFollowerContent(this.props.currentuser.id)
   }
 

@@ -28,6 +28,23 @@ export const openDeleteModal = (modal, song) => {
   };
 };
 
+export const OPEN_USER_MODAL = 'OPEN_USER_MODAL'
+export const CLOSE_USER_MODAL = 'DELETE_USER_MODAL'
+
+export const openUserModal = (modal) => {
+  return {
+    type: OPEN_USER_MODAL,
+    modal
+  };
+};
+
+export const closeUserModal = () => {
+  return {
+    type: CLOSE_USER_MODAL,
+  };
+}
+
+
 export const closeDeleteModal = () => {
   return {
     type: CLOSE_DELETE_MODAL

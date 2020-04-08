@@ -29,6 +29,11 @@ class PopularTracks extends React.Component {
     this.props.playSong(song);
   }
 
+  componentDidMount() {
+    let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchSongsByArtist(username)
+  }
+
   createFollow(e) {
     e.preventDefault()
     this.props.createFollow({
@@ -95,7 +100,7 @@ class PopularTracks extends React.Component {
         
         let wave = (
           <>
-          < Wave song={song} songtype={true}/>
+          < Wave song={song} songtype={true} changedur={true}/>
           </>
         ) 
         
@@ -130,13 +135,25 @@ class PopularTracks extends React.Component {
             </button>
           </>
         )
-
+        
+        if (this.props.currentuser) {
         if (this.props.user.id !== this.props.currentuser.id) {
           buttons = (
             <>
               {likebutton}
-              <button className='songBu3' onClick={() => this.props.openPlaylistModal('playlist', song)}>&#9998; Add to Playlist</button>
-              <button className='songBu4' onClick={() => this.setState({[song.id]: 'moreshow'})}>Add to up next</button>
+              <button className='songBu4'>...More
+                <div className='moreshow'>
+                  <div onClick={(e) => this.addQueue(e, song)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                  <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', song)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+                </div>
+              </button>
+            </>
+          )
+        }
+        } else {
+          buttons = (
+            <>
+              <button onClick={(e) => this.addQueue(e, song)} className='songBu4'>Add to Next up</button>
             </>
           )
         }
@@ -182,6 +199,8 @@ class PopularTracks extends React.Component {
               <div className='songBO'>
                 {buttons}
               </div>
+
+              <p className='playtat'>&#9654; {song.plays}</p> 
             </div>
               
 
@@ -312,6 +331,7 @@ class PopularTracks extends React.Component {
 
       let followbutton = null
       let editbutton=null
+      if (this.props.currentuser) {
       if (this.props.user.id === this.props.currentuser.id) {
         editbutton= (
           <>
@@ -319,8 +339,9 @@ class PopularTracks extends React.Component {
           </>
         )
       }
+      }
   
-  
+      if (this.props.currentuser) {
       if (this.props.user.id !== this.props.currentuser.id) {
         followbutton = (
           <>
@@ -337,6 +358,7 @@ class PopularTracks extends React.Component {
           }
         })
       }
+    }
 
       
 

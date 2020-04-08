@@ -3,7 +3,7 @@ json.extract! @user, :id, :followers, :username, :session_token, :password_diges
 json.songs @user.songs.length
 
 json.playlists @user.playlists do |playlist|
-  json.extract! playlist, :id, :user_id, :title, :description, :genre, :permalink, :likes
+  json.extract! playlist, :id, :user_id, :title, :description, :genre, :permalink, :likes, :catagory
   json.likes playlist.likes do |like|
     json.id like.id
     json.user_id like.user_id
@@ -57,6 +57,10 @@ end
 json.likes @user.likes do |like|
   if like.likeable_type ==='Song'
     song = Song.find_by(id: like.likeable_id)
+    json.id like.id
+    json.user_id like.user_id
+    json.type like.likeable_type
+    json.likeable_id like.likeable_id
     json.title song.title
     
     json.songUrl song.track.service_url
@@ -75,6 +79,10 @@ json.likes @user.likes do |like|
 
   elsif like.likeable_type ==='Playlist'
       playlist = Playlist.find_by(id: like.likeable_id)
+      json.id like.id
+      json.user_id like.user_id
+      json.likeable_id like.likeable_id
+      json.type like.likeable_type
       json.title playlist.title
       
       if !playlist.photo.attached? 

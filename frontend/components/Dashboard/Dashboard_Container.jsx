@@ -9,7 +9,8 @@ import { createLike, deleteLike } from '../../actions/like_action'
 import { openEditPlaylistModal, openDeletePlaylistModal } from '../../actions/modal_actions';
 import { addQueue } from '../../actions/queue_action'
 import { fetchPlaylistByArtist } from '../../actions/playlist_actions'
-import { openDeleteModal } from '../../actions/modal_actions'
+import { openDeleteModal, openUserModal } from '../../actions/modal_actions'
+import { updateUser } from '../../actions/session_actions'
 
 
 
@@ -18,6 +19,7 @@ const mSTP = (state, ownProps) => {
   return {
   user: state.entities.users[ownProps.match.params.username.split('-').join(' ')],
   songs: state.entities.songs,
+  content: state.entities.content,
   player: state.ui.SongPlayer,
   currentuser: state.session.currentUser,
   playlists: Object.values(state.entities.PlaylistReducer),
@@ -44,7 +46,8 @@ const mDTP = dispatch => ({
   fetchPopularSongs: (username)=> dispatch(fetchPopularSongs(username)),
   fetchRecent: (username) => dispatch(fetchRecent(username)),
   openDeleteModal: (keyword, song)=> dispatch(openDeleteModal(keyword, song)),
-
+  openUserModal: (modal) => dispatch(openUserModal(modal)),
+  updateUser: (user, id) => dispatch(updateUser(user, id))
 })
 
 export default connect(mSTP, mDTP)(Dashboard)

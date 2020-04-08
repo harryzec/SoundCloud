@@ -15,11 +15,15 @@ class Api::UsersController < ApplicationController
     @users = []
     while @users.length != 3
       user = User.all.sample
-      if user.id == current_user.id
-      else 
-        if user.followers.all? { |follow| follow.follower_id != @current_user.id } 
-          @users.push(user)
+      if @current_user
+        if user.id == current_user.id
+        else 
+          if user.followers.all? { |follow| follow.follower_id != @current_user.id } 
+            @users.push(user)
+          end
         end
+      else 
+        @users.push(user)
       end
 
     end
@@ -46,11 +50,12 @@ class Api::UsersController < ApplicationController
       partial = user.songs + user.playlists
       @results += partial
     end
+
+    
     
 
     @results.sort_by(&:created_at)
     render :recent
-
   end 
 
   def find_by_username
@@ -85,13 +90,14 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      render json: @user
+      render :showcurrent
     else
       render json: @user.errors.full_messages, status: 422
     end
   end
 
   def update
+    
     @user = User.find_by(id: params[:id])
 
     if @user.update(user_params)

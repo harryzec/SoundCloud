@@ -97,8 +97,10 @@ class SearchPage extends React.Component {
         let title;
         let info;
         if (search.catagory === 'user') {
-          if (search.id === this.props.currentuser.id) {
-            return null;
+          if (this.props.currentuser) {
+            if (search.id === this.props.currentuser.id) {
+              return null;
+            }
           }
             usernum += 1;
             title = (
@@ -154,16 +156,17 @@ class SearchPage extends React.Component {
                 <button onClick={(e) => this.createLike(e, search.id, search.catagory)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
               </>
             )
-    
-            search.likes.forEach(like => {
-              if (like.user_id === this.props.currentuser.id) {
-                likebutton = (
-                  <>
-                    <button onClick={(e) => this.deleteLike(e, like.id)}className='songBuliked'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
-                  </>
-                )
-              }
-            })
+            if (this.props.currentuser) {
+              search.likes.forEach(like => {
+                if (like.user_id === this.props.currentuser.id) {
+                  likebutton = (
+                    <>
+                      <button onClick={(e) => this.deleteLike(e, like.id)}className='songBuliked'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
+                    </>
+                  )
+                }
+              })
+            }
 
 
             info = (
@@ -330,6 +333,7 @@ class SearchPage extends React.Component {
               <button onClick={(e) => this.createLike(e, search.id, search.catagory)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
             </>
           )
+          if (this.props.currentuser) {
   
           search.likes.forEach(like => {
             if (like.user_id === this.props.currentuser.id) {
@@ -340,6 +344,7 @@ class SearchPage extends React.Component {
               )
             }
           })
+          }
 
 
           info = (
@@ -420,8 +425,10 @@ class SearchPage extends React.Component {
           if (search.catagory !== 'user') {
             return null;
           } else {
-            if (search.id === this.props.currentuser.id) {
-              return null;
+            if (this.props.currentuser) {
+              if (search.id === this.props.currentuser.id) {
+                return null;
+              }
             }
               usernum += 1;
               title = (

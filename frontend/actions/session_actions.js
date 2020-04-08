@@ -60,8 +60,8 @@ export const verifyUser = (username) => dispatch => (
     )
 )
 
-export const updateUser = user => dispatch => (
-  APIUtil.updateUser(user)
+export const updateUser = (user, id = null) => dispatch => (
+  APIUtil.updateUser(user, id)
     .then(user => (
     dispatch(receiveCurrentUser(user))
 )))

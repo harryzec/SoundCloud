@@ -1,13 +1,94 @@
 import React from 'react';
 import Modal from '../modal/modal';
+import {Link} from 'react-router-dom'
 
 class Greeting extends React.Component {
   constructor(props){
     super(props);
+    this.state = {search: '', showsearch: 'noshowsearch'}
+  }
+  componentDidMount() {
+    this.props.fetchPlaylists()
+  }
+
+  update(field) {
+    debugger
+    return e => {
+     
+      if (e.currentTarget.value.length > 0) {
+       
+        this.setState({[field]: e.currentTarget.value, showsearch: 'showsearch2'})
+    
+        this.props.fetchSearch(e.currentTarget.value)
+        
+      } else {
+        
+        this.setState({[field]: e.currentTarget.value, showsearch: 'noshowsearch'})
+      }
+    }
   }
 
   render() {
   let { currentUser, logout, openModal } = this.props;
+
+
+  const firstp = this.props.playlists.slice(0, 5).map(playlist =>(
+    <>
+      <div key={playlist.id}className='playlistshow'>
+        <img className='playpic'src={playlist.imageUrl}/>
+        <Link to={`/${playlist.username.split(' ').join('-')}/sets/${playlist.permalink}`} className='playtit'>{playlist.title}</Link>
+      </div>
+    </>
+  ))
+
+  const secondp = this.props.playlists.slice(5, 10).map(playlist =>(
+    <>
+      <div key={playlist.id} className ='playlistshow'>
+        <img className='playpic'src={playlist.imageUrl}/>
+        <Link to={`/${playlist.username.split(' ').join('-')}/sets/${playlist.permalink}`} className='playtit'>{playlist.title}</Link>
+      </div>
+    </>
+  ))
+
+  let searched;
+  let results = null;
+  if (this.props.search && this.props.search !== {}) {
+    
+    results = this.props.search.map(search => {
+      if (search.catagory === 'song') {
+        return (<>
+          <Link to={`/${search.user.split(' ').join('-')}/${search.hyperlink}`} className='searchres'>
+            &#9862; {search.title}
+          </Link>
+        </>)
+      } else if (search.catagory === 'playlist') {
+        return (<>
+          <Link to={`/${search.user.username.split(' ').join('-')}/sets/${search.permalink}`} className='searchres'>
+            &#9862; {search.title}
+          </Link>
+        </>)
+      } else if (search.catagory === 'user') {
+        return (<>
+          <Link to={`/${search.username.split(' ').join('-')}`}className='searchres'>
+            &#9862; {search.username}
+          </Link>
+        </>)
+      }
+      
+    })
+  }
+  searched = (
+    <>
+    <Link to={`/search?q=${this.state.search}`}className='searching'>
+      <div className='clicklink'>
+      Search for "{this.state.search}"
+      </div>
+    </Link>
+    {results}
+    
+    </>
+  )
+
   return (
     <> 
     <Modal />
@@ -28,7 +109,8 @@ class Greeting extends React.Component {
     <div className='search-submit'>
     
       <div className='headerSearch'>
-        <input type='text' placeholder='Search for artist, bands, tracks and podcasts' className='searchBar'/>
+        <input type='text' onChange={this.update('search')} placeholder='Search for artist, bands, tracks and podcasts' className='searchBar'/>
+        <div className={this.state.showsearch}>{searched}</div>
         <div className='buttonBackS'>
           <button className='searchButton'></button>
       </div>
@@ -37,9 +119,21 @@ class Greeting extends React.Component {
     <button className='upload'>Upload your own</button>
     </div>
     
+    
+    
     <div>
       <h2 className='subHead'>Hear what’s trending for free in the CloneCloud community</h2>
     </div>
+
+    <div className='splashplaylists'>
+      {firstp}
+    </div>
+
+    <div className='splashplaylists'>
+      {secondp}
+    </div>
+
+    
 
     <br></br>
 

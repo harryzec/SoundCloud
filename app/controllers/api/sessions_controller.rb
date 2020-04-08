@@ -13,14 +13,7 @@ class Api::SessionsController < ApplicationController
     end
   end
 
-  def update
-    @user = User.find_by(id: id)
-
-    if @user.update(user_params)
-      render :create
-    else 
-    end
-  end
+  
 
   def destroy
     dummy = current_user.dup

@@ -47,7 +47,7 @@ json.set! @playlist.id do
   json.follows @playlist.user.followers.length
   json.tracks @playlist.tracks do |track|
     json.playlist @playlist.id
-    json.extract! track, :title, :id, :genre, :description, :hyperlink, :likes, :plays
+    json.extract! track, :title, :id, :genre, :description, :hyperlink, :likes, :plays, :catagory
     json.user track.user.username
     json.songUrl track.track.service_url
     if !track.photo.attached? 

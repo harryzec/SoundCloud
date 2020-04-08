@@ -8,14 +8,40 @@ import WaveSurfer from 'wavesurfer.js';
 class PlaylistShow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {duration: '0:00'}
+    this.state = {duration: '0:00', }
     this.handleWave = this.handleWave.bind(this)
     this.getPosition = this.getPosition.bind(this)
     this.updateWave = this.updateWave.bind(this)
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
     this.addQueue = this.addQueue.bind(this)
+    this.handlePlay = this.handlePlay.bind(this)
+    this.handlePlayButton = this.handlePlayButton.bind(this)
   }
+
+  handlePlayButton(e) {
+    e.preventDefault()
+    if (this.props.player.song.playlist === this.props.playlist.id) {
+      if (this.props.player.player === 'playing') {
+        this.props.pauseSong(this.props.player.song)
+        this.wavesurfer.pause()
+        this.wavesurfer.setWaveColor('#ccc')
+      } else {
+        this.props.playSong(this.props.player.song);
+        this.wavesurfer.play()
+        this.wavesurfer.setWaveColor('white')
+      }
+    } else {
+        this.props.playSong(this.props.tracks[0])
+      }
+      
+    
+  }
+
+
+
+
+
 
   addQueue(e) {
     e.preventDefault()
@@ -30,13 +56,13 @@ class PlaylistShow extends React.Component {
       likeable_type: "Playlist",
       user_id: this.props.currentuser.id
     })
-    this.props.fetchPlaylist(this.props.match.params.username, this.props.match.params.permalink)
+    setTimeout(()=>this.props.fetchPlaylist(this.props.match.params.username.split('-').join(' '), this.props.match.params.permalink), 500)
   }
 
   deleteLike(e, id) {
     e.preventDefault()
     this.props.deleteLike(id)
-    this.props.fetchPlaylist(this.props.match.params.username, this.props.match.params.permalink)
+    this.props.fetchPlaylist(this.props.match.params.username.split('-').join(' '), this.props.match.params.permalink)
   }
 
   updateWave(song) {
@@ -70,7 +96,8 @@ class PlaylistShow extends React.Component {
 
   componentDidMount(){
     
-    this.props.fetchPlaylist(this.props.match.params.username, this.props.match.params.permalink)
+    this.props.fetchPlaylist(this.props.match.params.username.split('-').join(' '), this.props.match.params.permalink)
+    setTimeout(() =>this.setState({playlist_related: this.props.playlist.related}), 500)
   }
 
   getPosition(el) {
@@ -88,8 +115,10 @@ class PlaylistShow extends React.Component {
   
 
   componentDidUpdate() {
+
     if (this.props.match.params.permalink !== this.props.playlist.permalink) {
-      this.props.fetchPlaylist(this.props.match.params.username, this.props.match.params.permalink)
+      this.props.fetchPlaylist(this.props.match.params.username.split('-').join(' '), this.props.match.params.permalink)
+      setTimeout(() =>this.setState({playlist_related: this.props.playlist.related}), 500)
     }
 
     if (!this.wavesurfer && this.props.playlist.id === this.props.player.song.playlist) {
@@ -180,8 +209,18 @@ class PlaylistShow extends React.Component {
       </>
     )
     let lastbutton;
-
-    if (this.props.playlist.user_id === this.props.currentuser.id) {
+    if (this.props.currentuser === null) {
+      lastbutton = (
+        <>
+        <button className='songBu4'>...More
+            <div className='moreshow'>
+              <div onClick={(e) => this.addQueue(e)} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+            </div>
+        </button>
+        </>
+      )
+    }
+    else if (this.props.playlist.user_id === this.props.currentuser.id) {
       lastbutton = (
         <>
         <button className='songBu4'>...More
@@ -219,26 +258,30 @@ class PlaylistShow extends React.Component {
       singular = 'TRACK'
     }
     let followbutton;
-
-    if (this.props.currentuser.id !== this.props.playlist.user_id) {
-      followbutton = (
-        <>
-          <h1></h1>
-        </>
-      )
-    }
-
-    let likedbutton = (
-      <button onClick={this.createLike} className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> Like</button>
-    )
-
-    this.props.playlist.likes.forEach(like => {
-      if (like.user_id === this.props.currentuser.id) {
-        likedbutton = (
-          <button onClick={(e) => this.deleteLike(e, like.id)} className='songBuSl'>&#9829; Liked</button>
+    if (this.props.currentuser) {
+      if (this.props.currentuser.id !== this.props.playlist.user_id) {
+        followbutton = (
+          <>
+            <h1></h1>
+          </>
         )
       }
-    })
+    }
+
+    let likedbutton;
+    if (this.props.currentuser) {
+      likedbutton = (
+        <button onClick={this.createLike} className='songBuS'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> Like</button>
+      )
+
+      this.props.playlist.likes.forEach(like => {
+        if (like.user_id === this.props.currentuser.id) {
+          likedbutton = (
+            <button onClick={(e) => this.deleteLike(e, like.id)} className='songBuSl'>&#9829; Liked</button>
+          )
+        }
+      })
+    }
 
 
 
@@ -248,7 +291,7 @@ class PlaylistShow extends React.Component {
       num+=1;
       return(
         <>
-          <div onClick={()=> this.handlePlay(track, this.props.tracks.slice(i+1))} className='playlisttrackindividsearch2'>
+          <div onClick={this.handlePlay} className='playlisttrackindividsearch2'>
             <div className='flexed2'>
               <img width='27' height='27'src={track.imgUrl}/>
               <div className='playindividser'>{num}</div>
@@ -339,9 +382,9 @@ class PlaylistShow extends React.Component {
       </>
     )
     
-    if (this.props.playlist.related) {
-      if (this.props.playlist.related.length > 0) {
-        relatedPlaylists = this.props.playlist.related.map(related => {
+    if (this.state.playlist_related) {
+      if (this.state.playlist_related.length > 0) {
+        relatedPlaylists = this.state.playlist_related.map(related => {
           let img= (
             <img width='52' height='52' src={related.imageUrl}/>
           )
@@ -367,7 +410,7 @@ class PlaylistShow extends React.Component {
           )
         })
       }
-    }
+    } 
 
     if (this.props.player.player === 'playing' && this.props.tracks.some((track) => track.id === this.props.player.song.id) && this.wavesurfer) {
       this.wavesurfer.setWaveColor('white')
@@ -378,25 +421,58 @@ class PlaylistShow extends React.Component {
     }
 
     let editbutton = null;
-
+    if (this.props.currentuser) {
     if (this.props.playlist.user_id === this.props.currentuser.id) {
       editbutton = (
         <>
           <button onClick={() => this.props.openEditPlaylistModal('edit', this.props.playlist)}className='songBu3'>&#9998; Edit</button>
         </>
       )
+    }}
+
+    let modals;
+
+    if (this.props.currentuser) {
+      modals = (
+        <>
+          <EditPlaylistForm/>
+          <DeletePlaylist/>
+        </>
+      )
     }
+
+    let playcon = (
+      <>
+        <div onClick={this.handlePlayButton} className='playSongPage'><p className='playconS'>&#9654;</p></div>
+      </>
+    )
+
+    if (this.props.player.song.playlist === this.props.playlist.id) {
+      if (this.props.player.player === 'paused') {
+        playcon = (
+          <>
+            <div onClick={this.handlePlayButton} className='playSongPage'><p className='playconS'>&#9654;</p></div>
+          </>
+        )
+      } else {
+        playcon = (
+          <>
+            <div className='playSongPage'onClick={this.handlePlayButton}><p className='pausecon2'>||</p></div>
+          </>
+        )
+      }
+    }
+    
   
     return(
       <>
-        <EditPlaylistForm/>
-        <DeletePlaylist/>
+        {modals}
         <div className='PlaylistshowPage'>
           <div className='songplayer'>
               {waves}
               {time}     
               {duration}
-              <div className='playSongPage'><p className='playconS'>&#9654;</p></div>
+              {playcon}
                   
               
                   <h3 className='songPT2'>{this.props.playlist.title}</h3>

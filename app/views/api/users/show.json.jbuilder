@@ -6,7 +6,7 @@ json.set! @user.username do
   json.songs @user.songs.length
 
   json.comments @user.comments do |comment|
-    song = Song.find_by(id: comment.user_id)
+    song = Song.find_by(id: comment.song_id)
     json.title song.title
     json.body comment.body
     json.hyperlink song.hyperlink
@@ -33,6 +33,10 @@ json.set! @user.username do
   json.likes @user.likes do |like|
     if like.likeable_type ==='Song'
       song = Song.find_by(id: like.likeable_id)
+      json.id like.id
+      json.user_id like.user_id
+      json.type like.likeable_type
+      json.likeable_id like.likeable_id
       json.title song.title
       
       json.songUrl song.track.service_url
