@@ -14,30 +14,32 @@
   width: 715px;
   /* height: 650px; */
   position: absolute;
-  margin-top: 50vh;
+  top:50%;  
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
-  animation-name: modal-in;
-  animation-duration: 0.7s;
+  /* animation-name: modal-in; */
+  /* animation-duration: 0.7s; */
   z-index: 13;
   height: auto;
 
 }
-
-/* @keyframes modal-in {
+/* 
+@keyframes modal-in {
   from {
     top: -100%;
     bottom: -100%;
+    min-height: 650px;
   }
   to {
     top: 50%;
-    bottom: 0%;
+    min-height: 650px;
+    /* bottom: 0%; */
   }
 } */
 
 
-@keyframes modal-in {
+/* @keyframes modal-in {
   from {
     margin-top: -100vh;
     margin-bottom: 100vh;
@@ -46,7 +48,7 @@
     margin-top: 50vh;
     /* margin-bottom: 0vh; */
   }
-}
+} */
 
 #noshowCustom {
   display: none

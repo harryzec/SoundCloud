@@ -25,12 +25,12 @@
   padding-left: 17px;
   padding-right: 17px;
   transform: translate(-50%, -50%);
-  animation-name: modal-in;
-  animation-duration: 0.7s;
+  /* animation-name: modal-in; */
+  /* animation-duration: 0.7s; */
   z-index: 10;
 }
 
-@keyframes modal-in {
+/* @keyframes modal-in {
   from {
     top: -100%;
     bottom: -100%;
@@ -39,7 +39,7 @@
     top: 50%;
     bottom: 0%;
   }
-}
+} */
 
 .songwvz {
   height: auto;
