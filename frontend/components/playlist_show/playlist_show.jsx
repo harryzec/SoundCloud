@@ -181,7 +181,8 @@ class PlaylistShow extends React.Component {
   }
 
 
-  handlePlay(track, playlisttracks) {
+  handlePlay(e, track, playlisttracks = []) {
+    e.preventDefault()
     if (this.props.player.song.playlist !== this.props.playlist.id) {
       this.props.playSong(track)
       this.props.addQueue(playlisttracks)
@@ -191,9 +192,7 @@ class PlaylistShow extends React.Component {
       this.props.playSong(track)
     } else {
       this.props.playSong(track)
-      if (this.props.queue.length === 0) {
-        this.props.addQueue(playlisttracks)
-      }
+      this.props.addQueue(playlisttracks)
       this.updateWave(track)
     }
   }
@@ -291,7 +290,7 @@ class PlaylistShow extends React.Component {
       num+=1;
       return(
         <>
-          <div onClick={this.handlePlay} className='playlisttrackindividsearch2'>
+          <div onClick={(e) => this.handlePlay(e, track)} className='playlisttrackindividsearch2'>
             <div className='flexed2'>
               <img width='27' height='27'src={track.imgUrl}/>
               <div className='playindividser'>{num}</div>

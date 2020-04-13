@@ -174,10 +174,6 @@ class Greeting extends React.Component {
     </div>
     
     </div>
-
-    <div className='footerLine'></div>
-    <a href='https://www.linkedin.com/in/harry-zec-7157a4a8/' className='Linkedin'>Linkedin</a>
-    <a href='https://github.com/harryzec' className='Github'>Github</a>
     </>
   )
   }

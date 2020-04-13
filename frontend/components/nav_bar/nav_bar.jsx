@@ -5,6 +5,7 @@ import { fetchSearch } from '../../actions/search_actions'
 import searchReducer from '../../reducers/search_reducer';
 import { openModal } from '../../actions/modal_actions';
 import Modal from '../modal/modal';
+import { logout } from '../../actions/session_actions'
 
 class NavBar extends React.Component {
   constructor(props){
@@ -180,12 +181,16 @@ class NavBar extends React.Component {
           <Link to='/upload' className='UploadClick'>Upload</Link>
 
         <div className={userdrop} onClick={this.handleDrop}>
-          <div className='profHead'><img className='navPic' src={`${this.props.user.profileUrl}`}/><p className='navUsername'>{this.props.user.username} </p> </div>
+          <div className='profHead'><img className='navPic' src={`${this.props.user.profileUrl}` || null}/><p className='navUsername'>{this.props.user.username} </p> </div>
           <p className='dA'>&#8964;</p>
             <div className={NavDrop}>
               <Link className='firstEle1' to={`/${this.props.user.username.split(' ').join('-')}`}> <li className='firstEle'>&#8962; Profile</li></Link>
               <Link to={`/you/likes`} className='listEle' >&#43; Likes</Link>
               <Link to={`/${this.props.user.username.split(' ').join('-')}/tracks`}className='TrackLI'>	&#9835; Tracks</Link>
+              <li className='firstEle' onClick={() => {
+                this.props.logout()
+                this.props.history.push('/')
+                }}>&#9740; Sign Out</li>
             </div>
 
           </div>
@@ -219,6 +224,7 @@ const mDTP = dispatch => {
   return (
     {fetchSearch: (search)=> dispatch(fetchSearch(search)),
     openModal: modal => dispatch(openModal(modal)),
+    logout: () => dispatch(logout())
 })
 }
 

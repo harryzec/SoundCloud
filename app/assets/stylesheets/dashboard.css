@@ -630,6 +630,21 @@
     z-index: 8;
 }
 
+.durationsong4 {
+  background: black;
+    width: auto;
+    height: auto;
+    padding: 1px;
+    font-size: 11px;
+    position: absolute;
+    color: #f50;
+    margin-top: 35px;
+    /* margin-left: 550px; */
+    left: 88%;
+    
+    z-index: 8;
+}
+
 .timersong2{
   background: black;
   width: auto;
@@ -642,6 +657,19 @@
   left: 19.5%;
   z-index: 12;
 }
+
+.timersong5{
+  background: black;
+  width: auto;
+  height: auto;
+  padding: 1px;
+  font-size: 11px;
+  position: absolute;
+  color: #f50;
+  z-index: 12;
+  margin-top: 36px;
+}
+
 
 .timersong3{
   background: black;

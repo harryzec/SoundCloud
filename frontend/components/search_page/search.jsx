@@ -11,7 +11,7 @@ class SearchPage extends React.Component {
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
     this.addQueue = this.addQueue.bind(this)
-    debugger
+    
     this.state = {search: this.props.search, path: this.props.location.search}
   }
 
@@ -22,7 +22,7 @@ class SearchPage extends React.Component {
   }
 
   addQueue(e, song) {
-    debugger
+    
     e.preventDefault()
     this.props.addQueue(song)
   }
@@ -36,12 +36,15 @@ class SearchPage extends React.Component {
       user_id: this.props.currentuser.id
    })
     this.props.fetchSearch(this.props.location.search.slice(3))
+    setTimeout(()=> this.setState({search: this.props.search}), 300)
   }
 
   deleteLike(e, id) {
     e.preventDefault()
     this.props.deleteLike(id)
     this.props.fetchSearch(this.props.location.search.slice(3))
+    setTimeout(()=> this.setState({search: this.props.search}), 300)
+
   }
 
   createFollow(e, user_id) {
@@ -50,15 +53,19 @@ class SearchPage extends React.Component {
       user_id: user_id,
       follower_id: this.props.currentuser.id
     })
-    debugger
+    
     // let username= this.props.match.params.username.split('-').join(' ')
     this.props.fetchSearch(this.props.location.search.slice(3))
+    setTimeout(()=> this.setState({search: this.props.search}), 300)
+
   }
 
   deleteFollow(e, id) {
     e.preventDefault()
     this.props.deleteFollow(id)
     this.props.fetchSearch(this.props.location.search.slice(3))
+    setTimeout(()=> this.setState({search: this.props.search}), 300)
+
 
     // let username= this.props.match.params.username.split('-').join(' ')
     // this.props.fetchUser(username)
@@ -73,7 +80,7 @@ class SearchPage extends React.Component {
   // }
   
   render() {
-    debugger
+    
     let content;
     let links = (
       <>
@@ -88,7 +95,7 @@ class SearchPage extends React.Component {
       let tracknum = 0;
       let usernum = 0;
       let playlistnum = 0;
-      debugger
+      
       if(this.props.match.path === '/search') {
 
       let results = (Object.values(this.state.search.flat()))
@@ -120,7 +127,7 @@ class SearchPage extends React.Component {
               
             )
             Object.values(search.follows).forEach(follower => {
-              debugger
+              
               if (follower.follower === this.props.currentuser.id) {
                 followbutton = (
                   <>
@@ -156,8 +163,10 @@ class SearchPage extends React.Component {
                 <button onClick={(e) => this.createLike(e, search.id, search.catagory)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
               </>
             )
+            debugger
             if (this.props.currentuser) {
               search.likes.forEach(like => {
+                debugger
                 if (like.user_id === this.props.currentuser.id) {
                   likebutton = (
                     <>
@@ -195,7 +204,7 @@ class SearchPage extends React.Component {
             return null;
           }
           playlistnum +=1;
-          debugger
+          
           title = (
             <>
             <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/sets/${search.permalink}`}>{search.title}</Link>
@@ -448,7 +457,7 @@ class SearchPage extends React.Component {
                 
               )
               Object.values(search.follows).forEach(follower => {
-                debugger
+                
                 if (follower.follower === this.props.currentuser.id) {
                   followbutton = (
                     <>
@@ -528,7 +537,7 @@ class SearchPage extends React.Component {
                 return null;
               }
               playlistnum +=1;
-              debugger
+              
               title = (
                 <>
                 <Link className='searchtitle' to={`/${search.user.username.split(' ').join('-')}/sets/${search.permalink}`}>{search.title}</Link>
@@ -591,7 +600,7 @@ class SearchPage extends React.Component {
                   </>)
                 })
 
-                debugger
+                
     
                 info = (
                   <div className='searchplaynone'>
@@ -661,7 +670,7 @@ class SearchPage extends React.Component {
     }
     
    
-   debugger
+   
     
     return(
       <>

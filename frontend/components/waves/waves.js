@@ -143,6 +143,12 @@ handlePlay(song){
             <div className='timersong4'>{this.props.time}</div>
           </>
         )
+      } if (this.props.songtype==='search') {
+        time = (
+          <>
+            <div className='timersong5'>{this.props.time}</div>
+          </>
+        )
       }
       
     }
@@ -155,11 +161,22 @@ handlePlay(song){
             <div className='durationsong2'>{this.state.duration}</div>
           </>)
       }
+      if (this.props.songtype==='search') {
+        duration = (
+          <>
+            <div className='durationsong4'>{this.state.duration}</div>
+          </>)
+      }
     }
     if (this.props.changedur) {
       duration = (
         <>
           <div className='durationsong3'>{this.state.duration}</div>
+        </>)
+    } if (this.props.songtype==='search') {
+      duration = (
+        <>
+          <div className='durationsong4'>{this.state.duration}</div>
         </>)
     }
 

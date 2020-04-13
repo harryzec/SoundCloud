@@ -5,8 +5,12 @@ import PlaylistForm from './Playlist_Form'
 import { createPlaylist } from '../../actions/playlist_actions'
 import { createPlaylistTrack, deletePlaylistTrack } from '../../actions/playlist_actions'
 import { updateUser } from '../../actions/session_actions'
+import { fetchSongsByArtist, fetchPopularSongs } from '../../actions/song_action'
+import { fetchUser, fetchRecent} from '../../actions/user_actions'
+import { fetchPlaylistByArtist } from '../../actions/playlist_actions'
 
-function Modal({modal, updateUser, deletePlaylistTrack, closePlaylistModal, song, playlist, createPlaylist, currentUser, createPlaylistTrack}) {
+
+function Modal({modal, fetchUser, fetchSongsByArtist, fetchPlaylistByArtist, fetchRecent, updateUser, deletePlaylistTrack, closePlaylistModal, song, playlist, createPlaylist, currentUser, createPlaylistTrack}) {
   
   if (!modal) {
     return null;
@@ -20,7 +24,15 @@ function Modal({modal, updateUser, deletePlaylistTrack, closePlaylistModal, song
       return null;
   }
   return (
-    <div className="playlist-modal-background" onClick={closePlaylistModal}>
+    <div className="playlist-modal-background" onClick={() => {
+      closePlaylistModal()
+      // if (this.props.match.params.username.split('-').join(' ') === currentUser.username) {
+      //   fetchUser(currentUser.username)
+      //   fetchSongsByArtist(currentUser.username)
+      //   fetchPlaylistByArtist(currentUser.username)
+      //   fetchRecent(currentUser.username)
+      // }
+    }}>
       <div className="playlist-modal-child" onClick={e => e.stopPropagation()}>
         { component }
       </div>
@@ -44,6 +56,10 @@ const mapDispatchToProps = dispatch => {
     createPlaylistTrack: (playlisttrack) => dispatch(createPlaylistTrack(playlisttrack)),
     updateUser: (user, id) => dispatch(updateUser(user, id)),
     deletePlaylistTrack: (playlisttrack) => dispatch(deletePlaylistTrack(playlisttrack)),
+    fetchUser: (username) => dispatch(fetchUser(username)),
+    fetchSongsByArtist: (userId) => dispatch(fetchSongsByArtist(userId)),
+    fetchPlaylistByArtist: (username) => dispatch(fetchPlaylistByArtist(username)),
+    fetchRecent: (username) => dispatch(fetchRecent(username)),
   };
 };
 
