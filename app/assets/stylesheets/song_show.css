@@ -318,7 +318,7 @@
 .nocomments {
   position:absolute;
   margin-top: 70px;
-  margin-left: 200px;
+  margin-left: 90px;
 }
 
 .commentlist {
@@ -434,6 +434,18 @@
   top: 231px;
   left: 35px;
   z-index: 12;
+}
+
+.timersong4 {
+  background: black;
+  width: auto;
+  height: auto;
+  padding: 1px;
+  font-size: 11px;
+  position: absolute;
+  color: #f50;
+  margin-top: 36px;
+  z-index: 8;
 }
 
 .durationsong{

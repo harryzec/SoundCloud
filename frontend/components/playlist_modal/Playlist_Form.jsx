@@ -59,7 +59,9 @@ class PlaylistForm extends React.Component {
     newPlaylistTrack.append('PlaylistTrack[track_id]', songId)
     newPlaylistTrack.append('PlaylistTrack[playlist_id]', playlistId)
     this.props.createPlaylistTrack(newPlaylistTrack)
-    this.props.updateUser({id: this.props.currentUser.id})
+    const getUser = new FormData();
+    getUser.append('user[id]', this.props.currentUser.id)
+    this.props.updateUser(getUser, this.props.currentUser.id)
   }
 
   handledelete(e, songId, playlistId) {
@@ -68,7 +70,9 @@ class PlaylistForm extends React.Component {
     newPlaylistTrack.append('PlaylistTrack[track_id]', songId)
     newPlaylistTrack.append('PlaylistTrack[playlist_id]', playlistId)
     this.props.deletePlaylistTrack(newPlaylistTrack)
-    this.props.updateUser({id: this.props.currentUser.id})
+    const getUser = new FormData();
+    getUser.append('user[id]', this.props.currentUser.id)
+    this.props.updateUser(getUser, this.props.currentUser.id)
   }
 
   handleSubmit(e) {
@@ -298,7 +302,7 @@ class PlaylistForm extends React.Component {
                 </div>
               </div>
 
-              <Link to={`/${this.props.currentUser.username.split(' ').join('-')}/sets/${this.state.title}`} className='gotoplaylist'>Go to playlist</Link>
+              <Link onClick={()=>this.props.closePlaylistModal()} to={`/${this.props.currentUser.username.split(' ').join('-')}/sets/${this.state.title}`} className='gotoplaylist'>Go to playlist</Link>
               
             </div>
             <div className='playlistdiv2'>

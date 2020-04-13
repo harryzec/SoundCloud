@@ -6,6 +6,8 @@ import { fetchPlaylists } from '../../actions/playlist_actions'
 import { fetchRandomUsers, fetchFollowerContent } from '../../actions/user_actions'
 import { createFollow, deleteFollow } from '../../actions/follow_action'
 import { createLike, deleteLike } from '../../actions/like_action'
+import { addQueue } from '../../actions/queue_action'
+import { openPlaylistModal } from '../../actions/modal_actions'
 
 
 export const mSTP = state => ({
@@ -13,7 +15,8 @@ export const mSTP = state => ({
   content: Object.values(state.entities.content),
   currentuser: state.session.currentUser,
   mightlike: Object.values(state.entities.randomUsers),
-  follows: Object.values(state.ui.follows)
+  follows: Object.values(state.ui.follows),
+
 })
 export const mDTP = state => ({
   currentSong: (song) => dispatch(currentSong(song)),
@@ -26,6 +29,8 @@ export const mDTP = state => ({
   fetchFollowerContent: (id) => dispatch(fetchFollowerContent(id)),
   createLike: (like)=> dispatch(createLike(like)),
   deleteLike: (like_id) => dispatch(deleteLike(like_id)),
+  addQueue: songs => dispatch(addQueue(songs)),
+  openPlaylistModal: (modal, song) => dispatch(openPlaylistModal(modal, song)),
 })
 
 export default connect(mSTP, mDTP)(Stream)

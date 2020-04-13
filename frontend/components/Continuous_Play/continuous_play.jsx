@@ -52,7 +52,7 @@ class SongShow extends React.Component {
   }
 
   removeQueue(e, i) {
-    debugger
+    
     let newqueue = this.state.queue.slice(0, i).concat(this.state.queue.slice(i +1))
     this.props.replaceQueue(newqueue)
   }
@@ -329,7 +329,7 @@ getPosition(el) {
       })
     }
     
-    debugger
+    
     
 
     let showqueue = this.state.showqueue ?  

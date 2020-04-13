@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Wave from '../waves/waves_container'
+import PlaylistModal from '../playlist_modal/playlist_modal'
+
 
 
 class Stream extends React.Component {
@@ -118,7 +120,7 @@ class Stream extends React.Component {
                     {likebutton}
                     <button className='songBu4'>...More
                       <div className='moreshow'>
-                        <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                        <div onClick={() => this.props.addQueue(search)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                         <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
                       </div>
                     </button>
@@ -172,7 +174,7 @@ class Stream extends React.Component {
                 {likebutton}
                 <button className='songBu4'>...More
                   <div className='moreshow'>
-                    <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                    <div onClick={() => this.props.addQueue(search)} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                   </div>
                 </button>
                 </div>
@@ -320,6 +322,7 @@ class Stream extends React.Component {
 
   return(
     <>
+    <PlaylistModal />
     <div className='discoverMain'>
       <div className='musicSection'>
         <h2 className='followsheader'>Hear the latest posts from the people you’re following:</h2>

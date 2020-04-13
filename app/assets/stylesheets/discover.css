@@ -7,7 +7,7 @@
 
 .musicSection {
   border-right: 1px solid #f2f2f2;
-  width: 75%;
+  width: 75vw;
   height: 100%;
 }
 
@@ -79,7 +79,7 @@
 .recentSection {
   margin-left: 10px;
   margin-right: 5px;
-  width: 25%;
+  width: 25vw;
 }
 
 .recentSong {

@@ -69,7 +69,7 @@ class EditForm extends React.Component {
             </div>
 
             <div className='edituserbuttons'>
-              <div className='canceledituser'>Cancel</div>
+              <div onClick={()=>this.props.closeUserModal()} className='canceledituser'>Cancel</div>
               <div onClick={this.handleSubmit} className={this.state.allowchange}>Save Changes</div>
             </div>
 

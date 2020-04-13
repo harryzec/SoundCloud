@@ -29,7 +29,6 @@ class Dashboard extends React.Component {
   }
 
   handlePlayButton(e, playlist) {
-    debugger
     e.preventDefault()
     if (playlist.id === this.props.player.song.playlist) {
       if (this.props.player.player === 'playing') {
@@ -61,6 +60,7 @@ class Dashboard extends React.Component {
   
 
   addQueue(e, song) {
+    debugger
     e.preventDefault()
     this.props.addQueue(song)
   }
@@ -92,7 +92,10 @@ class Dashboard extends React.Component {
       user_id: this.props.currentuser.id
   })
     let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchUser(username)
     this.props.fetchSongsByArtist(username)
+    this.props.fetchPlaylistByArtist(username)
+    this.props.fetchRecent(username)
 
   }
 
@@ -100,7 +103,10 @@ class Dashboard extends React.Component {
     e.preventDefault()
     this.props.deleteLike(id)
     let username= this.props.match.params.username.split('-').join(' ')
+    this.props.fetchUser(username)
     this.props.fetchSongsByArtist(username)
+    this.props.fetchPlaylistByArtist(username)
+    this.props.fetchRecent(username)
 
   }
 
@@ -142,7 +148,7 @@ class Dashboard extends React.Component {
   }
   
   componentDidMount(){
-    debugger
+    
     let username= this.props.match.params.username.split('-').join(' ')
     this.props.fetchUser(username)
     this.props.fetchSongsByArtist(username)
@@ -327,16 +333,19 @@ class Dashboard extends React.Component {
           
           </>
         )} else if (song.catagory === 'playlist') {
+          debugger
           let lastbutton = (
             <>
             <button className='songBu4'>...More
                 <div className='moreshow'>
-                  <div className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                  <div onClick={(e) => this.addQueue(e, song.tracks)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
                   <div onClick={() => this.props.openDeletePlaylistModal('open', song)} className='moreshowlil'><img width='12'src='https://image.flaticon.com/icons/svg/709/709519.svg'/>  Delete Playlist</div>
                 </div>
             </button>
             </>
           )
+
+          
           let nosongs = (
             <>
               <h2 className='nosongsfound'>This playlist has no tracks yet</h2>
@@ -363,7 +372,9 @@ class Dashboard extends React.Component {
             })
 
             let wave;
+            
             if (this.props.player.song.playlist === song.id) {
+              
               wave = (
               <>
                 <Wave song={this.props.player.song} playlistdur={true}/>
@@ -441,18 +452,38 @@ class Dashboard extends React.Component {
               }
             })
 
+            let 
+              edit = (
+                <>
+                  <button onClick={() => this.props.openEditPlaylistModal('edit', song)}className='songBu3'>&#9998; Edit</button>
+                </>
+            )
+
+            if (this.props.currentuser.id !== this.props.user.id) {
+              edit = null
+              lastbutton = (
+                <>
+                  <button className='songBu4'>...More
+                    <div className='moreshow'>
+                      <div onClick={(e) => this.addQueue(e, song.tracks)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                    </div>
+                  </button>
+                </>
+                )
+            }
             let buttons = (
               <>
-              {likebutton}
-                  <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
-                  {lastbutton}
+                {likebutton}
+                {edit}
+                {lastbutton}
               </>
             )
+            
 
             if (!this.props.currentuser) {
                 buttons = (
                   <>
-                    <button onClick={(e) => this.addQueue(e, song)} className='songBu4'>Add to Next up</button>
+                    <button onClick={(e) => this.addQueue(e, song.tracks)} className='songBu4'>Add to Next up</button>
                   </>
                 )
             }
@@ -704,7 +735,7 @@ class Dashboard extends React.Component {
   if (this.props.match.path === '/:username/sets') {
     titler= (
       <>
-        <PlaylistDashboard fetchUser={this.props.fetchUser} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} user={this.props.user} fetchPlaylistByArtist={this.props.fetchPlaylistByArtist} createLike={this.props.createLike} deleteLike={this.props.deleteLike} songs={this.props.songs} player= {this.props.player} currentuser={this.props.currentuser} playlists ={this.props.playlists} openDeletePlaylistModal={this.props.openDeletePlaylistModal} openEditPlaylistModal={this.props.openEditPlaylistModal} pauseSong={this.props.pauseSong} addQueue={this.props.addQueue} playSong={this.props.playSong} queue={this.props.queue}/>
+        <PlaylistDashboard openUserModal={this.props.openUserModal} fetchUser={this.props.fetchUser} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} user={this.props.user} fetchPlaylistByArtist={this.props.fetchPlaylistByArtist} createLike={this.props.createLike} deleteLike={this.props.deleteLike} songs={this.props.songs} player= {this.props.player} currentuser={this.props.currentuser} playlists ={this.props.playlists} openDeletePlaylistModal={this.props.openDeletePlaylistModal} openEditPlaylistModal={this.props.openEditPlaylistModal} pauseSong={this.props.pauseSong} addQueue={this.props.addQueue} playSong={this.props.playSong} queue={this.props.queue}/>
       </>
     )
   }
@@ -720,7 +751,7 @@ class Dashboard extends React.Component {
   if (this.props.match.path === '/:username/tracks') {
     titler = (
       <>
-        <Tracks player={this.props.player} fetchUser={this.props.fetchUser} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} openPlaylistModal={this.props.openPlaylistModal} addQueue={this.props.addQueue} openDeleteModal={this.props.openDeleteModal} openEditModal={this.props.openEditModal} user={this.props.user} currentuser={this.props.currentuser} songs={this.props.songs} fetchPopularSongs={this.props.fetchPopularSongs} createLike={this.props.createLike} deleteLike={this.props.deleteLike}   fetchSongsByArtist={this.props.fetchSongsByArtist} playSong={this.props.playSong} pauseSong={this.props.pauseSong}/>
+        <Tracks openUserModal={this.props.openUserModal} player={this.props.player} fetchUser={this.props.fetchUser} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} openPlaylistModal={this.props.openPlaylistModal} addQueue={this.props.addQueue} openDeleteModal={this.props.openDeleteModal} openEditModal={this.props.openEditModal} user={this.props.user} currentuser={this.props.currentuser} songs={this.props.songs} fetchPopularSongs={this.props.fetchPopularSongs} createLike={this.props.createLike} deleteLike={this.props.deleteLike}   fetchSongsByArtist={this.props.fetchSongsByArtist} playSong={this.props.playSong} pauseSong={this.props.pauseSong}/>
       </>
     )
   }

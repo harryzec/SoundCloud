@@ -16,11 +16,11 @@ class Waves extends React.Component {
   }
 
   handleWave(e) {
-    debugger
+    
     if (this.props.song.id !== this.props.player.song.id) {
       this.handlePlay(this.props.song)
     } else if ( this.props.song.id === this.props.player.song.id && this.props.song.playlist !== this.props.player.song.playlist) { 
-      debugger
+      
       this.handlePlay(this.props.song)
       this.props.waveEvent({wholething: 0, fake: true})
       this.wavesurfer.seekTo(0)
@@ -47,10 +47,10 @@ class Waves extends React.Component {
       }
     }
     
-    // if (this.state.song.id !== this.props.song.id) {
-    //   this.wavesurfer.load(this.props.song.songUrl);  
-    //   this.setState({song: this.props.song})
-    // }
+    if (this.state.song.id !== this.props.song.id) {
+      this.wavesurfer.load(this.props.song.songUrl);  
+      this.setState({song: this.props.song})
+    }
   }
 
   componentDidMount() {
@@ -137,7 +137,14 @@ handlePlay(song){
             <div className='timersong3'>{this.props.time}</div>
           </>
         )
+      } if (this.props.songtype === 'stream') {
+        time = (
+          <>
+            <div className='timersong4'>{this.props.time}</div>
+          </>
+        )
       }
+      
     }
     let duration;
 

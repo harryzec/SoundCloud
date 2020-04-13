@@ -421,7 +421,7 @@
   background-color: #fff;
   position: relative;
   outline: none;
-  z-index: 2;
+  z-index: 4;
   cursor: pointer;
 
 }
@@ -638,7 +638,7 @@
   font-size: 11px;
   position: absolute;
   color: #f50;
-  top: 78px;
+  top: 74px;
   left: 19.5%;
   z-index: 12;
 }

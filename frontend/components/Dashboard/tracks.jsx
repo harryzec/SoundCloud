@@ -335,7 +335,7 @@ class PopularTracks extends React.Component {
       if (this.props.user.id === this.props.currentuser.id) {
         editbutton= (
           <>
-            <Link className='extraButtons'><strong className='boldthis1'>&#9998;</strong>  Edit</Link>
+            <div onClick={()=> this.props.openUserModal('edit_user')} className='extraButtons'><strong className='boldthis1'>&#9998;</strong>  Edit</div>
           </>
         )
       }

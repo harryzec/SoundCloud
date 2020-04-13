@@ -264,10 +264,29 @@ class Playlist extends React.Component {
               }
             })
 
+            let editbutton = (
+              <>
+                <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
+              </>
+            )
+
+            if (this.props.currentuser.id !== this.props.user.id) {
+              editbutton = null
+              lastbutton = (
+                <>
+                  <button className='songBu4'>...More
+                    <div className='moreshow'>
+                      <div onClick={(e) => this.addQueue(e, song.tracks)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                    </div>
+                  </button>
+                </>
+                )
+            }
+
           let buttons = (
             <>
               {likebutton}
-              <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
+              {editbutton}
               {lastbutton}
             </>
           )
@@ -431,7 +450,7 @@ class Playlist extends React.Component {
     if (this.props.user.id === this.props.currentuser.id) {
       editbutton= (
         <>
-          <Link className='extraButtons'><strong className='boldthis1'>&#9998;</strong>  Edit</Link>
+          <div onClick={()=> this.props.openUserModal('edit_user')} className='extraButtons'><strong className='boldthis1'>&#9998;</strong>  Edit</div>
         </>
       )
     }

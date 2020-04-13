@@ -14,7 +14,7 @@ function Modal({modal, updateUser, deletePlaylistTrack, closePlaylistModal, song
   let component;
   switch (modal) {
     case 'playlist':
-      component = <PlaylistForm deletePlaylistTrack={deletePlaylistTrack} song={song} updateUser={updateUser} playlist = {playlist} currentUser={currentUser} createPlaylistTrack ={createPlaylistTrack} createPlaylist={createPlaylist}/>;
+      component = <PlaylistForm closePlaylistModal={closePlaylistModal} deletePlaylistTrack={deletePlaylistTrack} song={song} updateUser={updateUser} playlist = {playlist} currentUser={currentUser} createPlaylistTrack ={createPlaylistTrack} createPlaylist={createPlaylist}/>;
       break;
     default:
       return null;
@@ -42,7 +42,7 @@ const mapDispatchToProps = dispatch => {
     closePlaylistModal: () => dispatch(closePlaylistModal()),
     createPlaylist: (playlist, song) => dispatch(createPlaylist(playlist, song)),
     createPlaylistTrack: (playlisttrack) => dispatch(createPlaylistTrack(playlisttrack)),
-    updateUser: (user) => dispatch(updateUser(user)),
+    updateUser: (user, id) => dispatch(updateUser(user, id)),
     deletePlaylistTrack: (playlisttrack) => dispatch(deletePlaylistTrack(playlisttrack)),
   };
 };
