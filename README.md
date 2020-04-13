@@ -69,3 +69,11 @@ Basically if you search soemthing. it will pull together in the search controlle
 send back all of the users, playlists and songs with those and show them as you add another letter
 can click on the searhc button to see it all show up on one page
 pull based off of individual words as well 
+
+
+```Ruby
+
+}
+```
+
+<img  align='center' src='app/assets/images/searchbar.gif' width='80%'/>
