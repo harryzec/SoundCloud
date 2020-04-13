@@ -11,8 +11,21 @@ class SearchPage extends React.Component {
     this.createLike = this.createLike.bind(this)
     this.deleteLike = this.deleteLike.bind(this)
     this.addQueue = this.addQueue.bind(this)
-    
+    this.handlePlay = this.handlePlay.bind(this)
     this.state = {search: this.props.search, path: this.props.location.search}
+  }
+
+  handlePlay(e, track, queue) {
+    e.preventDefault()
+    if (track.id === this.props.player.song.id && this.props.player.song.playlist === track.playlist) {
+      if (this.props.player.player === 'playing') {
+        this.props.pauseSong(this.props.player.song)
+      } else {
+        this.props.playSong(this.props.player.song)
+      }
+    } else {
+      this.props.playSong(track)
+    }
   }
 
   componentDidUpdate() {
@@ -163,10 +176,10 @@ class SearchPage extends React.Component {
                 <button onClick={(e) => this.createLike(e, search.id, search.catagory)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {search.likes.length}</button>
               </>
             )
-            debugger
+            
             if (this.props.currentuser) {
               search.likes.forEach(like => {
-                debugger
+                
                 if (like.user_id === this.props.currentuser.id) {
                   likebutton = (
                     <>
@@ -177,6 +190,22 @@ class SearchPage extends React.Component {
               })
             }
 
+            let allbut;
+
+            if (this.props.currentuser) {
+              allbut= (
+                <>
+                  {likebutton}
+                  <button className='songBu4'>...More
+                    <div className='moreshow'>
+                      <div onClick={(e)=> this.addQueue(e, [search])} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                      <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+                    </div>
+                  </button>
+                </>
+              )
+            }
+
 
             info = (
               <>
@@ -185,13 +214,7 @@ class SearchPage extends React.Component {
 
                   <div className='songFootsearch'>
                     <div className='songBOsearch'>
-                      {likebutton}
-                      <button className='songBu4'>...More
-                        <div className='moreshow'>
-                          <div onClick={(e)=> this.addQueue(e, [search])} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-                          <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                        </div>
-                      </button>
+                      {allbut}
                     </div>
                   </div>
 
@@ -231,6 +254,21 @@ class SearchPage extends React.Component {
               )
             }
           })
+
+          let allbut;
+
+          if (this.props.currentuser) {
+            allbut =(
+              <>
+              {likebutton}
+                  <button className='songBu4'>...More
+                    <div className='moreshow'>
+                      <div onClick={(e)=> this.addQueue(e, search.tracks)} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                    </div>
+                  </button>
+              </>
+            )
+          }
         
 
           if (search.tracks.length === 0) {
@@ -239,12 +277,7 @@ class SearchPage extends React.Component {
                 <div className='searchplaynone'>
                   <h2 className='nosongsfound2'>This playlist has no tracks yet</h2>
                   <div className='songBOsearch'>
-                  {likebutton}
-                  <button className='songBu4'>...More
-                    <div className='moreshow'>
-                      <div onClick={(e)=> this.addQueue(e, search.tracks)} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-                    </div>
-                  </button>
+                  {allbut}
                   </div>
                 </div>
               </>
@@ -256,7 +289,7 @@ class SearchPage extends React.Component {
               num++;
               return(
               <>
-                <div onClick={()=> this.handlePlay(track, playlist.tracks.slice(i+1))} className='playlisttrackindividsearch'>
+                <div onClick={(e)=> this.handlePlay(e, track, search.tracks.slice(i+1))} className='playlisttrackindividsearch'>
                   <div className='flexed'>
                     <img width='20' height='20'src={track.imgUrl}/>
                     <div className='playlisttnum'>{num}</div>
@@ -267,9 +300,25 @@ class SearchPage extends React.Component {
               </>)
             })
 
+            
+
+            let wave = (
+              <>
+                <Wave song={search.tracks[0]} songtype={'search'}/>
+              </>
+            )
+            
+            if (this.props.player.song) {
+              if (this.props.player.song.playlist === search.id) {
+                <>
+                  <Wave song={this.props.player.song} songtype={'search'}/>
+                </>
+              }
+            }
+
             info = (
               <div className='searchplaynone'>
-                <Wave song={search.tracks[0]} songtype={'search'}/>
+                {wave}
 
                 <div className='playlisttrackssearch'>
                   {songtits}
@@ -355,6 +404,22 @@ class SearchPage extends React.Component {
           })
           }
 
+          let allbut;
+
+          if (this.props.currentuser) {
+            allbut = (
+              <>
+                {likebutton}
+                <button className='songBu4'>...More
+                  <div className='moreshow'>
+                    <div onClick={(e)=> this.addQueue(e, [search])} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                    <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
+                  </div>
+                 </button>
+              </>
+            )
+          }
+
 
           info = (
             <>
@@ -363,13 +428,7 @@ class SearchPage extends React.Component {
 
                 <div className='songFootsearch'>
                   <div className='songBOsearch'>
-                    {likebutton}
-                    <button className='songBu4'>...More
-                      <div className='moreshow'>
-                        <div onClick={(e)=> this.addQueue(e, [search])} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-                        <div className='moreshowli' onClick={() => this.props.openPlaylistModal('playlist', search)}><img width='12'src='https://www.flaticon.com/premium-icon/icons/svg/2618/2618314.svg'/>  Add to playlist</div>
-                      </div>
-                    </button>
+                    {allbut}
                   </div>
                 </div>
 
@@ -564,6 +623,21 @@ class SearchPage extends React.Component {
                   )
                 }
               })
+
+              let allbut;
+
+              if (this.props.currentuser) {
+                allbut = (
+                  <>
+                  {likebutton}
+                    <button className='songBu4'>...More
+                      <div className='moreshow'>
+                        <div onClick={(e)=> this.addQueue(e, search.tracks)} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                      </div>
+                    </button>
+                  </>
+                )
+              }
             
     
               if (search.tracks.length === 0) {
@@ -572,12 +646,7 @@ class SearchPage extends React.Component {
                     <div className='searchplaynone'>
                       <h2 className='nosongsfound2'>This playlist has no tracks yet</h2>
                       <div className='songBOsearch'>
-                      {likebutton}
-                      <button className='songBu4'>...More
-                        <div className='moreshow'>
-                          <div onClick={(e)=> this.addQueue(e, search.tracks)} className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-                        </div>
-                      </button>
+                      {allbut}
                       </div>
                     </div>
                   </>
@@ -589,7 +658,7 @@ class SearchPage extends React.Component {
                   num++;
                   return(
                   <>
-                    <div onClick={()=> this.handlePlay(track, playlist.tracks.slice(i+1))} className='playlisttrackindividsearch'>
+                    <div onClick={(e)=> this.handlePlay(e, track, search.tracks.slice(i+1))} className='playlisttrackindividsearch'>
                       <div className='flexed'>
                         <img width='20' height='20'src={track.imgUrl}/>
                         <div className='playlisttnum'>{num}</div>
@@ -600,12 +669,26 @@ class SearchPage extends React.Component {
                   </>)
                 })
 
+                let wave = (
+                  <>
+                    <Wave song={search.tracks[0]} songtype={'search'}/>
+                  </>
+                )
+
                 
+
+                if (this.props.player.song.playlist === search.id) {
+                  
+                  wave = (
+                    <>
+                      <Wave song={this.props.player.song} songtype={'search'}/>
+                    </>
+                  )
+                }
     
                 info = (
                   <div className='searchplaynone'>
-                    <Wave song={search.tracks[0]} songtype={'search'}/>
-    
+                    {wave}
                     <div className='playlisttrackssearch'>
                       {songtits}
                     </div>

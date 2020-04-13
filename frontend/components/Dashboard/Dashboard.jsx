@@ -437,7 +437,12 @@ class Dashboard extends React.Component {
             )
           }
 
-          let likebutton = (
+          let likebutton;
+          let edit;
+
+          if (this.props.currentuser) {
+
+          likebutton = (
             <>
               <button onClick={(e)=> this.createLike(e, song.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {song.likes.length}</button>
             </>
@@ -452,13 +457,15 @@ class Dashboard extends React.Component {
               }
             })
 
-            let 
+            
               edit = (
                 <>
                   <button onClick={() => this.props.openEditPlaylistModal('edit', song)}className='songBu3'>&#9998; Edit</button>
                 </>
             )
-
+              }
+            
+            if (this.props.currentuser) {
             if (this.props.currentuser.id !== this.props.user.id) {
               edit = null
               lastbutton = (
@@ -471,6 +478,7 @@ class Dashboard extends React.Component {
                 </>
                 )
             }
+          }
             let buttons = (
               <>
                 {likebutton}

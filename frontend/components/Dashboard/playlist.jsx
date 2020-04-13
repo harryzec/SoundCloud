@@ -248,8 +248,12 @@ class Playlist extends React.Component {
               </>
             )
           }
+          let likebutton;
+          let editbutton;
 
-          let likebutton = (
+          if (this.props.currentuser) {
+
+          likebutton = (
             <>
               <button onClick={(e)=> this.createLike(e, playlist.id)}className='songBu1'><img width='10' src='https://image.flaticon.com/icons/svg/1077/1077086.svg'/> {playlist.likes.length}</button>
             </>
@@ -264,23 +268,26 @@ class Playlist extends React.Component {
               }
             })
 
-            let editbutton = (
+            editbutton = (
               <>
                 <button onClick={() => this.props.openEditPlaylistModal('edit', playlist)}className='songBu3'>&#9998; Edit</button>
               </>
             )
-
-            if (this.props.currentuser.id !== this.props.user.id) {
-              editbutton = null
-              lastbutton = (
-                <>
-                  <button className='songBu4'>...More
-                    <div className='moreshow'>
-                      <div onClick={(e) => this.addQueue(e, song.tracks)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
-                    </div>
-                  </button>
-                </>
-                )
+          }
+            
+            if (this.props.currentuser) {
+              if (this.props.currentuser.id !== this.props.user.id) {
+                editbutton = null
+                lastbutton = (
+                  <>
+                    <button className='songBu4'>...More
+                      <div className='moreshow'>
+                        <div onClick={(e) => this.addQueue(e, song.tracks)}className='moreshowli'><img className='lilimg' width='12' src ='https://image.flaticon.com/icons/svg/565/565220.svg'/>  Add to Next up</div>
+                      </div>
+                    </button>
+                  </>
+                  )
+              }
             }
 
           let buttons = (

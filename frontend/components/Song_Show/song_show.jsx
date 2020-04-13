@@ -328,9 +328,12 @@ class SongShow extends React.Component {
       let commentBody = this.props.song.comments.map((comment, idx) => {
         let user='You'
         let garbage = null
-        if (comment.username !== this.props.currentuser.username) {
+        if (!this.props.currentuser) {
           user = comment.username
         } else {
+          if (comment.username !== this.props.currentuser.username) {
+          user = comment.username
+          } else {
           garbage = (
             <>
               <div className='garbage' onClick={(e) => this.handleDeleteComment(e, comment.id, idx)}>
@@ -342,6 +345,9 @@ class SongShow extends React.Component {
             </>
           )
         }
+      }
+        
+        
         return(
         <>
           <div className='commentcont'>

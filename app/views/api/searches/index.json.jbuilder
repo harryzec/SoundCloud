@@ -17,8 +17,9 @@
       json.user search.user
 
       json.tracks search.tracks do |track|
-        json.extract! track, :title, :id, :genre, :description, :hyperlink, :likes, :plays
+        json.extract! track, :title, :id, :genre, :description, :hyperlink, :likes, :plays, :catagory
         json.user track.user.username
+        json.playlist search.id
         json.songUrl track.track.service_url
         if !track.photo.attached? 
           json.imgUrl nil

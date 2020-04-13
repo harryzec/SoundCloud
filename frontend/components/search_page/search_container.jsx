@@ -5,6 +5,8 @@ import { createFollow, deleteFollow } from '../../actions/follow_action'
 import { createLike, deleteLike } from '../../actions/like_action'
 import { openPlaylistModal } from '../../actions/modal_actions'
 import { addQueue } from '../../actions/queue_action'
+import { playSong, pauseSong } from '../../actions/song_player_actions'
+
 
 
 
@@ -14,12 +16,15 @@ const mSTP = state => {
 
   return{
     search: Object.values(state.entities.searched),
-    currentuser: state.session.currentUser
+    currentuser: state.session.currentUser,
+    player: state.ui.SongPlayer
   }
 }
 
 const mDTP = dispatch => {
   return {fetchSearch: (search)=> dispatch(fetchSearch(search)),
+      playSong: (song) => dispatch(playSong(song)),
+      pauseSong: (song) => dispatch(pauseSong(song)),
       createFollow: (follow) => dispatch(createFollow(follow)),
       deleteFollow: (follow_id) => dispatch(deleteFollow(follow_id)),
       fetchSearch: (search)=> dispatch(fetchSearch(search)),

@@ -383,8 +383,8 @@ getPosition(el) {
 
       {likebutton}
 
-      <div onClick={this.toggleShowQueue}className='showqueue'>
-        <img className='barOpt' width='20' src='https://image.flaticon.com/icons/svg/545/545705.svg'/>
+      <div className='showqueue'>
+        <img onClick={this.toggleShowQueue} className='barOpt' width='20' src='https://image.flaticon.com/icons/svg/545/545705.svg'/>
         {showqueue}
       </div>
 
