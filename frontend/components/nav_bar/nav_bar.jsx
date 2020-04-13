@@ -160,6 +160,15 @@ class NavBar extends React.Component {
       return null;
     }
 
+    let lilpic;
+    if (this.props.user.profileUrl) {
+      lilpic = (
+        <>
+          <img className='navPic' src={`${this.props.user.profileUrl}`}/>
+        </>
+      )
+    }
+
     return (
       <>
       <div className='navMarg'>
@@ -181,7 +190,7 @@ class NavBar extends React.Component {
           <Link to='/upload' className='UploadClick'>Upload</Link>
 
         <div className={userdrop} onClick={this.handleDrop}>
-          <div className='profHead'><img className='navPic' src={`${this.props.user.profileUrl}` || null}/><p className='navUsername'>{this.props.user.username} </p> </div>
+          <div className='profHead'>{lilpic}<p className='navUsername'>{this.props.user.username} </p> </div>
           <p className='dA'>&#8964;</p>
             <div className={NavDrop}>
               <Link className='firstEle1' to={`/${this.props.user.username.split(' ').join('-')}`}> <li className='firstEle'>&#8962; Profile</li></Link>

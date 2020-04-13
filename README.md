@@ -1,24 +1,71 @@
-# README
+<p align='center'>
+  <img width='250' src="app/assets/images/pictureofapp.png"/>
+</p>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
 
-Things you may want to cover:
+CloneCloud is a pixel perfect clone of the audio distribution and music sharing platform SoundCloud. This was inspired by love for and background in music.
 
-* Ruby version
+<a href="https://soundcloudclone1.herokuapp.com/#/">Live Demo</a>
 
-* System dependencies
+## Technologies
+* Ruby 
+* JavaScript
+* Rails 
+* React.js
+* Redux
+* PostGreSQL
+* AWS S3
+* Wavesurfer.js
+* CSS
+* HTML
+* Heroku
 
-* Configuration
+## Features 
+* User authentication
+* CRUD for Music
+* CRUD for Playlists
+* Continuous Audio Player
+* User Dashboard
+* Song Dashboard
+* Playlist Dashboard
+* Search Bar
+* Waveforms 
+* Comments
+* Likes
+* Follows
+* Optional login
 
-* Database creation
+## Code Highlights
 
-* Database initialization
+### Synchronized Wavesufer and Audio Player
 
-* How to run the test suite
+I built a dynamic Wavesurfer intergrated with the current audio file playing. I wanted users to have the option to either click on the song bar? to change the current time of the song they are listening to, or the visualizaiton of the songwave. 
 
-* Services (job queues, cache servers, search engines, etc.)
+When you click on the wave, it automatically will start the wave from the given location you select. But in this, I find the distance you are from the start of the container and divide it by the whole length of the container. This will give you how far into the song you are. That percentaged is passed in as a WaveEvent, the WaveEvent is set as the currenttime of the song and the timer on the bar changes based on that. 
 
-* Deployment instructions
+Similarly on the other end, when you click on the continuous play bar if passes over a percentage to the Wave Component in an UpdateWave function
 
-* ...
+```JavaScript
+getPosition(el) {
+    return el.getBoundingClientRect().left;
+  }
+
+handleWave(e) {
+  e.preventDefault()
+  let timeline = document.getElementById(`waveformsong${this.props.song.id}`)
+  let numerator = (e.clientX - this.getPosition(timeline))
+  let denominator = (timeline.clientWidth);
+  let wholething = (part1/part2)
+  this.props.waveEvent(song_position)
+}
+```
+
+<img src='app/assets/images/waveevent.gif' width='100%'/>
+
+### Dynamic Search
+
+Basically if you search soemthing. it will pull together in the search controller search for titles of songs and playlists.. then 
+send back all of the users, playlists and songs with those and show them as you add another letter
+can click on the searhc button to see it all show up on one page
+pull based off of individual words as well 

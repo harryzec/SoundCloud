@@ -11,7 +11,6 @@ class Waves extends React.Component {
   }
 
   getPosition(el) {
-    
     return el.getBoundingClientRect().left;
   }
 
