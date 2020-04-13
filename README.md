@@ -42,7 +42,7 @@ CloneCloud is a pixel perfect clone of the audio distribution and music sharing 
 
 I built a dynamic Wavesurfer that runs in sync with the audio player. Users to have the option to either click on the media player to change the place of the song they are in or by clicking the Wave itself. 
 
-This is determined by how far left you clicked inside the div and is divided by the total width of the div. This would get you how far you clicked into a song in terms of percent. This is sent to the media player component as a WaveEvent This similarly works when you click on the media player and it changes the location of the wave.
+This is determined by how far left you clicked inside the div and is divided by the total width of the div. This would get you how far you clicked into a song in terms of percent. This is sent to the media player component as a WaveEvent. This similarly works when you click on the media player and it changes the location of the wave.
 
 ```JavaScript
 getPosition(el) {
@@ -63,7 +63,7 @@ handleWave(e) {
 
 ### Dynamic Search
 
-User have the ability when searching to have all the options of Users, Playlists or Songs show up below the search bar that match either the title or username. When you select 'search for', you can filter specfically by users, playlists or songs on the side. 
+When searching, User can see all the Users, Playlists or Songs show up below the search bar that match either the title or username. When you select 'search for', you can filter specfically by users, playlists or songs on the side. 
 
 Search Controller
 ```Ruby
