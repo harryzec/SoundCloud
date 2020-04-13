@@ -61,7 +61,7 @@ handleWave(e) {
 }
 ```
 
-<img  align='center' src='app/assets/images/waveevent.gif' width='80%'/>
+<img  align='center' src='app/assets/images/waveevent.gif' width='60%'/>
 
 ### Dynamic Search
 
@@ -98,4 +98,4 @@ Example Search Method
 ```
 
 
-<img  align='center' src='app/assets/images/searchbar.gif' width='80%'/>
+<img  align='center' src='app/assets/images/searchbar.gif' width='60%'/>
