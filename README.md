@@ -71,9 +71,31 @@ can click on the searhc button to see it all show up on one page
 pull based off of individual words as well 
 
 
+Search Controller
 ```Ruby
+    @songs = [Song.search(params[:search])]
+    @songs = @songs.flatten
+    @songs = @songs.map {|id| Song.find_by(id: id)}
 
+    @playlists = [Playlist.search(params[:search])]
+    @playlists = @playlists.flatten
+    @playlists = @playlists.map { |id| Playlist.find_by(id: id)}
+
+    @users = [User.search(params[:search])]
+    @users = @users.flatten
+    @users = @users.map {|id| User.find_by(id: id)}
+    @searched = @songs + @playlists + @users
+    render :index
 }
 ```
+
+Example Search Method
+```Ruby 
+ def self.search(search)
+    songs = Song.where("lower(title) LIKE ?", "#{search.downcase}%").select("id") +  Song.where("lower(title) LIKE ?", "% #{search.downcase}%").select("id") 
+    songs.map {|song| song.id }
+  end
+```
+
 
 <img  align='center' src='app/assets/images/searchbar.gif' width='80%'/>
