@@ -40,11 +40,9 @@ CloneCloud is a pixel perfect clone of the audio distribution and music sharing 
 
 ### Synchronized Wavesufer and Audio Player
 
-I built a dynamic Wavesurfer intergrated with the current audio file playing. I wanted users to have the option to either click on the song bar? to change the current time of the song they are listening to, or the visualizaiton of the songwave. 
+I built a dynamic Wavesurfer that runs in sync with the audio player. Users to have the option to either click on the media player to change the place of the song they are in or by clicking the Wave itself. 
 
-When you click on the wave, it automatically will start the wave from the given location you select. But in this, I find the distance you are from the start of the container and divide it by the whole length of the container. This will give you how far into the song you are. That percentaged is passed in as a WaveEvent, the WaveEvent is set as the currenttime of the song and the timer on the bar changes based on that. 
-
-Similarly on the other end, when you click on the continuous play bar if passes over a percentage to the Wave Component in an UpdateWave function
+This is determined by how far left you clicked inside the div and is divided by the total width of the div. This would get you how far you clicked into a song in terms of percent. This is sent to the media player component as a WaveEvent This similarly works when you click on the media player and it changes the location of the wave.
 
 ```JavaScript
 getPosition(el) {
@@ -65,11 +63,7 @@ handleWave(e) {
 
 ### Dynamic Search
 
-Basically if you search soemthing. it will pull together in the search controller search for titles of songs and playlists.. then 
-send back all of the users, playlists and songs with those and show them as you add another letter
-can click on the searhc button to see it all show up on one page
-pull based off of individual words as well 
-
+User have the ability when searching to have all the options of Users, Playlists or Songs show up below the search bar that match either the title or username. When you select 'search for', you can filter specfically by users, playlists or songs on the side. 
 
 Search Controller
 ```Ruby
@@ -86,7 +80,6 @@ Search Controller
     @users = @users.map {|id| User.find_by(id: id)}
     @searched = @songs + @playlists + @users
     render :index
-}
 ```
 
 Example Search Method
@@ -99,3 +92,5 @@ Example Search Method
 
 
 <img  align='center' src='app/assets/images/searchbar.gif' width='60%'/>
+
+<img  align='center' src='app/assets/images/searchpage.png' width='60%'/>
