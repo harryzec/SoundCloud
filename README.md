@@ -1,5 +1,5 @@
 <p align='center'>
-  <img width='250' src="app/assets/images/pictureofapp.png"/>
+  <img width='100%' src="app/assets/images/pictureofapp.png"/>
 </p>
 
 ## Overview
@@ -61,7 +61,7 @@ handleWave(e) {
 }
 ```
 
-<img src='app/assets/images/waveevent.gif' width='100%'/>
+<img  align='center' src='app/assets/images/waveevent.gif' width='80%'/>
 
 ### Dynamic Search
 
