@@ -29,7 +29,7 @@ export const createSong = (song) => {
 }
 
 export const fetchSongShow = (hyperlink, username) => {
-  debugger
+  
   return $.ajax({
     method: 'GET',
     url: `/api/songs/songshow/${username}/${hyperlink}`
