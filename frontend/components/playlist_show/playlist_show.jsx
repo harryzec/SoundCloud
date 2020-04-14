@@ -243,11 +243,28 @@ class PlaylistShow extends React.Component {
     }
 
     if (!this.props.playlist.imageUrl) {
-      playimage = (
-        <>
-          <img className='songIT' src={Object.values(this.props.playlist.tracks)[0].imgUrl}/>
-        </>
-      )
+      if (this.props.playlist.tracks.length === 0) {
+        playimage = (
+          <>
+            <div className='songIT2'/>
+          </>
+        )
+
+      } else {
+        if (this.props.playlist.tracks[0].imgUrl) {
+          playimage = (
+            <>
+              <img className='songIT' src={Object.values(this.props.playlist.tracks)[0].imgUrl}/>
+            </>
+          )
+        } else {
+          playimage = (
+            <>
+              <div className='songIT2'/>
+            </>
+          )
+        }
+      }
     }
 
 

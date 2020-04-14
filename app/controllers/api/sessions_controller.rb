@@ -1,5 +1,6 @@
 class Api::SessionsController < ApplicationController
   def create
+    debugger
     @user = User.find_by_credentials(
       params[:user][:email],
       params[:user][:password]
@@ -16,6 +17,7 @@ class Api::SessionsController < ApplicationController
   
 
   def destroy
+    debugger
     dummy = current_user.dup
     @user = current_user
     if @user

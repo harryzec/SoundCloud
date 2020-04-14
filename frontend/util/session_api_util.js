@@ -1,10 +1,11 @@
-export const login = user => (
-  $.ajax({
+export const login = user => {
+  debugger
+  return $.ajax({
     method: 'POST',
     url: '/api/session',
     data: { user }
   })
-);
+};
 
 export const signup = user => (
   $.ajax({
@@ -14,12 +15,13 @@ export const signup = user => (
   })
 );
 
-export const logout = () => (
-  $.ajax({
+export const logout = () => {
+  debugger
+  return  $.ajax({
     method: 'DELETE',
     url: '/api/session'
   })
-);
+};
 
 export const verifyUser = email => (
   $.ajax({
