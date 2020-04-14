@@ -5,7 +5,7 @@ export const RECEIVE_SONGS = 'RECEIVE_SONGS';
 
 
 export const receiveUser = (user) => {
-  debugger
+  
   return {
     type: RECEIVE_USER,
     user: user
@@ -15,7 +15,7 @@ export const receiveUser = (user) => {
 export const RECEIVE_CONTENT = 'RECEIVE_CONTENT'
 
 export const receiveContent = content => {
-  debugger
+  
   return{
   type: RECEIVE_CONTENT,
   content: content
@@ -27,7 +27,7 @@ export const receiveRandomUsers = (users) => ({
 })
 
 export const fetchUser = (username) =>dispatch => {
-  debugger
+  
   return APIUtil.fetchUser(username)
     .then(user => (
       dispatch(receiveUser(user))

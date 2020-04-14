@@ -11,7 +11,7 @@ class EditForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
+    
     e.preventDefault()
     if (this.state.allowchange === 'nosaveuser') {
       return null
@@ -42,7 +42,7 @@ class EditForm extends React.Component {
   }
 
   update(e) {
-    debugger
+    
     e.preventDefault();
     this.setState({username: e.currentTarget.value, allowchange: 'saveedituser'})
   }

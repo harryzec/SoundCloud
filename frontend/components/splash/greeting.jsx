@@ -12,7 +12,7 @@ class Greeting extends React.Component {
   }
 
   update(field) {
-    debugger
+    
     return e => {
      
       if (e.currentTarget.value.length > 0) {

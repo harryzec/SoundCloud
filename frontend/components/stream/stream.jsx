@@ -32,7 +32,7 @@ class Stream extends React.Component {
   }
 
   createLike(e, id, type) {
-    debugger
+    
     e.preventDefault()
     type = type[0].toUpperCase() + type.slice(1).toLowerCase()
     this.props.createLike({    
@@ -50,7 +50,7 @@ class Stream extends React.Component {
   }
 
   componentDidMount() {
-    debugger
+    
     this.props.fetchFollowerContent(this.props.currentuser.id)
   }
 

@@ -60,7 +60,7 @@ class Dashboard extends React.Component {
   
 
   addQueue(e, song) {
-    debugger
+    
     e.preventDefault()
     this.props.addQueue(song)
   }
@@ -333,7 +333,7 @@ class Dashboard extends React.Component {
           
           </>
         )} else if (song.catagory === 'playlist') {
-          debugger
+          
           let lastbutton = (
             <>
             <button className='songBu4'>...More

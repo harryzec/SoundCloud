@@ -30,7 +30,7 @@ class PopularTracks extends React.Component {
   }
 
   createFollow(e) {
-    debugger
+    
     e.preventDefault()
     this.props.createFollow({
       user_id: this.props.user.id,
@@ -48,9 +48,9 @@ class PopularTracks extends React.Component {
   }
 
   addQueue(e, song) {
-    debugger
+    
     e.preventDefault()
-    debugger
+    
     this.props.addQueue(song)
   }
 
@@ -84,7 +84,7 @@ class PopularTracks extends React.Component {
 
   render() {
     let content = null;
-    debugger
+    
 
     if (Object.values(this.props.songs).length === 0) {
       content = (
@@ -114,7 +114,7 @@ class PopularTracks extends React.Component {
         )
 
         song.likes.forEach(like => {
-          debugger
+          
           if (like.user_id === this.props.currentuser.id) {
             likebutton = (
               <>
@@ -284,7 +284,7 @@ class PopularTracks extends React.Component {
        </>
      )
     }
-    debugger
+    
     let comments = null;
 
     if (this.props.user.comments.length > 0) {

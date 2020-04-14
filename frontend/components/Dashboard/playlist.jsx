@@ -29,7 +29,7 @@ class Playlist extends React.Component {
   }
 
   handlePlayButton(e, playlist) {
-    debugger
+    
     e.preventDefault()
     if (playlist.id === this.props.player.song.playlist) {
       if (this.props.player.player === 'playing') {

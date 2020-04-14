@@ -57,7 +57,7 @@ class SongShow extends React.Component {
   }
 
   componentDidUpdate() {
-    debugger
+    
     // if (this.state.currentsong === null) {
     //   this.setState({currentsong: this.props.song})
     // } else if (this.state.currentsong.hyperlink !== this.props.match.params.hyperlink) {
@@ -251,7 +251,7 @@ class SongShow extends React.Component {
 
 
   render(){
-    debugger
+    
     
  
     if (!this.props.song) {
@@ -323,7 +323,7 @@ class SongShow extends React.Component {
     
       this.setState({comments: this.props.song.comments, updateWave: this.props.updateWave})
     } else {
-      debugger
+      
       if(this.props.song.comments.length > 0) {
       let commentBody = this.props.song.comments.map((comment, idx) => {
         let user='You'

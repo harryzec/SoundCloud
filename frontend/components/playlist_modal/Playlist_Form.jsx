@@ -12,7 +12,7 @@ class PlaylistForm extends React.Component {
   }
 
   updateplaylists(e) {
-    debugger
+    
     e.preventDefault()
     let newplaylists = []
     let value = document.getElementById('playfilt')
@@ -93,7 +93,7 @@ class PlaylistForm extends React.Component {
   }
 
   render() {
-    debugger
+    
     
     if (this.props.playlist.length !== 0) {
       const newPlaylistTrack = new FormData();
@@ -107,7 +107,7 @@ class PlaylistForm extends React.Component {
     let theForm;
     
     if (this.state.modalnumber === 'zero' && this.props.currentUser.playlists.length > 0) {
-    debugger
+    
     let playlist = this.state.playlists.slice(0, 4).map(playlist => {
 
       if (!this.props.currentUser.playlists.some((match) => match === playlist)) {

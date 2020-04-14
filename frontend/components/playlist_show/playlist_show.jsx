@@ -69,7 +69,7 @@ class PlaylistShow extends React.Component {
     this.wavesurfer.load(song.songUrl);  
 
     this.wavesurfer.on('ready', ()=> {
-      debugger
+      
       if (this.props.tracks.some(track => track.id === this.props.player.song.id)) {
         let timeparts = this.props.time.split(':')
         let timesec = parseInt(timeparts[0]*60) + parseInt(timeparts[1])
@@ -146,7 +146,7 @@ class PlaylistShow extends React.Component {
       this.wavesurfer.load(this.props.player.song.songUrl);  
 
       this.wavesurfer.on('ready', ()=> {
-        debugger
+        
         if (this.props.tracks.some(track => track.id === this.props.player.song.id)) {
           let timeparts = this.props.time.split(':')
           let timesec = parseInt(timeparts[0]*60) + parseInt(timeparts[1])

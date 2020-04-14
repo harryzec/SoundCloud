@@ -5,7 +5,7 @@ export const fetchPlaylists = () => (
 )
 
 export const createPlaylist = (playlist, song) => {
-  debugger
+  
   return $.ajax({
     method: 'POST',
     url: '/api/playlists',
@@ -16,7 +16,7 @@ export const createPlaylist = (playlist, song) => {
 }
 
 export const updatePlaylist = (playlist, id) => {
-  debugger
+  
   return $.ajax({
     method: 'PATCH',
     url: `/api/playlists/${id}`,
@@ -27,7 +27,7 @@ export const updatePlaylist = (playlist, id) => {
 }
 
 export const fetchPlaylistByArtist = userId => {
-  debugger
+  
   return $.ajax({
       method: 'GET',
       url: `/api/playlists/by_user/${userId}`

@@ -5,7 +5,7 @@ import { deletePlaylist, fetchPlaylistByArtist } from '../../actions/playlist_ac
 import DeletePlaylistForm from './delete_playlist_form';
 
 function DeleteModal({modal, closeModal, playlist, deletePlaylist, fetchPlaylistByArtist}) {
-  debugger
+  
   if (!modal) {
     return null;
   }

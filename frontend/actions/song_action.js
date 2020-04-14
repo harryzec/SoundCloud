@@ -16,7 +16,7 @@ export const createnewSong = song => ({
 })
 
 export const receiveSongs = songs => {
-  debugger
+  
   return{
   type: RECEIVE_SONGS,
   songs
@@ -73,26 +73,26 @@ export const deleteSong = ( song ) => dispatch => {
 export const SHOW_SONG = 'SHOW_SONG';
 
 export const songShow = song => {
-  debugger
+  
   return {
   type: SHOW_SONG,
   song
 }}
 
 export const fetchSongShow = ( hyperlink, username ) => dispatch => {
-  debugger
+  
   return APIUtil.fetchSongShow( hyperlink, username ).then((song) => {
-      debugger
+      
       dispatch(songShow(song))
     })
 
-    debugger
+    
 }
 
 export const PLAY_RANDOM = 'PLAY_RANDOM'
 
 export const randomPlay = song => {
-  debugger
+  
   return {
     type: PLAY_RANDOM,
     song

@@ -26,7 +26,7 @@ class UploadForm extends React.Component {
 
   handleFile(e) {
     e.preventDefault();
-    debugger
+    
     const filetypes = ['WAV', 'FLAC', 'AIFF', 'ALAC', 'MP3', 'AAC', 'OGG', 'VORBIS', 'MP4', 'MP2', 'M4A', '3GP', '3G2', 'MJ2', 'AMR', 'WMA'] 
     let filebroken = e.currentTarget.files[0].name.split('.')
     let extension = filebroken[filebroken.length-1]
@@ -52,11 +52,11 @@ class UploadForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
+    
 
     if (this.state.samePerma === 'samePerma',this.state.TitleInput === 'titleInputred' || this.state.titleError === 'showTitleError' || this.state.hypererror === 'hyperErrorshow'){
     } else {
-    debugger
+    
     const createdSong = new FormData();
     createdSong.append('song[title]', this.state.title);
     createdSong.append('song[genre]', this.state.genre);
@@ -76,7 +76,7 @@ class UploadForm extends React.Component {
 
 
   update(field){
-    debugger
+    
     if (field === 'title'){
       return e => {
         if (e.currentTarget.value === '') {

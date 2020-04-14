@@ -35,7 +35,7 @@ class Library extends React.Component {
   updateFilter(e) {
     e.preventDefault()
     let newlikes = []
-    debugger
+    
     let length = e.currentTarget.value.length
     this.props.currentuser.likes.forEach(like => {
       let title = like.title.toLowerCase().split(' ')

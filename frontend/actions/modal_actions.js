@@ -2,7 +2,7 @@ export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 export const openModal = (modal, email = '') => {
-  // debugger
+  // 
   return {
     type: OPEN_MODAL,
     modal,
@@ -55,7 +55,7 @@ export const OPEN_EDIT_PLAYLIST_MODAL = 'OPEN_EDIT_PLAYLIST_MODAL';
 export const CLOSE_EDIT_PLAYLIST_MODAL = 'CLOSE_EDIT_PLAYLIST_MODAL';
 
 export const openEditPlaylistModal = (modal, playlist) => {
-  debugger
+  
   return {
     type: OPEN_EDIT_PLAYLIST_MODAL,
     modal,
@@ -73,7 +73,7 @@ export const OPEN_EDIT_MODAL = 'OPEN_EDIT_MODAL';
 export const CLOSE_EDIT_MODAL = 'CLOSE_EDIT_MODAL';
 
 export const openEditModal = (modal, song) => {
-  debugger
+  
   return {
     type: OPEN_EDIT_MODAL,
     modal,
@@ -92,7 +92,7 @@ export const CLOSE_PLAYLIST_MODAL = 'CLOSE_PLAYLIST_MODAL';
 
 
 export const openPlaylistModal = (modal, song) => {
-  debugger
+  
   return {
     type: OPEN_PLAYLIST_MODAL, 
     modal, 
@@ -104,7 +104,7 @@ export const OPEN_DELETE_PLAYLIST_MODAL = 'OPEN_DELETE_PLAYLIST_MODAL'
 export const CLOSE_DELETE_PLAYLIST_MODAL = 'CLOSE_DELETE_PLAYLIST_MODAL'
 
 export const openDeletePlaylistModal = (modal, playlist) => {
-  debugger
+  
   return {
     type: OPEN_DELETE_PLAYLIST_MODAL,
     modal,

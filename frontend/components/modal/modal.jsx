@@ -34,7 +34,7 @@ function Modal({currentModal, closeModal, email}) {
 }
 
 const mSTP = state => {
-  // debugger
+  // 
   return {
     currentModal: state.ui.modal.modal,
     email: state.ui.modal.email

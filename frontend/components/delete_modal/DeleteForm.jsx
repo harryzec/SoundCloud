@@ -7,7 +7,7 @@ class DeleteForm extends React.Component {
   }
 
   handleDelete(e) {
-    debugger
+    
     e.preventDefault();
     this.props.deleteSong(this.props.song).then(() => this.props.closeModal()).then(() =>this.props.history.push(`/${this.props.userlink}`))
   }

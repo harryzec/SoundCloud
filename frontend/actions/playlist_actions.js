@@ -4,14 +4,13 @@ export const RECEIVE_PLAYLISTS = 'RECEIVE_PLAYLISTS';
 export const RECEIVE_PLAYLIST = 'RECEIVE_PLAYLIST'
 
 export const receivePlaylists = playlists => {
-  debugger
+  
   return{
   type: RECEIVE_PLAYLISTS,
   playlists
 }}
 
 export const receivePlaylist = playlist => {
-  debugger
   return {
     type: RECEIVE_PLAYLIST,
     playlist
@@ -21,7 +20,7 @@ export const receivePlaylist = playlist => {
 export const RECEIVE_CREATE_PLAYLIST = 'RECEIVE_CREATE_PLAYLIST';
 
 export const receiveCreatePlaylist = playlist => {
-  debugger
+  
   return {
     type: RECEIVE_CREATE_PLAYLIST,
     playlist
@@ -51,7 +50,7 @@ export const fetchPlaylists = () => dispatch => {
 };
 
 export const fetchPlaylistByArtist = userId => dispatch => {
-  debugger
+  
   return APIUtil.fetchPlaylistByArtist(userId).then(playlists => (
       dispatch(receivePlaylists(playlists)), err => (
         dispatch(receivePlaylists({})
@@ -61,7 +60,7 @@ export const fetchPlaylistByArtist = userId => dispatch => {
 
 
 export const createPlaylist = (playlist, song) => dispatch => {
-  debugger
+  
   return APIUtil.createPlaylist(playlist, song)
     .then((playlist) => (
       dispatch(receiveCreatePlaylist(playlist))
@@ -73,7 +72,7 @@ export const createPlaylistTrack = playlisttrack => dispatch => {
 }
 
 export const fetchPlaylist = (username, permalink) => dispatch => {
-  debugger
+  
   return APIUtil.getPlaylist(username, permalink)
     .then((playlist) => (dispatch(receivePlaylist(playlist))))
     // .catch(err => console.log(err))

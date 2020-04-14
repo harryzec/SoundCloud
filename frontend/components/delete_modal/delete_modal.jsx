@@ -6,7 +6,7 @@ import { deleteSong } from '../../actions/song_action'
 import { playSong, pauseSong } from '../../actions/song_player_actions'
 
 function DeleteModal({modal, closeModal, song, deleteSong, userlink, playSong}) {
-  // debugger
+  // 
   if (!modal) {
     return null;
   }

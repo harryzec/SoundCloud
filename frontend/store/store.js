@@ -18,7 +18,7 @@ const configureStore = () => {
   // //           currentuser: null
   // //       }
   // //   };
-  debugger
+  
 
   const preloadedState = { session: {currentUser: null }}
   

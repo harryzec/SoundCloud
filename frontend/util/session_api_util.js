@@ -1,5 +1,5 @@
 export const login = user => {
-  debugger
+  
   return $.ajax({
     method: 'POST',
     url: '/api/session',
@@ -16,7 +16,7 @@ export const signup = user => (
 );
 
 export const logout = () => {
-  debugger
+  
   return  $.ajax({
     method: 'DELETE',
     url: '/api/session'
@@ -32,7 +32,7 @@ export const verifyUser = email => (
 )
 
 export const updateUser = (user, id = null) => {
-  debugger
+  
   return $.ajax({
     method: 'PATCH',
     url: `/api/users/${user.id || id}`,

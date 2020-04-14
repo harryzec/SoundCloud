@@ -17,7 +17,7 @@ class VerifyUserForm extends React.Component {
     if (this.state.email === '') {
       this.setState({ emailBlank: 'showEmailBlank'})
     } else {
-      debugger
+      
     let oldState = Object.assign({}, this.state)
     delete oldState['emailBlank']
     this.props.verifyUsername(oldState)
