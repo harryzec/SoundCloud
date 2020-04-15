@@ -66,38 +66,15 @@ class SongShow extends React.Component {
     // }
     if (this.props.song === undefined) {
       this.props.fetchSongShow(this.props.match.params.hyperlink, this.props.match.params.username.split('-').join(' '))
-      // this.setState({change: true, othersongs: this.shuffleArray(this.props.othersongs).slice(0, 3), currentsong: {hyperlink: this.props.match.params.hyperlink}})
+      // this.setState({change: true})
     }
- 
 
-    if ((!this.wavesurfer&& this.props.song)|| this.state.change === true) {
-      if (this.state.change === true) {
-        this.setState({change: false})
-        setTimeout(()=>{
-          this.wavesurfer = WaveSurfer.create({
-            container: '#waveform',
-            waveColor: '#ccc',
-            progressColor: '#f50',
-            barGraph: 10,
-            barHeight: .75,
-            barWidth: 2,
-            reflection: true,
-            // maxCanvasWidth: 200,
-            fillParent: true,
-            scrollParent: false,
-            cursorWidth: 0,
-            // interact: false,
-            // autoCenter: true,
-            // closeAudioContext: true,
-            hideScrollbar: true,
-            // partialRender: true,
-            // removeMediaElementOnDestroy: true,
-            pixelRatio: 1
-          });
-         
-          this.wavesurfer.load(this.props.song.songUrl);  
-    
-          this.wavesurfer.on('ready', ()=> {
+    debugger
+
+
+    if (this.props.song && this.state.change) {
+      this.wavesurfer.load(this.props.song.songUrl); 
+      this.wavesurfer.on('ready', ()=> {
             if (this.props.player.song.id === this.props.song.id) {
               let timeparts = this.props.time.split(':')
               let timesec = parseInt(timeparts[0]*60) + parseInt(timeparts[1])
@@ -118,7 +95,65 @@ class SongShow extends React.Component {
             let duration = min.toString() + ':' + sec
             this.setState({duration: duration})
           })
-        }, 500)
+          this.setState({change: false})
+      }
+    
+ 
+
+    if ((!this.wavesurfer&& this.props.song)|| this.state.change === true) {
+      if (this.state.change === true) {
+        // this.setState({change: false})
+
+        
+
+
+
+        // setTimeout(()=>{
+        //   this.wavesurfer = WaveSurfer.create({
+        //     container: '#waveform',
+        //     waveColor: '#ccc',
+        //     progressColor: '#f50',
+        //     barGraph: 10,
+        //     barHeight: .75,
+        //     barWidth: 2,
+        //     reflection: true,
+        //     // maxCanvasWidth: 200,
+        //     fillParent: true,
+        //     scrollParent: false,
+        //     cursorWidth: 0,
+        //     // interact: false,
+        //     // autoCenter: true,
+        //     // closeAudioContext: true,
+        //     hideScrollbar: true,
+        //     // partialRender: true,
+        //     // removeMediaElementOnDestroy: true,
+        //     pixelRatio: 1
+        //   });
+         
+        //   this.wavesurfer.load(this.props.song.songUrl);  
+    
+        //   this.wavesurfer.on('ready', ()=> {
+        //     if (this.props.player.song.id === this.props.song.id) {
+        //       let timeparts = this.props.time.split(':')
+        //       let timesec = parseInt(timeparts[0]*60) + parseInt(timeparts[1])
+        //       this.wavesurfer.seekTo(timesec/this.wavesurfer.getDuration())
+        //       if (this.props.player.player !== 'paused') {
+        //         this.wavesurfer.play()
+        //         this.wavesurfer.setVolume(0)
+        //       }
+        //     } 
+    
+        //     let tim = this.wavesurfer.getDuration()
+        //     let min = Math.floor(tim/60)
+        //     let sec = tim - (min*60) 
+        //     sec = sec.toString().split('.')[0]
+        //     if (sec.length < 2 ) {
+        //       sec = '0' + sec
+        //     }
+        //     let duration = min.toString() + ':' + sec
+        //     this.setState({duration: duration})
+        //   })
+        // }, 500)
       } else {
       
       this.wavesurfer = WaveSurfer.create({

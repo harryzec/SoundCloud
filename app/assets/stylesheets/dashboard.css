@@ -517,6 +517,7 @@
   color: #333;
   text-decoration: none;
   font-size: 13px;
+  z-index: 10;
 }
 
 .playcon {
