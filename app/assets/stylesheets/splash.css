@@ -103,6 +103,7 @@
   margin-top: 10px;
   padding-left: 8px;
   border-radius: 4px;
+  outline:none;
   border: 1px solid #f50;
 }
 
@@ -163,6 +164,7 @@
   border-radius: 4px;
   border: none;
   cursor: pointer;
+  outline: none;
 }
 
 
@@ -173,6 +175,8 @@
   color: white;
   background-color: Transparent;
   border-radius: 4px;
+  border: 1px solid white;
+  outline: none;
   cursor: pointer;
 }
 
@@ -337,6 +341,10 @@ body {
   width:140px;
   border-radius: 4px;
   cursor: pointer;
+  border: none;
+  padding: 5px;
+  font-size: 12px;
+  margin-right: 5px;
 }
 
 .iPhone {
@@ -366,6 +374,9 @@ body {
   width:140px;
   border-radius: 4px;
   cursor: pointer;
+  border: none;
+  padding: 5px;
+  font-size: 12px;
 }
 
 .download {
@@ -400,6 +411,7 @@ body {
   background-color: Transparent;
   border-radius: 4px;
   cursor: pointer;
+  border:none;
 }
 
 .yachtyImg {
@@ -551,7 +563,7 @@ body {
 
 .upload {
   display: block;
-  width: 120px;
+  width: 160px;
   background-color: #f50;
   color:white;
   border-radius: 4px;
@@ -582,7 +594,7 @@ body {
   display: block;
   width: 220px;
   background-color: #f50;
-  border-color: #f50;
+  border: 1px solid #f50;
   color: #fff;
   border-radius: 4px;
   cursor: pointer;
